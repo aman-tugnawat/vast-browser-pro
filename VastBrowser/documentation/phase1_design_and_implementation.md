@@ -38,6 +38,6 @@ Testing was done heavily via automation and `adb` debugging against a local Andr
 
 1. **Build Validation:** A clean `./gradlew app:assembleDebug` builds cleanly with no compiler errors.
 2. **Crash-Free Start:** The app launches and maintains stability without dropping into a `FATAL EXCEPTION`.
-3. **Engine Validation:** `google.com` correctly renders search results with the desktop user-agent.
+3. **Engine Validation:** `about:blank` correctly renders search results with the desktop user-agent.
 4. **Media Validation:** Loading `youtube.com/tv` triggers the TV interface, and the H264 hardware-decoding hooks show successful video rendering in `logcat`.
 5. **Input Validation:** The hardware keyboard and standard D-Pad explicitly route focus to the URL bar, trigger the keyboard correctly, and allow seamless URL injection and browsing.

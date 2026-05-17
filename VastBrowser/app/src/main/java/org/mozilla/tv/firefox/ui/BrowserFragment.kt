@@ -124,6 +124,12 @@ class BrowserFragment : Fragment() {
      * @return true if back was handled
      */
     fun onBackPressed(): Boolean {
+        if (binding.toolbar.hasFocus()) {
+            binding.engineView.requestFocus()
+            val imm = requireContext().getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as android.view.inputmethod.InputMethodManager
+            imm.hideSoftInputFromWindow(binding.urlInput.windowToken, 0)
+            return true
+        }
         return sessionFeature?.onBackPressed() == true
     }
 
@@ -137,7 +143,9 @@ class BrowserFragment : Fragment() {
         binding.urlInput.setOnEditorActionListener { textView, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_GO ||
                 actionId == EditorInfo.IME_ACTION_DONE ||
-                (event?.keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_DOWN)
+                actionId == EditorInfo.IME_ACTION_SEARCH ||
+                actionId == EditorInfo.IME_ACTION_UNSPECIFIED ||
+                event?.keyCode == KeyEvent.KEYCODE_ENTER
             ) {
                 val rawInput = textView.text.toString().trim()
                 val url = normalizeUrl(rawInput)
@@ -159,23 +167,36 @@ class BrowserFragment : Fragment() {
         val showIme = {
             if (isAdded && _binding != null) {
                 val imm = requireContext().getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as android.view.inputmethod.InputMethodManager
-                imm.showSoftInput(binding.urlInput, android.view.inputmethod.InputMethodManager.SHOW_IMPLICIT)
+                binding.urlInput.requestFocus()
+                imm.showSoftInput(binding.urlInput, android.view.inputmethod.InputMethodManager.SHOW_FORCED)
             }
         }
         
         binding.urlInput.setOnClickListener { showIme() }
+        
+        // Listen to DPAD OK/Center button to explicitly trigger the virtual keyboard
+        binding.urlInput.setOnKeyListener { _, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_DPAD_CENTER && event.action == KeyEvent.ACTION_DOWN) {
+                showIme()
+                true
+            } else {
+                false
+            }
+        }
         binding.urlInput.setOnFocusChangeListener { _, hasFocus -> 
-            if (hasFocus) {
-                if (binding.toolbar.translationY == 0f) {
-                    showIme()
-                } else {
-                    binding.urlInput.postDelayed({
-                        if (_binding != null && binding.urlInput.hasFocus()) {
-                            showIme()
-                        }
-                    }, 300)
+            if (!hasFocus && isAdded && _binding != null) {
+                val imm = requireContext().getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as android.view.inputmethod.InputMethodManager
+                imm.hideSoftInputFromWindow(binding.urlInput.windowToken, 0)
+            }
+        }
+
+        binding.engineView.setOnTouchListener { _, event ->
+            if (event.action == MotionEvent.ACTION_DOWN) {
+                if (_binding != null && binding.urlInput.hasFocus()) {
+                    binding.engineView.requestFocus()
                 }
             }
+            false
         }
 
         // Navigation button listeners
@@ -187,6 +208,12 @@ class BrowserFragment : Fragment() {
         }
         binding.buttonReload.setOnClickListener {
             components.sessionUseCases.reload()
+        }
+        binding.buttonHome.setOnClickListener {
+            loadUrl("about:blank")
+        }
+        binding.buttonSettings.setOnClickListener {
+            android.widget.Toast.makeText(requireContext(), "Settings coming soon!", android.widget.Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -316,5 +343,82 @@ class BrowserFragment : Fragment() {
                 updateToolbarVisibility()
             }
         }
+    }
+
+    private fun findWebView(view: android.view.View): android.webkit.WebView? {
+        if (view is android.webkit.WebView) {
+            return view
+        }
+        if (view is android.view.ViewGroup) {
+            for (i in 0 until view.childCount) {
+                val child = view.getChildAt(i)
+                val wv = findWebView(child)
+                if (wv != null) {
+                    return wv
+                }
+            }
+        }
+        return null
+    }
+
+    private fun getWebView(): android.webkit.WebView? {
+        val binding = _binding ?: return null
+        return findWebView(binding.engineView)
+    }
+
+    /**
+     * Evaluate JavaScript to play, pause, fast forward, or rewind HTML5 media in the active tab.
+     */
+    fun executeMediaAction(action: String) {
+        val webView = getWebView() ?: return
+        val js = when (action) {
+            "play" -> """
+                (function() {
+                    var mediaElements = document.querySelectorAll('video, audio');
+                    for (var i = 0; i < mediaElements.length; i++) {
+                        mediaElements[i].play();
+                    }
+                })()
+            """.trimIndent()
+            "pause" -> """
+                (function() {
+                    var mediaElements = document.querySelectorAll('video, audio');
+                    for (var i = 0; i < mediaElements.length; i++) {
+                        mediaElements[i].pause();
+                    }
+                })()
+            """.trimIndent()
+            "toggle" -> """
+                (function() {
+                    var mediaElements = document.querySelectorAll('video, audio');
+                    for (var i = 0; i < mediaElements.length; i++) {
+                        if (mediaElements[i].paused) {
+                            mediaElements[i].play();
+                        } else {
+                            mediaElements[i].pause();
+                        }
+                    }
+                })()
+            """.trimIndent()
+            "forward" -> """
+                (function() {
+                    var mediaElements = document.querySelectorAll('video, audio');
+                    for (var i = 0; i < mediaElements.length; i++) {
+                        mediaElements[i].currentTime += 10;
+                    }
+                })()
+            """.trimIndent()
+            "backward" -> """
+                (function() {
+                    var mediaElements = document.querySelectorAll('video, audio');
+                    for (var i = 0; i < mediaElements.length; i++) {
+                        mediaElements[i].currentTime -= 10;
+                    }
+                })()
+            """.trimIndent()
+            else -> return
+        }
+
+        webView.evaluateJavascript(js, null)
     }
 }

@@ -57,14 +57,52 @@ class BrowserActivity : AppCompatActivity() {
     }
 
     override fun dispatchKeyEvent(event: android.view.KeyEvent): Boolean {
-        if (event.action == android.view.KeyEvent.ACTION_DOWN && event.keyCode == android.view.KeyEvent.KEYCODE_DPAD_UP) {
+        if (event.action == android.view.KeyEvent.ACTION_DOWN) {
             val fragment = supportFragmentManager.findFragmentById(R.id.fragment_container) as? BrowserFragment
-            val engineView = fragment?.view?.findViewById<View>(R.id.engineView)
-            
-            if (engineView?.hasFocus() == true) {
-                // If focus is inside the engine view, show toolbar and move it to the URL bar
-                fragment.showToolbar(focusUrlBar = true)
-                return true
+            when (event.keyCode) {
+                android.view.KeyEvent.KEYCODE_DPAD_UP -> {
+                    val engineView = fragment?.view?.findViewById<View>(R.id.engineView)
+                    if (engineView?.hasFocus() == true) {
+                        // If focus is inside the engine view, show toolbar and move it to the URL bar
+                        fragment.showToolbar(focusUrlBar = true)
+                        return true
+                    }
+                }
+                android.view.KeyEvent.KEYCODE_BACK -> {
+                    val toolbar = fragment?.view?.findViewById<View>(R.id.toolbar)
+                    if (toolbar?.hasFocus() == true) {
+                        // Return focus to engine view
+                        fragment.view?.findViewById<View>(R.id.engineView)?.requestFocus()
+                        // Hide soft keyboard
+                        val imm = getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as android.view.inputmethod.InputMethodManager
+                        fragment.view?.findViewById<View>(R.id.url_input)?.let { urlInput ->
+                            imm.hideSoftInputFromWindow(urlInput.windowToken, 0)
+                        }
+                        return true
+                    }
+                }
+                android.view.KeyEvent.KEYCODE_MEDIA_PLAY -> {
+                    fragment?.executeMediaAction("play")
+                    return true
+                }
+                android.view.KeyEvent.KEYCODE_MEDIA_PAUSE -> {
+                    fragment?.executeMediaAction("pause")
+                    return true
+                }
+                android.view.KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE -> {
+                    fragment?.executeMediaAction("toggle")
+                    return true
+                }
+                android.view.KeyEvent.KEYCODE_MEDIA_FAST_FORWARD,
+                android.view.KeyEvent.KEYCODE_MEDIA_NEXT -> {
+                    fragment?.executeMediaAction("forward")
+                    return true
+                }
+                android.view.KeyEvent.KEYCODE_MEDIA_REWIND,
+                android.view.KeyEvent.KEYCODE_MEDIA_PREVIOUS -> {
+                    fragment?.executeMediaAction("backward")
+                    return true
+                }
             }
         }
         return super.dispatchKeyEvent(event)

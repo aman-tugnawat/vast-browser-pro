@@ -93,6 +93,29 @@
             android:focusableInTouchMode="true"
             android:selectAllOnFocus="true"
             tools:text="https://mozilla.org" />
+
+        <ImageButton
+            android:id="@+id/button_home"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginEnd="4dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Home"
+            android:src="@drawable/ic_home"
+            android:scaleType="centerInside"
+            android:focusable="true"
+            android:tint="@color/icon_primary" />
+
+        <ImageButton
+            android:id="@+id/button_settings"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Settings"
+            android:src="@drawable/ic_settings"
+            android:scaleType="centerInside"
+            android:focusable="true"
+            android:tint="@color/icon_primary" />
     </LinearLayout>
 
     <!-- Progress bar -->
