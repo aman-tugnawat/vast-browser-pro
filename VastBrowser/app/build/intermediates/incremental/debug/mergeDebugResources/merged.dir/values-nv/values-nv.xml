@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mozac_browser_engine_system_alert_title">Níłch’i naaltsoos -gi ’ání %1$s:</string>
+    <string name="mozac_browser_errorpages_generic_message"><![CDATA[<p>Díí ʼachʼįʼ nahwiisʼnááʼígíí hazhóʼó baa haneʼígíí kʼad doo hólǫ́ǫ da.</p>]]></string>
+    <string name="mozac_browser_errorpages_generic_title">Wókeed bóhodoolníłígíí doo bíighah da.</string>
+    <string name="mozac_browser_errorpages_page_refresh">Bínáánítááh</string>
+</resources>

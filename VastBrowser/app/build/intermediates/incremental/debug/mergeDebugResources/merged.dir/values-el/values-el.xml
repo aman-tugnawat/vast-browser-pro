@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2" xmlns:ns2="http://schemas.android.com/tools">
+    <plurals name="mtrl_badge_content_description">
+    <item quantity="one">%d νέα ειδοποίηση</item>
+    <item quantity="other">%d νέες ειδοποιήσεις</item>
+  </plurals>
+    <string msgid="5976598919945601918" name="abc_action_bar_home_description">"Πλοήγηση στην αρχική σελίδα"</string>
+    <string msgid="8388173803310557296" name="abc_action_bar_up_description">"Πλοήγηση προς τα επάνω"</string>
+    <string msgid="3937310113216875497" name="abc_action_menu_overflow_description">"Περισσότερες επιλογές"</string>
+    <string msgid="4692188335987374352" name="abc_action_mode_done">"Τέλος"</string>
+    <string msgid="1189761859438369441" name="abc_activity_chooser_view_see_all">"Εμφάνιση όλων"</string>
+    <string msgid="2165779757652331008" name="abc_activitychooserview_choose_application">"Επιλέξτε μια εφαρμογή"</string>
+    <string msgid="4215997306490295099" name="abc_capital_off">"ΑΠΕΝΕΡΓΟΠΟΙΗΣΗ"</string>
+    <string msgid="884982626291842264" name="abc_capital_on">"ΕΝΕΡΓΟΠΟΙΗΣΗ"</string>
+    <string msgid="8833365367933412986" name="abc_menu_alt_shortcut_label">"Alt+"</string>
+    <string msgid="2223301931652355242" name="abc_menu_ctrl_shortcut_label">"Ctrl+"</string>
+    <string msgid="838001238306846836" name="abc_menu_delete_shortcut_label">"delete"</string>
+    <string msgid="7986526966204849475" name="abc_menu_enter_shortcut_label">"enter"</string>
+    <string msgid="375214403600139847" name="abc_menu_function_shortcut_label">"Function+"</string>
+    <string msgid="4192209724446364286" name="abc_menu_meta_shortcut_label">"Meta+"</string>
+    <string msgid="4741552369836443843" name="abc_menu_shift_shortcut_label">"Shift+"</string>
+    <string msgid="5473865519181928982" name="abc_menu_space_shortcut_label">"διάστημα"</string>
+    <string msgid="6180552449598693998" name="abc_menu_sym_shortcut_label">"Sym+"</string>
+    <string msgid="5520303668377388990" name="abc_prepend_shortcut_label">"Menu+"</string>
+    <string msgid="7208076849092622260" name="abc_search_hint">"Αναζήτηση…"</string>
+    <string msgid="3741173234950517107" name="abc_searchview_description_clear">"Διαγραφή ερωτήματος"</string>
+    <string msgid="693312494995508443" name="abc_searchview_description_query">"Ερώτημα αναζήτησης"</string>
+    <string msgid="3417662926640357176" name="abc_searchview_description_search">"Αναζήτηση"</string>
+    <string msgid="1486535517437947103" name="abc_searchview_description_submit">"Υποβολή ερωτήματος"</string>
+    <string msgid="2293578557972875415" name="abc_searchview_description_voice">"Φωνητική αναζήτηση"</string>
+    <string msgid="8875138169939072951" name="abc_shareactionprovider_share_with">"Κοινοποίηση σε"</string>
+    <string msgid="9055268688411532828" name="abc_shareactionprovider_share_with_application">"Κοινοποίηση στην εφαρμογή <ns1:g id="APPLICATION_NAME">%s</ns1:g>"</string>
+    <string msgid="1656852541809559762" name="abc_toolbar_collapse_description">"Σύμπτυξη"</string>
+    <string msgid="8719607706653693137" name="androidx_compose_foundation_autofill">"Αυτόματη συμπλήρωση"</string>
+    <string msgid="1150566100598813236" name="androidx_compose_ui_autofill">"Αυτόματη συμπλήρωση"</string>
+    <string name="bottomsheet_action_collapse">Σύμπτυξη του φύλλου κάτω μέρους</string>
+    <string name="bottomsheet_action_expand">Ανάπτυξη του φύλλου κάτω μέρους</string>
+    <string name="bottomsheet_action_expand_halfway">Ανάπτυξη μέχρι τη μέση</string>
+    <string name="bottomsheet_drag_handle_content_description">Λαβή μεταφοράς</string>
+    <string msgid="881409763997275156" name="call_notification_answer_action">"Απάντηση"</string>
+    <string msgid="8793775615905189152" name="call_notification_answer_video_action">"Βίντεο"</string>
+    <string msgid="3229508546291798546" name="call_notification_decline_action">"Απόρριψη"</string>
+    <string msgid="2659457946726154263" name="call_notification_hang_up_action">"Τερματισμός"</string>
+    <string msgid="6107532579223922871" name="call_notification_incoming_text">"Εισερχόμενη κλήση"</string>
+    <string msgid="8623827134497363134" name="call_notification_ongoing_text">"Κλήση σε εξέλιξη"</string>
+    <string msgid="59049573811482460" name="call_notification_screening_text">"Διαλογή εισερχόμενης κλήσης"</string>
+    <string name="character_counter_content_description">Εισήχθησαν %1$d από %2$d χαρακτήρες</string>
+    <string name="character_counter_overflowed_content_description">Υπέρβαση ορίου χαρακτήρων %1$d από %2$d</string>
+    <string name="clear_text_end_icon_content_description">Διαγραφή κειμένου</string>
+    <string msgid="406453423630273620" name="close_drawer">"Κλείσιμο του μενού πλοήγησης"</string>
+    <string msgid="7573152094250666567" name="close_sheet">"Κλείσιμο φύλλου"</string>
+    <string msgid="3260749812566568062" name="copy_toast_msg">"Ο σύνδεσμος αντιγράφηκε στο πρόχειρο"</string>
+    <string msgid="8038256446254964252" name="default_error_message">"Μη έγκυρη καταχώριση"</string>
+    <string msgid="6312721426453364202" name="default_popup_window_title">"Αναδυόμενο παράθυρο"</string>
+    <string msgid="1890207353314751437" name="dropdown_menu">"Αναπτυσσόμενο μενού"</string>
+    <string name="error_a11y_label">Σφάλμα: μη έγκυρο</string>
+    <string name="error_icon_content_description">Σφάλμα</string>
+    <string name="exposed_dropdown_menu_content_description">Εμφάνιση αναπτυσσόμενου μενού</string>
+    <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"Αντιγραφή συνδέσμου"</string>
+    <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"Άνοιγμα σε πρόγραμμα περιήγησης"</string>
+    <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"Κοινοποίηση συνδέσμου"</string>
+    <string name="icon_content_description">Εικονίδιο παραθύρου διαλόγου</string>
+    <string msgid="6827826412747255547" name="in_progress">"Σε εξέλιξη"</string>
+    <string msgid="7933458017204019916" name="indeterminate">"Έγινε μερικός έλεγχος"</string>
+    <string name="item_view_role_description">Καρτέλα</string>
+    <string msgid="2721825378927619928" name="lb_control_display_fast_forward_multiplier">"%1$dX"</string>
+    <string msgid="6173753802428649303" name="lb_control_display_rewind_multiplier">"%1$dX"</string>
+    <string msgid="1122271825827282965" name="lb_guidedaction_continue_title">"Συνέχεια"</string>
+    <string msgid="7747913934287176843" name="lb_guidedaction_finish_title">"Τέλος"</string>
+    <string msgid="8748646000835486516" name="lb_media_player_error">"Κωδικός σφάλματος MediaPlayer %1$d επιπλέον %2$d"</string>
+    <string msgid="8126335323963415494" name="lb_navigation_menu_contentDescription">"Μενού πλοήγησης"</string>
+    <string msgid="4213611627196077555" name="lb_onboarding_accessibility_next">"Επόμενη"</string>
+    <string msgid="7674487829030291492" name="lb_onboarding_get_started">"ΕΝΑΡΞΗ"</string>
+    <string msgid="5508271941331836786" name="lb_playback_controls_closed_captioning_disable">"Απενεργοποίηση υποτίτλων"</string>
+    <string msgid="3934392140182327163" name="lb_playback_controls_closed_captioning_enable">"Ενεργοποίηση υποτίτλων"</string>
+    <string msgid="8966769845721269304" name="lb_playback_controls_fast_forward">"Γρήγορη προώθηση"</string>
+    <string msgid="801276177839339511" name="lb_playback_controls_fast_forward_multiplier">"Γρήγορη προώθηση %1$dX"</string>
+    <string msgid="619396299825306757" name="lb_playback_controls_hidden">"Απόκρυψη στοιχείων ελέγχου μέσων, πιέστε το d-pad για εμφάνιση"</string>
+    <string msgid="3000046054608531995" name="lb_playback_controls_high_quality_disable">"Απενεργοποίηση υψηλής ποιότητας"</string>
+    <string msgid="1862669142355962638" name="lb_playback_controls_high_quality_enable">"Ενεργοποίηση υψηλής ποιότητας"</string>
+    <string msgid="2827883329510404797" name="lb_playback_controls_more_actions">"Περισσότερες ενέργειες"</string>
+    <string msgid="1769131316742618433" name="lb_playback_controls_pause">"Παύση"</string>
+    <string msgid="8800305194045609275" name="lb_playback_controls_picture_in_picture">"Εισαγωγή εικόνας στη λειτουργία παράθεσης εικόνων"</string>
+    <string msgid="1590369760862605402" name="lb_playback_controls_play">"Αναπαραγωγή"</string>
+    <string msgid="5164826436271322261" name="lb_playback_controls_repeat_all">"Επανάληψη όλων"</string>
+    <string msgid="5812341701962930499" name="lb_playback_controls_repeat_none">"Καμία επανάληψη"</string>
+    <string msgid="7675097479246139440" name="lb_playback_controls_repeat_one">"Επανάληψη ενός στοιχείου"</string>
+    <string msgid="1412664391757869774" name="lb_playback_controls_rewind">"Επαναφορά"</string>
+    <string msgid="8651612807713092781" name="lb_playback_controls_rewind_multiplier">"Επαναφορά %1$dX"</string>
+    <string msgid="7794717158616536936" name="lb_playback_controls_shown">"Εμφάνιση στοιχείων ελέγχου μέσων"</string>
+    <string msgid="8182435535948303910" name="lb_playback_controls_shuffle_disable">"Απενεργοποίηση τυχαίας αναπαραγωγής"</string>
+    <string msgid="7809089255981448519" name="lb_playback_controls_shuffle_enable">"Ενεργοποίηση τυχαίας αναπαραγωγής"</string>
+    <string msgid="4877009494447817003" name="lb_playback_controls_skip_next">"Παράβλεψη επόμενου"</string>
+    <string msgid="3147124289285911980" name="lb_playback_controls_skip_previous">"Παράβλεψη προηγούμενου"</string>
+    <string msgid="5075744418630733006" name="lb_playback_controls_thumb_down">"Αποεπιλογή αξιολόγησης \"Δεν εγκρίνω\""</string>
+    <string msgid="2847309435442474470" name="lb_playback_controls_thumb_down_outline">"Επιλογή αξιολόγησης \"Δεν εγκρίνω\""</string>
+    <string msgid="8332816524260995892" name="lb_playback_controls_thumb_up">"Αποεπιλογή αξιολόγησης \"Μου αρέσουν\""</string>
+    <string msgid="1038344559734334272" name="lb_playback_controls_thumb_up_outline">"Επιλογή αξιολόγησης \"Μου αρέσουν\""</string>
+    <string msgid="6549544638083578695" name="lb_playback_time_separator">"/"</string>
+    <string msgid="4819380969103509861" name="lb_search_bar_hint">"Αναζήτηση"</string>
+    <string msgid="2795474673510974502" name="lb_search_bar_hint_speech">"Μιλήστε για να κάνετε αναζήτηση"</string>
+    <string msgid="7453744869467668159" name="lb_search_bar_hint_with_title">"Αναζήτηση <ns1:g id="SEARCH_CONTEXT">%1$s</ns1:g>"</string>
+    <string msgid="5851694095153624617" name="lb_search_bar_hint_with_title_speech">"Μιλήστε για να κάνετε αναζήτηση σε <ns1:g id="SEARCH_CONTEXT">%1$s</ns1:g>"</string>
+    <string name="m3_loading_indicator_content_description">Γίνεται φόρτωση</string>
+    <string name="material_clock_toggle_content_description">Επιλέξτε π.μ. ή μ.μ.</string>
+    <string name="material_hour_24h_suffix">%1$s ώρες</string>
+    <string name="material_hour_selection">Επιλογή ώρας</string>
+    <string name="material_hour_suffix">%1$s ακριβώς</string>
+    <string name="material_minute_selection">Επιλογή λεπτών</string>
+    <string name="material_minute_suffix">%1$s λεπτά</string>
+    <string name="material_slider_range_end">Τέλος εύρους</string>
+    <string name="material_slider_range_start">Αρχή εύρους</string>
+    <string name="material_slider_value">Τιμή</string>
+    <string name="material_timepicker_am">ΠΜ</string>
+    <string name="material_timepicker_clock_mode_description">Κάντε εναλλαγή στη λειτουργία ρολογιού, για την εισαγωγή της ώρας.</string>
+    <string name="material_timepicker_hour">Ώρα</string>
+    <string name="material_timepicker_minute">Λεπτό</string>
+    <string name="material_timepicker_pm">ΜΜ</string>
+    <string name="material_timepicker_select_time">Επιλέξτε ώρα</string>
+    <string name="material_timepicker_text_input_mode_description">Κάντε εναλλαγή στη λειτουργία εισαγωγής κειμένου, για την εισαγωγή της ώρας.</string>
+    <string name="mozac_browser_engine_system_alert_title">Η σελίδα στο %1$s δηλώνει:</string>
+    <string name="mozac_browser_engine_system_auth_message">Το %2$s ζητά όνομα χρήστη και κωδικό πρόσβασής. Ο ιστότοπος δηλώνει: «%1$s»</string>
+    <string name="mozac_browser_engine_system_auth_no_realm_message">Το %1$s ζητά το όνομα χρήστη και τον κωδικό πρόσβασής σας.</string>
+    <string name="mozac_browser_errorpages_connection_failure_message"><![CDATA[<ul>\n<li>Η σελίδα ενδέχεται να είναι προσωρινά μη διαθέσιμη ή πολύ απασχολημένη. Δοκιμάστε ξανά σε λίγο.</li>\n<li>Αν δεν μπορείτε να φορτώσετε καμία σελίδα, ελέγξτε τη σύνδεση δεδομένων ή Wi-Fi σας.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_connection_failure_title">Δεν είναι δυνατή η σύνδεση</string>
+    <string name="mozac_browser_errorpages_content_crashed_message"><![CDATA[<p>Δεν είναι δυνατή η εμφάνιση της σελίδας που προσπαθείτε να προβάλετε λόγω σφάλματος κατά τη μεταφορά των δεδομένων.</p>\n<ul>\n<li>Επικοινωνήστε με τους ιδιοκτήτες του ιστοτόπου για να τους ενημερώσετε σχετικά με αυτό το πρόβλημα.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_content_crashed_title">Το περιεχόμενο καταστράφηκε</string>
+    <string name="mozac_browser_errorpages_corrupted_content_message"><![CDATA[<p>Δεν είναι δυνατή η εμφάνιση της σελίδας που προσπαθείτε να προβάλετε λόγω σφάλματος κατά τη μεταφορά των δεδομένων.</p>\n<ul>\n<li>Επικοινωνήστε με τους ιδιοκτήτες του ιστοτόπου για να τους ενημερώσετε σχετικά με αυτό το πρόβλημα.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_corrupted_content_title">Σφάλμα κατεστραμμένου περιεχομένου</string>
+    <string name="mozac_browser_errorpages_file_access_denied_message"><![CDATA[<ul>\n<li>Ίσως έχει αφαιρεθεί, μετακινηθεί ή τα δικαιώματα αρχείου εμποδίζουν την πρόσβαση.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_file_access_denied_title">Άρνηση πρόσβασης στο αρχείο</string>
+    <string name="mozac_browser_errorpages_file_not_found_message"><![CDATA[<ul>\n<li>Μήπως το στοιχείο έχει μετονομαστεί, αφαιρεθεί, ή μετακινηθεί;</li>\n<li>Υπάρχουν σφάλματα ορθογραφίας, κεφαλαίων, ή άλλα τυπογραφικά λάθη στη διεύθυνση;</li>\n<li>Έχετε επαρκή δικαιώματα για πρόσβαση στο ζητούμενο στοιχείο;</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_file_not_found_title">Το αρχείο δεν βρέθηκε</string>
+    <string name="mozac_browser_errorpages_generic_message"><![CDATA[<p>Δεν υπάρχουν προς το παρόν επιπρόσθετες πληροφορίες σχετικά με αυτό το πρόβλημα ή σφάλμα.</p>]]></string>
+    <string name="mozac_browser_errorpages_generic_title">Δεν είναι δυνατή η ολοκλήρωση του αιτήματος</string>
+    <string name="mozac_browser_errorpages_harmful_addon_uri_message"><![CDATA[<p>Η ιστοσελίδα στο %1$s έχει αποκλειστεί επειδή ένα από τα πρόσθετά σας προσπάθησε να την ανοίξει. Αυτός ο ιστότοπος θα μπορούσε να χρησιμοποιηθεί για την κλοπή πληροφοριών σας, όπως κωδικούς πρόσβασης ή αριθμούς πιστωτικών καρτών.</p>]]></string>
+    <string name="mozac_browser_errorpages_harmful_addon_uri_title">Για λόγους ασφαλείας ο ιστότοπος αποκλείστηκε</string>
+    <string name="mozac_browser_errorpages_httpsonly_button">Συνέχεια σε ιστότοπο HTTP</string>
+    <string name="mozac_browser_errorpages_httpsonly_message"><![CDATA[Έχετε ενεργοποιήσει τη λειτουργία «Μόνο HTTPS» για ενισχυμένη ασφάλεια, αλλά δεν διατίθεται ασφαλής έκδοση HTTPS του <em>%1$s</em>.]]></string>
+    <string name="mozac_browser_errorpages_httpsonly_title">Δεν διατίθεται ασφαλής ιστότοπος</string>
+    <string name="mozac_browser_errorpages_invalid_content_encoding_message"><![CDATA[<p>Δεν είναι δυνατή η εμφάνιση της σελίδας που προσπαθείτε να προβάλετε επειδή δεν χρησιμοποιεί έγκυρη ή υποστηριζόμενη μορφή συμπίεσης.</p>\n<ul>\n<li>Επικοινωνήστε με τους ιδιοκτήτες του ιστοτόπου για να τους ενημερώσετε σχετικά με αυτό το πρόβλημα.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_invalid_content_encoding_title">Σφάλμα κωδικοποίησης περιεχομένου</string>
+    <string name="mozac_browser_errorpages_malformed_uri_message"><![CDATA[<p>Η μορφή της διεύθυνση δεν αναγνωρίζεται. Ελέγξτε τη γραμμή διευθύνσεων για λάθη και δοκιμάστε ξανά.</p>]]></string>
+    <string name="mozac_browser_errorpages_malformed_uri_message_alternative"><![CDATA[<ul>\n<li>Οι διευθύνσεις ιστού γράφονται συνήθως ως εξής: <strong>http://www.example.com/</strong></li>\n<li>Βεβαιωθείτε ότι χρησιμοποιείτε τις σωστές καθέτους (δηλ. <strong>/</strong>).</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_malformed_uri_title">Μη έγκυρη διεύθυνση</string>
+    <string name="mozac_browser_errorpages_malformed_uri_title_alternative">Η διεύθυνση δεν είναι έγκυρη</string>
+    <string name="mozac_browser_errorpages_net_interrupt_message"><![CDATA[<p>Το πρόγραμμα περιήγησης συνδέθηκε με επιτυχία, αλλά η σύνδεση διακόπηκε κατά τη μεταφορά πληροφοριών. Δοκιμάστε ξανά.</p>\n<ul>\n<li>Ο ιστότοπος ενδέχεται να είναι προσωρινά μη διαθέσιμος ή πολύ απασχολημένος. Δοκιμάστε ξανά σε λίγο.</li>\n<li>Aν δεν μπορείτε να φορτώσετε καμία σελίδα, ελέγξτε τη σύνδεση δεδομένων ή Wi-Fi της συσκευής σας.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_net_interrupt_title">Η σύνδεση διακόπηκε</string>
+    <string name="mozac_browser_errorpages_net_reset_message"><![CDATA[<p>Η σύνδεση δικτύου διακόπηκε κατά τη διαδικασία σύνδεσης με τον ιστότοπο. Δοκιμάστε ξανά.</p>\n<ul>\n<li>Ο ιστότοπος ενδέχεται να είναι προσωρινά μη διαθέσιμος ή πολύ απασχολημένος. Δοκιμάστε ξανά σε λίγο.</li>\n<li>Αν δεν μπορείτε να φορτώσετε καμία σελίδα, ελέγξτε τη σύνδεση δεδομένων ή Wi-Fi της συσκευής σας.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_net_reset_title">Έγινε επαναφορά της σύνδεσης</string>
+    <string name="mozac_browser_errorpages_net_timeout_message"><![CDATA[<p>Η ζητούμενη ιστοσελίδα δεν αποκρίθηκε στο αίτημα σύνδεσης και το πρόγραμμα περιήγησης σταμάτησε να περιμένει απάντηση.</p>\n<ul>\n<li>Μήπως ο διακομιστής αντιμετωπίζει υψηλή ζήτηση ή προσωρινή διακοπή λειτουργίας; Δοκιμάστε ξανά αργότερα.</li>\n<li>Δεν μπορείτε να περιηγηθείτε σε άλλες ιστοσελίδες; Ελέγξτε τη σύνδεση δικτύου της συσκευής σας.</li>\n<li>Προστατεύεται η συσκευή ή το δίκτυό σας από τείχος προστασίας ή διακομιστή μεσολάβησης; Οι εσφαλμένες ρυθμίσεις μπορούν να επηρεάσουν την περιήγηση.</li>\n<li>Έχετε ακόμη πρόβλημα; Συμβουλευτείτε τον διαχειριστή του δικτύου ή τον πάροχό σας για βοήθεια.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_net_timeout_title">Το χρονικό όριο της σύνδεσης έληξε</string>
+    <string name="mozac_browser_errorpages_no_internet_error_code">Κωδικός σφάλματος: NS_ERROR_OFFLINE</string>
+    <string name="mozac_browser_errorpages_no_internet_message_2">Δοκιμάστε να συνδεθείτε από διαφορετική συσκευή. Ελέγξτε το modem ή το router σας. Αποσυνδέστε και επανασυνδέστε το Wi-Fi.</string>
+    <string name="mozac_browser_errorpages_no_internet_refresh_button">Ανανέωση</string>
+    <string name="mozac_browser_errorpages_no_internet_title_2">Φαίνεται ότι υπάρχει κάποιο πρόβλημα με τη σύνδεσή σας στο διαδίκτυο</string>
+    <string name="mozac_browser_errorpages_offline_message"><![CDATA[<p>Το πρόγραμμα περιήγησης είναι σε λειτουργία εκτός σύνδεσης και δεν μπορεί να συνδεθεί στο ζητούμενο στοιχείο.</p>\n<ul>\n<li>Είναι συνδεδεμένη η συσκευή σε ενεργό δίκτυο;</li>\n<li>Πατήστε «Δοκιμή ξανά» για σύνδεση στο διαδίκτυο και ανανέωση της σελίδας.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_offline_title">Λειτουργία εκτός σύνδεσης</string>
+    <string name="mozac_browser_errorpages_page_refresh">Δοκιμή ξανά</string>
+    <string name="mozac_browser_errorpages_port_blocked_message"><![CDATA[<p>Η ζητούμενη διεύθυνση καθόρισε θύρα (π.χ., <q>mozilla.org:80</q> για τη θύρα 80 στο mozilla.org) που <em>δεν</em> χρησιμοποιείται συνήθως για περιήγηση στο διαδίκτυο. Το πρόγραμμα περιήγησης ακύρωσε το αίτημα για να σας προστατεύσει.</p>]]></string>
+    <string name="mozac_browser_errorpages_port_blocked_title">Περιορισμός θύρας για λόγους ασφαλείας</string>
+    <string name="mozac_browser_errorpages_proxy_connection_refused_message"><![CDATA[<p>Το πρόγραμμα περιήγησης έχει ρυθμιστεί ώστε να χρησιμοποιεί διακομιστή μεσολάβησης, αλλά ο διακομιστής μεσολάβησης αρνήθηκε τη σύνδεση.</p>\n<ul>\n<li>Έχει ρυθμιστεί σωστά ο διακομιστής μεσολάβησης; Ελέγξτε τις ρυθμίσεις και δοκιμάστε ξανά.</li>\n<li>Επιτρέπει ο διακομιστής μεσολάβησης συνδέσεις από αυτό το δίκτυο;</li>\n<li>Έχετε ακόμα πρόβλημα; Συμβουλευτείτε τον διαχειριστή του δικτύου σας ή τον πάροχό σας για βοήθεια.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_proxy_connection_refused_title">Άρνηση σύνδεσης διαμεσολαβητή</string>
+    <string name="mozac_browser_errorpages_redirect_loop_message"><![CDATA[<p>Το πρόγραμμα περιήγησης έχει σταματήσει την προσπάθεια ανάκτησης του ζητούμενου στοιχείου. Η ιστοσελίδα ανακατευθύνει το αίτημα με τρόπο που δεν θα ολοκληρωθεί.</p>\n<ul>\n<li>Έχετε απενεργοποιήσει ή αποκλείσει τα cookie που απαιτούνται από την ιστοσελίδα;</li>\n<li>Αν η αποδοχή των cookie δεν επιλύει το πρόβλημα, μάλλον οφείλεται σε ζήτημα ρύθμισης του διακομιστή και όχι στη συσκευή σας.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_redirect_loop_title">Η σελίδα δεν ανακατευθύνει σωστά</string>
+    <string name="mozac_browser_errorpages_safe_browsing_malware_uri_message"><![CDATA[<p>Ο ιστότοπος στο %1$s έχει αναφερθεί ως ιστότοπος επιθέσεων και έχει αποκλειστεί βάσει των προτιμήσεων ασφαλείας σας.</p>]]></string>
+    <string name="mozac_browser_errorpages_safe_browsing_malware_uri_title">Ζήτημα κακόβουλου ιστοτόπου</string>
+    <string name="mozac_browser_errorpages_safe_browsing_unwanted_uri_message"><![CDATA[<p>Ο ιστότοπος στο %1$s έχει αναφερθεί για διανομή ανεπιθύμητου λογισμικού και έχει αποκλειστεί βάσει των προτιμήσεων ασφαλείας σας.</p>]]></string>
+    <string name="mozac_browser_errorpages_safe_browsing_unwanted_uri_title">Ζήτημα ανεπιθύμητου ιστοτόπου</string>
+    <string name="mozac_browser_errorpages_safe_harmful_uri_message"><![CDATA[<p>Ο ιστότοπος στο %1$s έχει αναφερθεί ως δυνητικά επιβλαβής και έχει αποκλειστεί βάσει των προτιμήσεων ασφαλείας σας.</p>]]></string>
+    <string name="mozac_browser_errorpages_safe_harmful_uri_title">Ζήτημα επιβλαβούς ιστοτόπου</string>
+    <string name="mozac_browser_errorpages_safe_phishing_uri_message"><![CDATA[<p>Η ιστοσελίδα στο %1$s έχει αναφερθεί ως παραπλανητικός ιστότοπος και έχει αποκλειστεί βάσει των προτιμήσεων ασφαλείας σας.</p>]]></string>
+    <string name="mozac_browser_errorpages_safe_phishing_uri_title">Ζήτημα παραπλανητικού ιστοτόπου</string>
+    <string name="mozac_browser_errorpages_security_bad_cert_accept_temporary">Αποδοχή κινδύνου και συνέχεια</string>
+    <string name="mozac_browser_errorpages_security_bad_cert_advanced">Σύνθετα…</string>
+    <string name="mozac_browser_errorpages_security_bad_cert_back">Επιστροφή (Προτείνεται)</string>
+    <string name="mozac_browser_errorpages_security_bad_cert_message"><![CDATA[<ul>\n<li>Ενδέχεται να υπάρχει πρόβλημα με τη διαμόρφωση του διακομιστή ή κάποιος προσπαθεί να μιμηθεί τον διακομιστή.</li>\n<li>Αν είχατε συνδεθεί με επιτυχία σε αυτόν τον διακομιστή στο παρελθόν, το σφάλμα ενδέχεται να είναι προσωρινό και μπορείτε να δοκιμάσετε ξανά αργότερα.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_security_bad_cert_techInfo"><![CDATA[<label>Κάποιος ίσως προσπαθεί να μιμηθεί την ιστοσελίδα και δεν πρέπει να συνεχίσετε.</label> <br><br>\n<label>Οι ιστοσελίδες αποδεικνύουν την ταυτότητά τους με τα πιστοποιητικά. Το %1$s δεν εμπιστεύεται το <b>%2$s</b>, επειδή ο εκδότης του πιστοποιητικού του είναι άγνωστος, το πιστοποιητικό είναι αυτοϋπογεγραμμένο, ή ο διακομιστής δεν στέλνει τα σωστά ενδιάμεσα πιστοποιητικά.</label>]]></string>
+    <string name="mozac_browser_errorpages_security_bad_cert_title">Αποτυχία ασφαλούς σύνδεσης</string>
+    <string name="mozac_browser_errorpages_security_bad_hsts_cert_advanced">Σύνθετα…</string>
+    <string name="mozac_browser_errorpages_security_bad_hsts_cert_back">Επιστροφή</string>
+    <string name="mozac_browser_errorpages_security_bad_hsts_cert_message"><![CDATA[<ul>\n<li>Δεν είναι δυνατή η εμφάνιση της σελίδας που προσπαθείτε να προβάλετε, επειδή αυτός ο ιστότοπος απαιτεί ασφαλή σύνδεση.</li>\n<li>Το ζήτημα οφείλεται κατά πάσα πιθανότητα στον ιστότοπο και δεν μπορείτε να κάνετε τίποτα για να το επιλύσετε.</li>\n<li>Μπορείτε να ειδοποιήστε τον διαχειριστή του ιστοτόπου σχετικά με το πρόβλημα.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_security_bad_hsts_cert_techInfo2"><![CDATA[<label> Το <b>%1$s</b> διαθέτει μια πολιτική ασφαλείας, η οποία ονομάζεται «HTTP Strict Transport Security (HSTS)», που σημαίνει ότι το <b>%2$s</b> μπορεί να συνδεθεί μόνο με ασφάλεια σε αυτό. Δεν μπορείτε να προσθέσετε εξαίρεση για να επισκεφθείτε τον ιστότοπο αυτό. </label>]]></string>
+    <string name="mozac_browser_errorpages_security_bad_hsts_cert_title">Αυτός ο ιστότοπος απαιτεί ασφαλή σύνδεση.</string>
+    <string name="mozac_browser_errorpages_security_ssl_message"><![CDATA[<ul>\n<li>Δεν είναι δυνατή η εμφάνιση της σελίδας που προσπαθείτε να προβάλετε επειδή δεν ήταν δυνατή η επαλήθευση της αυθεντικότητας των δεδομένων που ελήφθησαν.</li>\n<li>Επικοινωνήστε με τους ιδιοκτήτες του ιστοτόπου για να τους ενημερώσετε σχετικά με αυτό το πρόβλημα.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_security_ssl_title">Αποτυχία ασφαλούς σύνδεσης</string>
+    <string name="mozac_browser_errorpages_unknown_host_message"><![CDATA[<p>Το πρόγραμμα περιήγησης δεν βρήκε τον κεντρικό διακομιστή για την παρεχόμενη διεύθυνση.</p>\n<ul>\n<li>Ελέγξτε τη διεύθυνση για τυχόν λάθη, όπως <strong>ww</strong>.example.com αντί για <strong>www</strong>.example.com.</li>\n<li>Αν δεν μπορείτε να φορτώσετε καμία σελίδα, ελέγξτε τα δεδομένα ή τη σύνδεση Wi-Fi της συσκευής σας.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_unknown_host_title">Η διεύθυνση δεν βρέθηκε</string>
+    <string name="mozac_browser_errorpages_unknown_protocol_message"><![CDATA[<p>Η διεύθυνση καθορίζει ένα πρωτόκολλο (π.χ. «wxyz://») που δεν αναγνωρίζει το πρόγραμμα περιήγησης, επομένως δεν είναι δυνατή η σωστή σύνδεση στον ιστότοπο.</p>\n<ul>\n<li>Προσπαθείτε να προσπελάσετε πολυμέσα ή άλλες υπηρεσίες χωρίς κείμενο; Ελέγξτε τον ιστότοπο για επιπλέον απαιτήσεις.</li>\n<li>Ορισμένα πρωτόκολλα ενδέχεται να απαιτούν λογισμικό ή αρθρώματα τρίτων πριν μπορέσουν να αναγνωριστούν από το πρόγραμμα περιήγησης.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_unknown_protocol_title">Άγνωστο πρωτόκολλο</string>
+    <string name="mozac_browser_errorpages_unknown_proxy_host_message"><![CDATA[<p>Το πρόγραμμα περιήγησης έχει ρυθμιστεί ώστε να χρησιμοποιεί διακομιστή μεσολάβησης, αλλά δεν βρέθηκε διακομιστής μεσολάβησης.</p>\n<ul>\n<li>Έχει ρυθμιστεί σωστά ο διακομιστής μεσολάβησης; Ελέγξτε τις ρυθμίσεις και δοκιμάστε ξανά.</li>\n<li>Είναι συνδεδεμένη η συσκευή σε ενεργό δίκτυο;</li>\n<li>Έχετε ακόμη πρόβλημα; Συμβουλευτείτε τον διαχειριστή του δικτύου σας ή τον πάροχό σας για βοήθεια.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_unknown_proxy_host_title">Δεν βρέθηκε διακομιστής μεσολάβησης</string>
+    <string name="mozac_browser_errorpages_unknown_socket_type_message"><![CDATA[<p>Ο ιστότοπος απάντησε με απρόσμενο τρόπο στο αίτημα δικτύου και το πρόγραμμα περιήγησης δεν μπορεί να συνεχίσει.</p>]]></string>
+    <string name="mozac_browser_errorpages_unknown_socket_type_title">Απρόσμενη απάντηση από τον διακομιστή</string>
+    <string name="mozac_browser_errorpages_unsafe_content_type_message"><![CDATA[<ul>\n<li>Επικοινωνήστε με τους ιδιοκτήτες του ιστοτόπου για να τους ενημερώσετε σχετικά με αυτό το πρόβλημα.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_unsafe_content_type_title">Μη ασφαλής τύπος αρχείου</string>
+    <string name="mozac_support_base_permissions_needed_negative_button">Απόρριψη</string>
+    <string name="mozac_support_base_permissions_needed_positive_button">Μετάβαση στις ρυθμίσεις</string>
+    <string name="mozac_support_ktx_menu_call_with">Κλήση με…</string>
+    <string name="mozac_support_ktx_menu_email_with">Email με…</string>
+    <string name="mozac_support_ktx_menu_share_with">Κοινή χρήση με…</string>
+    <string name="mozac_support_ktx_share_dialog_title">Κοινή χρήση μέσω</string>
+    <string name="mtrl_badge_numberless_content_description">Νέα ειδοποίηση</string>
+    <string name="mtrl_checkbox_state_description_checked">Επιλεγμένο</string>
+    <string name="mtrl_checkbox_state_description_indeterminate">Έγινε μερικός έλεγχος</string>
+    <string name="mtrl_checkbox_state_description_unchecked">Μη επιλεγμένο</string>
+    <string name="mtrl_chip_close_icon_content_description">Κατάργηση %1$s</string>
+    <string name="mtrl_exceed_max_badge_number_content_description" ns2:ignore="PluralsCandidate">Πάνω από %1$d νέες ειδοποιήσεις</string>
+    <string name="mtrl_picker_a11y_next_month">Αλλαγή στον επόμενο μήνα</string>
+    <string name="mtrl_picker_a11y_prev_month">Αλλαγή στον προηγούμενο μήνα</string>
+    <string name="mtrl_picker_announce_current_range_selection">Επιλογή ημερομηνίας έναρξης: %1$s – Επιλογή ημερομηνίας λήξης: %2$s</string>
+    <string name="mtrl_picker_announce_current_selection">Τρέχουσα επιλογή: %1$s</string>
+    <string name="mtrl_picker_announce_current_selection_none">χωρίς επιλογή</string>
+    <string name="mtrl_picker_cancel">Ακύρωση</string>
+    <string name="mtrl_picker_confirm">ΟΚ</string>
+    <string name="mtrl_picker_date_header_selected">%1$s</string>
+    <string name="mtrl_picker_date_header_title">Επιλογή ημερομηνίας</string>
+    <string name="mtrl_picker_date_header_unselected">Επιλεγμένη ημερομηνία</string>
+    <string name="mtrl_picker_day_of_week_column_header">%1$s</string>
+    <string name="mtrl_picker_end_date_description">Ημερομηνία λήξης %1$s</string>
+    <string name="mtrl_picker_invalid_format">Μη έγκυρη μορφή.</string>
+    <string name="mtrl_picker_invalid_format_example">Παράδειγμα: %1$s</string>
+    <string name="mtrl_picker_invalid_format_use">Χρησιμοποιήστε: %1$s</string>
+    <string name="mtrl_picker_invalid_range">Μη έγκυρο εύρος.</string>
+    <string name="mtrl_picker_navigate_to_current_year_description">Πλοήγηση στο τρέχον έτος %1$d</string>
+    <string name="mtrl_picker_navigate_to_year_description">Πλοήγηση στο έτος %1$d</string>
+    <string name="mtrl_picker_out_of_range">Εκτός εύρους: %1$s</string>
+    <string name="mtrl_picker_range_header_only_end_selected">Ημερομηνία έναρξης – %1$s</string>
+    <string name="mtrl_picker_range_header_only_start_selected">%1$s – Ημερομηνία λήξης</string>
+    <string name="mtrl_picker_range_header_selected">%1$s – %2$s</string>
+    <string name="mtrl_picker_range_header_title">Επιλογή εύρους</string>
+    <string name="mtrl_picker_range_header_unselected">Ημερομηνία έναρξης – Ημερομηνία λήξης</string>
+    <string name="mtrl_picker_save">Αποθήκευση</string>
+    <string name="mtrl_picker_start_date_description">Ημερομηνία έναρξης %1$s</string>
+    <string name="mtrl_picker_text_input_date_hint">Ημερομηνία</string>
+    <string name="mtrl_picker_text_input_date_range_end_hint">Ημερομηνία λήξης</string>
+    <string name="mtrl_picker_text_input_date_range_start_hint">Ημερομηνία έναρξης</string>
+    <string name="mtrl_picker_text_input_day_abbr">η</string>
+    <string name="mtrl_picker_text_input_month_abbr">μ</string>
+    <string name="mtrl_picker_text_input_year_abbr">ε</string>
+    <string name="mtrl_picker_today_description">Σήμερα %1$s</string>
+    <string name="mtrl_picker_toggle_to_calendar_input_mode">Εναλλαγή στη λειτουργία εισαγωγής ημερολογίου</string>
+    <string name="mtrl_picker_toggle_to_day_selection">Εναλλαγή στην προβολή Ημερολόγιο</string>
+    <string name="mtrl_picker_toggle_to_text_input_mode">Εναλλαγή στη λειτουργία εισαγωγής κειμένου</string>
+    <string name="mtrl_picker_toggle_to_year_selection">Εναλλαγή στην προβολή έτους</string>
+    <string name="mtrl_picker_toggled_to_day_selection">Έγινε αλλαγή στην προβολή Ημερολογίου</string>
+    <string name="mtrl_picker_toggled_to_year_selection">Έγινε αλλαγή στην προβολή έτους</string>
+    <string name="mtrl_timepicker_cancel">Ακύρωση</string>
+    <string name="mtrl_timepicker_confirm">ΟΚ</string>
+    <string msgid="542007171693138492" name="navigation_menu">"Μενού πλοήγησης"</string>
+    <string msgid="6610465462668679431" name="not_selected">"Δεν έχει επιλεχθεί"</string>
+    <string msgid="7534843523462177008" name="orb_search_action">"Ενέργεια αναζήτησης"</string>
+    <string name="password_toggle_content_description">Εμφάνιση κωδικού πρόσβασης</string>
+    <string msgid="5941395253238309765" name="range_end">"Τέλος εύρους"</string>
+    <string msgid="7097486360902471446" name="range_start">"Αρχή εύρους"</string>
+    <string msgid="6264217191555673260" name="search_menu_title">"Αναζήτηση"</string>
+    <string name="searchview_clear_text_content_description">Διαγραφή κειμένου</string>
+    <string name="searchview_navigation_content_description">Πίσω</string>
+    <string msgid="6043586758067023" name="selected">"Επιλεγμένο"</string>
+    <string name="side_sheet_accessibility_pane_title">Δευτερεύον φύλλο</string>
+    <string msgid="2792228137354697160" name="snackbar_pane_title">"Ειδοποίηση"</string>
+    <string msgid="4139871816613051306" name="state_empty">"Κενό"</string>
+    <string msgid="5834637030682409883" name="state_off">"Ανενεργός"</string>
+    <string msgid="1490883874751719580" name="state_on">"Ενεργός"</string>
+    <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string msgid="2561197295334830845" name="switch_role">"Εναλλαγή"</string>
+    <string msgid="1672349317127674378" name="tab">"Καρτέλα"</string>
+    <string msgid="5946805113151406391" name="template_percent">"<ns1:g id="PERCENTAGE">%1$d</ns1:g> τοις εκατό."</string>
+    <string msgid="3765533235322692011" name="tooltip_description">"επεξήγηση εργαλείου"</string>
+    <string msgid="3124740595719787496" name="tooltip_label">"εμφάνιση επεξήγησης εργαλείου"</string>
+</resources>

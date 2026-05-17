@@ -1,0 +1,33 @@
+R_DEF: Internal format may change without notice
+local
+color accent
+color background_primary
+color focus_highlight
+color icon_primary
+color progress_bar
+color text_primary
+color text_secondary
+color toolbar_background
+color url_bar_background
+drawable ic_back
+drawable ic_forward
+drawable ic_reload
+drawable progress_bar_drawable
+drawable url_bar_background
+id button_back
+id button_forward
+id button_reload
+id engineView
+id fragment_container
+id progress_bar
+id toolbar
+id url_input
+layout activity_browser
+layout fragment_browser
+mipmap ic_launcher
+string action_back
+string action_forward
+string action_reload
+string app_name
+string url_bar_hint
+style AppTheme

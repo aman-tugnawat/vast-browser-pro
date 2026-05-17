@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2" xmlns:ns2="http://schemas.android.com/tools">
+    <plurals name="mtrl_badge_content_description">
+    <item quantity="one">%d ການແຈ້ງເຕືອນໃໝ່</item>
+    <item quantity="other">%d ການແຈ້ງເຕືອນໃໝ່</item>
+  </plurals>
+    <string msgid="5976598919945601918" name="abc_action_bar_home_description">"ກັບໄປໜ້າຫຼັກ"</string>
+    <string msgid="8388173803310557296" name="abc_action_bar_up_description">"ເລື່ອນຂຶ້ນເທິງ"</string>
+    <string msgid="3937310113216875497" name="abc_action_menu_overflow_description">"ຕົວເລືອກເພີ່ມເຕີມ"</string>
+    <string msgid="4692188335987374352" name="abc_action_mode_done">"ແລ້ວໆ"</string>
+    <string msgid="1189761859438369441" name="abc_activity_chooser_view_see_all">"ເບິ່ງທັງໝົດ"</string>
+    <string msgid="2165779757652331008" name="abc_activitychooserview_choose_application">"ເລືອກແອັບ"</string>
+    <string msgid="4215997306490295099" name="abc_capital_off">"ປິດ"</string>
+    <string msgid="884982626291842264" name="abc_capital_on">"ເປີດ"</string>
+    <string msgid="8833365367933412986" name="abc_menu_alt_shortcut_label">"Alt+"</string>
+    <string msgid="2223301931652355242" name="abc_menu_ctrl_shortcut_label">"Ctrl+"</string>
+    <string msgid="838001238306846836" name="abc_menu_delete_shortcut_label">"ລຶບ"</string>
+    <string msgid="7986526966204849475" name="abc_menu_enter_shortcut_label">"enter"</string>
+    <string msgid="375214403600139847" name="abc_menu_function_shortcut_label">"Function+"</string>
+    <string msgid="4192209724446364286" name="abc_menu_meta_shortcut_label">"Meta+"</string>
+    <string msgid="4741552369836443843" name="abc_menu_shift_shortcut_label">"Shift+"</string>
+    <string msgid="5473865519181928982" name="abc_menu_space_shortcut_label">"ຍະຫວ່າງ"</string>
+    <string msgid="6180552449598693998" name="abc_menu_sym_shortcut_label">"Sym+"</string>
+    <string msgid="5520303668377388990" name="abc_prepend_shortcut_label">"Menu+"</string>
+    <string msgid="7208076849092622260" name="abc_search_hint">"ຊອກຫາ…"</string>
+    <string msgid="3741173234950517107" name="abc_searchview_description_clear">"ລຶບຂໍ້ຄວາມຊອກຫາ"</string>
+    <string msgid="693312494995508443" name="abc_searchview_description_query">"ຄຳສຳລັບຄົ້ນຫາ"</string>
+    <string msgid="3417662926640357176" name="abc_searchview_description_search">"ຊອກຫາ"</string>
+    <string msgid="1486535517437947103" name="abc_searchview_description_submit">"ສົ່ງຂໍ້ມູນ"</string>
+    <string msgid="2293578557972875415" name="abc_searchview_description_voice">"ຊອກຫາດ້ວຍສຽງ"</string>
+    <string msgid="8875138169939072951" name="abc_shareactionprovider_share_with">"ແບ່ງປັນກັບ"</string>
+    <string msgid="9055268688411532828" name="abc_shareactionprovider_share_with_application">"ແບ່ງປັນດ້ວຍ <ns1:g id="APPLICATION_NAME">%s</ns1:g>"</string>
+    <string msgid="1656852541809559762" name="abc_toolbar_collapse_description">"ຫຍໍ້ລົງ"</string>
+    <string msgid="8719607706653693137" name="androidx_compose_foundation_autofill">"ຕື່ມຂໍ້ມູນອັດຕະໂນມັດ"</string>
+    <string msgid="1150566100598813236" name="androidx_compose_ui_autofill">"ຕື່ມຂໍ້ມູນອັດຕະໂນມັດ"</string>
+    <string name="bottomsheet_action_collapse">ຫຍໍ້ຊີດລຸ່ມສຸດລົງ</string>
+    <string name="bottomsheet_action_expand">ຂະຫຍາຍຊີດລຸ່ມສຸດ</string>
+    <string name="bottomsheet_action_expand_halfway">ຂະຫຍາຍອອກເຄິ່ງໜຶ່ງ</string>
+    <string name="bottomsheet_drag_handle_content_description">ບ່ອນຈັບລາກ</string>
+    <string msgid="881409763997275156" name="call_notification_answer_action">"ຮັບສາຍ"</string>
+    <string msgid="8793775615905189152" name="call_notification_answer_video_action">"ວິດີໂອ"</string>
+    <string msgid="3229508546291798546" name="call_notification_decline_action">"ປະຕິເສດ"</string>
+    <string msgid="2659457946726154263" name="call_notification_hang_up_action">"ວາງສາຍ"</string>
+    <string msgid="6107532579223922871" name="call_notification_incoming_text">"ສາຍໂທເຂົ້າ"</string>
+    <string msgid="8623827134497363134" name="call_notification_ongoing_text">"ສາຍໂທອອກ"</string>
+    <string msgid="59049573811482460" name="call_notification_screening_text">"ກຳລັງກວດສອບສາຍໂທເຂົ້າ"</string>
+    <string name="character_counter_content_description">ຕົວອັກສອນທີ່ປ້ອນເຂົ້າ %1$d ຕົວຈາກທັງໝົດ %2$d ຕົວ</string>
+    <string name="character_counter_overflowed_content_description">ຂີດຈຳກັດຕົວອັກສອນເກີນ %1$d ຈາກທັງໝົດ %2$d</string>
+    <string name="clear_text_end_icon_content_description">ລຶບລ້າງຂໍ້ຄວາມ</string>
+    <string msgid="406453423630273620" name="close_drawer">"ປິດ​ເມ​ນູການ​ນຳ​ທາງ"</string>
+    <string msgid="7573152094250666567" name="close_sheet">"ປິດຊີດ"</string>
+    <string msgid="3260749812566568062" name="copy_toast_msg">"ສຳເນົາລິ້ງໃສ່ຄລິບບອດແລ້ວ"</string>
+    <string msgid="8038256446254964252" name="default_error_message">"ຂໍ້ມູນທີ່ປ້ອນເຂົ້າບໍ່ຖືກຕ້ອງ"</string>
+    <string msgid="6312721426453364202" name="default_popup_window_title">"ໜ້າຈໍປັອບອັບ"</string>
+    <string msgid="1890207353314751437" name="dropdown_menu">"ເມນູແບບເລື່ອນລົງ"</string>
+    <string name="error_a11y_label">ຂໍ້ຜິດພາດ: ບໍ່ຖືກຕ້ອງ</string>
+    <string name="error_icon_content_description">ຜິດພາດ</string>
+    <string name="exposed_dropdown_menu_content_description">ສະແດງເມນູເລື່ອນລົງ</string>
+    <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"ສຳເນົາລິ້ງ"</string>
+    <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"ເປີດໃນໂປຣແກຣມທ່ອງເວັບ"</string>
+    <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"ແບ່ງປັນລິ້ງ"</string>
+    <string name="icon_content_description">ໄອຄອນກ່ອງໂຕ້ຕອບ</string>
+    <string msgid="6827826412747255547" name="in_progress">"ກຳ​ລັງ​ດຳ​ເນີນ​ການ"</string>
+    <string msgid="7933458017204019916" name="indeterminate">"ກວດສອບບາງສ່ວນແລ້ວ"</string>
+    <string name="item_view_role_description">ແຖບ</string>
+    <string msgid="2721825378927619928" name="lb_control_display_fast_forward_multiplier">"%1$dX"</string>
+    <string msgid="6173753802428649303" name="lb_control_display_rewind_multiplier">"%1$dX"</string>
+    <string msgid="1122271825827282965" name="lb_guidedaction_continue_title">"ສືບຕໍ່"</string>
+    <string msgid="7747913934287176843" name="lb_guidedaction_finish_title">"ແລ້ວໆ"</string>
+    <string msgid="8748646000835486516" name="lb_media_player_error">"ລະຫັດ MediaPlayer ຜິດພາດ %1$d ເພີ່ມເຕີມ %2$d"</string>
+    <string msgid="8126335323963415494" name="lb_navigation_menu_contentDescription">"ເມນູນຳທາງ"</string>
+    <string msgid="4213611627196077555" name="lb_onboarding_accessibility_next">"ຕໍ່ໄປ"</string>
+    <string msgid="7674487829030291492" name="lb_onboarding_get_started">"ເລີ່ມເລີຍ"</string>
+    <string msgid="5508271941331836786" name="lb_playback_controls_closed_captioning_disable">"ປິດນຳໃຊ້ຄຳບັນຍາຍແບບປິດ"</string>
+    <string msgid="3934392140182327163" name="lb_playback_controls_closed_captioning_enable">"ເປີດນຳໃຊ້ຄຳບັນຍາຍແບບປິດ"</string>
+    <string msgid="8966769845721269304" name="lb_playback_controls_fast_forward">"ເລື່ອນໄປໜ້າ"</string>
+    <string msgid="801276177839339511" name="lb_playback_controls_fast_forward_multiplier">"ເລື່ອນໄປໜ້າ %1$dX"</string>
+    <string msgid="619396299825306757" name="lb_playback_controls_hidden">"ເຊື່ອງຕົວຄວບຄຸມມີເດຍແລ້ວ, ກົດປຸ່ມທິດທາງເພື່ອສະແດງ"</string>
+    <string msgid="3000046054608531995" name="lb_playback_controls_high_quality_disable">"ປິດຄຸນນະພາບສູງ"</string>
+    <string msgid="1862669142355962638" name="lb_playback_controls_high_quality_enable">"ເປີດຄຸນນະພາບສູງ"</string>
+    <string msgid="2827883329510404797" name="lb_playback_controls_more_actions">"ຄຳສັ່ງເພີ່ມເຕີມ"</string>
+    <string msgid="1769131316742618433" name="lb_playback_controls_pause">"ຢຸດຊົ່ວຄາວ"</string>
+    <string msgid="8800305194045609275" name="lb_playback_controls_picture_in_picture">"ປ້ອນຮູບພາບໃນໂໝດຮູບພາບ"</string>
+    <string msgid="1590369760862605402" name="lb_playback_controls_play">"ຫຼິ້ນ"</string>
+    <string msgid="5164826436271322261" name="lb_playback_controls_repeat_all">"ຫຼິ້ນຊ້ຳທັງໝົດ"</string>
+    <string msgid="5812341701962930499" name="lb_playback_controls_repeat_none">"ບໍ່ຫຼິ້ນຊ້ຳ"</string>
+    <string msgid="7675097479246139440" name="lb_playback_controls_repeat_one">"ຫຼິ້ນຊ້ຳເທື່ອດຽວ"</string>
+    <string msgid="1412664391757869774" name="lb_playback_controls_rewind">"ເລື່ອນກັບຫຼັງ"</string>
+    <string msgid="8651612807713092781" name="lb_playback_controls_rewind_multiplier">"ເລື່ອນກັບຫຼັງ %1$dX"</string>
+    <string msgid="7794717158616536936" name="lb_playback_controls_shown">"ສະແດງຕົວຄວບຄຸມມີເດຍແລ້ວ"</string>
+    <string msgid="8182435535948303910" name="lb_playback_controls_shuffle_disable">"ປິດນຳໃຊ້ການສະຫຼັບ"</string>
+    <string msgid="7809089255981448519" name="lb_playback_controls_shuffle_enable">"ເປີດນຳໃຊ້ການສະຫຼັບ"</string>
+    <string msgid="4877009494447817003" name="lb_playback_controls_skip_next">"ຂ້າມໄປອັນໜ້າ"</string>
+    <string msgid="3147124289285911980" name="lb_playback_controls_skip_previous">"ຂ້າມໄປອັນກ່ອນ"</string>
+    <string msgid="5075744418630733006" name="lb_playback_controls_thumb_down">"ຢຸດຊີ້ໂປ້ລົງແລ້ວ"</string>
+    <string msgid="2847309435442474470" name="lb_playback_controls_thumb_down_outline">"ເລືອກຊີ້ໂປ້ລົງແລ້ວ"</string>
+    <string msgid="8332816524260995892" name="lb_playback_controls_thumb_up">"ຢຸດເລືອກຍົກໂປ້ແລ້ວ"</string>
+    <string msgid="1038344559734334272" name="lb_playback_controls_thumb_up_outline">"ເລືອກຍົກໂປ້ແລ້ວ"</string>
+    <string msgid="6549544638083578695" name="lb_playback_time_separator">"/"</string>
+    <string msgid="4819380969103509861" name="lb_search_bar_hint">"ຊອກຫາ"</string>
+    <string msgid="2795474673510974502" name="lb_search_bar_hint_speech">"ເວົ້າເພື່ອຊອກຫາ"</string>
+    <string msgid="7453744869467668159" name="lb_search_bar_hint_with_title">"ຊອກຫາ <ns1:g id="SEARCH_CONTEXT">%1$s</ns1:g>"</string>
+    <string msgid="5851694095153624617" name="lb_search_bar_hint_with_title_speech">"ເວົ້າເພື່ອຊອກຫາ <ns1:g id="SEARCH_CONTEXT">%1$s</ns1:g>"</string>
+    <string name="m3_loading_indicator_content_description">ກຳລັງໂຫຼດ</string>
+    <string name="material_clock_toggle_content_description">ເລືອກຕອນເຊົ້າ ຫຼື ຕອນແລງ</string>
+    <string name="material_hour_24h_suffix">%1$s ຊົ່ວໂມງ</string>
+    <string name="material_hour_selection">ເລືອກຊົ່ວໂມງ</string>
+    <string name="material_hour_suffix">%1$s ໂມງ</string>
+    <string name="material_minute_selection">ເລືອກນາ​ທີ</string>
+    <string name="material_minute_suffix">%1$s ນາທີ</string>
+    <string name="material_slider_range_end">ສິ້ນສຸດໄລຍະ</string>
+    <string name="material_slider_range_start">ເລີ່ມຕົ້ນໄລຍະ</string>
+    <string name="material_slider_value">ຄ່າ</string>
+    <string name="material_timepicker_am">ໂມງເຊົ້າ</string>
+    <string name="material_timepicker_clock_mode_description">ສະຫຼັບໄປໃຊ້ໂໝດໂມງສຳລັບການປ້ອນເວລາ.</string>
+    <string name="material_timepicker_hour">ຊົ່ວໂມງ</string>
+    <string name="material_timepicker_minute">ນາທີ</string>
+    <string name="material_timepicker_pm">ໂມງແລງ</string>
+    <string name="material_timepicker_select_time">ເລືອກເວ​ລາ</string>
+    <string name="material_timepicker_text_input_mode_description">ສະຫຼັບໄປໃຊ້ໂໝດປ້ອນຂໍ້ຄວາມສຳລັບການປ້ອນເວລາ.</string>
+    <string name="mozac_browser_engine_system_alert_title">ຫນ້າເວັບທີ່ %1$s ລະບຸວ່າ:</string>
+    <string name="mozac_browser_engine_system_auth_message">%2$s ຕ້ອງການຊື່ຜູ້ໃຊ້ ແລະ ລະຫັດຜ່ານຂອງທ່ານ. ເວັບໄຊທລະບຸວ່າ: “%1$s”</string>
+    <string name="mozac_browser_engine_system_auth_no_realm_message">%1$s ຕ້ອງການຊື່ຜູ້ໃຊ້ ແລະ ລະຫັດຜ່ານຂອງທ່ານ.</string>
+    <string name="mozac_browser_errorpages_connection_failure_message"><![CDATA[<ul>\n<li>ເວັບໄຊທອາດຈະໃຊ້ງານບໍ່ໄດ້ຊົ່ວຄາວ ຫລື ອາດຈະມີຄົນເຂົ້າຫລາຍເກີນໄປ. ລອງໃຫມ່ອີກຄັ້ງໃນອີກສອງສາມນາທີຂ້າງຫນ້າ.</li>\n<li>ຖ້າຫາກວ່າທ່ານບໍ່ສາມາດໂຫລດຫນ້າເວັບໃດໆໄດ້ເລີຍໃຫ້ທ່ານກວດປະລິມານການນຳໃຊ້ຂໍ້ມູນ ຫລື ການເຊື່ອມຕໍ່ກັບ Wi-Fi ໃນອຸປະກອນຂອງທ່ານຄືນໃຫມ່.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_connection_failure_title">ບໍ່​ສາ​ມາດ​ທີ່​ຈະ​ເຊື່ອມ​ຕໍ່</string>
+    <string name="mozac_browser_errorpages_content_crashed_message"><![CDATA[<p>ບໍ່ສາມາດສະແດງຫນ້າເວັບທີ່ທ່ານກຳລັງພະຍາຍາມເຂົ້າໄປເບິງໄດ້ເນື່ອງຈາກກວດພົບຂໍ້ຜິດພາດໃນການສົ່ງຂໍ້ມູນ.</p>\n<ul>\n<li>ກະລຸນາຕິດຕໍ່ຫາເຈົ້າຂອງເວັບໄຊທເພື່ອແຈ້ງບັນຫານີ້.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_content_crashed_title">ເນື້ອຫາຂັດຂ້ອງ</string>
+    <string name="mozac_browser_errorpages_corrupted_content_message"><![CDATA[<p>ຫນ້າເວັບທີ່ທ່ານກຳລັງເຂົ້າໄປເບິງບໍ່ສາມາດສະແດງໄດ້ເພາະວ່າມັນເກີດມີຂໍ້ຜິດພາດໃນການສົ່ງຂໍ້ມູນ.</p>\n<ul>\n<li>ກະລຸນາແຈ້ງບັນຫານີ້ໃຫ້ເຈົ້າຂອງເວັບໄຊທຮູ້.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_corrupted_content_title">ຂໍ້ຜິດພາດເນື້ອຫາທີ່ເສີຍຫາຍ</string>
+    <string name="mozac_browser_errorpages_file_access_denied_message"><![CDATA[<ul>\n<li>ມັນອາດຈະຖືກລຶບອອກໄປແລ້ວ, ຍ້າຍໄປໄວ້ຢູ່ບ່ອນອື່ນແລ້ວ ຫລື ທ່ານອາດບໍ່ມີສິດເຂົ້າເຖິງຟາຍຂໍ້ມູນນີ້.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_file_access_denied_title">ການເຂົ້າເຖິງໄຟລ໌ຂໍ້ມູນໄດ້ຖືກປະຕິເສດ</string>
+    <string name="mozac_browser_errorpages_file_not_found_message"><![CDATA[<ul>\n<li>ລາຍການດັ່ງກ່າວຖືກປ່ຽນຊື່, ລຶບອອກ ຫຼື ຍ້າຍອອກບໍ?</li>\n<li>ມີການສະກົດຄໍາ, ຕົວພິມໃຫຍ່, ຫຼືການພິມຜິດອື່ນໆຢູ່ໃນນີ້ບໍ?</li>\n<li>ສິດອະນຸຍາດຂອງທ່ານພຽງພໍກັບລາຍການທີ່ຮ້ອງຂໍບໍ?</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_file_not_found_title">ບໍ່ພົບໄຟລ໌ນີ້</string>
+    <string name="mozac_browser_errorpages_generic_message"><![CDATA[<p>ຂໍ້ມູນເພີ່ມເຕີ່ມກ່ຽວກັບບັນຫານີ້ແມ່ນຫຍັງບໍ່ທັນມີເທື່ອໃນຕອນນີ້.</p>]]></string>
+    <string name="mozac_browser_errorpages_generic_title">ບໍ່ສາມາດຕອບສະຫນອງຕາມຄຳຮ້ອງຂໍໄດ້</string>
+    <string name="mozac_browser_errorpages_httpsonly_button">ສືບຕໍ່ໄປຫາເວັບໄຊທທີ່ນຳໃຊ້ HTTP</string>
+    <string name="mozac_browser_errorpages_httpsonly_message"><![CDATA[ທ່ານ​ໄດ້​ເປີດ​ໃຊ້​ງານໂຫມດ HTTPS-Only ເພື່ອ​ຄວາມ​ປອດ​ໄພ​ທີ່​ຫຼາຍຂື້ນ ແລະ HTTPS ເວີ​ຊັນ <em>%1$s</em> ຍັງບໍພ້ອມໃຫ້ໃຊ້ງານ.]]></string>
+    <string name="mozac_browser_errorpages_httpsonly_title">ເວັບໄຊທທີ່ປອດໄພຍັງບໍ່ພ້ອມໃຫ້ໃຊ້ງານ</string>
+    <string name="mozac_browser_errorpages_invalid_content_encoding_message"><![CDATA[<p>ຫນ້າເວັບທີ່ທ່ານກຳລັງເຂົ້າໄປເບິງບໍ່ສາມາດສະແດງໄດ້ເພາະວ່າມັນໃຊ້ຮູບແບບການບີບອັດຂໍ້ມູນທີ່ບໍ່ຖືກຕ້ອງ ຫລື ບໍ່ໄດ້ຮັບການຊັບພອດ.</p>\n<ul>\n<li>ກະລຸນາແຈ້ງບັນຫານີ້ໃຫ້ເຈົ້າຂອງເວັບໄຊທຮູ້.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_invalid_content_encoding_title">ຂໍ້ຜິດພາດການເຂົ້າລະຫັດເນື້ອຫາ</string>
+    <string name="mozac_browser_errorpages_malformed_uri_message"><![CDATA[<p>ຮູບແບບຂອງທີ່ຢູ່ທີໃຫ້ມາແມ່ນບໍ່ຖືກຕ້ອງ. ກະລຸນາກວດເບິງທີ່ຢູ່ໃນແຖບທີ່ຕັ້ງເພື່ອຊອກຫາຂໍ້ຜິດພາດ ແລະ ລອງໃຫມ່ອີກຄັ້ງ.</p>]]></string>
+    <string name="mozac_browser_errorpages_malformed_uri_message_alternative"><![CDATA[<ul>\n<li>ທີ່ຢູ່ຂອງເວັບມັກຈະຂຽນເປັນ <strong>http://www.example.com/</strong></li>\n<li>ກວດເບິງໃຫ້ຫມັ້ນໃຈວ່າທ່ານໄດ້ໃຊ້ເຄືອງຫມາຍສະແລັດຖືກຕ້ອງແລ້ວ ( <strong>/</strong>).</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_malformed_uri_title">ທີ່ຢູ່ບໍ່ຖືກຕ້ອງ</string>
+    <string name="mozac_browser_errorpages_malformed_uri_title_alternative">ທີ່ຢູ່ບໍ່ຖືກຕ້ອງ</string>
+    <string name="mozac_browser_errorpages_net_interrupt_message"><![CDATA[<p>ບຣາວເຊີໄດ້ສຳເລັດການເຊື່ອຕໍ່ແລ້ວ, ແຕ່ວ່າການເຊື່ອມຕໍ່ໄດ້ຖືກຕັດລະຫວ່າງການສົ່ງຂໍ້ມູນ. ກະລຸນາລອງຫໃ່ອີກຄັ້ງຫນຶ່ງ.</p>\n<ul>\n<li>ເວັບໄຊທອາດຈະໃຊ້ງານບໍ່ໄດ້ຊົ່ວຄາວ ຫລື ອາດຈະມີຄົນເຂົ້າຫລາຍເກີນໄປ. ລອງໃຫມ່ອີກຄັ້ງໃນອີກສອງສາມນາທີຂ້າງຫນ້າ.</li>\n<li>ຖ້າຫາກວ່າທ່ານບໍ່ສາມາດໂຫລດຫນ້າເວັບໃດໆໄດ້ເລີຍໃຫ້ທ່ານກວດປະລິມານການນຳໃຊ້ຂໍ້ມູນ ຫລື ການເຊື່ອມຕໍ່ກັບ Wi-Fi ໃນອຸປະກອນຂອງທ່ານຄືນໃຫມ່.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_net_interrupt_title">ການເຊື່ອມຕໍ່ຖືກລົບກວນ</string>
+    <string name="mozac_browser_errorpages_net_reset_message"><![CDATA[<p>ເນັດເວີກລີ້ງໄດ້ຮັບການຂັດຈັງຫວະໃນຂະນະທີ່ແລກປ່ຽນຂໍ້ມູນການເຊື່ອມຕໍ. ກະລຸນາລອງໃຫມ່ອີກຄັ້ງ.</p>\n<ul>\n<li>ເວັບໄຊທອາດຈະບໍ່ສາມາດໃຊ້ງານໄດ້ຊົ່ວຄາວ ຫລື ເຂົ້າບໍ່ໄດ້. ໃຫ້ລອງເຂົ້າໃຫມ່ໃນອີກ 2-3 ນາທີ.</li>\n<li>ຖ້າຫາກວ່າທ່ານຍັງບໍສາມາດໂຫລດຫນ້າເວັບໄດ້ ໃຫ້ລອງກວດເບິງອິນເຕີເນັດ ຫລື ການເຊື່ອມຕໍ Wi-Fi ໃນອຸປະກອນຂອງທ່ານ.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_net_reset_title">ການເຊື່ອມຕໍ່ຖືກຕັດ</string>
+    <string name="mozac_browser_errorpages_net_timeout_message"><![CDATA[<p>ເວັບໄຊທທີ່ທ່ານຮ້ອງຂໍບໍ່ສາມາດດຳເນີນການໄດ້ ແລະ ບຣາວເຊີໄດ້ຍຸດການລໍຖ້າຄຳຮ້ອງຂໍດັ່ງກ່າວແລ້ວ.</p>\n<ul>\n<li>ອາດຈະເປັນນຳເຊີເວີອາດປະສົບກັບບັນຫາທີ່ມີຜູ້ເຂົ້ານຳໃຊ້ສຸງ ຫລື ໄຟຟ້າດັບຊົ່ວຄາວ. ໃຫ້ລອງເຂົ້າໃຫມ່ອີກຄັ້ງໃນພາຍຫລັງ.</li>\n<li>ທ່ານສາມາດເຂົ້າເວັບໄຊທອື່ນໄດ້ບໍ່? ໃຫ້ກວດເບິງການເຊື່ອມຕໍ່ເນັດເວີກຂອງຄອມພິວເຕີຄືນ.</li>\n<li>ເນັດເວີກຂອງທ່ານມີໄຟວໍ ຫລື ພັອກຊີຄັ້ນໄວ້ບໍ່? ການຕັ້ງຄ່າທີ່ຜິດພາດອາດຈະເຮັດໃຫ້ລົບກວນການເຂົ້າເວັບໄດ້.</li>\n<li>ຫຍັງຄົງມີບັນຫາຢູ່ບໍ່? ໃຫ້ປຶກສາກັບຜູ້ຄຸ້ມຄອງລະບົບເນັດເວີກຂອງທ່ານ ຫລື ຜູ້ໃຫ້ບໍລິການອິນເຕີເນັດສຳລັບການຊ່ວຍເຫລືອ.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_net_timeout_title">ການເຊື່ອມຕໍ່ໄດ້ຫມົດເວລາແລ້ວ</string>
+    <string name="mozac_browser_errorpages_no_internet_error_code">ລະຫັດຂໍ້ຜິດພາດ: NS_ERROR_OFFLINE</string>
+    <string name="mozac_browser_errorpages_no_internet_message_2">ລອງເຊື່ອມຕໍ່ໃນອຸປະກອນອື່ນ. ກວດເບິ່ງໂມເດັມ ຫຼື ເຣົາເຕີຂອງທ່ານ. ຕັດການເຊື່ອມຕໍ່ ແລະ ເຊື່ອມຕໍ່ Wi-Fi ຄືນໃໝ່.</string>
+    <string name="mozac_browser_errorpages_no_internet_refresh_button">ໂຫລດຄືນໃຫມ່</string>
+    <string name="mozac_browser_errorpages_no_internet_title_2">ເບິ່ງຄືວ່າມີບັນຫາກັບການເຊື່ອມຕໍ່ອິນເຕີເນັດຂອງທ່ານ</string>
+    <string name="mozac_browser_errorpages_offline_message"><![CDATA[<p>ບຣາວເຊີກຳລັງເຮັດວຽກໃນໂຫມດອັອບລາຍ ແລະ ບໍ່ສາມາດເຊື່ອມຕໍ່ໄປຫາລາຍການທີ່ຮ້ອງຂໍໄດ້.</p>\n<ul>\n<li>ຄອມພິວເຕີໄດ້ເຊື່ອມຕໍ່ກັບເນັດເວີກຢູ່ບໍ?</li>\n<li>ກົດ “ລອງໃຫມ່ອີກຄັ້ງ” ເພື່ອປ່ຽນໄປໂຫມດອອນລາຍ ແລະ ໂຫລດຫນ້າໃຫມ່ອີກຄັ້ງ.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_offline_title">ໂໝດອັອບໄລ</string>
+    <string name="mozac_browser_errorpages_page_refresh">ລອງ​ອີກ​ຄັ້ງ</string>
+    <string name="mozac_browser_errorpages_port_blocked_message"><![CDATA[<p>ທີ່ຢູ່ນີ້ຮ້ອງຂໍພອດທີ່ລະບຸຊັດເຈນ (ເຊັ່ນ: <q>mozilla.org:80</q> ສຳລັບພອດ 80 ໃນ mozilla.org) ປົກກະຕິແລ້ວໃຊ້ສຳລັບ <em>ອື່ນໆ</em> ຫຼາຍກ່ອນການທ່ອງເວັບ. ບຣາວເຊີໄດ້ຍົກເລີກຄຳຮ້ອງຂໍດັ່ງກ່າວເພື່ອປົກປ້ອງທ່ານ ແລະ ຄວາມປອດໄພ.</p>]]></string>
+    <string name="mozac_browser_errorpages_port_blocked_title">ພອດຖືກຈຳກັດດ້ວຍເຫດຜົນດ້ານຄວາມປອດໄພ</string>
+    <string name="mozac_browser_errorpages_proxy_connection_refused_message"><![CDATA[<p>ຕົວ​ທ່ອງ​ເວັບ​ໄດ້​ຖືກ​ຕັ້ງ​ຄ່າ​ໃຫ້​ໃຊ້​ເຊີບ​ເວີ​ພຣັອກຊີ, ແຕ່​ພຣັອກຊີ​ໄດ້​ປະ​ຕິ​ເສດ​ການ​ເຊື່ອມ​ຕໍ່.</p>\n<ul>\n<li>ການກຳນົດຄ່າພຣັອກຊີຂອງບຣາວເຊີຖືກຕ້ອງບໍ? ກວດເບິ່ງການຕັ້ງຄ່າແລ້ວລອງໃໝ່ອີກຄັ້ງ.</li>\n<li>ບໍລິການພຣັອກຊີອະນຸຍາດການເຊື່ອມຕໍ່ຈາກເຄືອຂ່າຍນີ້ບໍ?</li>\n<li>ຍັງມີບັນຫາຢູ່ບໍ? ປຶກສາຜູ້ເບິ່ງແຍງລະບົບເຄືອຂ່າຍ ຫຼືຜູ້ໃຫ້ບໍລິການອິນເຕີເນັດຂອງທ່ານເພື່ອຂໍຄວາມຊ່ວຍເຫຼືອ.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_proxy_connection_refused_title">ພັອກຊີເຊີເວີໄດ້ປະຕິເສດການເຊື່ອມຕໍ່</string>
+    <string name="mozac_browser_errorpages_redirect_loop_message"><![CDATA[<p>ບຣາວເຊີໄດ້ຢຸດພະຍາຍາມໃນການຮ້ອງຂໍລາຍການ. ເວັບໄຊທໄດ້ປ່ຽນເສັ້ນທາງຄຳຮ້ອງຂໍໄປໃນທາງທີ່ບໍມີການສີ້ນສຸດ. </p>\n<ul>\n<li>ທ່ານໄດ້ປິດ ຫລື ບັອກຄຸກກີ້ທີ່ຕ້ອງການໂດຍເວັບໄຊທນີ້ບໍ?</li>\n<li>ຖ້າວ່າການຍອມຮັບຄຸກກີ້ຂອງເວັບໄຊທບໍ່ໄດ້ແກ້ໄຂບັນຫາ ມັນອາດຈະເປັນນຳບັນຫາໃນການຕັ້ງຄ່າເຊີເວີ ແລະ ບໍ່ໄດ້ເປັນນຳຄອມພິວເຕີຂອງທ່ານ.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_redirect_loop_title">ຫນ້າເວັບນີ້ມີການປ່ຽນເສັ້ນທາງທີ່ບໍ່ຖືກຕ້ອງ</string>
+    <string name="mozac_browser_errorpages_safe_browsing_malware_uri_message"><![CDATA[<p>ເວັບໄຊທທີ່ %1$s ໄດ້ຖືກລາຍງານວ່າເປັນເວັບອັນຕະລາຍ ແລະ ໄດ້ຖືກບັອກໂດຍອີງຈາກການຕັ້ງຄ່າຄວາມປອດໄພຂອງທ່ານ.</p>]]></string>
+    <string name="mozac_browser_errorpages_safe_browsing_malware_uri_title">ປັນຫາເວັບໄຊທ Malware</string>
+    <string name="mozac_browser_errorpages_safe_browsing_unwanted_uri_message"><![CDATA[<p>ເວັບໄຊທທີ່ %1$s ໄດ້ຖືກລາຍງານວ່າເປັນເວັບທີ່ໃຫ້ບໍລິການຊັອບແວທີ່ອັນຕະລາຍ ແລະ ໄດ້ຖືກບັອກໂດຍອີງຈາກການຕັ້ງຄ່າຄວາມປອດໄພຂອງທ່ານ.</p>]]></string>
+    <string name="mozac_browser_errorpages_safe_browsing_unwanted_uri_title">ບັນຫາໃນເວັບໄຊທທີ່ບໍ່ເພິງປະສົງ</string>
+    <string name="mozac_browser_errorpages_safe_harmful_uri_message"><![CDATA[<p>ເວັບໄຊທທີ່ %1$s ໄດ້ຖືກລາຍງານວ່າເປັນເວັບທີ່ອາດຈະເປັນອັນຕະລາຍ ແລະ ໄດ້ຖືກບັອກໂດຍອີງຈາກການຕັ້ງຄ່າຄວາມປອດໄພຂອງທ່ານ.</p>]]></string>
+    <string name="mozac_browser_errorpages_safe_harmful_uri_title">ເວບໄຊທທີ່ເປັນອັນຕະລາຍ</string>
+    <string name="mozac_browser_errorpages_safe_phishing_uri_message"><![CDATA[<p>ຫນ້າເວັບນີ້ທີ່ %1$s ໄດ້ຖືກລາຍງານວ່າເປັນເວັບປອມແປງ ແລະ ໄດ້ຖືກບັອກໂດຍອີງຈາກການຕັ້ງຄ່າຄວາມປອດໄພຂອງທ່ານ.</p>]]></string>
+    <string name="mozac_browser_errorpages_safe_phishing_uri_title">ບັນຫາເວັບໄຊທປອມແປງ</string>
+    <string name="mozac_browser_errorpages_security_bad_cert_accept_temporary">ຍອມຮັບຄວາມສ່ຽງ ແລະ ດຳເນີນການຕໍ່</string>
+    <string name="mozac_browser_errorpages_security_bad_cert_advanced">ຂັ້ນສູງ…</string>
+    <string name="mozac_browser_errorpages_security_bad_cert_back">ກັບຄືນ (ແນະນຳ)</string>
+    <string name="mozac_browser_errorpages_security_bad_cert_message"><![CDATA[<ul>\n<li>ປັນຫານີ້ອາດຈະເກີດມາຈາກການຕັ້ງຄ່າຂອງເຊີບເວີ ຫລື ອາດຈະມີຄົນພະຍາຍາມປອມແປງເຊີບເວີ. </li>\n<li>ຖ້າທ່ານຫາກເຄີຍເຊື່ອມຕໍ່ກັບເຊີບເວີນີ້ໄດ້ມາກ່ອນ, ຂໍ້ຜິດພາດນີ້ອາດຈະເກີດຂື້ນຊົ່ວຄາວ ແລະ ທ່ານສາມາດລອງໃໝ່ອີກຄັ້ງໃນພາຍຫຼັງ.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_security_bad_cert_techInfo"><![CDATA[<label>ມີບາງຄົນອາດຈະກຳລັງປອມແປງເວັບໄຊທ ແລະ ທ່ານບໍ່ຄວນຈະເຂົ້າໄປ.</label> <br><br>\n<label>ເວັບໄຊທຈະຢັ້ງຢືນຕົວຕົນຜ່ານທາງໃບຮັບຮອງ. %1$s ບໍ່ຫນ້າເຊື່ອຖື <b>%2$s</b> ເພາະວ່າຜູ້ອອກໃບຮັບຮອງຂອງພວກເຂົາແມ່ນບໍເປັນທີ່ຮູ້ຈັກ, ໃບຮັບຮອງແມ່ນສ້າງຂື້ນມາເອງ ຫລື ເຊີເວີບໍ່ໄດ້ສົ່ງໃບຮັບຮອງທີ່ຖືກຕ້ອງມາໃຫ້.</label>]]></string>
+    <string name="mozac_browser_errorpages_security_bad_cert_title">ການເຊື່ອມຕໍ່ທີປອດໄພຫລົ້ມເຫລວ</string>
+    <string name="mozac_browser_errorpages_security_bad_hsts_cert_advanced">ຂັ້ນສູງ…</string>
+    <string name="mozac_browser_errorpages_security_bad_hsts_cert_back">ກັບຄືນ</string>
+    <string name="mozac_browser_errorpages_security_bad_hsts_cert_message"><![CDATA[<ul>\n<li>ໜ້າ​ທີ່​ເຈົ້າ​ພະ​ຍາ​ຍາມ​ເບິ່ງ​ບໍ່​ສາ​ມາດ​ສະ​ແດງ​ໄດ້​ເນື່ອງ​ຈາກ​ວ່າ​ເວັບ​ໄຊ​ທ​໌​ນີ້​ຕ້ອງ​ການ​ການ​ເຊື່ອມ​ຕໍ່​ທີ່​ປອດ​ໄພ.</li>\n<li>ບັນຫາແມ່ນເປັນໄປໄດ້ຫຼາຍທີ່ສຸດກັບເວັບໄຊທ໌, ແລະບໍ່ມີຫຍັງທີ່ເຈົ້າສາມາດແກ້ໄຂມັນໄດ້.</li>\n<li>ທ່ານ​ສາ​ມາດ​ແຈ້ງ​ໃຫ້​ຜູ້​ຄວບ​ຄຸມ​ຂອງ​ເວັບ​ໄຊ​ທ​໌​ກ່ຽວ​ກັບ​ບັນ​ຫາ​ໄດ້.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_security_bad_hsts_cert_techInfo2"><![CDATA[<label> <b>%1$s</b> ມີນະໂຍບາຍຄວາມປອດໄພທີ່ເອີ້ນວ່າ HTTP Strict Transport Security (HSTS), ຊຶ່ງຫມາຍຄວາມວ່າ <b>%2$s</b> ສາມາດເຊື່ອມຕໍ່ກັບມັນໄດ້ຢ່າງປອດໄພເທົ່ານັ້ນ. ທ່ານບໍ່ສາມາດເພີ່ມຂໍ້ຍົກເວັ້ນເພື່ອເຂົ້າເບິ່ງເວັບໄຊນີ້ໄດ້.</label>]]></string>
+    <string name="mozac_browser_errorpages_security_bad_hsts_cert_title">ເວັບໄຊທນີ້ຕ້ອງການການເຊື່ອມຕໍ່ທີ່ປອດໄພ.</string>
+    <string name="mozac_browser_errorpages_security_ssl_message"><![CDATA[<ul>\n<li>ບໍ່ສາມາດສະແດງໜ້າທີ່ທ່ານກຳລັງພະຍາຍາມເຂົ້າໄປເບິ່ງໃຫ້ເຫັນໄດ້ເພາະວ່າຄວາມຖືກຕ້ອງຂອງຂໍ້ມູນທີ່ໄດ້ຮັບບໍ່ສາມາດຢັ້ງຢືນໄດ້.</li>\n<li>ກະລຸນາຕິດຕໍ່ຫາເຈົ້າຂອງເວັບໄຊທເພື່ອແຈ້ງໃຫ້ພວກເຂົາຮູ້ກ່ຽວກັບບັນຫານີ້.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_security_ssl_title">ການເຊື່ອມຕໍ່ທີປອດໄພຫລົ້ມເຫລວ</string>
+    <string name="mozac_browser_errorpages_unknown_host_message"><![CDATA[<p>ບຣາວເຊີອາດຈະບໍ່ສາມາດຊອກຫາທີ່ຢູ່ຂອງໂຮສທີ່ລະບຸມາ.</p>\n<ul>\n<li>ກວດຄືນເບິງວ່າຂຽນຊື່ທີ່ຢູ່ຖືກຕ້ອງແລ້ວບໍເຊັ່ນວ່າ: <strong>ww</strong>.example.com ແທນທີ່ຈະເປັນ <strong>www</strong>.example.com.</li>\n<li>ຖ້າຫາກວ່າທ່ານຍັງບໍສາມາດໂຫລດຫນ້າເວັບໄດ້ ໃຫ້ລອງກວດເບິງອິນເຕີເນັດ ຫລື ການເຊື່ອມຕໍ Wi-Fi ໃນອຸປະກອນຂອງທ່ານ.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_unknown_host_title">ບໍ່ພົບທີ່ຢູ່</string>
+    <string name="mozac_browser_errorpages_unknown_protocol_message"><![CDATA[<p>ທີ່ຢູ່ລະບຸໂປຣໂຕຄໍ (ເຊັ່ນ: <q>wxyz://</q>) ບຣາວເຊີບໍ່ຮັບຮູ້, ສະນັ້ນ ບຣາວເຊີບໍ່ສາມາດເຊື່ອມຕໍ່ກັບເວັບໄຊທ໌ໄດ້ຢ່າງຖືກຕ້ອງ.</p>\n<ul>\n<li>ທ່ານກຳລັງພະຍາຍາມເຂົ້າເຖິງມັນຕິມີເດຍ ຫຼືບໍລິການອື່ນໆທີ່ບໍ່ແມ່ນຂໍ້ຄວາມບໍ? ກວດເບິ່ງເວັບໄຊສຳລັບຄວາມຕ້ອງການເພີ່ມເຕີມ.</li>\n<li>ບາງໂປຣໂຕຄໍອາດຈະຕ້ອງການຊອບແວພາກສ່ວນທີສາມ ຫຼື plugins ກ່ອນທີ່ຕົວທ່ອງເວັບສາມາດຮັບຮູ້ພວກມັນໄດ້.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_unknown_protocol_title">ໂປຼໂຕຄໍທີ່ບໍ່ຮູ້ຈັກ</string>
+    <string name="mozac_browser_errorpages_unknown_proxy_host_message"><![CDATA[<p>ຕົວ​ທ່ອງ​ເວັບ​ໄດ້​ຖືກ​ຕັ້ງ​ຄ່າ​ໃຫ້​ໃຊ້​ເຊີບ​ເວີ​ພຣັອກ​ຊີ, ແຕ່​ບໍ່​ສາ​ມາດ​ຊອກ​ຫາ​ຕົວ​ແທນ​ໄດ້.</p>\n<ul>\n<li>ການກຳນົດຄ່າພຣັອກຊີຂອງບຣາວເຊີຖືກຕ້ອງບໍ? ກວດເບິ່ງການຕັ້ງຄ່າແລ້ວລອງໃໝ່ອີກຄັ້ງ.</li>\n<li>ອຸປະກອນເຊື່ອມຕໍ່ກັບເຄືອຂ່າຍທີ່ໃຊ້ຢູ່ບໍ?</li>\n<li>ຍັງມີບັນຫາຢູ່ບໍ? ປຶກສາຜູ້ເບິ່ງແຍງລະບົບເຄືອຂ່າຍ ຫຼືຜູ້ໃຫ້ບໍລິການອິນເຕີເນັດຂອງທ່ານເພື່ອຂໍຄວາມຊ່ວຍເຫຼືອ.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_unknown_proxy_host_title">ບໍ່ພົບພລັອກຊີເຊີເວີ</string>
+    <string name="mozac_browser_errorpages_unknown_socket_type_message"><![CDATA[<p>ເວັບໄຊທຕອບສະຫນອງຕໍຄຳຮ້ອງຂໍຂອງເນັດເວີກດ້ວຍວິທີທີ່ບໍຖືກຕ້ອງ ແລະ ບຣາວເຊີບໍ່ສາມາດເຂົ້າໄປຕໍໄດ້.</p>]]></string>
+    <string name="mozac_browser_errorpages_unknown_socket_type_title">ການຕອບສະຫນອງທີ່ບໍ່ຄາດຄິດຈາກເຊີເວີ</string>
+    <string name="mozac_browser_errorpages_unsafe_content_type_message"><![CDATA[<ul>\n<li>ກະລູນາຕິດຕໍ່ຫາເຈົ້າຂອງເວັບໄຊທເພື່ອແຈ້ງບັນຫານີ້ໃຫ້ພວກເຂົາຮູ້.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_unsafe_content_type_title">ປະເພດເອກະສານທີ່ບໍ່ປອດໄພ</string>
+    <string name="mozac_support_base_permissions_needed_negative_button">ຍົກເລີກ</string>
+    <string name="mozac_support_base_permissions_needed_positive_button">ໄປທີ່ການຕັ້ງຄ່າ</string>
+    <string name="mozac_support_ktx_menu_call_with">ໂທດ້ວຍ…</string>
+    <string name="mozac_support_ktx_menu_email_with">ອີເມລດ້ວຍ…</string>
+    <string name="mozac_support_ktx_menu_share_with">ແບ່ງປັນກັບ…</string>
+    <string name="mozac_support_ktx_share_dialog_title">ແບ່ງປັນຜ່ານທາງ</string>
+    <string name="mtrl_badge_numberless_content_description">ການແຈ້ງເຕືອນໃໝ່</string>
+    <string name="mtrl_checkbox_state_description_checked">ເລືອກໄວ້</string>
+    <string name="mtrl_checkbox_state_description_indeterminate">ເລືອກໄວ້ບາງສ່ວນ</string>
+    <string name="mtrl_checkbox_state_description_unchecked">ບໍ່ໄດ້ເລືອກໄວ້</string>
+    <string name="mtrl_chip_close_icon_content_description">ລຶບ %1$s ອອກ</string>
+    <string name="mtrl_exceed_max_badge_number_content_description" ns2:ignore="PluralsCandidate">ການແຈ້ງເຕືອນໃໝ່ຫຼາຍກວ່າ %1$d ລາຍການ</string>
+    <string name="mtrl_picker_a11y_next_month">ປ່ຽນເປັນເດືອນຕໍ່ໄປ</string>
+    <string name="mtrl_picker_a11y_prev_month">ປ່ຽນເປັນເດືອນຜ່ານມາ</string>
+    <string name="mtrl_picker_announce_current_range_selection">ການເລືອກວັນທີເລີ່ມຕົ້ນ: %1$s – ການເລືອກວັນທີສິ້ນສຸດ: %2$s</string>
+    <string name="mtrl_picker_announce_current_selection">ການເລືອກປັດຈຸບັນ: %1$s</string>
+    <string name="mtrl_picker_announce_current_selection_none">ບໍ່ມີ</string>
+    <string name="mtrl_picker_cancel">ຍົກເລີກ</string>
+    <string name="mtrl_picker_confirm">ຕົກລົງ</string>
+    <string name="mtrl_picker_date_header_selected">%1$s</string>
+    <string name="mtrl_picker_date_header_title">ເລືອກວັນທີ</string>
+    <string name="mtrl_picker_date_header_unselected">ເລືອກວັນທີ</string>
+    <string name="mtrl_picker_day_of_week_column_header">%1$s</string>
+    <string name="mtrl_picker_end_date_description">ວັນທີສິ້ນສຸດ %1$s</string>
+    <string name="mtrl_picker_invalid_format">ຮູບແບບບໍ່ຖືກຕ້ອງ.</string>
+    <string name="mtrl_picker_invalid_format_example">ຕົວຢ່າງ: %1$s</string>
+    <string name="mtrl_picker_invalid_format_use">ໃຊ້: %1$s</string>
+    <string name="mtrl_picker_invalid_range">ໄລຍະບໍ່ຖືກຕ້ອງ.</string>
+    <string name="mtrl_picker_navigate_to_current_year_description">ໄປຫາປີປັດຈຸບັນ %1$d</string>
+    <string name="mtrl_picker_navigate_to_year_description">ເລື່ອນໄປປີ %1$d</string>
+    <string name="mtrl_picker_out_of_range">ຢູ່ນອກຊ່ວງວັນທີ: %1$s</string>
+    <string name="mtrl_picker_range_header_only_end_selected">ວັນທີເລີ່ມຕົ້ນ – %1$s</string>
+    <string name="mtrl_picker_range_header_only_start_selected">%1$s – ວັນທີສິ້ນສຸດ</string>
+    <string name="mtrl_picker_range_header_selected">%1$s – %2$s</string>
+    <string name="mtrl_picker_range_header_title">ເລືອກຊ່ວງ</string>
+    <string name="mtrl_picker_range_header_unselected">ວັນທີເລີ່ມຕົ້ນ – ວັນທີສິ້ນສຸດ</string>
+    <string name="mtrl_picker_save">ບັນທຶກ</string>
+    <string name="mtrl_picker_start_date_description">ວັນທີເລີ່ມຕົ້ນ %1$s</string>
+    <string name="mtrl_picker_text_input_date_hint">ວັນທີ</string>
+    <string name="mtrl_picker_text_input_date_range_end_hint">ວັນທີສິ້ນສຸດ</string>
+    <string name="mtrl_picker_text_input_date_range_start_hint">ວັນທີເລີ່ມ</string>
+    <string name="mtrl_picker_text_input_day_abbr">ວ</string>
+    <string name="mtrl_picker_text_input_month_abbr">ດ</string>
+    <string name="mtrl_picker_text_input_year_abbr">ປ</string>
+    <string name="mtrl_picker_today_description">ມື້ນີ້ %1$s</string>
+    <string name="mtrl_picker_toggle_to_calendar_input_mode">ປ່ຽນເປັນໂໝດປ້ອນຂໍ້ມູນປະຕິທິນ</string>
+    <string name="mtrl_picker_toggle_to_day_selection">ປ່ຽນເປັນມຸມມອງປະຕິທິນ</string>
+    <string name="mtrl_picker_toggle_to_text_input_mode">ປ່ຽນເປັນໂໝດປ້ອນຂໍ້ມູນຂໍ້ຄວາມ</string>
+    <string name="mtrl_picker_toggle_to_year_selection">ປ່ຽນເປັນມຸມມອງແບບປີ</string>
+    <string name="mtrl_picker_toggled_to_day_selection">ສະຫຼັບເປັນມຸມມອງປະຕິທິນແລ້ວ</string>
+    <string name="mtrl_picker_toggled_to_year_selection">ສະຫຼັບເປັນມຸມມອງປີແລ້ວ</string>
+    <string name="mtrl_timepicker_cancel">ຍົກເລີກ</string>
+    <string name="mtrl_timepicker_confirm">ຕົກລົງ</string>
+    <string msgid="542007171693138492" name="navigation_menu">"ເມນູການນຳທາງ"</string>
+    <string msgid="6610465462668679431" name="not_selected">"ບໍ່ໄດ້ເລືອກ"</string>
+    <string msgid="7534843523462177008" name="orb_search_action">"ຊອກຫາຄຳສັ່ງ"</string>
+    <string name="password_toggle_content_description">ສະແດງລະຫັດຜ່ານ</string>
+    <string msgid="5941395253238309765" name="range_end">"ສິ້ນສຸດໄລຍະ"</string>
+    <string msgid="7097486360902471446" name="range_start">"ເລີ່ມຕົ້ນໄລຍະ"</string>
+    <string msgid="6264217191555673260" name="search_menu_title">"ຊອກຫາ"</string>
+    <string name="searchview_clear_text_content_description">ລຶບລ້າງຂໍ້ຄວາມ</string>
+    <string name="searchview_navigation_content_description">ກັບຄືນ</string>
+    <string msgid="6043586758067023" name="selected">"ເລືອກແລ້ວ"</string>
+    <string name="side_sheet_accessibility_pane_title">ຊີດດ້ານຂ້າງ</string>
+    <string msgid="2792228137354697160" name="snackbar_pane_title">"ແຈ້ງເຕືອນ"</string>
+    <string msgid="4139871816613051306" name="state_empty">"ຫວ່າງເປົ່າ"</string>
+    <string msgid="5834637030682409883" name="state_off">"ປິດຢູ່"</string>
+    <string msgid="1490883874751719580" name="state_on">"ເປີດຢູ່"</string>
+    <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string msgid="2561197295334830845" name="switch_role">"ປຸ່ມກົດ"</string>
+    <string msgid="1672349317127674378" name="tab">"ແຖບ"</string>
+    <string msgid="5946805113151406391" name="template_percent">"<ns1:g id="PERCENTAGE">%1$d</ns1:g> ເປີ​ເຊັນ."</string>
+    <string msgid="3765533235322692011" name="tooltip_description">"ຄຳແນະນຳ"</string>
+    <string msgid="3124740595719787496" name="tooltip_label">"ສະແດງຄຳແນະນຳ"</string>
+</resources>

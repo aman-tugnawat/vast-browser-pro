@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mozac_browser_engine_system_alert_title">Strōna %1$s dowo znać:</string>
+    <string name="mozac_browser_engine_system_auth_message">%2$s prosi ô twoje miano używocza i hasło. Kōmunikat strōny: „%1$s”</string>
+    <string name="mozac_browser_engine_system_auth_no_realm_message">%1$s prosi ô twoje miano używocza i hasło.</string>
+    <string name="mozac_browser_errorpages_connection_failure_title">Niy idzie połōnczyć</string>
+    <string name="mozac_browser_errorpages_content_crashed_title">Awaryjo treści</string>
+    <string name="mozac_browser_errorpages_corrupted_content_title">Feler we treści strōny</string>
+    <string name="mozac_browser_errorpages_file_not_found_title">Niy szło znojś zbioru</string>
+    <string name="mozac_browser_errorpages_generic_message"><![CDATA[<p>Brak teroz ekstra informacyji ô tym problymie abo felerze.</p>]]></string>
+    <string name="mozac_browser_errorpages_generic_title">Niy szło dokōńczyć fołdrowanio</string>
+    <string name="mozac_browser_errorpages_invalid_content_encoding_title">Feler kodowanio treści</string>
+    <string name="mozac_browser_errorpages_malformed_uri_title">Felerno adresa</string>
+    <string name="mozac_browser_errorpages_net_interrupt_title">Połōnczynie serwane</string>
+    <string name="mozac_browser_errorpages_net_reset_title">Połōnczynie zresetowane</string>
+    <string name="mozac_browser_errorpages_net_timeout_title">Czas połōnczynio minōł</string>
+    <string name="mozac_browser_errorpages_no_internet_refresh_button">Przeladuj</string>
+    <string name="mozac_browser_errorpages_offline_title">Tryb offline</string>
+    <string name="mozac_browser_errorpages_page_refresh">Sprōbuj zaś</string>
+    <string name="mozac_browser_errorpages_port_blocked_title">Przistymp do portu zawarty skirz bezpieczyństwa</string>
+    <string name="mozac_browser_errorpages_redirect_loop_title">Strōna felernie przekerowuje</string>
+    <string name="mozac_browser_errorpages_security_bad_cert_accept_temporary">Akceptuja ryzyko i chca kōntynuować</string>
+    <string name="mozac_browser_errorpages_security_bad_cert_advanced">Rozszyrzōne…</string>
+    <string name="mozac_browser_errorpages_security_bad_cert_back">Nazod (Doradzane)</string>
+    <string name="mozac_browser_errorpages_security_bad_cert_title">Feler bezpiecznego połōnczynio</string>
+    <string name="mozac_browser_errorpages_security_bad_hsts_cert_advanced">Rozszyrzōne…</string>
+    <string name="mozac_browser_errorpages_security_bad_hsts_cert_back">Nazod</string>
+    <string name="mozac_browser_errorpages_security_bad_hsts_cert_title">Ta strōna fołdruje bezpieczne połōnczynie.</string>
+    <string name="mozac_browser_errorpages_security_ssl_title">Feler bezpiecznego połōnczynio</string>
+    <string name="mozac_browser_errorpages_unknown_host_title">Niy szło znojś adresy</string>
+    <string name="mozac_browser_errorpages_unknown_protocol_title">Niyznōmy protokōł</string>
+    <string name="mozac_browser_errorpages_unknown_socket_type_title">Niyspodziywano ôdpowiydź ze serwera</string>
+    <string name="mozac_browser_errorpages_unsafe_content_type_title">Niybezpieczny typ zbioru</string>
+</resources>

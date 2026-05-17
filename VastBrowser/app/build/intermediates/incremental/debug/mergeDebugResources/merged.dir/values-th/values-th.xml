@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2" xmlns:ns2="http://schemas.android.com/tools">
+    <plurals name="mtrl_badge_content_description">
+    <item quantity="one">การแจ้งเตือนใหม่ %d รายการ</item>
+    <item quantity="other">การแจ้งเตือนใหม่ %d รายการ</item>
+  </plurals>
+    <string msgid="5976598919945601918" name="abc_action_bar_home_description">"นำทางไปหน้าแรก"</string>
+    <string msgid="8388173803310557296" name="abc_action_bar_up_description">"กลับ"</string>
+    <string msgid="3937310113216875497" name="abc_action_menu_overflow_description">"ตัวเลือกอื่น"</string>
+    <string msgid="4692188335987374352" name="abc_action_mode_done">"เสร็จ"</string>
+    <string msgid="1189761859438369441" name="abc_activity_chooser_view_see_all">"ดูทั้งหมด"</string>
+    <string msgid="2165779757652331008" name="abc_activitychooserview_choose_application">"เลือกแอป"</string>
+    <string msgid="4215997306490295099" name="abc_capital_off">"ปิด"</string>
+    <string msgid="884982626291842264" name="abc_capital_on">"เปิด"</string>
+    <string msgid="8833365367933412986" name="abc_menu_alt_shortcut_label">"Alt+"</string>
+    <string msgid="2223301931652355242" name="abc_menu_ctrl_shortcut_label">"Ctrl+"</string>
+    <string msgid="838001238306846836" name="abc_menu_delete_shortcut_label">"ลบ"</string>
+    <string msgid="7986526966204849475" name="abc_menu_enter_shortcut_label">"Enter"</string>
+    <string msgid="375214403600139847" name="abc_menu_function_shortcut_label">"Function+"</string>
+    <string msgid="4192209724446364286" name="abc_menu_meta_shortcut_label">"Meta+"</string>
+    <string msgid="4741552369836443843" name="abc_menu_shift_shortcut_label">"Shift+"</string>
+    <string msgid="5473865519181928982" name="abc_menu_space_shortcut_label">"Space"</string>
+    <string msgid="6180552449598693998" name="abc_menu_sym_shortcut_label">"Sym+"</string>
+    <string msgid="5520303668377388990" name="abc_prepend_shortcut_label">"เมนู+"</string>
+    <string msgid="7208076849092622260" name="abc_search_hint">"ค้นหา…"</string>
+    <string msgid="3741173234950517107" name="abc_searchview_description_clear">"ล้างคำค้นหา"</string>
+    <string msgid="693312494995508443" name="abc_searchview_description_query">"คำค้นหา"</string>
+    <string msgid="3417662926640357176" name="abc_searchview_description_search">"ค้นหา"</string>
+    <string msgid="1486535517437947103" name="abc_searchview_description_submit">"ส่งคำค้นหา"</string>
+    <string msgid="2293578557972875415" name="abc_searchview_description_voice">"ค้นหาด้วยเสียง"</string>
+    <string msgid="8875138169939072951" name="abc_shareactionprovider_share_with">"แชร์กับ"</string>
+    <string msgid="9055268688411532828" name="abc_shareactionprovider_share_with_application">"แชร์ทาง <ns1:g id="APPLICATION_NAME">%s</ns1:g>"</string>
+    <string msgid="1656852541809559762" name="abc_toolbar_collapse_description">"ยุบ"</string>
+    <string msgid="8719607706653693137" name="androidx_compose_foundation_autofill">"ป้อนข้อความอัตโนมัติ"</string>
+    <string msgid="1150566100598813236" name="androidx_compose_ui_autofill">"ป้อนข้อความอัตโนมัติ"</string>
+    <string name="bottomsheet_action_collapse">ยุบ Bottom Sheet</string>
+    <string name="bottomsheet_action_expand">ขยาย Bottom Sheet</string>
+    <string name="bottomsheet_action_expand_halfway">ขยายรายการครึ่งหนึ่ง</string>
+    <string name="bottomsheet_drag_handle_content_description">แฮนเดิลการลาก</string>
+    <string msgid="881409763997275156" name="call_notification_answer_action">"รับสาย"</string>
+    <string msgid="8793775615905189152" name="call_notification_answer_video_action">"วิดีโอ"</string>
+    <string msgid="3229508546291798546" name="call_notification_decline_action">"ปฏิเสธ"</string>
+    <string msgid="2659457946726154263" name="call_notification_hang_up_action">"วางสาย"</string>
+    <string msgid="6107532579223922871" name="call_notification_incoming_text">"สายเรียกเข้า"</string>
+    <string msgid="8623827134497363134" name="call_notification_ongoing_text">"สายที่สนทนาอยู่"</string>
+    <string msgid="59049573811482460" name="call_notification_screening_text">"กำลังสกรีนสายเรียกเข้า"</string>
+    <string name="character_counter_content_description">ป้อนอักขระแล้ว %1$d จาก %2$d ตัว</string>
+    <string name="character_counter_overflowed_content_description">เกินจำนวนอักขระสูงสุด %1$d จาก %2$d</string>
+    <string name="clear_text_end_icon_content_description">ล้างข้อความ</string>
+    <string msgid="406453423630273620" name="close_drawer">"ปิดเมนูการนำทาง"</string>
+    <string msgid="7573152094250666567" name="close_sheet">"ปิดชีต"</string>
+    <string msgid="3260749812566568062" name="copy_toast_msg">"คัดลอกลิงก์ไปยังคลิปบอร์ดแล้ว"</string>
+    <string msgid="8038256446254964252" name="default_error_message">"อินพุตไม่ถูกต้อง"</string>
+    <string msgid="6312721426453364202" name="default_popup_window_title">"หน้าต่างป๊อปอัป"</string>
+    <string msgid="1890207353314751437" name="dropdown_menu">"เมนูแบบเลื่อนลง"</string>
+    <string name="error_a11y_label">ข้อผิดพลาด: ไม่ถูกต้อง</string>
+    <string name="error_icon_content_description">ข้อผิดพลาด</string>
+    <string name="exposed_dropdown_menu_content_description">แสดงเมนูแบบเลื่อนลง</string>
+    <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"คัดลอกลิงก์"</string>
+    <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"เปิดในเบราว์เซอร์"</string>
+    <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"แชร์ลิงก์"</string>
+    <string name="icon_content_description">ไอคอนกล่องโต้ตอบ</string>
+    <string msgid="6827826412747255547" name="in_progress">"กำลังดำเนินการ"</string>
+    <string msgid="7933458017204019916" name="indeterminate">"เลือกบางส่วน"</string>
+    <string name="item_view_role_description">แท็บ</string>
+    <string msgid="2721825378927619928" name="lb_control_display_fast_forward_multiplier">"%1$dX"</string>
+    <string msgid="6173753802428649303" name="lb_control_display_rewind_multiplier">"%1$dX"</string>
+    <string msgid="1122271825827282965" name="lb_guidedaction_continue_title">"ต่อไป"</string>
+    <string msgid="7747913934287176843" name="lb_guidedaction_finish_title">"เสร็จสิ้น"</string>
+    <string msgid="8748646000835486516" name="lb_media_player_error">"รหัสข้อผิดพลาด MediaPlayer %1$d เพิ่มเติม %2$d"</string>
+    <string msgid="8126335323963415494" name="lb_navigation_menu_contentDescription">"เมนูการนำทาง"</string>
+    <string msgid="4213611627196077555" name="lb_onboarding_accessibility_next">"ถัดไป"</string>
+    <string msgid="7674487829030291492" name="lb_onboarding_get_started">"เริ่มต้น"</string>
+    <string msgid="5508271941331836786" name="lb_playback_controls_closed_captioning_disable">"ปิดใช้คำอธิบายภาพ"</string>
+    <string msgid="3934392140182327163" name="lb_playback_controls_closed_captioning_enable">"เปิดใช้คำอธิบายภาพ"</string>
+    <string msgid="8966769845721269304" name="lb_playback_controls_fast_forward">"กรอไปข้างหน้า"</string>
+    <string msgid="801276177839339511" name="lb_playback_controls_fast_forward_multiplier">"กรอไปข้างหน้า %1$dX"</string>
+    <string msgid="619396299825306757" name="lb_playback_controls_hidden">"ซ่อนการควบคุมสื่ออยู่ กด D-pad เพื่อแสดง"</string>
+    <string msgid="3000046054608531995" name="lb_playback_controls_high_quality_disable">"ปิดใช้คุณภาพสูง"</string>
+    <string msgid="1862669142355962638" name="lb_playback_controls_high_quality_enable">"เปิดใช้คุณภาพสูง"</string>
+    <string msgid="2827883329510404797" name="lb_playback_controls_more_actions">"การดำเนินการเพิ่มเติม"</string>
+    <string msgid="1769131316742618433" name="lb_playback_controls_pause">"หยุดชั่วคราว"</string>
+    <string msgid="8800305194045609275" name="lb_playback_controls_picture_in_picture">"เข้าสู่โหมดการแสดงภาพซ้อนภาพ"</string>
+    <string msgid="1590369760862605402" name="lb_playback_controls_play">"เล่น"</string>
+    <string msgid="5164826436271322261" name="lb_playback_controls_repeat_all">"เล่นซ้ำทั้งหมด"</string>
+    <string msgid="5812341701962930499" name="lb_playback_controls_repeat_none">"ไม่เล่นซ้ำ"</string>
+    <string msgid="7675097479246139440" name="lb_playback_controls_repeat_one">"เล่นซ้ำรายการเดียว"</string>
+    <string msgid="1412664391757869774" name="lb_playback_controls_rewind">"กรอกลับ"</string>
+    <string msgid="8651612807713092781" name="lb_playback_controls_rewind_multiplier">"กรอกลับ %1$dX"</string>
+    <string msgid="7794717158616536936" name="lb_playback_controls_shown">"แสดงการควบคุมสื่ออยู่"</string>
+    <string msgid="8182435535948303910" name="lb_playback_controls_shuffle_disable">"ปิดใช้การสุ่มเพลง"</string>
+    <string msgid="7809089255981448519" name="lb_playback_controls_shuffle_enable">"เปิดใช้การสุ่มเพลง"</string>
+    <string msgid="4877009494447817003" name="lb_playback_controls_skip_next">"ข้ามไปรายการถัดไป"</string>
+    <string msgid="3147124289285911980" name="lb_playback_controls_skip_previous">"ข้ามไปรายการก่อนหน้า"</string>
+    <string msgid="5075744418630733006" name="lb_playback_controls_thumb_down">"ยกเลิกการเลือกว่าไม่ชอบ"</string>
+    <string msgid="2847309435442474470" name="lb_playback_controls_thumb_down_outline">"เลือกว่าไม่ชอบ"</string>
+    <string msgid="8332816524260995892" name="lb_playback_controls_thumb_up">"ยกเลิกการเลือกว่าชอบ"</string>
+    <string msgid="1038344559734334272" name="lb_playback_controls_thumb_up_outline">"เลือกว่าชอบ"</string>
+    <string msgid="6549544638083578695" name="lb_playback_time_separator">"/"</string>
+    <string msgid="4819380969103509861" name="lb_search_bar_hint">"ค้นหา"</string>
+    <string msgid="2795474673510974502" name="lb_search_bar_hint_speech">"พูดเพื่อค้นหา"</string>
+    <string msgid="7453744869467668159" name="lb_search_bar_hint_with_title">"ค้นหา <ns1:g id="SEARCH_CONTEXT">%1$s</ns1:g>"</string>
+    <string msgid="5851694095153624617" name="lb_search_bar_hint_with_title_speech">"พูดเพื่อค้นหา <ns1:g id="SEARCH_CONTEXT">%1$s</ns1:g>"</string>
+    <string name="m3_loading_indicator_content_description">กำลังโหลด</string>
+    <string name="material_clock_toggle_content_description">เลือก AM หรือ PM</string>
+    <string name="material_hour_24h_suffix">%1$s ชั่วโมง</string>
+    <string name="material_hour_selection">เลือกชั่วโมง</string>
+    <string name="material_hour_suffix">%1$s นาฬิกา</string>
+    <string name="material_minute_selection">เลือกนาที</string>
+    <string name="material_minute_suffix">%1$s นาที</string>
+    <string name="material_slider_range_end">จุดสิ้นสุดของช่วง</string>
+    <string name="material_slider_range_start">จุดเริ่มต้นของช่วง</string>
+    <string name="material_slider_value">ค่า</string>
+    <string name="material_timepicker_am">AM</string>
+    <string name="material_timepicker_clock_mode_description">สลับไปโหมดนาฬิกาเพื่อป้อนเวลา</string>
+    <string name="material_timepicker_hour">ชั่วโมง</string>
+    <string name="material_timepicker_minute">นาที</string>
+    <string name="material_timepicker_pm">PM</string>
+    <string name="material_timepicker_select_time">เลือกเวลา</string>
+    <string name="material_timepicker_text_input_mode_description">สลับไปโหมดป้อนข้อความเพื่อป้อนเวลา</string>
+    <string name="mozac_browser_engine_system_alert_title">หน้าที่ %1$s ระบุว่า:</string>
+    <string name="mozac_browser_engine_system_auth_message">%2$s กำลังขอชื่อผู้ใช้และรหัสผ่านของคุณ ไซต์ระบุว่า: “%1$s”</string>
+    <string name="mozac_browser_engine_system_auth_no_realm_message">%1$s กำลังขอชื่อผู้ใช้และรหัสผ่านของคุณ</string>
+    <string name="mozac_browser_errorpages_connection_failure_message"><![CDATA[<ul>\n<li>ไซต์อาจไม่พร้อมใช้งานชั่วคราวหรือกำลังทำงานหนักเกินไป ลองอีกครั้งในอีกสักครู่</li>\n<li>หากคุณไม่สามารถโหลดหน้าใด ๆ ได้ ตรวจสอบการเชื่อมต่อข้อมูลหรือ Wi-Fi ของอุปกรณ์ของคุณ</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_connection_failure_title">ไม่สามารถเชื่อมต่อ</string>
+    <string name="mozac_browser_errorpages_content_crashed_message"><![CDATA[<p>ไม่สามารถแสดงหน้าที่คุณกำลังพยายามจะดูเนื่องจากตรวจพบข้อผิดพลาดในการส่งผ่านข้อมูล</p>\n<ul>\n<li>โปรดติดต่อเจ้าของเว็บไซต์เพื่อแจ้งพวกเขาให้ทราบถึงปัญหานี้</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_content_crashed_title">เนื้อหาขัดข้อง</string>
+    <string name="mozac_browser_errorpages_corrupted_content_message"><![CDATA[<p>ไม่สามารถแสดงหน้าที่คุณกำลังพยายามจะดูเนื่องจากตรวจพบข้อผิดพลาดในการส่งผ่านข้อมูล</p>\n<ul>\n<li>โปรดติดต่อเจ้าของเว็บไซต์เพื่อแจ้งพวกเขาให้ทราบถึงปัญหานี้</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_corrupted_content_title">ข้อผิดพลาดเนื้อหาเสียหาย</string>
+    <string name="mozac_browser_errorpages_file_access_denied_message"><![CDATA[<ul>\n<li>ไฟล์อาจถูกเอาออก ย้าย หรือสิทธิอนุญาตของไฟล์อาจป้องกันการเข้าถึง</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_file_access_denied_title">การเข้าถึงไฟล์ถูกปฏิเสธ</string>
+    <string name="mozac_browser_errorpages_file_not_found_message"><![CDATA[<ul>\n<li>รายการดังกล่าวอาจถูกเปลี่ยนชื่อ เอาออก หรือย้ายตำแหน่งที่ตั้งแล้วหรือไม่?</li>\n<li>ที่อยู่สะกดผิด พิมพ์ตัวพิมพ์ใหญ่-เล็กไม่ตรง หรือตกหล่นหรือไม่?</li>\n<li>คุณมีสิทธิอนุญาตการเข้าถึงรายการที่ร้องขอเพียงพอหรือไม่?</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_file_not_found_title">ไม่พบไฟล์</string>
+    <string name="mozac_browser_errorpages_generic_message"><![CDATA[<p>ไม่มีข้อมูลเพิ่มเติมเกี่ยวกับปัญหาหรือข้อผิดพลาดนี้ในปัจจุบัน</p>]]></string>
+    <string name="mozac_browser_errorpages_generic_title">ไม่สามารถทำคำขอให้เสร็จสมบูรณ์</string>
+    <string name="mozac_browser_errorpages_harmful_addon_uri_message"><![CDATA[<p>หน้าเว็บนี้ที่ %1$s ถูกปิดกั้นเนื่องจากส่วนเสริมของคุณพยายามเปิดหน้านี้ ไซต์นี้อาจถูกใช้เพื่อขโมยข้อมูลของคุณ เช่น รหัสผ่าน หรือหมายเลขบัตรเครดิต</p>]]></string>
+    <string name="mozac_browser_errorpages_harmful_addon_uri_title">ไซต์ถูกปิดกั้นเพื่อความปลอดภัยของคุณ</string>
+    <string name="mozac_browser_errorpages_httpsonly_button">ดำเนินการต่อไปยังไซต์ HTTP</string>
+    <string name="mozac_browser_errorpages_httpsonly_message"><![CDATA[คุณได้เปิดใช้งานโหมด HTTPS-Only สำหรับความปลอดภัยที่มากขึ้น และรุ่น HTTPS ของ <em>%1$s</em> ไม่พร้อมใช้งาน]]></string>
+    <string name="mozac_browser_errorpages_httpsonly_title">ไซต์ที่ปลอดภัยไม่พร้อมใช้งาน</string>
+    <string name="mozac_browser_errorpages_invalid_content_encoding_message"><![CDATA[<p>ไม่สามารถแสดงหน้าที่คุณกำลังพยายามจะดูเนื่องจากหน้าใช้รูปแบบการบีบอัดที่ไม่ถูกต้องหรือไม่รองรับ</p>\n<ul>\n<li>โปรดติดต่อเจ้าของเว็บไซต์เพื่อแจ้งพวกเขาให้ทราบถึงปัญหานี้</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_invalid_content_encoding_title">ข้อผิดพลาดการเข้ารหัสเนื้อหา</string>
+    <string name="mozac_browser_errorpages_malformed_uri_message"><![CDATA[<p>ที่อยู่ที่ให้มาไม่อยู่ในรูปแบบที่รู้จัก โปรดตรวจสอบที่อยู่ในแถบที่ตั้งเพื่อหาข้อผิดพลาดและลองใหม่อีกครั้ง</p>]]></string>
+    <string name="mozac_browser_errorpages_malformed_uri_message_alternative"><![CDATA[<ul>\n<li>ที่อยู่เว็บมักจะเขียนเป็น <strong>http://www.example.com/</strong></li>\n<li>ตรวจสอบให้แน่ใจว่าคุณใช้เครื่องหมายทับไปข้างหน้า (กล่าวคือ <strong>/</strong>)</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_malformed_uri_title">ที่อยู่ไม่ถูกต้อง</string>
+    <string name="mozac_browser_errorpages_malformed_uri_title_alternative">ที่อยู่ไม่ถูกต้อง</string>
+    <string name="mozac_browser_errorpages_net_interrupt_message"><![CDATA[<p>เบราว์เซอร์ทำการเชื่อมต่อสำเร็จแล้ว แต่การเชื่อมต่อถูกขัดจังหวะขณะถ่ายโอนข้อมูล โปรดลองอีกครั้ง</p>\n<ul>\n<li>ไซต์อาจไม่พร้อมใช้งานชั่วคราวหรือยุ่งเกินไป ลองอีกครั้งในอีกสักครู่</li>\n<li>หากคุณไม่สามารถโหลดหน้าใด ๆ ได้ ให้ตรวจสอบข้อมูลของอุปกรณ์ของคุณหรือการเชื่อมต่อ Wi-Fi</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_net_interrupt_title">การเชื่อมต่อถูกขัดจังหวะ</string>
+    <string name="mozac_browser_errorpages_net_reset_message"><![CDATA[<p>การเชื่อมโยงเครือข่ายถูกขัดจังหวะขณะแลกเปลี่ยนข้อมูลการเชื่อมต่อ โปรดลองอีกครั้ง</p>\n<ul>\n<li>ไซต์อาจไม่พร้อมใช้งานชั่วคราวหรือยุ่งเกินไป ลองอีกครั้งในอีกสักครู่</li>\n<li>หากคุณไม่สามารถโหลดหน้าใด ๆ ได้ ให้ตรวจสอบข้อมูลของอุปกรณ์ของคุณหรือการเชื่อมต่อ Wi-Fi</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_net_reset_title">การเชื่อมต่อถูกตัด</string>
+    <string name="mozac_browser_errorpages_net_timeout_message"><![CDATA[<p>ไซต์ที่ร้องขอไม่ตอบสนองต่อคำร้องขอการเชื่อมต่อและเบราว์เซอร์ได้หยุดการรอสำหรับการตอบกลับ</p>\n<ul>\n<li>เซิร์ฟเวอร์อาจประสบกับความต้องการที่สูงหรือดับไปชั่วคราว? ลองอีกครั้งในภายหลัง</li>\n<li>คุณไม่สามารถเรียกดูไซต์อื่น ๆ ได้? ตรวจสอบการเชื่อมต่อเครือข่ายของคอมพิวเตอร์</li>\n<li>คอมพิวเตอร์หรือเครือข่ายของคุณถูกปกป้องด้วยไฟร์วอลล์หรือพร็อกซี? การตั้งค่าที่ไม่ถูกต้องสามารถรบกวนการท่องเว็บได้</li>\n<li>ยังคงมีปัญหา? ติดต่อผู้ดูแลเครือข่ายหรือผู้ให้บริการอินเทอร์เน็ตของคุณเพื่อขอรับความช่วยเหลือ</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_net_timeout_title">การเชื่อมต่อหมดเวลา</string>
+    <string name="mozac_browser_errorpages_no_internet_error_code">รหัสข้อผิดพลาด: NS_ERROR_OFFLINE</string>
+    <string name="mozac_browser_errorpages_no_internet_message_2">ลองเชื่อมต่อบนอุปกรณ์อื่น ตรวจสอบโมเด็มหรือเราเตอร์ของคุณ ตัดการเชื่อมต่อและเชื่อมต่อกับ Wi-Fi อีกครั้ง</string>
+    <string name="mozac_browser_errorpages_no_internet_refresh_button">เรียกใหม่</string>
+    <string name="mozac_browser_errorpages_no_internet_title_2">ดูเหมือนว่ามีปัญหาเกี่ยวกับการเชื่อมต่ออินเทอร์เน็ตของคุณ</string>
+    <string name="mozac_browser_errorpages_offline_message"><![CDATA[<p>เบราว์เซอร์กำลังทำงานในโหมดออฟไลน์และไม่สามารถเชื่อมต่อไปยังรายการที่ร้องขอ</p>\n<ul>\n<li>คอมพิวเตอร์เชื่อมต่อกับเครือข่ายที่ใช้งานได้หรือไม่?</li>\n<li>กด “ลองอีกครั้ง” เพื่อสลับไปยังโหมดออนไลน์และโหลดหน้าใหม่</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_offline_title">โหมดออฟไลน์</string>
+    <string name="mozac_browser_errorpages_page_refresh">ลองอีกครั้ง</string>
+    <string name="mozac_browser_errorpages_port_blocked_message"><![CDATA[<p>ที่อยู่ที่ร้องขอระบุพอร์ต (เช่น <q>mozilla.org:80</q> สำหรับพอร์ต 80 บน mozilla.org) ซึ่งโดยปกติจะใช้เพื่อวัตถุประสงค์ <em>อื่น</em> ที่ไม่ใช่การเรียกดูเว็บ เบราว์เซอร์ได้ยกเลิกคำร้องขอดังกล่าวเพื่อปกป้องคุณและเพื่อความปลอดภัย</p>]]></string>
+    <string name="mozac_browser_errorpages_port_blocked_title">พอร์ตถูกจำกัดด้วยเหตุผลด้านความปลอดภัย</string>
+    <string name="mozac_browser_errorpages_proxy_connection_refused_message"><![CDATA[<p>เบราว์เซอร์ถูกกำหนดค่าให้ใช้เซิร์ฟเวอร์พร็อกซี</p>\n<ul>\n<li>การกำหนดค่าพร็อกซีของเบราว์เซอร์ถูกต้องหรือไม่? ตรวจสอบการตั้งค่าและลองอีกครั้ง</li>\n<li>บริการพร็อกซีอนุญาตการเชื่อมต่อจากเครือข่ายนี้หรือไม่?</li>\n<li>ยังคงมีปัญหา? ติดต่อผู้ดูแลเครือข่ายหรือผู้ให้บริการอินเทอร์เน็ตของคุณเพื่อขอรับความช่วยเหลือ</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_proxy_connection_refused_title">เซิร์ฟเวอร์พร็อกซีปฏิเสธการเชื่อมต่อ</string>
+    <string name="mozac_browser_errorpages_redirect_loop_message"><![CDATA[<p>เบราว์เซอร์ได้หยุดความพยายามในการเรียกรายการที่ร้องขอ ไซต์กำลังเปลี่ยนเส้นทางคำร้องขอในทางที่ไม่มีวันเสร็จสมบูรณ์</p>\n<ul>\n<li>คุณได้ปิดใช้งานหรือปิดกั้นคุกกี้ที่ต้องการโดยไซต์นี้หรือไม่?</li>\n<li>หากการยอมรับคุกกี้ของไซต์ไม่แก้ปัญหา มันอาจเป็นปัญหาจากการกำหนดค่าเซิร์ฟเวอร์ ไม่ใช่คอมพิวเตอร์ของคุณ</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_redirect_loop_title">หน้าไม่ได้เปลี่ยนเส้นทางอย่างถูกต้อง</string>
+    <string name="mozac_browser_errorpages_safe_browsing_malware_uri_message"><![CDATA[<p>ไซต์ที่ %1$s ถูกรายงานว่าเป็นไซต์รุกรานและถูกปิดกั้นตามค่ากำหนดความปลอดภัยของคุณ</p>]]></string>
+    <string name="mozac_browser_errorpages_safe_browsing_malware_uri_title">ปัญหาไซต์มัลแวร์</string>
+    <string name="mozac_browser_errorpages_safe_browsing_unwanted_uri_message"><![CDATA[<p>ไซต์ที่ %1$s ถูกรายงานว่าแจกจ่ายซอฟต์แวร์ไม่พึงประสงค์และถูกปิดกั้นตามค่ากำหนดความปลอดภัยของคุณ</p>]]></string>
+    <string name="mozac_browser_errorpages_safe_browsing_unwanted_uri_title">ปัญหาไซต์ที่ไม่พึงประสงค์</string>
+    <string name="mozac_browser_errorpages_safe_harmful_uri_message"><![CDATA[<p>ไซต์ที่ %1$s ถูกรายงานว่าเป็นไซต์ที่อาจเป็นอันตรายและถูกปิดกั้นตามค่ากำหนดความปลอดภัยของคุณ</p>]]></string>
+    <string name="mozac_browser_errorpages_safe_harmful_uri_title">ปัญหาไซต์ที่เป็นอันตราย</string>
+    <string name="mozac_browser_errorpages_safe_phishing_uri_message"><![CDATA[<p>หน้าเว็บนี้ที่ %1$s ถูกรายงานว่าเป็นไซต์หลอกลวงและถูกปิดกั้นตามค่ากำหนดความปลอดภัยของคุณ</p>]]></string>
+    <string name="mozac_browser_errorpages_safe_phishing_uri_title">ปัญหาไซต์หลอกลวง</string>
+    <string name="mozac_browser_errorpages_security_bad_cert_accept_temporary">ยอมรับความเสี่ยงและดำเนินการต่อ</string>
+    <string name="mozac_browser_errorpages_security_bad_cert_advanced">ขั้นสูง…</string>
+    <string name="mozac_browser_errorpages_security_bad_cert_back">ย้อนกลับ (แนะนำ)</string>
+    <string name="mozac_browser_errorpages_security_bad_cert_message"><![CDATA[<ul>\n<li>สิ่งนี้อาจเป็นปัญหาจากการกำหนดค่าของเซิร์ฟเวอร์ หรืออาจมีใครบางคนกำลังพยายามปลอมแปลงเซิร์ฟเวอร์</li>\n<li>หากคุณเคยเชื่อมต่อกับเซิร์ฟเวอร์นี้สำเร็จในอดีต ข้อผิดพลาดอาจเกิดขึ้นเพียงชั่วคราว และคุณสามารถลองอีกครั้งในภายหลัง</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_security_bad_cert_techInfo"><![CDATA[<label>อาจมีใครบางคนกำลังพยายามเลียนแบบไซต์และคุณไม่ควรดำเนินการต่อ</label> <br><br>\n<label>เว็บไซต์พิสูจน์ข้อมูลประจำตัวของตัวเองผ่านใบรับรอง %1$s ไม่เชื่อถือ <b>%2$s</b> เนื่องจากไม่ทราบผู้ออกใบรับรอง, ใบรับรองถูกลงชื่อด้วยตนเอง, หรือเซิร์ฟเวอร์ไม่ส่งใบรับรองระดับกลางที่ถูกต้อง</label>]]></string>
+    <string name="mozac_browser_errorpages_security_bad_cert_title">การเชื่อมต่อปลอดภัยล้มเหลว</string>
+    <string name="mozac_browser_errorpages_security_bad_hsts_cert_advanced">ขั้นสูง…</string>
+    <string name="mozac_browser_errorpages_security_bad_hsts_cert_back">ย้อนกลับ</string>
+    <string name="mozac_browser_errorpages_security_bad_hsts_cert_message"><![CDATA[<ul>\n<li>ไม่สามารถแสดงหน้าที่คุณต้องการเข้าชมได้ เนื่องจากเว็บไซต์นี้บังคับใช้การเชื่อมต่อที่ปลอดภัย</li>\n<li>โดยส่วนใหญ่แล้ว ปัญหานี้จะเกิดขึ้นที่ฝั่งเว็บไซต์ และคุณไม่สามารถแก้ปัญหาที่ฝั่งของคุณได้</li>\n<li>คุณสามารถแจ้งผู้ดูแลเว็บไซต์ให้ทราบถึงปัญหานี้</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_security_bad_hsts_cert_techInfo2"><![CDATA[<label> <b>%1$s</b> มีนโยบายการรักษาความปลอดภัยที่เรียกว่า HTTP Strict Transport Security (HSTS) ซึ่งหมายความว่า <b>%2$s</b> สามารถทำการเชื่อมต่อได้อย่างปลอดภัยเท่านั้น คุณไม่สามารถเพิ่มข้อยกเว้นเพื่อเยี่ยมชมไซต์นี้ได้ </label>]]></string>
+    <string name="mozac_browser_errorpages_security_bad_hsts_cert_title">เว็บไซต์นี้ต้องการการเชื่อมต่อที่ปลอดภัย</string>
+    <string name="mozac_browser_errorpages_security_ssl_message"><![CDATA[<ul>\n<li>หน้าที่คุณกำลังพยายามจะดูไม่สามารถแสดงได้เนื่องจากไม่สามารถยืนยันความถูกต้องของข้อมูลที่ได้รับ</li>\n<li>โปรดติดต่อเจ้าของเว็บไซต์เพื่อแจ้งพวกเขาให้ทราบถึงปัญหานี้</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_security_ssl_title">การเชื่อมต่อปลอดภัยล้มเหลว</string>
+    <string name="mozac_browser_errorpages_unknown_host_message"><![CDATA[<p>เบราว์เซอร์ไม่พบเซิร์ฟเวอร์โฮสต์สำหรับที่อยู่ที่ระบุ</p>\n<ul>\n<li>ตรวจสอบข้อผิดพลาดในการพิมพ์ที่อยู่ เช่น <strong>ww</strong>.example.com แทนที่จะเป็น <strong>www</strong>.example.com</li>\n<li>หากคุณไม่สามารถโหลดหน้าใด ๆ ได้ ให้ตรวจสอบข้อมูลของอุปกรณ์หรือการเชื่อมต่อ Wi-Fi ของคุณ</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_unknown_host_title">ไม่พบที่อยู่</string>
+    <string name="mozac_browser_errorpages_unknown_protocol_message"><![CDATA[<p>ที่อยู่ระบุโปรโตคอล (เช่น <q>wxyz://</q>) ที่เบราว์เซอร์ไม่รู้จัก เบราว์เซอร์จึงไม่สามารถเชื่อมต่อไปยังไซต์ได้อย่างเหมาะสม</p>\n<ul>\n<li>คุณกำลังพยายามเข้าถึงมัลติมีเดียหรือบริการอื่น ๆ ที่ไม่ใช่ตัวอักษร? ตรวจสอบไซต์สำหรับข้อกำหนดพิเศษ</li>\n<li>บางโปรโตคอลอาจต้องการซอฟต์แวร์หรือปลั๊กอินจากบุคคลที่สามก่อนที่เบราว์เซอร์จะสามารถรู้จัก</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_unknown_protocol_title">โปรโตคอลที่ไม่รู้จัก</string>
+    <string name="mozac_browser_errorpages_unknown_proxy_host_message"><![CDATA[<p>เบราว์เซอร์ถูกกำหนดค่าให้ใช้เซิร์ฟเวอร์พร็อกซี แต่พร็อกซีไม่สามารถหาพบ</p>\n<ul>\n<li>การกำหนดค่าพร็อกซีของเบราว์เซอร์ถูกต้องหรือไม่? ตรวจสอบการตั้งค่าและลองอีกครั้ง</li>\n<li>คอมพิวเตอร์เชื่อมต่อกับเครือข่ายที่ใช้งานได้หรือไม่?</li>\n<li>ยังคงมีปัญหา? ติดต่อผู้ดูแลเครือข่ายหรือผู้ให้บริการอินเทอร์เน็ตของคุณเพื่อขอรับความช่วยเหลือ</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_unknown_proxy_host_title">ไม่พบเซิร์ฟเวอร์พร็อกซี</string>
+    <string name="mozac_browser_errorpages_unknown_socket_type_message"><![CDATA[<p>ไซต์ตอบสนองต่อคำร้องขอเครือข่ายด้วยวิธีที่ไม่คาดคิดและเบราว์เซอร์ไม่สามารถดำเนินการต่อได้</p>]]></string>
+    <string name="mozac_browser_errorpages_unknown_socket_type_title">การตอบสนองที่ไม่คาดคิดจากเซิร์ฟเวอร์</string>
+    <string name="mozac_browser_errorpages_unsafe_content_type_message"><![CDATA[<ul>\n<li>โปรดติดต่อเจ้าของเว็บไซต์เพื่อแจ้งพวกเขาให้ทราบถึงปัญหานี้</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_unsafe_content_type_title">ชนิดไฟล์ที่ไม่ปลอดภัย</string>
+    <string name="mozac_support_base_permissions_needed_negative_button">ปิด</string>
+    <string name="mozac_support_base_permissions_needed_positive_button">ไปยังการตั้งค่า</string>
+    <string name="mozac_support_ktx_menu_call_with">โทรด้วย…</string>
+    <string name="mozac_support_ktx_menu_email_with">อีเมลด้วย…</string>
+    <string name="mozac_support_ktx_menu_share_with">แบ่งปันด้วย…</string>
+    <string name="mozac_support_ktx_share_dialog_title">แบ่งปันผ่าน</string>
+    <string name="mtrl_badge_numberless_content_description">การแจ้งเตือนใหม่</string>
+    <string name="mtrl_checkbox_state_description_checked">เลือกไว้</string>
+    <string name="mtrl_checkbox_state_description_indeterminate">เลือกบางส่วน</string>
+    <string name="mtrl_checkbox_state_description_unchecked">ไม่ได้เลือก</string>
+    <string name="mtrl_chip_close_icon_content_description">นำ %1$s ออก</string>
+    <string name="mtrl_exceed_max_badge_number_content_description" ns2:ignore="PluralsCandidate">การแจ้งเตือนใหม่มากกว่า %1$d รายการ</string>
+    <string name="mtrl_picker_a11y_next_month">เปลี่ยนไปที่เดือนถัดไป</string>
+    <string name="mtrl_picker_a11y_prev_month">เปลี่ยนไปที่เดือนก่อนหน้า</string>
+    <string name="mtrl_picker_announce_current_range_selection">การเลือกวันที่เริ่มต้น: %1$s – การเลือกวันที่สิ้นสุด: %2$s</string>
+    <string name="mtrl_picker_announce_current_selection">การเลือกในปัจจุบัน: %1$s</string>
+    <string name="mtrl_picker_announce_current_selection_none">ไม่มี</string>
+    <string name="mtrl_picker_cancel">ยกเลิก</string>
+    <string name="mtrl_picker_confirm">ตกลง</string>
+    <string name="mtrl_picker_date_header_selected">%1$s</string>
+    <string name="mtrl_picker_date_header_title">เลือกวันที่</string>
+    <string name="mtrl_picker_date_header_unselected">วันที่ที่เลือก</string>
+    <string name="mtrl_picker_day_of_week_column_header">%1$s</string>
+    <string name="mtrl_picker_end_date_description">วันที่สิ้นสุด %1$s</string>
+    <string name="mtrl_picker_invalid_format">รูปแบบไม่ถูกต้อง</string>
+    <string name="mtrl_picker_invalid_format_example">ตัวอย่าง: %1$s</string>
+    <string name="mtrl_picker_invalid_format_use">ใช้: %1$s</string>
+    <string name="mtrl_picker_invalid_range">ช่วงไม่ถูกต้อง</string>
+    <string name="mtrl_picker_navigate_to_current_year_description">ไปยังปีปัจจุบัน %1$d</string>
+    <string name="mtrl_picker_navigate_to_year_description">ไปที่ปี %1$d</string>
+    <string name="mtrl_picker_out_of_range">วันที่ไม่อยู่ในช่วงที่อนุญาต: %1$s</string>
+    <string name="mtrl_picker_range_header_only_end_selected">วันที่เริ่มต้น – %1$s</string>
+    <string name="mtrl_picker_range_header_only_start_selected">%1$s – วันที่สิ้นสุด</string>
+    <string name="mtrl_picker_range_header_selected">%1$s – %2$s</string>
+    <string name="mtrl_picker_range_header_title">เลือกช่วง</string>
+    <string name="mtrl_picker_range_header_unselected">วันที่เริ่มต้น – วันที่สิ้นสุด</string>
+    <string name="mtrl_picker_save">บันทึก</string>
+    <string name="mtrl_picker_start_date_description">วันที่เริ่มต้น %1$s</string>
+    <string name="mtrl_picker_text_input_date_hint">วันที่</string>
+    <string name="mtrl_picker_text_input_date_range_end_hint">วันที่สิ้นสุด</string>
+    <string name="mtrl_picker_text_input_date_range_start_hint">วันที่เริ่มต้น</string>
+    <string name="mtrl_picker_text_input_day_abbr">ว</string>
+    <string name="mtrl_picker_text_input_month_abbr">ด</string>
+    <string name="mtrl_picker_text_input_year_abbr">ป</string>
+    <string name="mtrl_picker_today_description">วันนี้ %1$s</string>
+    <string name="mtrl_picker_toggle_to_calendar_input_mode">สลับไปใช้โหมดป้อนข้อมูลปฏิทิน</string>
+    <string name="mtrl_picker_toggle_to_day_selection">เปลี่ยนเป็นมุมมองปฏิทิน</string>
+    <string name="mtrl_picker_toggle_to_text_input_mode">สลับไปใช้โหมดป้อนข้อมูลข้อความ</string>
+    <string name="mtrl_picker_toggle_to_year_selection">เปลี่ยนเป็นมุมมองปี</string>
+    <string name="mtrl_picker_toggled_to_day_selection">เปลี่ยนเป็นมุมมองปฏิทินแล้ว</string>
+    <string name="mtrl_picker_toggled_to_year_selection">เปลี่ยนเป็นมุมมองปีแล้ว</string>
+    <string name="mtrl_timepicker_cancel">ยกเลิก</string>
+    <string name="mtrl_timepicker_confirm">ตกลง</string>
+    <string msgid="542007171693138492" name="navigation_menu">"เมนูการนำทาง"</string>
+    <string msgid="6610465462668679431" name="not_selected">"ไม่ได้เลือก"</string>
+    <string msgid="7534843523462177008" name="orb_search_action">"การดำเนินการค้นหา"</string>
+    <string name="password_toggle_content_description">แสดงรหัสผ่าน</string>
+    <string msgid="5941395253238309765" name="range_end">"จุดสิ้นสุดของช่วง"</string>
+    <string msgid="7097486360902471446" name="range_start">"จุดเริ่มต้นของช่วง"</string>
+    <string msgid="6264217191555673260" name="search_menu_title">"ค้นหา"</string>
+    <string name="searchview_clear_text_content_description">ล้างข้อความ</string>
+    <string name="searchview_navigation_content_description">กลับ</string>
+    <string msgid="6043586758067023" name="selected">"เลือกไว้"</string>
+    <string name="side_sheet_accessibility_pane_title">ชีตด้านข้าง</string>
+    <string msgid="2792228137354697160" name="snackbar_pane_title">"การแจ้งเตือน"</string>
+    <string msgid="4139871816613051306" name="state_empty">"ว่าง"</string>
+    <string msgid="5834637030682409883" name="state_off">"ปิดอยู่"</string>
+    <string msgid="1490883874751719580" name="state_on">"เปิดอยู่"</string>
+    <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string msgid="2561197295334830845" name="switch_role">"เปลี่ยน"</string>
+    <string msgid="1672349317127674378" name="tab">"แท็บ"</string>
+    <string msgid="5946805113151406391" name="template_percent">"<ns1:g id="PERCENTAGE">%1$d</ns1:g> เปอร์เซ็นต์"</string>
+    <string msgid="3765533235322692011" name="tooltip_description">"เคล็ดลับเครื่องมือ"</string>
+    <string msgid="3124740595719787496" name="tooltip_label">"แสดงเคล็ดลับเครื่องมือ"</string>
+</resources>

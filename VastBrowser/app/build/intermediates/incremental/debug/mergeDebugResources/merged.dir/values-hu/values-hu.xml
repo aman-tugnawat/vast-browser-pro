@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2" xmlns:ns2="http://schemas.android.com/tools">
+    <plurals name="mtrl_badge_content_description">
+    <item quantity="one">%d új értesítés</item>
+    <item quantity="other">%d új értesítés</item>
+  </plurals>
+    <string msgid="5976598919945601918" name="abc_action_bar_home_description">"Ugrás a főoldalra"</string>
+    <string msgid="8388173803310557296" name="abc_action_bar_up_description">"Fel"</string>
+    <string msgid="3937310113216875497" name="abc_action_menu_overflow_description">"További lehetőségek"</string>
+    <string msgid="4692188335987374352" name="abc_action_mode_done">"Kész"</string>
+    <string msgid="1189761859438369441" name="abc_activity_chooser_view_see_all">"Az összes megtekintése"</string>
+    <string msgid="2165779757652331008" name="abc_activitychooserview_choose_application">"Válasszon alkalmazást"</string>
+    <string msgid="4215997306490295099" name="abc_capital_off">"KI"</string>
+    <string msgid="884982626291842264" name="abc_capital_on">"BE"</string>
+    <string msgid="8833365367933412986" name="abc_menu_alt_shortcut_label">"Alt+"</string>
+    <string msgid="2223301931652355242" name="abc_menu_ctrl_shortcut_label">"Ctrl+"</string>
+    <string msgid="838001238306846836" name="abc_menu_delete_shortcut_label">"Delete"</string>
+    <string msgid="7986526966204849475" name="abc_menu_enter_shortcut_label">"Enter"</string>
+    <string msgid="375214403600139847" name="abc_menu_function_shortcut_label">"Function+"</string>
+    <string msgid="4192209724446364286" name="abc_menu_meta_shortcut_label">"Meta+"</string>
+    <string msgid="4741552369836443843" name="abc_menu_shift_shortcut_label">"Shift+"</string>
+    <string msgid="5473865519181928982" name="abc_menu_space_shortcut_label">"Szóköz"</string>
+    <string msgid="6180552449598693998" name="abc_menu_sym_shortcut_label">"Sym+"</string>
+    <string msgid="5520303668377388990" name="abc_prepend_shortcut_label">"Menu+"</string>
+    <string msgid="7208076849092622260" name="abc_search_hint">"Keresés…"</string>
+    <string msgid="3741173234950517107" name="abc_searchview_description_clear">"Lekérdezés törlése"</string>
+    <string msgid="693312494995508443" name="abc_searchview_description_query">"Keresési lekérdezés"</string>
+    <string msgid="3417662926640357176" name="abc_searchview_description_search">"Keresés"</string>
+    <string msgid="1486535517437947103" name="abc_searchview_description_submit">"Lekérdezés küldése"</string>
+    <string msgid="2293578557972875415" name="abc_searchview_description_voice">"Hangalapú keresés"</string>
+    <string msgid="8875138169939072951" name="abc_shareactionprovider_share_with">"Megosztás a következővel:"</string>
+    <string msgid="9055268688411532828" name="abc_shareactionprovider_share_with_application">"Megosztás a következő alkalmazással: <ns1:g id="APPLICATION_NAME">%s</ns1:g>"</string>
+    <string msgid="1656852541809559762" name="abc_toolbar_collapse_description">"Összecsukás"</string>
+    <string msgid="8719607706653693137" name="androidx_compose_foundation_autofill">"Automatikus kitöltés"</string>
+    <string msgid="1150566100598813236" name="androidx_compose_ui_autofill">"Automatikus kitöltés"</string>
+    <string name="bottomsheet_action_collapse">Az alsó lap összecsukása</string>
+    <string name="bottomsheet_action_expand">Az alsó lap kibontása</string>
+    <string name="bottomsheet_action_expand_halfway">Kibontás félig</string>
+    <string name="bottomsheet_drag_handle_content_description">Csúszka</string>
+    <string msgid="881409763997275156" name="call_notification_answer_action">"Fogadás"</string>
+    <string msgid="8793775615905189152" name="call_notification_answer_video_action">"Videó"</string>
+    <string msgid="3229508546291798546" name="call_notification_decline_action">"Elutasítás"</string>
+    <string msgid="2659457946726154263" name="call_notification_hang_up_action">"Befejezés"</string>
+    <string msgid="6107532579223922871" name="call_notification_incoming_text">"Bejövő hívás"</string>
+    <string msgid="8623827134497363134" name="call_notification_ongoing_text">"Hívás folyamatban"</string>
+    <string msgid="59049573811482460" name="call_notification_screening_text">"Bejövő hívás szűrése"</string>
+    <string name="character_counter_content_description">Begépelt karakterszám: %2$d/%1$d</string>
+    <string name="character_counter_overflowed_content_description">Maximális karakterszám túllépve: %2$d/%1$d</string>
+    <string name="clear_text_end_icon_content_description">Szöveg törlése</string>
+    <string msgid="406453423630273620" name="close_drawer">"Navigációs menü bezárása"</string>
+    <string msgid="7573152094250666567" name="close_sheet">"Munkalap bezárása"</string>
+    <string msgid="3260749812566568062" name="copy_toast_msg">"Link vágólapra másolva"</string>
+    <string msgid="8038256446254964252" name="default_error_message">"Érvénytelen adat"</string>
+    <string msgid="6312721426453364202" name="default_popup_window_title">"Előugró ablak"</string>
+    <string msgid="1890207353314751437" name="dropdown_menu">"Legördülő menü"</string>
+    <string name="error_a11y_label">Hiba: érvénytelen</string>
+    <string name="error_icon_content_description">Hiba</string>
+    <string name="exposed_dropdown_menu_content_description">Legördülő menü megjelenítése</string>
+    <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"Link másolása"</string>
+    <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"Megnyitás böngészőben"</string>
+    <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"Link megosztása"</string>
+    <string name="icon_content_description">Párbeszédpanel ikonja</string>
+    <string msgid="6827826412747255547" name="in_progress">"Folyamatban"</string>
+    <string msgid="7933458017204019916" name="indeterminate">"Részlegesen ellenőrizve"</string>
+    <string name="item_view_role_description">Lap</string>
+    <string msgid="2721825378927619928" name="lb_control_display_fast_forward_multiplier">"%1$dX"</string>
+    <string msgid="6173753802428649303" name="lb_control_display_rewind_multiplier">"%1$dX"</string>
+    <string msgid="1122271825827282965" name="lb_guidedaction_continue_title">"Tovább"</string>
+    <string msgid="7747913934287176843" name="lb_guidedaction_finish_title">"Befejezés"</string>
+    <string msgid="8748646000835486516" name="lb_media_player_error">"MediaPlayer-hibakód: %1$d extra %2$d"</string>
+    <string msgid="8126335323963415494" name="lb_navigation_menu_contentDescription">"Navigációs menü"</string>
+    <string msgid="4213611627196077555" name="lb_onboarding_accessibility_next">"Tovább"</string>
+    <string msgid="7674487829030291492" name="lb_onboarding_get_started">"KEZDŐ LÉPÉSEK"</string>
+    <string msgid="5508271941331836786" name="lb_playback_controls_closed_captioning_disable">"Feliratok letiltása"</string>
+    <string msgid="3934392140182327163" name="lb_playback_controls_closed_captioning_enable">"Feliratok engedélyezése"</string>
+    <string msgid="8966769845721269304" name="lb_playback_controls_fast_forward">"Gyors előretekerés"</string>
+    <string msgid="801276177839339511" name="lb_playback_controls_fast_forward_multiplier">"Előretekerés %1$dX"</string>
+    <string msgid="619396299825306757" name="lb_playback_controls_hidden">"A médiavezérlők el vannak rejtve. Megjelenítésükhöz nyomja le a d-padet."</string>
+    <string msgid="3000046054608531995" name="lb_playback_controls_high_quality_disable">"Jó minőségű lejátszás letiltása"</string>
+    <string msgid="1862669142355962638" name="lb_playback_controls_high_quality_enable">"Jó minőségű lejátszás engedélyezése"</string>
+    <string msgid="2827883329510404797" name="lb_playback_controls_more_actions">"További műveletek"</string>
+    <string msgid="1769131316742618433" name="lb_playback_controls_pause">"Szünet"</string>
+    <string msgid="8800305194045609275" name="lb_playback_controls_picture_in_picture">"Kép a képben mód indítása"</string>
+    <string msgid="1590369760862605402" name="lb_playback_controls_play">"Lejátszás"</string>
+    <string msgid="5164826436271322261" name="lb_playback_controls_repeat_all">"Összes ismétlése"</string>
+    <string msgid="5812341701962930499" name="lb_playback_controls_repeat_none">"Nincs ismétlés"</string>
+    <string msgid="7675097479246139440" name="lb_playback_controls_repeat_one">"Egy ismétlése"</string>
+    <string msgid="1412664391757869774" name="lb_playback_controls_rewind">"Visszatekerés"</string>
+    <string msgid="8651612807713092781" name="lb_playback_controls_rewind_multiplier">"Visszatekerés %1$dX"</string>
+    <string msgid="7794717158616536936" name="lb_playback_controls_shown">"Médiavezérlők megjelenítve"</string>
+    <string msgid="8182435535948303910" name="lb_playback_controls_shuffle_disable">"Véletlenszerű lejátszás letiltása"</string>
+    <string msgid="7809089255981448519" name="lb_playback_controls_shuffle_enable">"Véletlenszerű lejátszás engedélyezése"</string>
+    <string msgid="4877009494447817003" name="lb_playback_controls_skip_next">"Ugrás a következőre"</string>
+    <string msgid="3147124289285911980" name="lb_playback_controls_skip_previous">"Ugrás az előzőre"</string>
+    <string msgid="5075744418630733006" name="lb_playback_controls_thumb_down">"„Nem tetszik” értékelés visszavonása"</string>
+    <string msgid="2847309435442474470" name="lb_playback_controls_thumb_down_outline">"„Nem tetszik” értékelés kiválasztása"</string>
+    <string msgid="8332816524260995892" name="lb_playback_controls_thumb_up">"„Tetszik” értékelés visszavonása"</string>
+    <string msgid="1038344559734334272" name="lb_playback_controls_thumb_up_outline">"„Tetszik” értékelés kiválasztása"</string>
+    <string msgid="6549544638083578695" name="lb_playback_time_separator">"/"</string>
+    <string msgid="4819380969103509861" name="lb_search_bar_hint">"Keresés"</string>
+    <string msgid="2795474673510974502" name="lb_search_bar_hint_speech">"Beszéljen a keresés indításához"</string>
+    <string msgid="7453744869467668159" name="lb_search_bar_hint_with_title">"Keresés itt: <ns1:g id="SEARCH_CONTEXT">%1$s</ns1:g>"</string>
+    <string msgid="5851694095153624617" name="lb_search_bar_hint_with_title_speech">"Mondjon valamit, hogy itt keressen: <ns1:g id="SEARCH_CONTEXT">%1$s</ns1:g>"</string>
+    <string name="m3_loading_indicator_content_description">Betöltés</string>
+    <string name="material_clock_toggle_content_description">Válassza ki, hogy délelőtt vagy délután</string>
+    <string name="material_hour_24h_suffix">%1$s óra</string>
+    <string name="material_hour_selection">Óra kiválasztása</string>
+    <string name="material_hour_suffix">%1$s óra</string>
+    <string name="material_minute_selection">Perc kiválasztása</string>
+    <string name="material_minute_suffix">%1$s perc</string>
+    <string name="material_slider_range_end">Tartomány vége</string>
+    <string name="material_slider_range_start">Tartomány kezdete</string>
+    <string name="material_slider_value">Érték</string>
+    <string name="material_timepicker_am">de.</string>
+    <string name="material_timepicker_clock_mode_description">Időbevitelhez váltson óramódba.</string>
+    <string name="material_timepicker_hour">Óra</string>
+    <string name="material_timepicker_minute">Perc</string>
+    <string name="material_timepicker_pm">du.</string>
+    <string name="material_timepicker_select_time">Időpont kiválasztása</string>
+    <string name="material_timepicker_text_input_mode_description">Időbevitelhez váltson szövegbeviteli módba.</string>
+    <string name="mozac_browser_engine_system_alert_title">Az oldal a(z) %1$s helyen azt mondja:</string>
+    <string name="mozac_browser_engine_system_auth_message">A(z) %2$s felhasználónevet és jelszót kér. A webhely üzenete: „%1$s”</string>
+    <string name="mozac_browser_engine_system_auth_no_realm_message">A(z) %1$s felhasználónevet és jelszót kér.</string>
+    <string name="mozac_browser_errorpages_connection_failure_message"><![CDATA[<ul>\n<li>A webhely ideiglenesen nem érhető el, vagy túl elfoglalt. Próbálja újra néhány pillanat múlva.</li>\n<li>Ha nem tölt be egyetlen oldal sem, akkor ellenőrizze a mobileszköz adat- vagy Wi-Fi kapcsolatát.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_connection_failure_title">A kapcsolódás sikertelen</string>
+    <string name="mozac_browser_errorpages_content_crashed_message"><![CDATA[<p>A megtekinteni kívánt oldal nem jeleníthető meg, mert az adatátvitel közben hiba történt.</p><ul><li>Lépjen kapcsolatba a webhely üzemeltetőjével, és értesítse a problémáról.</li></ul>]]></string>
+    <string name="mozac_browser_errorpages_content_crashed_title">A tartalom összeomlott</string>
+    <string name="mozac_browser_errorpages_corrupted_content_message"><![CDATA[<p>A megtekinteni kívánt oldal nem jeleníthető meg, mert az adatátvitel közben hiba történt.</p><ul><li>Lépjen kapcsolatba a webhely üzemeltetőjével, és értesítse a problémáról.</li></ul>]]></string>
+    <string name="mozac_browser_errorpages_corrupted_content_title">Sérült tartalom hiba</string>
+    <string name="mozac_browser_errorpages_file_access_denied_message"><![CDATA[<ul>\n<li>Lehet hogy törölve lett, át lett helyezve, vagy a fájljogosultságok megakadályozzák a hozzáférést.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_file_access_denied_title">A fájl elérése megtagadva</string>
+    <string name="mozac_browser_errorpages_file_not_found_message"><![CDATA[<ul>\n<li>Lehet, hogy a fájlt átnevezték, eltávolították vagy áthelyezték?</li>\n<li>Nincs elgépelés, kis- és nagybetű eltérés stb. a címben?</li>\n<li>Rendelkezik a megfelelő hozzáférési jogokkal a kért fájlhoz?</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_file_not_found_title">A fájl nem található</string>
+    <string name="mozac_browser_errorpages_generic_message"><![CDATA[<p>Jelenleg nem áll rendelkezésre további információ a problémáról vagy hibáról.</p>]]></string>
+    <string name="mozac_browser_errorpages_generic_title">A kérés nem teljesíthető</string>
+    <string name="mozac_browser_errorpages_harmful_addon_uri_message"><![CDATA[<p>A(z) %1$s címen található weboldal le lett tiltva, mert az egyik kiegészítője megpróbálta megnyitni. Ez a webhely felhasználható arra, hogy ellopják az információit – például a jelszavait vagy bankkártyaszámait.</p>]]></string>
+    <string name="mozac_browser_errorpages_harmful_addon_uri_title">A webhely az Ön biztonsága érdekében blokkolva</string>
+    <string name="mozac_browser_errorpages_httpsonly_button">Tovább a HTTP oldalra</string>
+    <string name="mozac_browser_errorpages_httpsonly_message"><![CDATA[Engedélyezte a Csak-HTTPS módot a fokozott biztonság érdekében, és a <em>%1$s</em> HTTPS verziója nem érhető el.]]></string>
+    <string name="mozac_browser_errorpages_httpsonly_title">Biztonságos webhely nem érhető el</string>
+    <string name="mozac_browser_errorpages_invalid_content_encoding_message"><![CDATA[<p>A megtekinteni kívánt oldal nem jeleníthető meg, mert érvénytelen vagy nem támogatott tömörítési formátumot használ.</p>\n<ul>\n<li>Lépjen kapcsolatba a webhely üzemeltetőjével, és értesítse a problémáról.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_invalid_content_encoding_title">Tartalomkódolási hiba</string>
+    <string name="mozac_browser_errorpages_malformed_uri_message"><![CDATA[<p>A megadott cím formátuma nem felismerhető. Ellenőrizze a címsorba beírtakat, javítsa a hibákat, és próbálja újra.</p>]]></string>
+    <string name="mozac_browser_errorpages_malformed_uri_message_alternative"><![CDATA[<ul><li>A webcímek általában úgy néznek ki, mint a <strong>http://www.example.com/</strong></li><li>Győződjön meg róla, hogy perjeleket használ (tehát <strong>/</strong>).</li></ul>]]></string>
+    <string name="mozac_browser_errorpages_malformed_uri_title">Érvénytelen cím</string>
+    <string name="mozac_browser_errorpages_malformed_uri_title_alternative">A cím érvénytelen</string>
+    <string name="mozac_browser_errorpages_net_interrupt_message"><![CDATA[<p>A böngésző sikeresen kapcsolódott, de a kapcsolat megszakadt az adatok átvitelekor. Próbálja újra.</p>\n<ul>\n<li>Az oldal ideiglenes nem érhető el, vagy túl elfoglalt. Próbálja újra néhány pillanat múlva.</li>\n<li>Ha egyetlen oldalt sem tud betölteni, akkor ellenőrizze az eszköz adat- vagy Wi-Fi kapcsolatát.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_net_interrupt_title">A kapcsolat megszakadt</string>
+    <string name="mozac_browser_errorpages_net_reset_message"><![CDATA[<p>A hálózati kapcsolat megszakadt a kapcsolat újratárgyalásakor. Próbálja újra.</p>\n<ul>\n<li>Az oldal ideiglenes nem érhető el, vagy túl elfoglalt. Próbálja újra néhány pillanat múlva.</li>\n<li>Ha egyetlen oldalt sem tud betölteni, akkor ellenőrizze az eszköz adat- vagy Wi-Fi kapcsolatát.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_net_reset_title">A kapcsolat alaphelyzetbe állt</string>
+    <string name="mozac_browser_errorpages_net_timeout_message"><![CDATA[<p>A kért webhely nem válaszolt a kapcsolatkezdeményezésre, és a böngésző beszüntette a várakozást a válaszra.</p><ul><li>Lehet, hogy a kiszolgáló túl sok lekérést kap, vagy ideiglenesen üzemen kívül van? Próbálja újra később.</li><li>Más webhelyeket sem képes elérni? Ellenőrizze a számítógép hálózati kapcsolatát.</li><li>Lehetséges, hogy tűzfal vagy proxy mögött van a számítógépe vagy a helyi hálózata? A helytelen beállítások zavarhatják a webböngészést.</li><li>Továbbra is fennáll a probléma? Kérjen segítséget a rendszergazdától vagy az internetszolgáltatójától.</li></ul>]]></string>
+    <string name="mozac_browser_errorpages_net_timeout_title">A kapcsolat időtúllépés miatt megszakadt</string>
+    <string name="mozac_browser_errorpages_no_internet_error_code">Hibakód: NS_ERROR_OFFLINE</string>
+    <string name="mozac_browser_errorpages_no_internet_message_2">Próbáljon meg csatlakozni egy másik eszközről. Ellenőrizze a modemet vagy útválasztót. Bontsa a kapcsolatot, majd csatlakozzon újra a Wi-Fi-hez.</string>
+    <string name="mozac_browser_errorpages_no_internet_refresh_button">Újratöltés</string>
+    <string name="mozac_browser_errorpages_no_internet_title_2">Úgy néz ki, hogy probléma van az internetkapcsolatával</string>
+    <string name="mozac_browser_errorpages_offline_message"><![CDATA[<p>A böngésző kapcsolat nélküli módban van, ezért nem tud csatlakozni a kért elemhez.</p>\n<ul>\n<li>Csatlakoztatva van a számítógép a hálózathoz?</li>\n<li>Nyomja meg a „Próbálja újra” gombot az online módba váltáshoz és az oldal újratöltéséhez.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_offline_title">Kapcsolat nélküli mód</string>
+    <string name="mozac_browser_errorpages_page_refresh">Próbálja újra</string>
+    <string name="mozac_browser_errorpages_port_blocked_message"><![CDATA[<p>A kért cím olyan portot adott meg (pl. <q>mozilla.org:80</q> a mozilla.org 80-as portjához), amelyet általában <em>nem</em> szokás webböngészés céljaira használni. A böngésző nem engedélyezi ezt a lekérést az Ön védelme és biztonsága érdekében.</p>]]></string>
+    <string name="mozac_browser_errorpages_port_blocked_title">A port biztonsági okok miatt tiltva van</string>
+    <string name="mozac_browser_errorpages_proxy_connection_refused_message"><![CDATA[<p>A böngésző proxykiszolgáló használatára van beállítva, de a proxy visszautasította a kapcsolatot.</p>\n<ul>\n<li>Jók a böngésző proxybeállításai? Ellenőrizze a beállításokat, és próbálja újra.</li>\n<li>A proxyszolgáltatás engedélyezi a kapcsolatokat erről a hálózatról?</li>\n<li>Továbbra is fennáll a probléma? Kérjen segítséget a rendszergazdától vagy az internetszolgáltatójától.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_proxy_connection_refused_title">A proxykiszolgáló visszautasította a kapcsolatot</string>
+    <string name="mozac_browser_errorpages_redirect_loop_message"><![CDATA[<p>A böngésző megszakította a kért elem lekérésére irányuló kísérleteket. A webhely oly módon irányította át a kérést, hogy az sosem teljesülhet.</p>\n<ul>\n<li>Letiltotta a webhely által megkövetelt sütiket?</li>\n<li>Ha a webhely sütijeinek elfogadása nem oldja meg a problémát, valószínűleg a kiszolgáló beállításában van a hiba, nem az Ön számítógépében.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_redirect_loop_title">Az oldal nem megfelelően van átirányítva</string>
+    <string name="mozac_browser_errorpages_safe_browsing_malware_uri_message"><![CDATA[<p>A(z) %1$s címen működő webhelyről bejelentés érkezett, hogy támadó webhely, ezért a biztonsági beállítások alapján a böngésző a hozzáférést nem engedélyezi.</p>]]></string>
+    <string name="mozac_browser_errorpages_safe_browsing_malware_uri_title">Kártékony szoftvert terjesztő webhely probléma</string>
+    <string name="mozac_browser_errorpages_safe_browsing_unwanted_uri_message"><![CDATA[<p>A(z) %1$s címen működő webhelyről bejelentés érkezett, hogy nem kívánatos szoftvereket szolgál ki, ezért a biztonsági beállítások alapján a böngésző a hozzáférést nem engedélyezi.</p>]]></string>
+    <string name="mozac_browser_errorpages_safe_browsing_unwanted_uri_title">Nem kívánt webhely miatti probléma</string>
+    <string name="mozac_browser_errorpages_safe_harmful_uri_message"><![CDATA[<p>A(z) %1$s címen működő webhelyről bejelentés érkezett, hogy ártalmas webhely lehet, ezért a biztonsági beállítások alapján a böngésző a hozzáférést nem engedélyezi.</p>]]></string>
+    <string name="mozac_browser_errorpages_safe_harmful_uri_title">Káros webhely probléma</string>
+    <string name="mozac_browser_errorpages_safe_phishing_uri_message"><![CDATA[<p>A(z) %1$s címen működő webhelyről bejelentés érkezett, hogy félrevezető webhely, ezért a biztonsági beállítások alapján a böngésző a hozzáférést nem engedélyezi.</p>]]></string>
+    <string name="mozac_browser_errorpages_safe_phishing_uri_title">Félrevezető oldal probléma</string>
+    <string name="mozac_browser_errorpages_security_bad_cert_accept_temporary">Kockázat elfogadása és továbblépés</string>
+    <string name="mozac_browser_errorpages_security_bad_cert_advanced">Speciális…</string>
+    <string name="mozac_browser_errorpages_security_bad_cert_back">Visszalépés (ajánlott)</string>
+    <string name="mozac_browser_errorpages_security_bad_cert_message"><![CDATA[<ul><li>Ezt okozhatja a kiszolgáló nem megfelelő beállítása, de az is lehet, hogy valaki megpróbál a kiszolgáló nevében fellépni.</li><li>Ha korábban már sikeresen kapcsolódott ehhez a kiszolgálóhoz, akkor lehet, hogy a hiba csak ideiglenes, és később újra próbálkozhat.</li></ul>]]></string>
+    <string name="mozac_browser_errorpages_security_bad_cert_techInfo"><![CDATA[<label>Lehet, hogy valaki megpróbálja megszemélyesíteni az oldalt, így nem kellene folytatnia.</label> <br><br>\n<label>A weboldalak tanúsítványok segítségével bizonyítják a személyazonosságukat. A %1$s nem bízik a(z) <b>%2$s</b> oldalban, mert a tanúsítvány kibocsátója ismeretlen, a tanúsítvány önaláírt, vagy a kiszolgáló nem küldi el a helyes közbülső tanúsítványokat.</label>]]></string>
+    <string name="mozac_browser_errorpages_security_bad_cert_title">A biztonságos kapcsolat sikertelen</string>
+    <string name="mozac_browser_errorpages_security_bad_hsts_cert_advanced">Speciális…</string>
+    <string name="mozac_browser_errorpages_security_bad_hsts_cert_back">Ugrás vissza</string>
+    <string name="mozac_browser_errorpages_security_bad_hsts_cert_message"><![CDATA[<ul>\n<li>A megtekintendő oldal nem jeleníthető meg, mert ez a webhely biztonságos kapcsolatot igényel.</li>\n<li>A probléma nagy valószínűséggel a webhelyen van, és nem tud mit tenni a megoldása érdekében.</li>\n<li>A problémáról értesítheti a webhely rendszergazdáját.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_security_bad_hsts_cert_techInfo2"><![CDATA[<label>A(z) <b>%1$s</b> oldal a HTTP Strict Transport Security (HSTS) nevű biztonsági házirendet használja, amely azt jelenti, hogy a(z) <b>%2$s</b> csak biztonságosan kapcsolódhat hozzá. Nem adhat hozzá kivételt, hogy felkeresse ezt az oldalt. </label>]]></string>
+    <string name="mozac_browser_errorpages_security_bad_hsts_cert_title">Ez a webhely biztonságos kapcsolatot igényel.</string>
+    <string name="mozac_browser_errorpages_security_ssl_message"><![CDATA[<ul><li>A megtekinteni kívánt oldal nem jeleníthető meg, mert a kapott adatok hitelessége nem ellenőrizhető.</li>\n<li>Lépjen kapcsolatba a webhely üzemeltetőjével, és értesítse a problémáról.</li></ul>]]></string>
+    <string name="mozac_browser_errorpages_security_ssl_title">A biztonságos kapcsolat sikertelen</string>
+    <string name="mozac_browser_errorpages_unknown_host_message"><![CDATA[<p>A böngésző nem találta a megadott címhez tartozó gazdakiszolgálót.</p>\n<ul>\n<li>Ellenőrizze, hogy nincsenek elírások a címben, például <strong>ww</strong>.example.com a <strong>www</strong>.example.com helyett.</li>\n<li>Ha egyetlen oldalt sem tud betölteni, akkor ellenőrizze az eszköz adat- vagy Wi-Fi kapcsolatát.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_unknown_host_title">Cím nem található</string>
+    <string name="mozac_browser_errorpages_unknown_protocol_message"><![CDATA[<p>A cím meghatározott egy protokollt (például <q>wxyz://</q>), amelyet a böngésző nem ismer fel, ezért nem képes megfelelően csatlakozni a webhelyhez.</p>\n<ul>\n<li>Multimédiás vagy más, nem szöveges szolgáltatást szeretne elérni? Nézze meg a webhelyet, milyen további követelményeket támaszt.</li>\n<li>Bizonyos protokollok harmadik féltől származó szoftverek vagy bővítmények meglétét követelik meg, a böngésző csak ezek megléte esetén ismeri fel az adott protokollt.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_unknown_protocol_title">Ismeretlen protokoll</string>
+    <string name="mozac_browser_errorpages_unknown_proxy_host_message"><![CDATA[<p>A böngésző proxykiszolgáló használatára van beállítva, de a proxy nem található.</p>\n<ul>\n<li>Jók a böngésző proxybeállításai? Ellenőrizze a beállításokat, és próbálja újra.</li>\n<li>Csatlakoztatva van a számítógép a hálózathoz?</li>\n<li>Továbbra is fennáll a probléma? Kérjen segítséget a rendszergazdától vagy az internetszolgáltatójától.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_unknown_proxy_host_title">Proxykiszolgáló nem található</string>
+    <string name="mozac_browser_errorpages_unknown_socket_type_message"><![CDATA[<p>A webhely a hálózati kérésre váratlan módon válaszolt, ezért a böngésző nem tudja folytatni a párbeszédet.</p>]]></string>
+    <string name="mozac_browser_errorpages_unknown_socket_type_title">Váratlan válasz a kiszolgálótól</string>
+    <string name="mozac_browser_errorpages_unsafe_content_type_message"><![CDATA[<ul><li>Értesítse a webhely tulajdonosait erről a problémáról.</li></ul>]]></string>
+    <string name="mozac_browser_errorpages_unsafe_content_type_title">Nem biztonságos fájltípus</string>
+    <string name="mozac_support_base_permissions_needed_negative_button">Elvetés</string>
+    <string name="mozac_support_base_permissions_needed_positive_button">Ugrás a beállításokhoz</string>
+    <string name="mozac_support_ktx_menu_call_with">Hívás ezzel…</string>
+    <string name="mozac_support_ktx_menu_email_with">E-mail ezzel…</string>
+    <string name="mozac_support_ktx_menu_share_with">Megosztás…</string>
+    <string name="mozac_support_ktx_share_dialog_title">Megosztás ezzel</string>
+    <string name="mtrl_badge_numberless_content_description">Új értesítés</string>
+    <string name="mtrl_checkbox_state_description_checked">Bejelölve</string>
+    <string name="mtrl_checkbox_state_description_indeterminate">Részlegesen bejelölve</string>
+    <string name="mtrl_checkbox_state_description_unchecked">Nincs bejelölve</string>
+    <string name="mtrl_chip_close_icon_content_description">Eltávolítás (%1$s)</string>
+    <string name="mtrl_exceed_max_badge_number_content_description" ns2:ignore="PluralsCandidate">Több mint %1$d új értesítés</string>
+    <string name="mtrl_picker_a11y_next_month">Váltás a következő hónapra</string>
+    <string name="mtrl_picker_a11y_prev_month">Váltás az előző hónapra</string>
+    <string name="mtrl_picker_announce_current_range_selection">Kiválasztott kezdő dátum: %1$s – Kiválasztott befejező dátum: %2$s</string>
+    <string name="mtrl_picker_announce_current_selection">Jelenleg kiválasztva: %1$s</string>
+    <string name="mtrl_picker_announce_current_selection_none">egyik sem</string>
+    <string name="mtrl_picker_cancel">Mégse</string>
+    <string name="mtrl_picker_confirm">OK</string>
+    <string name="mtrl_picker_date_header_selected">%1$s</string>
+    <string name="mtrl_picker_date_header_title">Válasszon dátumot</string>
+    <string name="mtrl_picker_date_header_unselected">Kiválasztott dátum</string>
+    <string name="mtrl_picker_day_of_week_column_header">%1$s</string>
+    <string name="mtrl_picker_end_date_description">Befejezés dátuma: %1$s</string>
+    <string name="mtrl_picker_invalid_format">Érvénytelen formátum.</string>
+    <string name="mtrl_picker_invalid_format_example">Példa: %1$s</string>
+    <string name="mtrl_picker_invalid_format_use">Használja ezt: %1$s</string>
+    <string name="mtrl_picker_invalid_range">Érvénytelen tartomány.</string>
+    <string name="mtrl_picker_navigate_to_current_year_description">Ugrás az aktuális évre %1$d</string>
+    <string name="mtrl_picker_navigate_to_year_description">Ugrás ehhez az évhez: %1$d</string>
+    <string name="mtrl_picker_out_of_range">Tartományon kívül: %1$s</string>
+    <string name="mtrl_picker_range_header_only_end_selected">Kezdés dátuma – %1$s</string>
+    <string name="mtrl_picker_range_header_only_start_selected">%1$s – Befejezés dátuma</string>
+    <string name="mtrl_picker_range_header_selected">%1$s – %2$s</string>
+    <string name="mtrl_picker_range_header_title">Válasszon dátumtartományt</string>
+    <string name="mtrl_picker_range_header_unselected">Kezdés dátuma – Befejezés dátuma</string>
+    <string name="mtrl_picker_save">Mentés</string>
+    <string name="mtrl_picker_start_date_description">Kezdés dátuma: %1$s</string>
+    <string name="mtrl_picker_text_input_date_hint">Dátum</string>
+    <string name="mtrl_picker_text_input_date_range_end_hint">Befejezés dátuma</string>
+    <string name="mtrl_picker_text_input_date_range_start_hint">Kezdés dátuma</string>
+    <string name="mtrl_picker_text_input_day_abbr">N</string>
+    <string name="mtrl_picker_text_input_month_abbr">H</string>
+    <string name="mtrl_picker_text_input_year_abbr">É</string>
+    <string name="mtrl_picker_today_description">Ma %1$s</string>
+    <string name="mtrl_picker_toggle_to_calendar_input_mode">Váltás naptárbeviteli módra</string>
+    <string name="mtrl_picker_toggle_to_day_selection">Váltás naptárnézetre</string>
+    <string name="mtrl_picker_toggle_to_text_input_mode">Váltás szövegbeviteli módra</string>
+    <string name="mtrl_picker_toggle_to_year_selection">Váltás éves nézetre</string>
+    <string name="mtrl_picker_toggled_to_day_selection">Átváltott a naptárnézetre</string>
+    <string name="mtrl_picker_toggled_to_year_selection">Átváltott az éves nézetre</string>
+    <string name="mtrl_timepicker_cancel">Mégse</string>
+    <string name="mtrl_timepicker_confirm">OK</string>
+    <string msgid="542007171693138492" name="navigation_menu">"Navigációs menü"</string>
+    <string msgid="6610465462668679431" name="not_selected">"Nincs kijelölve"</string>
+    <string msgid="7534843523462177008" name="orb_search_action">"Keresési művelet"</string>
+    <string name="password_toggle_content_description">Jelszó megjelenítése</string>
+    <string msgid="5941395253238309765" name="range_end">"Tartomány vége"</string>
+    <string msgid="7097486360902471446" name="range_start">"Tartomány kezdete"</string>
+    <string msgid="6264217191555673260" name="search_menu_title">"Keresés"</string>
+    <string name="searchview_clear_text_content_description">Szöveg törlése</string>
+    <string name="searchview_navigation_content_description">Vissza</string>
+    <string msgid="6043586758067023" name="selected">"Kijelölve"</string>
+    <string name="side_sheet_accessibility_pane_title">Oldalsáv</string>
+    <string msgid="2792228137354697160" name="snackbar_pane_title">"Figyelmeztetés"</string>
+    <string msgid="4139871816613051306" name="state_empty">"Üres"</string>
+    <string msgid="5834637030682409883" name="state_off">"Ki"</string>
+    <string msgid="1490883874751719580" name="state_on">"Be"</string>
+    <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string msgid="2561197295334830845" name="switch_role">"Kapcsoló"</string>
+    <string msgid="1672349317127674378" name="tab">"Lap"</string>
+    <string msgid="5946805113151406391" name="template_percent">"<ns1:g id="PERCENTAGE">%1$d</ns1:g> százalék."</string>
+    <string msgid="3765533235322692011" name="tooltip_description">"elemleírás"</string>
+    <string msgid="3124740595719787496" name="tooltip_label">"elemleírás megjelenítése"</string>
+</resources>

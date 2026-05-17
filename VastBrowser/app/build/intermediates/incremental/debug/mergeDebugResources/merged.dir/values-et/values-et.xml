@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2" xmlns:ns2="http://schemas.android.com/tools">
+    <plurals name="mtrl_badge_content_description">
+    <item quantity="one">%d uus märguanne</item>
+    <item quantity="other">%d uut märguannet</item>
+  </plurals>
+    <string msgid="5976598919945601918" name="abc_action_bar_home_description">"Liigu avalehele"</string>
+    <string msgid="8388173803310557296" name="abc_action_bar_up_description">"Liigu üles"</string>
+    <string msgid="3937310113216875497" name="abc_action_menu_overflow_description">"Rohkem valikuid"</string>
+    <string msgid="4692188335987374352" name="abc_action_mode_done">"Valmis"</string>
+    <string msgid="1189761859438369441" name="abc_activity_chooser_view_see_all">"Kuva kõik"</string>
+    <string msgid="2165779757652331008" name="abc_activitychooserview_choose_application">"Valige rakendus"</string>
+    <string msgid="4215997306490295099" name="abc_capital_off">"VÄLJAS"</string>
+    <string msgid="884982626291842264" name="abc_capital_on">"SEES"</string>
+    <string msgid="8833365367933412986" name="abc_menu_alt_shortcut_label">"Alt +"</string>
+    <string msgid="2223301931652355242" name="abc_menu_ctrl_shortcut_label">"Ctrl +"</string>
+    <string msgid="838001238306846836" name="abc_menu_delete_shortcut_label">"kustuta"</string>
+    <string msgid="7986526966204849475" name="abc_menu_enter_shortcut_label">"sisestusklahv"</string>
+    <string msgid="375214403600139847" name="abc_menu_function_shortcut_label">"Funktsiooniklahv +"</string>
+    <string msgid="4192209724446364286" name="abc_menu_meta_shortcut_label">"Meta +"</string>
+    <string msgid="4741552369836443843" name="abc_menu_shift_shortcut_label">"Tõstuklahv +"</string>
+    <string msgid="5473865519181928982" name="abc_menu_space_shortcut_label">"tühik"</string>
+    <string msgid="6180552449598693998" name="abc_menu_sym_shortcut_label">"Sym +"</string>
+    <string msgid="5520303668377388990" name="abc_prepend_shortcut_label">"Menüü +"</string>
+    <string msgid="7208076849092622260" name="abc_search_hint">"Otsige …"</string>
+    <string msgid="3741173234950517107" name="abc_searchview_description_clear">"Päringu tühistamine"</string>
+    <string msgid="693312494995508443" name="abc_searchview_description_query">"Otsingupäring"</string>
+    <string msgid="3417662926640357176" name="abc_searchview_description_search">"Otsing"</string>
+    <string msgid="1486535517437947103" name="abc_searchview_description_submit">"Päringu esitamine"</string>
+    <string msgid="2293578557972875415" name="abc_searchview_description_voice">"Häälotsing"</string>
+    <string msgid="8875138169939072951" name="abc_shareactionprovider_share_with">"Jaga:"</string>
+    <string msgid="9055268688411532828" name="abc_shareactionprovider_share_with_application">"Jagamine rakendusega <ns1:g id="APPLICATION_NAME">%s</ns1:g>"</string>
+    <string msgid="1656852541809559762" name="abc_toolbar_collapse_description">"Ahendamine"</string>
+    <string msgid="8719607706653693137" name="androidx_compose_foundation_autofill">"Automaattäide"</string>
+    <string msgid="1150566100598813236" name="androidx_compose_ui_autofill">"Automaattäide"</string>
+    <string name="bottomsheet_action_collapse">Alumise lehe ahendamine</string>
+    <string name="bottomsheet_action_expand">Alumise lehe laiendamine</string>
+    <string name="bottomsheet_action_expand_halfway">Laiendamine poolenisti</string>
+    <string name="bottomsheet_drag_handle_content_description">Lohistamispide</string>
+    <string msgid="881409763997275156" name="call_notification_answer_action">"Vasta"</string>
+    <string msgid="8793775615905189152" name="call_notification_answer_video_action">"Video"</string>
+    <string msgid="3229508546291798546" name="call_notification_decline_action">"Keeldu"</string>
+    <string msgid="2659457946726154263" name="call_notification_hang_up_action">"Lõpeta kõne"</string>
+    <string msgid="6107532579223922871" name="call_notification_incoming_text">"Sissetulev kõne"</string>
+    <string msgid="8623827134497363134" name="call_notification_ongoing_text">"Käimasolev kõne"</string>
+    <string msgid="59049573811482460" name="call_notification_screening_text">"Sissetuleva kõne filtreerimine"</string>
+    <string name="character_counter_content_description">Sisestatud tähemärgid: %1$d/%2$d</string>
+    <string name="character_counter_overflowed_content_description">Tähemärgipiirang on ületatud: %1$d/%2$d</string>
+    <string name="clear_text_end_icon_content_description">Kustuta tekst</string>
+    <string msgid="406453423630273620" name="close_drawer">"Sule navigeerimismenüü"</string>
+    <string msgid="7573152094250666567" name="close_sheet">"Sule leht"</string>
+    <string msgid="3260749812566568062" name="copy_toast_msg">"Link kopeeriti lõikelauale"</string>
+    <string msgid="8038256446254964252" name="default_error_message">"Sobimatu sisend"</string>
+    <string msgid="6312721426453364202" name="default_popup_window_title">"Hüpikaken"</string>
+    <string msgid="1890207353314751437" name="dropdown_menu">"Rippmenüü"</string>
+    <string name="error_a11y_label">Viga: sobimatu</string>
+    <string name="error_icon_content_description">Viga</string>
+    <string name="exposed_dropdown_menu_content_description">Kuva rippmenüü</string>
+    <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"Kopeeri link"</string>
+    <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"Ava brauseris"</string>
+    <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"Jaga linki"</string>
+    <string name="icon_content_description">Dialoogi ikoon</string>
+    <string msgid="6827826412747255547" name="in_progress">"Pooleli"</string>
+    <string msgid="7933458017204019916" name="indeterminate">"Osaliselt märgitud"</string>
+    <string name="item_view_role_description">Vaheleht</string>
+    <string msgid="2721825378927619928" name="lb_control_display_fast_forward_multiplier">"%1$dX"</string>
+    <string msgid="6173753802428649303" name="lb_control_display_rewind_multiplier">"%1$dX"</string>
+    <string msgid="1122271825827282965" name="lb_guidedaction_continue_title">"Jätka"</string>
+    <string msgid="7747913934287176843" name="lb_guidedaction_finish_title">"Lõpeta"</string>
+    <string msgid="8748646000835486516" name="lb_media_player_error">"MediaPlayeri veakood %1$d, lisakood %2$d"</string>
+    <string msgid="8126335323963415494" name="lb_navigation_menu_contentDescription">"Navigeerimismenüü"</string>
+    <string msgid="4213611627196077555" name="lb_onboarding_accessibility_next">"Järgmine"</string>
+    <string msgid="7674487829030291492" name="lb_onboarding_get_started">"ALUSTAGE"</string>
+    <string msgid="5508271941331836786" name="lb_playback_controls_closed_captioning_disable">"Keela subtiitrid"</string>
+    <string msgid="3934392140182327163" name="lb_playback_controls_closed_captioning_enable">"Luba subtiitrid"</string>
+    <string msgid="8966769845721269304" name="lb_playback_controls_fast_forward">"Keri edasi"</string>
+    <string msgid="801276177839339511" name="lb_playback_controls_fast_forward_multiplier">"Keri edasi %1$dX"</string>
+    <string msgid="619396299825306757" name="lb_playback_controls_hidden">"Meedia juhtnupud on peidetud, kuvamiseks vajutage juhtimisklahvistikku"</string>
+    <string msgid="3000046054608531995" name="lb_playback_controls_high_quality_disable">"Keela kvaliteetne taasesitus"</string>
+    <string msgid="1862669142355962638" name="lb_playback_controls_high_quality_enable">"Luba kvaliteetne taasesitus"</string>
+    <string msgid="2827883329510404797" name="lb_playback_controls_more_actions">"Rohkem toiminguid"</string>
+    <string msgid="1769131316742618433" name="lb_playback_controls_pause">"Peata"</string>
+    <string msgid="8800305194045609275" name="lb_playback_controls_picture_in_picture">"Sisene režiimi Pilt pildis"</string>
+    <string msgid="1590369760862605402" name="lb_playback_controls_play">"Esita"</string>
+    <string msgid="5164826436271322261" name="lb_playback_controls_repeat_all">"Korda kõiki"</string>
+    <string msgid="5812341701962930499" name="lb_playback_controls_repeat_none">"Ära korda midagi"</string>
+    <string msgid="7675097479246139440" name="lb_playback_controls_repeat_one">"Korda ühte"</string>
+    <string msgid="1412664391757869774" name="lb_playback_controls_rewind">"Keri tagasi"</string>
+    <string msgid="8651612807713092781" name="lb_playback_controls_rewind_multiplier">"Keri tagasi %1$dX"</string>
+    <string msgid="7794717158616536936" name="lb_playback_controls_shown">"Meedia juhtnupud on kuvatud"</string>
+    <string msgid="8182435535948303910" name="lb_playback_controls_shuffle_disable">"Keela juhuslikus järjekorras esitamine"</string>
+    <string msgid="7809089255981448519" name="lb_playback_controls_shuffle_enable">"Luba juhuslikus järjekorras esitamine"</string>
+    <string msgid="4877009494447817003" name="lb_playback_controls_skip_next">"Liigu järgmise üksuse juurde"</string>
+    <string msgid="3147124289285911980" name="lb_playback_controls_skip_previous">"Liigu eelmise üksuse juurde"</string>
+    <string msgid="5075744418630733006" name="lb_playback_controls_thumb_down">"Tühista valik Ei meeldi"</string>
+    <string msgid="2847309435442474470" name="lb_playback_controls_thumb_down_outline">"Tee valik Ei meeldi"</string>
+    <string msgid="8332816524260995892" name="lb_playback_controls_thumb_up">"Tühista valik Meeldib"</string>
+    <string msgid="1038344559734334272" name="lb_playback_controls_thumb_up_outline">"Tee valik Meeldib"</string>
+    <string msgid="6549544638083578695" name="lb_playback_time_separator">"/"</string>
+    <string msgid="4819380969103509861" name="lb_search_bar_hint">"Otsige"</string>
+    <string msgid="2795474673510974502" name="lb_search_bar_hint_speech">"Rääkige otsimiseks"</string>
+    <string msgid="7453744869467668159" name="lb_search_bar_hint_with_title">"Otsige rakendusest <ns1:g id="SEARCH_CONTEXT">%1$s</ns1:g>"</string>
+    <string msgid="5851694095153624617" name="lb_search_bar_hint_with_title_speech">"Rääkige rakendusest <ns1:g id="SEARCH_CONTEXT">%1$s</ns1:g> otsimiseks"</string>
+    <string name="m3_loading_indicator_content_description">Laadimine</string>
+    <string name="material_clock_toggle_content_description">Valige AM või PM</string>
+    <string name="material_hour_24h_suffix">%1$s tundi</string>
+    <string name="material_hour_selection">Valige tund</string>
+    <string name="material_hour_suffix">Kell %1$s</string>
+    <string name="material_minute_selection">Minutite valimine</string>
+    <string name="material_minute_suffix">%1$s minutit</string>
+    <string name="material_slider_range_end">Vahemiku lõpp</string>
+    <string name="material_slider_range_start">Vahemiku algus</string>
+    <string name="material_slider_value">Väärtus</string>
+    <string name="material_timepicker_am">AM</string>
+    <string name="material_timepicker_clock_mode_description">Aktiveerige kellaaja sisestamiseks kellarežiim.</string>
+    <string name="material_timepicker_hour">Tunnid</string>
+    <string name="material_timepicker_minute">Minut</string>
+    <string name="material_timepicker_pm">PM</string>
+    <string name="material_timepicker_select_time">Aja valimine</string>
+    <string name="material_timepicker_text_input_mode_description">Aktiveerige kellaaja sisestamiseks tekstisisestusrežiim.</string>
+    <string name="mozac_browser_engine_system_alert_title">Veebileht aadressil %1$s ütleb:</string>
+    <string name="mozac_browser_engine_system_auth_message">Sait aadressil %2$s nõuab kasutajanime ja parooli. Teade saidilt: “%1$s”</string>
+    <string name="mozac_browser_engine_system_auth_no_realm_message">%1$s nõuab kasutajanime ja parooli.</string>
+    <string name="mozac_browser_errorpages_connection_failure_message"><![CDATA[<ul>\n<li>Veebileht võib olla ajutiselt kättesaamatu või liialt hõivatud. Proovi mõne hetke pärast uuesti.</li>\n<li>Kui sa ei saa avada ühtegi lehte, siis kontrolli oma seadme andmeside või Wi-Fi ühendust.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_connection_failure_title">Viga ühendumisel</string>
+    <string name="mozac_browser_errorpages_content_crashed_message"><![CDATA[<p>Andmete edastamisel esinenud vea tõttu pole soovitud lehte võimalik kuvada.</p>\n<ul>\n<li>Palun võta ühendust saidi omanikega, et teavitada neid sellest probleemist.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_content_crashed_title">Sisu kuvamisel esines viga</string>
+    <string name="mozac_browser_errorpages_corrupted_content_message"><![CDATA[<p>Andmete edastamisel esinenud vea tõttu pole soovitud lehte võimalik kuvada.</p>\n<ul>\n<li>Palun võta ühendust saidi omanikega, et teavitada neid sellest probleemist.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_corrupted_content_title">Vigane sisu</string>
+    <string name="mozac_browser_errorpages_file_access_denied_message"><![CDATA[<ul>\n<li>Fail võib olla kustutatud, mujale liigutatud või on sellele seatud ligipääsu piiravad õigused.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_file_access_denied_title">Ligipääs failile keelati</string>
+    <string name="mozac_browser_errorpages_file_not_found_message"><![CDATA[<ul>\n<li>Kas soovitud objekt võib olla ümber nimetatud, kustutatud või mujale paigutatud?</li>\n<li>Kas aadressis võib olla sisestusviga või probleeme suurtähtedega?</li>\n<li>Kas sul on objektile ligipääsemiseks piisavalt õigusi?</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_file_not_found_title">Faili ei leitud</string>
+    <string name="mozac_browser_errorpages_generic_message"><![CDATA[<p>Selle probleemi kohta pole lisainformatsiooni.</p>]]></string>
+    <string name="mozac_browser_errorpages_generic_title">Päringut pole võimalik lõpetada</string>
+    <string name="mozac_browser_errorpages_httpsonly_button">Mine HTTP saidile</string>
+    <string name="mozac_browser_errorpages_httpsonly_message"><![CDATA[Oled turvalisuse suurendamiseks lubanud ainult HTTPS-režiimi ja saidil <em>%1$s</em> puudub HTTPSi tugi.]]></string>
+    <string name="mozac_browser_errorpages_httpsonly_title">Turvaline sait pole saadaval</string>
+    <string name="mozac_browser_errorpages_invalid_content_encoding_message"><![CDATA[<p>Lehte, mida soovid vaadata, pole võimalik kuvada, kuna see kasutab vigast või toetamata pakkimise vormingut.</p>\n<ul>\n<li>Palun võta ühendust veebilehe omanikuga, et informeerida teda antud probleemist.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_invalid_content_encoding_title">Sisu kodeeringu viga</string>
+    <string name="mozac_browser_errorpages_malformed_uri_message"><![CDATA[<p>Sisestatud aadress ei ole tunnustatud formaadis. Palun kontrolli aadressi korrektsust ja proovi uuesti.</p>]]></string>
+    <string name="mozac_browser_errorpages_malformed_uri_message_alternative"><![CDATA[<ul>\n<li>Veebiaadressid on tavaliselt kirjutatud kujul <strong>http://www.example.com/</strong></li>\n<li>Kontrolli üle, et kasutad ikka õigetpidi kaldkriipse (näiteks <strong>/</strong>).</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_malformed_uri_title">Vigane aadress</string>
+    <string name="mozac_browser_errorpages_malformed_uri_title_alternative">Aadress pole korrektne</string>
+    <string name="mozac_browser_errorpages_net_interrupt_message"><![CDATA[<p>Veebilehitsejal õnnestus edukalt ühenduda, kuid ühendust segati keset andmete edastamist. Palun proovi uuesti.</p>\n<ul>\n<li>Veebileht võib olla ajutiselt kättesaamatu või liialt hõivatud. Proovi mõne aja pärast uuesti.</li>\n<li>Kui sa ei saa avada ühtegi lehte, siis kontrolli oma seadme andmeside või Wi-Fi ühendust.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_net_interrupt_title">Ühendus katkes</string>
+    <string name="mozac_browser_errorpages_net_reset_message"><![CDATA[<p>Ühenduse loomisel segati võrguliiklust. Palun proovi uuesti.</p>\n<ul>\n<li>Veebileht võib olla ajutiselt kättesaamatu või liialt hõivatud. Proovi mõne aja pärast uuesti.</li>\n<li>Kui sa ei saa avada ühtegi lehte, siis kontrolli oma seadme andmeside või Wi-Fi ühendust.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_net_reset_title">Ühendus katkestati</string>
+    <string name="mozac_browser_errorpages_net_timeout_message"><![CDATA[<p>Soovitud leht ei vastanud ühendusele ja veebilehitseja lõpetas vastuse ootamise.</p>\n<ul>\n<li>Kas serveril võib olla probleeme suure koormusega või on tegu ajutise veaga? Proovi hiljem uuesti.</li>\n<li>Kas ka teiste lehtede vaatamine ei õnnestu? Kontrolli seadme võrguühendust.</li>\n<li>Kas sinu seade või võrk on kaitstud tulemüüriga? Vigased tulemüüri sätted võivad segada veebilehitsemist.</li>\n<li>Endiselt probleemid? Konsulteeri oma võrguadministraatori või interneti teenusepakkujaga.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_net_timeout_title">Ühendus aegus</string>
+    <string name="mozac_browser_errorpages_no_internet_error_code">Veakood: NS_ERROR_OFFLINE</string>
+    <string name="mozac_browser_errorpages_no_internet_message_2">Proovi ühendada mõnes muus seadmes. Kontrolli oma modemit või ruuterit. Katkesta ühendus ja ühenda uuesti Wi-Fi-ga.</string>
+    <string name="mozac_browser_errorpages_no_internet_refresh_button">Laadi uuesti</string>
+    <string name="mozac_browser_errorpages_no_internet_title_2">Näib, et internetiühendusega on probleem</string>
+    <string name="mozac_browser_errorpages_offline_message"><![CDATA[<p>Brauser on võrguta režiimis ega saa soovitud aadressiga ühenduda.</p>\n<ul>\n<li>Kas seade on ühendatud töötavasse võrku?</li>\n<li>Vajuta “Proovi uuesti”, et lülituda võrgurežiimi ning laadida leht uuesti.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_offline_title">Võrguta režiim</string>
+    <string name="mozac_browser_errorpages_page_refresh">Proovi uuesti</string>
+    <string name="mozac_browser_errorpages_port_blocked_message"><![CDATA[<p>Soovitud aadress määratleb pordi (nt <q>mozilla.org:80</q> ehk pordi 80 aadressil mozilla.org), mida muidu kasutatakse <em>muul</em> otstarbel kui veebilehitsemine. Veebilehitseja katkestas päringu sinu turvalisuse ja julgeoleku huvides.</p>]]></string>
+    <string name="mozac_browser_errorpages_port_blocked_title">Port on turvakaalutlustel keelatud</string>
+    <string name="mozac_browser_errorpages_proxy_connection_refused_message"><![CDATA[<p>Brauser on häälestatud kasutama puhverserverit, aga puhverserver keeldub ühendusest.</p>\n<ul>\n<li>Kas brauseri puhverserveri sätted on korrektsed? Kontrolli sätteid ja proovi uuesti.</li>\n<li>Kas puhverserver lubab ühendusi sellest võrgust?</li>\n<li>Endiselt probleemid? Konsulteeri oma võrguadministraatori või interneti teenusepakkujaga.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_proxy_connection_refused_title">Puhverserver keeldus ühendusest</string>
+    <string name="mozac_browser_errorpages_redirect_loop_message"><![CDATA[<p>Veebilehitseja lõpetas katsed objekti laadida. Veebileht suunab päringu edasi viisil, kuidas see kunagi ei õnnestu.</p>\n<ul>\n<li>Kas oled keelanud või blokkinud selle saidi küpsised?</li>\n<li>Kui küpsiste lubamine ei lahenda antud probleemi, siis on tõenäoliselt tegemist probleemiga serveris, mitte sinu seadmes.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_redirect_loop_title">Veebileht pole korralikult ümber suunatud</string>
+    <string name="mozac_browser_errorpages_safe_browsing_malware_uri_message"><![CDATA[<p>Aadressil %1$s asuv veebileht on teadete kohaselt ründav leht ja see blokiti vastavalt sinu turvasätetele.</p>]]></string>
+    <string name="mozac_browser_errorpages_safe_browsing_malware_uri_title">Pahavara saidi probleem</string>
+    <string name="mozac_browser_errorpages_safe_browsing_unwanted_uri_message"><![CDATA[<p>Aadressil %1$s asuv veebileht levitab teadete kohaselt soovimatut tarkvara ja see blokiti vastavalt sinu turvasätetele.</p>]]></string>
+    <string name="mozac_browser_errorpages_safe_browsing_unwanted_uri_title">Soovimatu saidi probleem</string>
+    <string name="mozac_browser_errorpages_safe_harmful_uri_message"><![CDATA[<p>Aadressil %1$s asuv veebileht on teadete kohaselt potentsiaalselt kahjulik ja see blokiti vastavalt sinu turvasätetele.</p>]]></string>
+    <string name="mozac_browser_errorpages_safe_harmful_uri_title">Kahjuliku saidi probleem</string>
+    <string name="mozac_browser_errorpages_safe_phishing_uri_message"><![CDATA[<p>Aadressil %1$s asuv veebileht on teadete kohaselt veebivõltsingut sisaldav leht ja see blokiti vastavalt sinu turvasätetele.</p>]]></string>
+    <string name="mozac_browser_errorpages_safe_phishing_uri_title">Veebivõltsingu probleem</string>
+    <string name="mozac_browser_errorpages_security_bad_cert_accept_temporary">Nõustu riskiga ja jätka</string>
+    <string name="mozac_browser_errorpages_security_bad_cert_advanced">Edasijõudnuile…</string>
+    <string name="mozac_browser_errorpages_security_bad_cert_back">Mine tagasi (soovitatav)</string>
+    <string name="mozac_browser_errorpages_security_bad_cert_message"><![CDATA[<ul>\n<li>Tegemist võib olla serveri seadistuste probleemiga või siis üritab keegi antud serverina välja paista.</li>\n<li>Kui sa oled varem selle serveriga edukalt ühendunud, siis võib olla tegemist ajutise veaga ja sa võid hiljem uuesti proovida.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_security_bad_cert_techInfo"><![CDATA[<label>Keegi võib üritada selle saidina välja paista ja sa ei peaks jätkama.</label> <br><br>\n<label>Saidid tõestavad oma identiteeti sertide abil. %1$s ei usalda saiti <b>%2$s</b>, kuna selle serdi väljaandja on tundmatu, sert on allkirjastatud selle omaniku poolt või server ei edasta korrektseid vaheserte.</label>]]></string>
+    <string name="mozac_browser_errorpages_security_bad_cert_title">Turvalise ühenduse viga</string>
+    <string name="mozac_browser_errorpages_security_bad_hsts_cert_advanced">Edasijõudnuile…</string>
+    <string name="mozac_browser_errorpages_security_bad_hsts_cert_back">Mine tagasi</string>
+    <string name="mozac_browser_errorpages_security_bad_hsts_cert_message"><![CDATA[<ul>\n<li>Lehte, mida soovid vaadata, pole võimalik kuvada, sest see sait nõuab turvalist ühendust.</li>\n<li>Probleem on suure tõenäosusega saidi poolel ja sa ei saa selle lahendamiseks midagi teha.</li>\n<li>Sa võid sellest probleemist teavitada saidi administraatorit.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_security_bad_hsts_cert_techInfo2"><![CDATA[<label>Leht <b>%1$s</b> kasutab HTTP Strict Transport Security (HSTS) turvapoliitikat, mis tähendab, et <b>%2$s</b> saab sellega luua vaid turvalise ühenduse. Selle saidi külastamiseks ei saa erandit lisada. </label>]]></string>
+    <string name="mozac_browser_errorpages_security_bad_hsts_cert_title">See sait nõuab turvalist ühendust.</string>
+    <string name="mozac_browser_errorpages_security_ssl_message"><![CDATA[<ul>\n<li>Soovitud veebilehte pole võimalik näidata, kuna saadud andmete autentsust polnud võimalik kontrollida.</li>\n<li>Palun võta veebilehe omanikuga ühendust ja teavita teda probleemist.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_security_ssl_title">Turvalise ühenduse viga</string>
+    <string name="mozac_browser_errorpages_unknown_host_message"><![CDATA[<p>Veebilehitseja ei leidnud sellele aadressile vastavat serverit.</p>\n<ul>\n<li>Kontrolli, kas aadressis pole sisestusvigu, näiteks <strong>ww</strong>.example.com <strong>www</strong>.example.com asemel</li>\n<li>Kui sa ei saa avada ühtegi lehte, siis kontrolli oma seadme andmeside või Wi-Fi ühendust.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_unknown_host_title">Aadressi ei leitud</string>
+    <string name="mozac_browser_errorpages_unknown_protocol_message"><![CDATA[<p>Soovitud aadress määratleb protokolli (nt <q>wxyz://</q>), mida veebilehitseja ei tunne, seega pole veebilehitsejal võimalik korralikult selle saidiga ühenduda.</p>\n<ul>\n<li>Kas üritad avada multimeedia- või muud teenust, mis pole teksti kujul? Kontrolli veebilehe lisanõudeid.</li>\n<li>Mõned protokollid võivad nõuda kolmanda osapoole tarkvara või pluginaid, enne kui veebilehitseja suudab nad tuvastada.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_unknown_protocol_title">Tundmatu protokoll</string>
+    <string name="mozac_browser_errorpages_unknown_proxy_host_message"><![CDATA[<p>Brauser on häälestatud kasutama puhverserverit, aga puhverserverit ei leitud.</p>\n<ul>\n<li>Kas brauseri puhverserveri sätted on korrektsed? Kontrolli sätteid ja proovi uuesti.</li>\n<li>Kas seade on ühendatud töötavasse võrku?</li>\n<li>Endiselt probleemid? Konsulteeri oma võrguadministraatori või interneti teenusepakkujaga.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_unknown_proxy_host_title">Puhverserverit ei leitud</string>
+    <string name="mozac_browser_errorpages_unknown_socket_type_message"><![CDATA[<p>Veebisait andis päringule ootamatu vastuse ja veebilehitsejal pole võimalik jätkata.</p>]]></string>
+    <string name="mozac_browser_errorpages_unknown_socket_type_title">Ootamatu vastus serverilt</string>
+    <string name="mozac_browser_errorpages_unsafe_content_type_message"><![CDATA[<ul>\n<li>Palun võta ühendust saidi omanikuga, et informeerida teda antud probleemist.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_unsafe_content_type_title">Ohtlik faili tüüp</string>
+    <string name="mozac_support_base_permissions_needed_negative_button">Peida</string>
+    <string name="mozac_support_base_permissions_needed_positive_button">Mine sätetesse</string>
+    <string name="mozac_support_ktx_menu_call_with">Helista äpiga…</string>
+    <string name="mozac_support_ktx_menu_email_with">Saada e-kiri äpiga…</string>
+    <string name="mozac_support_ktx_menu_share_with">Jaga…</string>
+    <string name="mozac_support_ktx_share_dialog_title">Jagamine kasutades</string>
+    <string name="mtrl_badge_numberless_content_description">Uus märguanne</string>
+    <string name="mtrl_checkbox_state_description_checked">Märgitud</string>
+    <string name="mtrl_checkbox_state_description_indeterminate">Osaliselt märgitud</string>
+    <string name="mtrl_checkbox_state_description_unchecked">Märkimata</string>
+    <string name="mtrl_chip_close_icon_content_description">Üksuse %1$s eemaldamine</string>
+    <string name="mtrl_exceed_max_badge_number_content_description" ns2:ignore="PluralsCandidate">Rohkem kui %1$d uut märguannet</string>
+    <string name="mtrl_picker_a11y_next_month">Vaheta järgmisele kuule</string>
+    <string name="mtrl_picker_a11y_prev_month">Vaheta eelmisele kuule</string>
+    <string name="mtrl_picker_announce_current_range_selection">Alguskuupäeva valik: %1$s. Lõppkuupäeva valik: %2$s.</string>
+    <string name="mtrl_picker_announce_current_selection">Praegune valik: %1$s</string>
+    <string name="mtrl_picker_announce_current_selection_none">puudub</string>
+    <string name="mtrl_picker_cancel">Tühista</string>
+    <string name="mtrl_picker_confirm">OK</string>
+    <string name="mtrl_picker_date_header_selected">%1$s</string>
+    <string name="mtrl_picker_date_header_title">Valige kuupäev</string>
+    <string name="mtrl_picker_date_header_unselected">Valitud kuupäev</string>
+    <string name="mtrl_picker_day_of_week_column_header">%1$s</string>
+    <string name="mtrl_picker_end_date_description">Lõppkuupäev: %1$s</string>
+    <string name="mtrl_picker_invalid_format">Sobimatu vorming.</string>
+    <string name="mtrl_picker_invalid_format_example">Näide: %1$s</string>
+    <string name="mtrl_picker_invalid_format_use">Kasutage: %1$s</string>
+    <string name="mtrl_picker_invalid_range">Sobimatu vahemik.</string>
+    <string name="mtrl_picker_navigate_to_current_year_description">Navigeerige praegusele aastale %1$d</string>
+    <string name="mtrl_picker_navigate_to_year_description">Mine aastasse %1$d</string>
+    <string name="mtrl_picker_out_of_range">Vahemikust väljas: %1$s</string>
+    <string name="mtrl_picker_range_header_only_end_selected">Alguskuupäev – %1$s</string>
+    <string name="mtrl_picker_range_header_only_start_selected">%1$s – lõppkuupäev</string>
+    <string name="mtrl_picker_range_header_selected">%1$s – %2$s</string>
+    <string name="mtrl_picker_range_header_title">Valige vahemik</string>
+    <string name="mtrl_picker_range_header_unselected">Alguskuupäev – lõppkuupäev</string>
+    <string name="mtrl_picker_save">Salvesta</string>
+    <string name="mtrl_picker_start_date_description">Alguskuupäev: %1$s</string>
+    <string name="mtrl_picker_text_input_date_hint">Kuupäev</string>
+    <string name="mtrl_picker_text_input_date_range_end_hint">Lõppkuupäev</string>
+    <string name="mtrl_picker_text_input_date_range_start_hint">Alguskuupäev</string>
+    <string name="mtrl_picker_text_input_day_abbr">p</string>
+    <string name="mtrl_picker_text_input_month_abbr">k</string>
+    <string name="mtrl_picker_text_input_year_abbr">a</string>
+    <string name="mtrl_picker_today_description">Täna %1$s</string>
+    <string name="mtrl_picker_toggle_to_calendar_input_mode">Lülitu kalendrisisestusrežiimile</string>
+    <string name="mtrl_picker_toggle_to_day_selection">Lülitumine kalendrivaatele</string>
+    <string name="mtrl_picker_toggle_to_text_input_mode">Lülitu tekstisisestusrežiimile</string>
+    <string name="mtrl_picker_toggle_to_year_selection">Lülitumine aasta valimise vaatele</string>
+    <string name="mtrl_picker_toggled_to_day_selection">Lülituti kalendri kuvale</string>
+    <string name="mtrl_picker_toggled_to_year_selection">Lülituti aasta kuvale</string>
+    <string name="mtrl_timepicker_cancel">Tühista</string>
+    <string name="mtrl_timepicker_confirm">OK</string>
+    <string msgid="542007171693138492" name="navigation_menu">"Navigeerimismenüü"</string>
+    <string msgid="6610465462668679431" name="not_selected">"Pole valitud"</string>
+    <string msgid="7534843523462177008" name="orb_search_action">"Otsimistoiming"</string>
+    <string name="password_toggle_content_description">Parooli kuvamine</string>
+    <string msgid="5941395253238309765" name="range_end">"Vahemiku lõpp"</string>
+    <string msgid="7097486360902471446" name="range_start">"Vahemiku algus"</string>
+    <string msgid="6264217191555673260" name="search_menu_title">"Otsing"</string>
+    <string name="searchview_clear_text_content_description">Teksti kustutamine</string>
+    <string name="searchview_navigation_content_description">Tagasi</string>
+    <string msgid="6043586758067023" name="selected">"Valitud"</string>
+    <string name="side_sheet_accessibility_pane_title">Külgmine leht</string>
+    <string msgid="2792228137354697160" name="snackbar_pane_title">"Hoiatus"</string>
+    <string msgid="4139871816613051306" name="state_empty">"Tühi"</string>
+    <string msgid="5834637030682409883" name="state_off">"Väljas"</string>
+    <string msgid="1490883874751719580" name="state_on">"Sees"</string>
+    <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string msgid="2561197295334830845" name="switch_role">"Lüliti"</string>
+    <string msgid="1672349317127674378" name="tab">"Vaheleht"</string>
+    <string msgid="5946805113151406391" name="template_percent">"<ns1:g id="PERCENTAGE">%1$d</ns1:g> protsenti."</string>
+    <string msgid="3765533235322692011" name="tooltip_description">"kohtspikker"</string>
+    <string msgid="3124740595719787496" name="tooltip_label">"kuva kohtspikker"</string>
+</resources>

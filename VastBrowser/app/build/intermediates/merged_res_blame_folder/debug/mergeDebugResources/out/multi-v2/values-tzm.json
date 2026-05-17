@@ -1,0 +1,70 @@
+{
+    "logs": [
+        {
+            "outputFile": "org.mozilla.tv.firefox.app-mergeDebugResources-73:/values-tzm/values-tzm.xml",
+            "map": [
+                {
+                    "source": "/Users/aman/.gradle/caches/8.13/transforms/3e640e6a691f1a46259f5f529ef7f832/transformed/support-base-150.0.2/res/values-tzm/values-tzm.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "96",
+                        "endOffsets": "147"
+                    },
+                    "to": {
+                        "startLines": "13",
+                        "startColumns": "4",
+                        "startOffsets": "1132",
+                        "endColumns": "96",
+                        "endOffsets": "1224"
+                    }
+                },
+                {
+                    "source": "/Users/aman/.gradle/caches/8.13/transforms/9b6cbcb82109303ef4e2ebf37cc16aee/transformed/browser-errorpages-150.0.2/res/values-tzm/values-tzm.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,159,251,348,435,510,600,690",
+                        "endColumns": "103,91,96,86,74,89,89,93",
+                        "endOffsets": "154,246,343,430,505,595,685,779"
+                    },
+                    "to": {
+                        "startLines": "5,6,7,8,9,10,11,12",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "403,507,599,696,783,858,948,1038",
+                        "endColumns": "103,91,96,86,74,89,89,93",
+                        "endOffsets": "502,594,691,778,853,943,1033,1127"
+                    }
+                },
+                {
+                    "source": "/Users/aman/.gradle/caches/8.13/transforms/22875feff74a6766a5d111ac6050d7b6/transformed/support-ktx-150.0.2/res/values-tzm/values-tzm.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,123,199,268",
+                        "endColumns": "67,75,68,70",
+                        "endOffsets": "118,194,263,334"
+                    },
+                    "to": {
+                        "startLines": "14,15,16,17",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "1229,1297,1373,1442",
+                        "endColumns": "67,75,68,70",
+                        "endOffsets": "1292,1368,1437,1508"
+                    }
+                },
+                {
+                    "source": "/Users/aman/.gradle/caches/8.13/transforms/7913e5a8cb6c3953a74bf3982d948c45/transformed/browser-engine-system-150.0.2/res/values-tzm/values-tzm.xml",
+                    "from": {
+                        "startLines": "2,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,148,282",
+                        "endColumns": "92,133,120",
+                        "endOffsets": "143,277,398"
+                    }
+                }
+            ]
+        }
+    ]
+}

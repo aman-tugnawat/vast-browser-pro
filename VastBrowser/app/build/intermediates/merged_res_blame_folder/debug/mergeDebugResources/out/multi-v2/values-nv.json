@@ -1,0 +1,36 @@
+{
+    "logs": [
+        {
+            "outputFile": "org.mozilla.tv.firefox.app-mergeDebugResources-73:/values-nv/values-nv.xml",
+            "map": [
+                {
+                    "source": "/Users/aman/.gradle/caches/8.13/transforms/7913e5a8cb6c3953a74bf3982d948c45/transformed/browser-engine-system-150.0.2/res/values-nv/values-nv.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "103",
+                        "endOffsets": "154"
+                    }
+                },
+                {
+                    "source": "/Users/aman/.gradle/caches/8.13/transforms/9b6cbcb82109303ef4e2ebf37cc16aee/transformed/browser-errorpages-150.0.2/res/values-nv/values-nv.xml",
+                    "from": {
+                        "startLines": "2,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,214,320",
+                        "endColumns": "158,105,77",
+                        "endOffsets": "209,315,393"
+                    },
+                    "to": {
+                        "startLines": "3,4,5",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "159,318,424",
+                        "endColumns": "158,105,77",
+                        "endOffsets": "313,419,497"
+                    }
+                }
+            ]
+        }
+    ]
+}

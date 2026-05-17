@@ -1,0 +1,34 @@
+[
+    {
+        "merged": "org.mozilla.tv.firefox.app-debug-75:/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "org.mozilla.tv.firefox.app-main-77:/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "org.mozilla.tv.firefox.app-debug-75:/drawable_ic_forward.xml.flat",
+        "source": "org.mozilla.tv.firefox.app-main-77:/drawable/ic_forward.xml"
+    },
+    {
+        "merged": "org.mozilla.tv.firefox.app-debug-75:/layout_activity_browser.xml.flat",
+        "source": "org.mozilla.tv.firefox.app-main-77:/layout/activity_browser.xml"
+    },
+    {
+        "merged": "org.mozilla.tv.firefox.app-debug-75:/drawable_ic_back.xml.flat",
+        "source": "org.mozilla.tv.firefox.app-main-77:/drawable/ic_back.xml"
+    },
+    {
+        "merged": "org.mozilla.tv.firefox.app-debug-75:/drawable_ic_reload.xml.flat",
+        "source": "org.mozilla.tv.firefox.app-main-77:/drawable/ic_reload.xml"
+    },
+    {
+        "merged": "org.mozilla.tv.firefox.app-debug-75:/layout_fragment_browser.xml.flat",
+        "source": "org.mozilla.tv.firefox.app-main-77:/layout/fragment_browser.xml"
+    },
+    {
+        "merged": "org.mozilla.tv.firefox.app-debug-75:/drawable_progress_bar_drawable.xml.flat",
+        "source": "org.mozilla.tv.firefox.app-main-77:/drawable/progress_bar_drawable.xml"
+    },
+    {
+        "merged": "org.mozilla.tv.firefox.app-debug-75:/drawable_url_bar_background.xml.flat",
+        "source": "org.mozilla.tv.firefox.app-main-77:/drawable/url_bar_background.xml"
+    }
+]

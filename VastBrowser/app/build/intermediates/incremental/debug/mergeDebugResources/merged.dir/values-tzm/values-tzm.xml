@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mozac_browser_engine_system_alert_title">Da tettini tasna g %1$s:</string>
+    <string name="mozac_browser_engine_system_auth_message">Issutur-ak %2$s ism d tguri n uzray-nnek. Da ittini usit: “%1$s”</string>
+    <string name="mozac_browser_engine_system_auth_no_realm_message">Issutur-ak %1$s isem d tguri n uzray-nnek.</string>
+    <string name="mozac_browser_errorpages_file_access_denied_title">Anekcum ɣer ufaylu yegdel</string>
+    <string name="mozac_browser_errorpages_file_not_found_title">Ur ittyafa ufaylu</string>
+    <string name="mozac_browser_errorpages_generic_title">Ur teẓḍired ad tsemded asuter</string>
+    <string name="mozac_browser_errorpages_no_internet_refresh_button">Smiren</string>
+    <string name="mozac_browser_errorpages_page_refresh">Arem daɣ</string>
+    <string name="mozac_browser_errorpages_security_bad_cert_back">Aɣul (assfaw)</string>
+    <string name="mozac_browser_errorpages_unknown_host_title">Ur tettyafa tansa</string>
+    <string name="mozac_browser_errorpages_unknown_protocol_title">Abrutukul arussin</string>
+    <string name="mozac_support_base_permissions_needed_positive_button">Ddu ɣer tisɣal</string>
+    <string name="mozac_support_ktx_menu_call_with">Ɣer s…</string>
+    <string name="mozac_support_ktx_menu_email_with">Azen imayl s…</string>
+    <string name="mozac_support_ktx_menu_share_with">Bḍu d…</string>
+    <string name="mozac_support_ktx_share_dialog_title">Bḍu s</string>
+</resources>

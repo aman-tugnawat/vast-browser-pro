@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2" xmlns:ns2="http://schemas.android.com/tools">
+    <plurals name="mtrl_badge_content_description">
+    <item quantity="one">නව දැනුම්දීම් %dක්</item>
+    <item quantity="other">නව දැනුම්දීම් %dක්</item>
+  </plurals>
+    <string msgid="5976598919945601918" name="abc_action_bar_home_description">"මුල් පිටුවට සංචාලනය කරන්න"</string>
+    <string msgid="8388173803310557296" name="abc_action_bar_up_description">"ඉහළට සංචාලනය කරන්න"</string>
+    <string msgid="3937310113216875497" name="abc_action_menu_overflow_description">"තවත් විකල්ප"</string>
+    <string msgid="4692188335987374352" name="abc_action_mode_done">"කළා"</string>
+    <string msgid="1189761859438369441" name="abc_activity_chooser_view_see_all">"සියල්ල බලන්න"</string>
+    <string msgid="2165779757652331008" name="abc_activitychooserview_choose_application">"යෙදුමක් තෝරන්න"</string>
+    <string msgid="4215997306490295099" name="abc_capital_off">"ක්‍රියාවිරහිතයි"</string>
+    <string msgid="884982626291842264" name="abc_capital_on">"ක්‍රියාත්මකයි"</string>
+    <string msgid="8833365367933412986" name="abc_menu_alt_shortcut_label">"Alt+"</string>
+    <string msgid="2223301931652355242" name="abc_menu_ctrl_shortcut_label">"Ctrl+"</string>
+    <string msgid="838001238306846836" name="abc_menu_delete_shortcut_label">"මකන්න"</string>
+    <string msgid="7986526966204849475" name="abc_menu_enter_shortcut_label">"enter"</string>
+    <string msgid="375214403600139847" name="abc_menu_function_shortcut_label">"Function+"</string>
+    <string msgid="4192209724446364286" name="abc_menu_meta_shortcut_label">"Meta+"</string>
+    <string msgid="4741552369836443843" name="abc_menu_shift_shortcut_label">"Shift+"</string>
+    <string msgid="5473865519181928982" name="abc_menu_space_shortcut_label">"space"</string>
+    <string msgid="6180552449598693998" name="abc_menu_sym_shortcut_label">"Sym+"</string>
+    <string msgid="5520303668377388990" name="abc_prepend_shortcut_label">"Menu+"</string>
+    <string msgid="7208076849092622260" name="abc_search_hint">"සොයන්න..."</string>
+    <string msgid="3741173234950517107" name="abc_searchview_description_clear">"විමසුම හිස් කරන්න"</string>
+    <string msgid="693312494995508443" name="abc_searchview_description_query">"සෙවුම් විමසුම"</string>
+    <string msgid="3417662926640357176" name="abc_searchview_description_search">"සෙවීම"</string>
+    <string msgid="1486535517437947103" name="abc_searchview_description_submit">"විමසුම යොමු කරන්න"</string>
+    <string msgid="2293578557972875415" name="abc_searchview_description_voice">"හඬ සෙවීම"</string>
+    <string msgid="8875138169939072951" name="abc_shareactionprovider_share_with">"සමග බෙදා ගන්න"</string>
+    <string msgid="9055268688411532828" name="abc_shareactionprovider_share_with_application">"<ns1:g id="APPLICATION_NAME">%s</ns1:g> සමඟ බෙදා ගන්න"</string>
+    <string msgid="1656852541809559762" name="abc_toolbar_collapse_description">"හකුළන්න"</string>
+    <string msgid="8719607706653693137" name="androidx_compose_foundation_autofill">"ස්වයං පිරවුම"</string>
+    <string msgid="1150566100598813236" name="androidx_compose_ui_autofill">"ස්වයං පිරවුම"</string>
+    <string name="bottomsheet_action_collapse">පහළම පත්‍රය හකුළන්න</string>
+    <string name="bottomsheet_action_expand">පහළම පත්‍රය දිග හරින්න</string>
+    <string name="bottomsheet_action_expand_halfway">අඩක් දිග හරින්න</string>
+    <string name="bottomsheet_drag_handle_content_description">හැඬලය අදින්න</string>
+    <string msgid="881409763997275156" name="call_notification_answer_action">"පිළිතුරු දෙ."</string>
+    <string msgid="8793775615905189152" name="call_notification_answer_video_action">"වීඩියෝ"</string>
+    <string msgid="3229508546291798546" name="call_notification_decline_action">"ප්‍රතික්ෂේප ක"</string>
+    <string msgid="2659457946726154263" name="call_notification_hang_up_action">"විසන්ධි කරන්න"</string>
+    <string msgid="6107532579223922871" name="call_notification_incoming_text">"එන ඇමතුම"</string>
+    <string msgid="8623827134497363134" name="call_notification_ongoing_text">"කරගෙන යන ඇමතුම"</string>
+    <string msgid="59049573811482460" name="call_notification_screening_text">"එන ඇමතුමක් පරීක්ෂා කරන්න"</string>
+    <string name="character_counter_content_description">අනුලකුණු %2$dන් %1$dක් ඇතුළු කෙරිණි</string>
+    <string name="character_counter_overflowed_content_description">අනුලකුණු සීමාව %2$dකින් %1$d ඉක්ම විය</string>
+    <string name="clear_text_end_icon_content_description">පෙළ හිස් කරන්න</string>
+    <string msgid="406453423630273620" name="close_drawer">"සංචාලන මෙනුව වසන්න"</string>
+    <string msgid="7573152094250666567" name="close_sheet">"පත්‍රය වසන්න"</string>
+    <string msgid="3260749812566568062" name="copy_toast_msg">"සබැඳිය පසුරු පුවරුවට පිටපත් කෙරිණි"</string>
+    <string msgid="8038256446254964252" name="default_error_message">"වලංගු නොවන ආදානයකි"</string>
+    <string msgid="6312721426453364202" name="default_popup_window_title">"උත්පතන කවුළුව"</string>
+    <string msgid="1890207353314751437" name="dropdown_menu">"පතන මෙනුව"</string>
+    <string name="error_a11y_label">දෝෂය: වලංගු නැත</string>
+    <string name="error_icon_content_description">දෝෂය</string>
+    <string name="exposed_dropdown_menu_content_description">පතන මෙනුව පෙන්වන්න</string>
+    <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"සබැඳිය පිටපත් කරන්න"</string>
+    <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"බ්‍රව්සරයේ විවෘත කරන්න"</string>
+    <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"සබැඳිය බෙදා ගන්න"</string>
+    <string name="icon_content_description">සංවාද නිරූපකය</string>
+    <string msgid="6827826412747255547" name="in_progress">"ප්‍රගතියේ පවතී"</string>
+    <string msgid="7933458017204019916" name="indeterminate">"අඩ වශයෙන් ලකුණු කළ"</string>
+    <string name="item_view_role_description">ටැබය</string>
+    <string msgid="2721825378927619928" name="lb_control_display_fast_forward_multiplier">"%1$dX"</string>
+    <string msgid="6173753802428649303" name="lb_control_display_rewind_multiplier">"%1$dX"</string>
+    <string msgid="1122271825827282965" name="lb_guidedaction_continue_title">"ඉදිරියට යන්න"</string>
+    <string msgid="7747913934287176843" name="lb_guidedaction_finish_title">"අවසන් කරන්න"</string>
+    <string msgid="8748646000835486516" name="lb_media_player_error">"MediaPlayer දෝෂ කේතය %1$d අමතර %2$d"</string>
+    <string msgid="8126335323963415494" name="lb_navigation_menu_contentDescription">"සංචාලන මෙනුව"</string>
+    <string msgid="4213611627196077555" name="lb_onboarding_accessibility_next">"ඊළඟ"</string>
+    <string msgid="7674487829030291492" name="lb_onboarding_get_started">"පටන් ගන්න"</string>
+    <string msgid="5508271941331836786" name="lb_playback_controls_closed_captioning_disable">"වැසුණු ශිර්ෂ කිරීම අබල කරන ලදි"</string>
+    <string msgid="3934392140182327163" name="lb_playback_controls_closed_captioning_enable">"වැසුණු ශිර්ෂ කිරීම සබල කරන ලදි"</string>
+    <string msgid="8966769845721269304" name="lb_playback_controls_fast_forward">"වේගයෙන් ඉදිරියට යන"</string>
+    <string msgid="801276177839339511" name="lb_playback_controls_fast_forward_multiplier">"%1$dX වේගයෙන් ඉදිරියට යවන්න"</string>
+    <string msgid="619396299825306757" name="lb_playback_controls_hidden">"මාධ්‍ය පාලක සඟවා ඇත, පෙන්වීමට ඩී-පෑඩ් ඔබන්න"</string>
+    <string msgid="3000046054608531995" name="lb_playback_controls_high_quality_disable">"උපරිම ගුණත්වය අබල කරන්න"</string>
+    <string msgid="1862669142355962638" name="lb_playback_controls_high_quality_enable">"උපරිම ගුණත්වය සබල කරන්න"</string>
+    <string msgid="2827883329510404797" name="lb_playback_controls_more_actions">"තව ක්‍රියාකාරකම්"</string>
+    <string msgid="1769131316742618433" name="lb_playback_controls_pause">"විරාම කරන්න"</string>
+    <string msgid="8800305194045609275" name="lb_playback_controls_picture_in_picture">"පින්තූරය-තුළ-පින්තූරය ප්‍රකාරයට ඇතුළු වන්න"</string>
+    <string msgid="1590369760862605402" name="lb_playback_controls_play">"වාදනය"</string>
+    <string msgid="5164826436271322261" name="lb_playback_controls_repeat_all">"සියල්ල නැවත කරන්න"</string>
+    <string msgid="5812341701962930499" name="lb_playback_controls_repeat_none">"නැවත කරන්න කිසිවක් නැත"</string>
+    <string msgid="7675097479246139440" name="lb_playback_controls_repeat_one">"එකක් නැවත කරන්න"</string>
+    <string msgid="1412664391757869774" name="lb_playback_controls_rewind">"ආපස්සට යවන්න"</string>
+    <string msgid="8651612807713092781" name="lb_playback_controls_rewind_multiplier">"%1$dX ආපස්සට යවන්න"</string>
+    <string msgid="7794717158616536936" name="lb_playback_controls_shown">"මාධ්‍ය පාලක පෙන්වා ඇත"</string>
+    <string msgid="8182435535948303910" name="lb_playback_controls_shuffle_disable">"ඇනීම අබල කරන්න"</string>
+    <string msgid="7809089255981448519" name="lb_playback_controls_shuffle_enable">"ඇනීම සබල කරන්න"</string>
+    <string msgid="4877009494447817003" name="lb_playback_controls_skip_next">"ඊළඟ එක මග අරින්න"</string>
+    <string msgid="3147124289285911980" name="lb_playback_controls_skip_previous">"කළින් එක මග අරින්න"</string>
+    <string msgid="5075744418630733006" name="lb_playback_controls_thumb_down">"මහපටැඟිල්ල පහළට තිබීම තේරීම නොකරන්න"</string>
+    <string msgid="2847309435442474470" name="lb_playback_controls_thumb_down_outline">"මහපටැඟිල්ල පහළට තිබීම තේරීම කරන්න"</string>
+    <string msgid="8332816524260995892" name="lb_playback_controls_thumb_up">"මහපටැඟිල්ල ඉහළට තිබීම තේරීම නොකරන්න"</string>
+    <string msgid="1038344559734334272" name="lb_playback_controls_thumb_up_outline">"මහපටැඟිල්ල ඉහළට තිබීම තේරීම කරන්න"</string>
+    <string msgid="6549544638083578695" name="lb_playback_time_separator">"/"</string>
+    <string msgid="4819380969103509861" name="lb_search_bar_hint">"සෙවීම"</string>
+    <string msgid="2795474673510974502" name="lb_search_bar_hint_speech">"සෙවීමට කථා කරන්න"</string>
+    <string msgid="7453744869467668159" name="lb_search_bar_hint_with_title">"<ns1:g id="SEARCH_CONTEXT">%1$s</ns1:g> සොයන්න"</string>
+    <string msgid="5851694095153624617" name="lb_search_bar_hint_with_title_speech">"<ns1:g id="SEARCH_CONTEXT">%1$s</ns1:g> සොයන්න කථා කරන්න"</string>
+    <string name="m3_loading_indicator_content_description">පූරණය වේ</string>
+    <string name="material_clock_toggle_content_description">පෙරවරු හෝ පස්වරු තෝරන්න</string>
+    <string name="material_hour_24h_suffix">පැය %1$sක්</string>
+    <string name="material_hour_selection">පැය තෝරන්න</string>
+    <string name="material_hour_suffix">%1$sයි</string>
+    <string name="material_minute_selection">මිනිත්තු තෝරන්න</string>
+    <string name="material_minute_suffix">මිනිත්තු %1$sයි</string>
+    <string name="material_slider_range_end">පරාස නිමාව</string>
+    <string name="material_slider_range_start">පරාස ආරම්භය</string>
+    <string name="material_slider_value">අගය</string>
+    <string name="material_timepicker_am">පෙව</string>
+    <string name="material_timepicker_clock_mode_description">වේලා ආදානය සඳහා ඔරලෝසු ප්‍රකාරය වෙත මාරු වෙන්න.</string>
+    <string name="material_timepicker_hour">පැය</string>
+    <string name="material_timepicker_minute">මිනිත්තු</string>
+    <string name="material_timepicker_pm">පව</string>
+    <string name="material_timepicker_select_time">වේලාව තෝරන්න</string>
+    <string name="material_timepicker_text_input_mode_description">වේලා ආදානය සඳහා ආදාන ප්‍රකාරය වෙත මාරු වෙන්න.</string>
+    <string name="mozac_browser_engine_system_alert_title">%1$s හි පිටුව මෙසේ පවසයි:</string>
+    <string name="mozac_browser_engine_system_auth_message">%2$s ඔබගේ පරිශ්‍රීලක නාමය සහ මුරපදය ඉල්ලා සිටියි. අඩවිය පවසන්නේ: “%1$s”</string>
+    <string name="mozac_browser_engine_system_auth_no_realm_message">%1$s ඔබගේ පරිශ්‍රීලක නාමය සහ මුරපදය ඉල්ලා සිටියි.</string>
+    <string name="mozac_browser_errorpages_connection_failure_message"><![CDATA[<ul>\n<li>අඩවිය තාවකාලිකව නොතිබේ හෝ කාර්ය බහුලයි. මොහොතකින් උත්සාහ කරන්න.</li>\n<li>කිසිදු පිටුවක් පූරණය නොවේ නම්, උපාංගයේ දත්ත හෝ වයි-ෆයි සම්බන්ධතාව පරීක්‍ෂා කරන්න.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_connection_failure_title">සම්බන්ධ වීමට නොහැකිය</string>
+    <string name="mozac_browser_errorpages_content_crashed_message"><![CDATA[<p>දත්ත සම්ප්‍රේෂණ දෝෂයක් අනාවරණය වූ නිසා ඔබ දැකීමට උත්සාහ කරන පිටුව පෙන්වීමට නොහැකිය.</p>\n<ul>\n<li>මෙම ගැටලුව පිළිබඳව අඩවියේ හිමිකරුවන්ට දන්වන්න.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_content_crashed_title">අන්තර්ගතය බිඳ වැටුණි</string>
+    <string name="mozac_browser_errorpages_corrupted_content_message"><![CDATA[<p>දත්ත සම්ප්‍රේෂණ දෝෂයක් අනාවරණය වූ නිසා ඔබ දැකීමට උත්සාහ කරන පිටුව පෙන්වීමට නොහැකිය.</p>\n<ul>\n<li>මෙම ගැටලුව පිළිබඳව අඩවියේ හිමිකරුවන්ට දන්වන්න.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_corrupted_content_title">හානි වූ අන්තර්ගත දෝෂයකි</string>
+    <string name="mozac_browser_errorpages_file_access_denied_message"><![CDATA[<ul>\n<li>එය ඉවත් කර, ගෙන ගොස්, හෝ ගොනුවට ප්‍රවේශ වීමේ අවසර නැත.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_file_access_denied_title">ගොනුවට ප්‍රවේශය ප්‍රතික්‍ෂේප විය</string>
+    <string name="mozac_browser_errorpages_file_not_found_message"><![CDATA[<ul>\n<li>අථකය යළි නම් කර, ඉවත් කර, හෝ අන් තැනකට ගෙන ගොස් ද?</li>\n<li>ලිපිනයෙහි අකුරු වින්‍යාසය, හැඩයේ හෝ වෙනත් මුද්‍රණ දෝෂයක් තිබේද?</li>\n<li>ඔබ ඉල්ලන ලද අථකයට ප්‍රමාණවත් ප්‍රවේශ වීමේ අවසර තිබේද?</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_file_not_found_title">ගොනුව හමු නොවුණි</string>
+    <string name="mozac_browser_errorpages_generic_message"><![CDATA[<p>දැනට මෙම ගැටලුව හෝ දෝෂය පිළිබඳව අතිරේක තොරතුරු නැත.</p>]]></string>
+    <string name="mozac_browser_errorpages_generic_title">ඉල්ලීම නිම කළ නොහැකිය</string>
+    <string name="mozac_browser_errorpages_httpsonly_button">HTTP අඩවියට යන්න</string>
+    <string name="mozac_browser_errorpages_httpsonly_message"><![CDATA[ඉහළ ආරක්‍ෂාවක් සඳහා ඔබ HTTPS-පමණි ප්‍රකාරය සබල කර තිබෙන අතර, <em>%1$s</em> හි HTTPS අනුවාදයක් නැත.]]></string>
+    <string name="mozac_browser_errorpages_httpsonly_title">ආරක්‍ෂිත අඩවිය නැත</string>
+    <string name="mozac_browser_errorpages_invalid_content_encoding_message"><![CDATA[<p>ඔබ දැකීමට උත්සාහ කරන පිටුව වලංගු නොවන හෝ සහාය නොදක්වන හැකිළුම් අන්දමක් භාවිතා කරන නිසා පෙන්වීමට නොහැකිය.</p>\n<ul>\n<li>මෙම ගැටලුව පිළිබඳව අඩවියේ හිමිකරුවන්ට දන්වන්න.</li></ul>]]></string>
+    <string name="mozac_browser_errorpages_invalid_content_encoding_title">අන්තර්ගත ආකේතන දෝෂයකි</string>
+    <string name="mozac_browser_errorpages_malformed_uri_message"><![CDATA[<p>ලබා දුන් ලිපිනය පිළිගත් ආකෘතියක නැත. වැරදි සඳහා ස්ථාන තීරුව පරීක්‍ෂා කර නැවත උත්සාහ කරන්න.</p>]]></string>
+    <string name="mozac_browser_errorpages_malformed_uri_message_alternative"><![CDATA[<ul>\n<li>ලිපින සාමාන්‍යයෙන් ලියන්නේ <strong>http://www.example.com/</strong> ලෙසය</li>\n<li>ඔබ ඉදිරි ඇල ඉරි භාවිතා කරන බවට වග බලා ගන්න (එනම් <strong>/</strong>).</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_malformed_uri_title">සාවද්‍ය ලිපියකි</string>
+    <string name="mozac_browser_errorpages_malformed_uri_title_alternative">ලිපිනය වලංගු නොවේ</string>
+    <string name="mozac_browser_errorpages_net_interrupt_message"><![CDATA[<p>අතිරික්සුව සාර්ථකව සම්බන්ධ විය, නමුත් තොරතුරු මාරු කිරීමේ දී සම්බන්ධතාවට බාධා විය. නැවත උත්සාහ කරන්න.</p>\n<ul>\n<li>අඩවිය තාවකාලිකව නොතිබේ හෝ ඉතා කාර්ය බහුලයි. මොහොතකින් නැවත බලන්න.</li>\n<li>කිසිදු පිටුවක් පූරණය නොවේ නම්, ඔබගේ උපාංගයේ දත්ත හෝ වයි-ෆයි සම්බන්ධතාව පරීක්‍ෂා කරන්න.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_net_interrupt_title">සම්බන්ධතාවට බාධා විය</string>
+    <string name="mozac_browser_errorpages_net_reset_message"><![CDATA[<p>සම්බන්ධතාවක් කතිකා වන අතරතුර ජාල සබැඳියට බාධා විය. යළි උත්සාහ කරන්න.</p>\n<ul>\n<li>අඩවිය තාවකාලිකව නොතිබේ හෝ ඉතා කාර්ය බහුලයි. මොහොතකින් නැවත බලන්න.</li>\n<li>කිසිදු පිටුවක් පූරණය නොවේ නම්, ඔබගේ උපාංගයේ දත්ත හෝ වයි-ෆයි සම්බන්ධතාව පරීක්‍ෂා කරන්න.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_net_reset_title">සම්බන්ධතාව යළි සැකසිණි</string>
+    <string name="mozac_browser_errorpages_net_timeout_message"><![CDATA[<p>ඉල්ලන ලද අඩවිය සම්බන්ධතා ඉල්ලීමකට ප්‍රතිචාර නොදැක්වූ අතර අතිරික්සුව පිළිතුරක් අපේක්‍ෂාවෙන් සිටීම නතර කර ඇත.</p>\n<ul>\n<li>සේවාදායකය වෙත ඉහළ ඉල්ලුමක් හෝ තාවකාලික ඇණහිටීමක් විය හැකිද? පසුව උත්සාහ කරන්න.</li>\n<li>ඔබට වෙනත් අඩවි පිරික්සීමට නොහැකිද? පරිගණකයේ ජාල සම්බන්ධතාව පරීක්‍ෂා කරන්න.</li>\n<li>ඔබගේ පරිගණකය හෝ ජාලය ගිනි පවුරකින් හෝ ප්‍රතියුක්තයකින් ආරක්‍ෂා කර තිබේද? වැරදි සැකසුම් නිසා මෙවැනි දෑ සිදු වීමට හැකිය.</li>\n<li>තවමත් ගැටළු තිබේද? සහාය සඳහා ඔබගේ ජාලයේ පරිපාලක හෝ අන්තර්ජාල සැපයුම්කරු අමතන්න.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_net_timeout_title">සම්බන්ධතාව ඉකුත් වී ඇත</string>
+    <string name="mozac_browser_errorpages_no_internet_error_code">දෝෂයේ කේතය: NS_ERROR_OFFLINE</string>
+    <string name="mozac_browser_errorpages_no_internet_refresh_button">යළි පූරණය</string>
+    <string name="mozac_browser_errorpages_offline_message"><![CDATA[<p>අතිරික්සුව එහි මාර්ගඅපගත ප්‍රකාරයෙන් ක්‍රියාත්මක වන නිසා ඉල්ලූ අථකයට සම්බන්ධ වීමට නොහැකිය.</p>\n<ul>\n<li>උපාංගය සක්‍රිය ජාලයකට සම්බන්ධ ද?</li>\n<li>මාර්ගගත ප්‍රකාරයට මාරු වීමට සහ පිටුව නැවත පූරණයට “යළි උත්සාහ කරන්න” ඔබන්න.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_offline_title">මාර්ගඅපගත ප්‍රකාරය</string>
+    <string name="mozac_browser_errorpages_page_refresh">නැවත</string>
+    <string name="mozac_browser_errorpages_port_blocked_message"><![CDATA[<p>ඉල්ලන ලද ලිපිනය වියමන පිරික්සීමට සාමාන්‍යයෙන් <em>භාවිතා නොකරන</em> තොටක් (උදා. mozilla.org හි තොට 80 සඳහා <q>mozilla.org:80</q>) භාවිතා කරයි. ඔබගේ රැකවරණය හා ආරක්‍ෂාව සඳහා අතිරික්සුව එම ඉල්ලීම අවලංගු කරන ලදි.</p>]]></string>
+    <string name="mozac_browser_errorpages_port_blocked_title">ආරක්‍ෂණ හේතුන් මත තොට සීමා කර ඇත.</string>
+    <string name="mozac_browser_errorpages_proxy_connection_refused_message"><![CDATA[<p>ප්‍රතියුක්ත සේවාදායකයක් භාවිතයට අතිරික්සුව වින්‍යාසගත කර ඇත, නමුත් ප්‍රතියුක්තය සම්බන්ධතාවක් ප්‍රතික්‍ෂේප කෙරිණි.</p><ul>\n<li>අතිරික්සුවෙහි ප්‍රතියුක්ත වින්‍යාසය නිවැරදි ද? සැකසුම් පරීක්‍ෂා කර යළි උත්සාහ කරන්න.</li>\n<li>ප්‍රතියුක්ත සේවාව මෙම ජාලයෙහි සම්බන්ධතා සඳහා ඉඩ දෙන්නේද?</li>\n<li>තවමත් ගැටළු තිබේද? සහාය සඳහා ඔබගේ ජාලයේ පරිපාලක හෝ අන්තර්ජාල සැපයුම්කරු අමතන්න.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_proxy_connection_refused_title">ප්‍රතියුක්ත සේවාදායකය සබැඳුම ප්‍රතික්‍ෂේප කෙරිණි</string>
+    <string name="mozac_browser_errorpages_redirect_loop_message"><![CDATA[<p>අතිරික්සුව ඉල්ලූ අථකය ලබා ගැනීමට උත්සාහ කිරීම නවතා ඇත. අඩවිය ඉල්ලීම කිසිම විටෙක නිම නොවන අයුරින් යළි හරවා යවයි.</p>\n<ul>\n<li>මෙම අඩවියට වුවමනා දත්තකඩ අබල හෝ අවහිර කර තිබේ ද?</li>\n<li>අඩවියෙහි දත්තකඩ පිළිගැනීමෙන් ගැටලුව නොවිසඳෙයි නම්, එය ඔබගේ උපාංගයේ නොව සේවාදායකයේ වින්‍යාසයෙහි වරදක් විය හැකිය.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_redirect_loop_title">පිටුව නිසි අයුරින් හරවා යවන්නේ නැත</string>
+    <string name="mozac_browser_errorpages_safe_browsing_malware_uri_message"><![CDATA[<p>ප්‍රහාරක අඩවියක් ලෙස %1$s වාර්තා කර ඇත. ඔබගේ ආරක්‍ෂණ අභිප්‍රේත මත පදනම්ව අවහිර කර ඇත.</p>]]></string>
+    <string name="mozac_browser_errorpages_safe_browsing_malware_uri_title">අනිෂ්ට අඩවියක ගැටලුවකි</string>
+    <string name="mozac_browser_errorpages_safe_browsing_unwanted_uri_message"><![CDATA[<p>අනවශ්‍ය මෘදුකාංග අඩවියක් ලෙස %1$s වාර්තා කර ඇත. ඔබගේ ආරක්‍ෂණ අභිප්‍රේත මත පදනම්ව අවහිර කර ඇත.</p>]]></string>
+    <string name="mozac_browser_errorpages_safe_browsing_unwanted_uri_title">අනවශ්‍ය අඩවියක ගැටලුවකි</string>
+    <string name="mozac_browser_errorpages_safe_harmful_uri_message"><![CDATA[<p>%1$s අඩවිය හානිකර යැයි වාර්තා කර ඇත. ඔබගේ ආරක්‍ෂණ අභිප්‍රේත මත පදනම්ව අවහිර කර ඇත.</p>]]></string>
+    <string name="mozac_browser_errorpages_safe_harmful_uri_title">හානිකර අඩවියක ගැටලුවකි</string>
+    <string name="mozac_browser_errorpages_safe_phishing_uri_message"><![CDATA[<p>කූට පිටුවක් ලෙස %1$s වාර්තා කර ඇත. ඔබගේ ආරක්‍ෂණ අභිප්‍රේත මත පදනම්ව අවහිර කර ඇත.</p>]]></string>
+    <string name="mozac_browser_errorpages_safe_phishing_uri_title">කූට අඩවියක ගැටලුවකි</string>
+    <string name="mozac_browser_errorpages_security_bad_cert_accept_temporary">අවදානම පිළිගෙන ඉදිරියට</string>
+    <string name="mozac_browser_errorpages_security_bad_cert_advanced">වැඩිදුර…</string>
+    <string name="mozac_browser_errorpages_security_bad_cert_back">ආපසු යන්න (නිර්දේශිතයි)</string>
+    <string name="mozac_browser_errorpages_security_bad_cert_message"><![CDATA[<ul>\n<li>මෙය සේවාදායකයේ වින්‍යාසයෙහි ගැටලුවක් විය හැකිය, හෝ යමෙක් සේවාදායකය ලෙස වංචනිකව පෙනී සිටීමට තැත් කරනවා විය හැකිය.</li>\n<li>ඔබ කලින් මෙම සේවාදායකයට සාර්ථකව සම්බන්‍ධ වී ඇත්නම්, මෙය තාවකාලික දෝෂයක් විය හැකිය, පසුව උත්සාහ කරන්න.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_security_bad_cert_techInfo"><![CDATA[<label>යමෙක් වංචනිකව මෙම අඩවිය හසුරුවීමට තැත් කරන හෙයින් ඔබ තවදුරටත් ඉදිරියට නොයා යුතුය.</label> <br><br>\n<label>සහතික හරහා අඩවි ඔවුන්ගේ අනන්‍යතාවය ඔප්පු කරයි. <b>%2$s</b> හි සහතිකයේ නිකුත්කරු නොදන්නා නිසා %1$s එය විශ්වාස නොකරයි, සහතිකය ස්වයං-අත්සන් කර හෝ සේවාදායකය නිවැරදි අතරමැදි සහතිකය එවන්නේ නැත.</label>]]></string>
+    <string name="mozac_browser_errorpages_security_bad_cert_title">ආරක්‍ෂිත සම්බන්‍ධතාව බිඳ වැටුණි</string>
+    <string name="mozac_browser_errorpages_security_bad_hsts_cert_advanced">වැඩිදුර…</string>
+    <string name="mozac_browser_errorpages_security_bad_hsts_cert_back">ආපසු යන්න</string>
+    <string name="mozac_browser_errorpages_security_bad_hsts_cert_message"><![CDATA[<ul>\n<li>ඔබ දැකීමට උත්සාහ කරන අඩවියට ආරක්‍ෂිත සම්බන්‍ධතාවක් වුවමනා නිසා පෙන්වීමට නොහැකිය.</li>\n<li>බොහෝ විට අඩවියෙහි ගැටලුවක් නිසා, එය විසඳීමට ඔබට කළ හැකි කිසිවක් නැත.</li>\n<li>මෙම ගැටලුව පිළිබඳ අඩවියේ පරිපාලකයා වෙත දැනුම් දීමට හැකිය.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_security_bad_hsts_cert_techInfo2"><![CDATA[<label> <b>%1$s</b> හි HTTP දැඩි පරිවහන ආරක්‍ෂාව (HSTS) නම් ආරක්‍ෂණ ප්‍රතිපත්තියක් ඇත, එනම් <b>%2$s</b> මගින් එයට සම්බන්ධ වීමට හැකි වන්නේ ආරක්‍ෂිතව පමණි. ඔබට මෙම අඩවියට ගොඩවැදීමට හැරදැමීමක් එක් කිරීමට නොහැකිය. </label>]]></string>
+    <string name="mozac_browser_errorpages_security_bad_hsts_cert_title">අඩවියට ආරක්‍ෂිත සම්බන්‍ධතාවක් වුවමනාය.</string>
+    <string name="mozac_browser_errorpages_security_ssl_message"><![CDATA[<ul>\n<li>ලැබුණු දත්ත සත්‍යාපනයට නොහැකි නිසා ඔබ දැකීමට උත්සාහ කරන පිටුව පෙන්වීමට නොහැකිය.</li>\n<li>මෙම ගැටලුව පිළිබඳව අඩවියේ හිමිකරුවන්ට දන්වන්න.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_security_ssl_title">ආරක්‍ෂිත සම්බන්‍ධතාව බිඳ වැටුණි</string>
+    <string name="mozac_browser_errorpages_unknown_host_message"><![CDATA[<p>අතිරික්සුවට ලබා දුන් ලිපිනයෙහි සත්කාරක සේවාදායකය සොයා ගැනීමට නොහැකිය.</p>\n<ul>\n<li>මෙවැනි ලිවීමේ දෝෂ තිබේදැයි බලන්න <strong>www</strong>.example.com වෙනුවට <strong>ww</strong>.example.com.</li>\n<li>කිසිදු පිටුවක් පූරණය නොවේ නම්, ඔබගේ උපාංගයේ දත්ත හෝ වයි-ෆයි සම්බන්ධතාව පරීක්‍ෂා කරන්න.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_unknown_host_title">ලිපිනය හමු නොවුණි</string>
+    <string name="mozac_browser_errorpages_unknown_protocol_message"><![CDATA[<p>අතිරික්සුව හඳුනා නොගන්නා කෙටුම්පතක් ලිපිනයෙන් නිරූපනය කෙරේ (උදා: <q>wxyz://</q>), එබැවින් අඩවියට නිසි ලෙස සම්බන්ධ වීමට නොහැකිය.</p>\n<ul>\n<li>ඔබ බහුමාධ්‍ය හෝ වෙනත් අකුරු නොවන සේවා වෙත ප්‍රවේශ වීමට උත්සාහ කරනවාද? අමතර අවශ්‍යතා සඳහා අඩවිය පරීක්‍ෂා කරන්න.</li>\n<li>සමහර කෙටුම්පත් සඳහා ඒවා අතිරික්සුවකින් හඳුනා ගැනීමට තෙවන පාර්ශ්ව මෘදුකාංග හෝ පේනු අවශ්‍ය විය හැකිය.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_unknown_protocol_title">නොදන්නා කෙටුම්පතකි</string>
+    <string name="mozac_browser_errorpages_unknown_proxy_host_message"><![CDATA[<p>ප්‍රතියුක්ත සේවාදායකයක් භාවිතයට අතිරික්සුව වින්‍යාසගත කර ඇත, නමුත් ප්‍රතියුක්තය හමු නොවුණි.</p><ul>\n<li>අතිරික්සුවෙහි ප්‍රතියුක්ත වින්‍යාසය නිවැරදි ද? සැකසුම් පරීක්‍ෂා කර යළි උත්සාහ කරන්න.</li>\n<li>උපාංගය සක්‍රිය සම්බන්ධතාවක් වෙත සම්බන්ධ ද?</li>\n<li>තවමත් ගැටළු තිබේද? සහාය සඳහා ඔබගේ ජාලයේ පරිපාලක හෝ අන්තර්ජාල සැපයුම්කරු අමතන්න.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_unknown_proxy_host_title">ප්‍රතියුක්ත සේවාදායකය හමු නොවුණි</string>
+    <string name="mozac_browser_errorpages_unknown_socket_type_message"><![CDATA[<p>ජාල ඉල්ලීමට අනපේක්‍ෂිත අයුරින් අඩවිය ප්‍රතිචාර දැක්වූ අතර අතිරික්සුවට ඉදිරියට යාමට නොහැකිය.</p>]]></string>
+    <string name="mozac_browser_errorpages_unknown_socket_type_title">සේවාදායකයෙන් අනපේක්‍ෂිත ප්‍රතිචාරයකි</string>
+    <string name="mozac_browser_errorpages_unsafe_content_type_message"><![CDATA[<ul>\n<li>කරුණාකර මෙම ගැටලුව පිළිබඳව අඩවියේ හිමිකරුවන්ට දන්වන්න.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_unsafe_content_type_title">අනාරක්‍ෂිත ගොනු වර්ගයකි</string>
+    <string name="mozac_support_base_permissions_needed_negative_button">ඉවතලන්න</string>
+    <string name="mozac_support_base_permissions_needed_positive_button">සැකසුම් වෙත යන්න</string>
+    <string name="mozac_support_ktx_menu_call_with">සමඟ අමතන්න…</string>
+    <string name="mozac_support_ktx_menu_email_with">මගින් තැපෑලට…</string>
+    <string name="mozac_support_ktx_menu_share_with">සමඟ බෙදාගන්න…</string>
+    <string name="mozac_support_ktx_share_dialog_title">හරහා බෙදාගන්න</string>
+    <string name="mtrl_badge_numberless_content_description">නව දැනුම්දීම</string>
+    <string name="mtrl_checkbox_state_description_checked">සලකුණු කරන ලදි</string>
+    <string name="mtrl_checkbox_state_description_indeterminate">අඩ වශයෙන් ලකුණු කළ</string>
+    <string name="mtrl_checkbox_state_description_unchecked">හරි ලකුණ නොයෙදූ</string>
+    <string name="mtrl_chip_close_icon_content_description">%1$s ඉවත් කරන්න</string>
+    <string name="mtrl_exceed_max_badge_number_content_description" ns2:ignore="PluralsCandidate">නව දැනුම්දීම් %1$dකට වඩා</string>
+    <string name="mtrl_picker_a11y_next_month">ලබන මාසයට වෙනස් කරන්න</string>
+    <string name="mtrl_picker_a11y_prev_month">කලින් මාසයට වෙනස් කරන්න</string>
+    <string name="mtrl_picker_announce_current_range_selection">ආරම්භක දිනය තේරීම: %1$s – අවසාන දිනය තේරීම: %2$s</string>
+    <string name="mtrl_picker_announce_current_selection">වත්මන් තේරීම: %1$s</string>
+    <string name="mtrl_picker_announce_current_selection_none">කිසිවක් නැත</string>
+    <string name="mtrl_picker_cancel">අවලංගු කරන්න</string>
+    <string name="mtrl_picker_confirm">හරි</string>
+    <string name="mtrl_picker_date_header_selected">%1$s</string>
+    <string name="mtrl_picker_date_header_title">දිනය තෝරන්න</string>
+    <string name="mtrl_picker_date_header_unselected">තේරූ දිනය</string>
+    <string name="mtrl_picker_day_of_week_column_header">%1$s</string>
+    <string name="mtrl_picker_end_date_description">අවසාන දිනය %1$s</string>
+    <string name="mtrl_picker_invalid_format">අවලංගු ආකෘතියකි.</string>
+    <string name="mtrl_picker_invalid_format_example">උදාහරණය: %1$s</string>
+    <string name="mtrl_picker_invalid_format_use">භාවිතය: %1$s</string>
+    <string name="mtrl_picker_invalid_range">අවලංගු පරාසයකි.</string>
+    <string name="mtrl_picker_navigate_to_current_year_description">වත්මන් වර්ෂය %1$d වෙත සංචාලනය කරන්න</string>
+    <string name="mtrl_picker_navigate_to_year_description">%1$d වසරට සංචාලනය කරන්න</string>
+    <string name="mtrl_picker_out_of_range">පරාසයෙන් පිටත: %1$s</string>
+    <string name="mtrl_picker_range_header_only_end_selected">ආරම්භක දිනය – %1$s</string>
+    <string name="mtrl_picker_range_header_only_start_selected">%1$s – නිමා වන දිනය</string>
+    <string name="mtrl_picker_range_header_selected">%1$s – %2$s</string>
+    <string name="mtrl_picker_range_header_title">පරාසය තෝරන්න</string>
+    <string name="mtrl_picker_range_header_unselected">ආරම්භක දිනය – නිමා වන දිනය</string>
+    <string name="mtrl_picker_save">සුරකින්න</string>
+    <string name="mtrl_picker_start_date_description">ආරම්භක දිනය %1$s</string>
+    <string name="mtrl_picker_text_input_date_hint">දිනය</string>
+    <string name="mtrl_picker_text_input_date_range_end_hint">නිමා වන දිනය</string>
+    <string name="mtrl_picker_text_input_date_range_start_hint">ආරම්භක දිනය</string>
+    <string name="mtrl_picker_text_input_day_abbr">ද</string>
+    <string name="mtrl_picker_text_input_month_abbr">ම</string>
+    <string name="mtrl_picker_text_input_year_abbr">ව</string>
+    <string name="mtrl_picker_today_description">අද %1$s</string>
+    <string name="mtrl_picker_toggle_to_calendar_input_mode">දින දර්ශන ආදාන ප්‍රකාරයට මාරු වන්න</string>
+    <string name="mtrl_picker_toggle_to_day_selection">දින දර්ශන දසුනට මාරු වන්න</string>
+    <string name="mtrl_picker_toggle_to_text_input_mode">පෙළ ආදාන ප්‍රකාරයට මාරු වන්න</string>
+    <string name="mtrl_picker_toggle_to_year_selection">වසර දසුනට මාරු වන්න</string>
+    <string name="mtrl_picker_toggled_to_day_selection">දින දර්ශන දසුන වෙත මාරු විය</string>
+    <string name="mtrl_picker_toggled_to_year_selection">වසර දසුන වෙත මාරු විය</string>
+    <string name="mtrl_timepicker_cancel">අවලංගු කරන්න</string>
+    <string name="mtrl_timepicker_confirm">හරි</string>
+    <string msgid="542007171693138492" name="navigation_menu">"සංචාලන මෙනුව"</string>
+    <string msgid="6610465462668679431" name="not_selected">"තෝරා නැත"</string>
+    <string msgid="7534843523462177008" name="orb_search_action">"සෙවීමේ ක්‍රියාව"</string>
+    <string name="password_toggle_content_description">මුරපදය පෙන්වන්න</string>
+    <string msgid="5941395253238309765" name="range_end">"පරාස අන්තය"</string>
+    <string msgid="7097486360902471446" name="range_start">"පරාස ආරම්භය"</string>
+    <string msgid="6264217191555673260" name="search_menu_title">"සෙවීම"</string>
+    <string name="searchview_clear_text_content_description">පෙළ හිස් කරන්න</string>
+    <string name="searchview_navigation_content_description">ආපසු</string>
+    <string msgid="6043586758067023" name="selected">"තෝරන ලදි"</string>
+    <string name="side_sheet_accessibility_pane_title">පැති පත්‍රය</string>
+    <string msgid="2792228137354697160" name="snackbar_pane_title">"ඇඟවීම"</string>
+    <string msgid="4139871816613051306" name="state_empty">"හිස්"</string>
+    <string msgid="5834637030682409883" name="state_off">"ක්‍රියාවිරහිතයි"</string>
+    <string msgid="1490883874751719580" name="state_on">"ක්‍රියාත්මකයි"</string>
+    <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string msgid="2561197295334830845" name="switch_role">"මාරු කරන්න"</string>
+    <string msgid="1672349317127674378" name="tab">"ටැබය"</string>
+    <string msgid="5946805113151406391" name="template_percent">"සියයට <ns1:g id="PERCENTAGE">%1$d</ns1:g>."</string>
+    <string msgid="3765533235322692011" name="tooltip_description">"මෙවලම් ඉඟිය"</string>
+    <string msgid="3124740595719787496" name="tooltip_label">"මෙවලම් ඉඟිය පෙන්වන්න"</string>
+</resources>

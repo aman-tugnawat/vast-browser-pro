@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mozac_browser_engine_system_alert_title">Halaman di %1$s bilang:</string>
+    <string name="mozac_browser_engine_system_auth_message">%2$s minta’ lu punya nama pemaké ama kata celosan. Pelampangnya bilang: “%1$s”</string>
+    <string name="mozac_browser_engine_system_auth_no_realm_message">%1$s minta’ lu punya nama pemaké ama kata celosan.</string>
+    <string name="mozac_browser_errorpages_corrupted_content_title">Ngablu Isian Bejat</string>
+    <string name="mozac_browser_errorpages_file_not_found_title">Gepokan Kaga’ Ketemu</string>
+    <string name="mozac_browser_errorpages_generic_message"><![CDATA[<p>Pengabaran tambahan soal ni mas’alah atawa kengabluan lagi kaga’ derak.</p>]]></string>
+    <string name="mozac_browser_errorpages_generic_title">Kaga’ Bisa’ Nutugin Perminta’an</string>
+    <string name="mozac_browser_errorpages_httpsonly_button">Terus ke Pelampang HTTP</string>
+    <string name="mozac_browser_errorpages_malformed_uri_title">Alamat Kaga’ Aci</string>
+    <string name="mozac_browser_errorpages_page_refresh">Jal Lagi</string>
+    <string name="mozac_browser_errorpages_security_bad_cert_back">Balik (Disaranin)</string>
+    <string name="mozac_browser_errorpages_security_bad_cert_title">Bungselan Aman Boncos</string>
+    <string name="mozac_browser_errorpages_security_bad_hsts_cert_back">Balik</string>
+    <string name="mozac_browser_errorpages_security_bad_hsts_cert_title">Ni pelampang butuh bungselan nyang aman.</string>
+    <string name="mozac_browser_errorpages_security_ssl_title">Bungselan Aman Boncos</string>
+    <string name="mozac_browser_errorpages_unknown_host_title">Alamat Kaga’ Ketemu</string>
+    <string name="mozac_browser_errorpages_unknown_socket_type_title">Waroan kaga’ keancer dari pengladèn</string>
+    <string name="mozac_browser_errorpages_unsafe_content_type_title">Jenis Gepokan Kaga’ Aman</string>
+</resources>

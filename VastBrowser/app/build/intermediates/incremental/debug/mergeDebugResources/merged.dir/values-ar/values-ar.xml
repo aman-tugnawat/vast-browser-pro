@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2" xmlns:ns2="http://schemas.android.com/tools">
+    <plurals name="mtrl_badge_content_description">
+    <item quantity="zero">%d إشعار جديد</item>
+    <item quantity="one">إشعار جديد واحد (%d)</item>
+    <item quantity="two">إشعاران جديدان (%d)</item>
+    <item quantity="few">%d إشعارات جديدة</item>
+    <item quantity="many">%d إشعارًا جديدًا</item>
+    <item quantity="other">%d إشعار جديد</item>
+  </plurals>
+    <string msgid="5976598919945601918" name="abc_action_bar_home_description">"التوجه إلى المنزل"</string>
+    <string msgid="8388173803310557296" name="abc_action_bar_up_description">"التنقل إلى أعلى"</string>
+    <string msgid="3937310113216875497" name="abc_action_menu_overflow_description">"خيارات أكثر"</string>
+    <string msgid="4692188335987374352" name="abc_action_mode_done">"تم"</string>
+    <string msgid="1189761859438369441" name="abc_activity_chooser_view_see_all">"عرض الكل"</string>
+    <string msgid="2165779757652331008" name="abc_activitychooserview_choose_application">"اختيار تطبيق"</string>
+    <string msgid="4215997306490295099" name="abc_capital_off">"إيقاف"</string>
+    <string msgid="884982626291842264" name="abc_capital_on">"مفعّلة"</string>
+    <string msgid="8833365367933412986" name="abc_menu_alt_shortcut_label">"Alt+"</string>
+    <string msgid="2223301931652355242" name="abc_menu_ctrl_shortcut_label">"Ctrl+"</string>
+    <string msgid="838001238306846836" name="abc_menu_delete_shortcut_label">"حذف"</string>
+    <string msgid="7986526966204849475" name="abc_menu_enter_shortcut_label">"enter"</string>
+    <string msgid="375214403600139847" name="abc_menu_function_shortcut_label">"Function+"</string>
+    <string msgid="4192209724446364286" name="abc_menu_meta_shortcut_label">"Meta+"</string>
+    <string msgid="4741552369836443843" name="abc_menu_shift_shortcut_label">"Shift+"</string>
+    <string msgid="5473865519181928982" name="abc_menu_space_shortcut_label">"فضاء"</string>
+    <string msgid="6180552449598693998" name="abc_menu_sym_shortcut_label">"Sym+"</string>
+    <string msgid="5520303668377388990" name="abc_prepend_shortcut_label">"القائمة+"</string>
+    <string msgid="7208076849092622260" name="abc_search_hint">"بحث…"</string>
+    <string msgid="3741173234950517107" name="abc_searchview_description_clear">"محو طلب البحث"</string>
+    <string msgid="693312494995508443" name="abc_searchview_description_query">"طلب بحث"</string>
+    <string msgid="3417662926640357176" name="abc_searchview_description_search">"البحث"</string>
+    <string msgid="1486535517437947103" name="abc_searchview_description_submit">"إرسال طلب البحث"</string>
+    <string msgid="2293578557972875415" name="abc_searchview_description_voice">"بحث صوتي"</string>
+    <string msgid="8875138169939072951" name="abc_shareactionprovider_share_with">"مشاركة مع"</string>
+    <string msgid="9055268688411532828" name="abc_shareactionprovider_share_with_application">"مشاركة مع <ns1:g id="APPLICATION_NAME">%s</ns1:g>"</string>
+    <string msgid="1656852541809559762" name="abc_toolbar_collapse_description">"تصغير"</string>
+    <string msgid="8719607706653693137" name="androidx_compose_foundation_autofill">"الملء التلقائي"</string>
+    <string msgid="1150566100598813236" name="androidx_compose_ui_autofill">"الملء التلقائي"</string>
+    <string name="bottomsheet_action_collapse">تصغير البطاقة السفلية</string>
+    <string name="bottomsheet_action_expand">توسيع البطاقة السفلية</string>
+    <string name="bottomsheet_action_expand_halfway">توسيع البطاقة السفلية</string>
+    <string name="bottomsheet_drag_handle_content_description">مقبض السحب</string>
+    <string msgid="881409763997275156" name="call_notification_answer_action">"ردّ"</string>
+    <string msgid="8793775615905189152" name="call_notification_answer_video_action">"فيديو"</string>
+    <string msgid="3229508546291798546" name="call_notification_decline_action">"رفض"</string>
+    <string msgid="2659457946726154263" name="call_notification_hang_up_action">"قطع الاتصال"</string>
+    <string msgid="6107532579223922871" name="call_notification_incoming_text">"مكالمة واردة"</string>
+    <string msgid="8623827134497363134" name="call_notification_ongoing_text">"مكالمة جارية"</string>
+    <string msgid="59049573811482460" name="call_notification_screening_text">"يتم فحص المكالمة الواردة"</string>
+    <string name="character_counter_content_description">تمّ إدخال %1$d حرف من إجمالي %2$d.</string>
+    <string name="character_counter_overflowed_content_description">تجاوز عدد الأحرف المسموح به %1$d من %2$d.</string>
+    <string name="character_counter_pattern">%2$d/%1$d</string>
+    <string name="clear_text_end_icon_content_description">محو النص</string>
+    <string msgid="406453423630273620" name="close_drawer">"إغلاق قائمة التنقل"</string>
+    <string msgid="7573152094250666567" name="close_sheet">"إغلاق الورقة"</string>
+    <string msgid="3260749812566568062" name="copy_toast_msg">"تم نسخ الرابط إلى الحافظة."</string>
+    <string msgid="8038256446254964252" name="default_error_message">"إدخال غير صالح"</string>
+    <string msgid="6312721426453364202" name="default_popup_window_title">"نافذة منبثقة"</string>
+    <string msgid="1890207353314751437" name="dropdown_menu">"قائمة منسدلة"</string>
+    <string name="error_a11y_label">خطأ: غير صالح</string>
+    <string name="error_icon_content_description">خطأ</string>
+    <string name="exposed_dropdown_menu_content_description">عرض القائمة المنسدلة</string>
+    <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"نسخ الرابط"</string>
+    <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"فتح في المتصفح"</string>
+    <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"مشاركة الرابط"</string>
+    <string name="icon_content_description">رمز مربع الحوار</string>
+    <string msgid="6827826412747255547" name="in_progress">"قيد التقدم"</string>
+    <string msgid="7933458017204019916" name="indeterminate">"تم وضع علامة في المربّع بشكل جزئي"</string>
+    <string name="item_view_role_description">علامة تبويب</string>
+    <string msgid="2721825378927619928" name="lb_control_display_fast_forward_multiplier">"%1$dX"</string>
+    <string msgid="6173753802428649303" name="lb_control_display_rewind_multiplier">"%1$dX"</string>
+    <string msgid="1122271825827282965" name="lb_guidedaction_continue_title">"متابعة"</string>
+    <string msgid="7747913934287176843" name="lb_guidedaction_finish_title">"إنهاء"</string>
+    <string msgid="8748646000835486516" name="lb_media_player_error">"‏رمز الخطأ %1$d في MediaPlayer بالإضافة إلى %2$d"</string>
+    <string msgid="8126335323963415494" name="lb_navigation_menu_contentDescription">"قائمة التنقل"</string>
+    <string msgid="4213611627196077555" name="lb_onboarding_accessibility_next">"التالي"</string>
+    <string msgid="7674487829030291492" name="lb_onboarding_get_started">"البدء"</string>
+    <string msgid="5508271941331836786" name="lb_playback_controls_closed_captioning_disable">"إيقاف الترجمة والشرح"</string>
+    <string msgid="3934392140182327163" name="lb_playback_controls_closed_captioning_enable">"تفعيل الترجمة والشرح"</string>
+    <string msgid="8966769845721269304" name="lb_playback_controls_fast_forward">"تقديم سريع"</string>
+    <string msgid="801276177839339511" name="lb_playback_controls_fast_forward_multiplier">"‏التقديم السريع بمقدار %1$dX"</string>
+    <string msgid="619396299825306757" name="lb_playback_controls_hidden">"تم إخفاء عناصر التحكم في الوسائط، ويمكنك الضغط على لوحة التحكم لإظهارها"</string>
+    <string msgid="3000046054608531995" name="lb_playback_controls_high_quality_disable">"إيقاف الجودة العالية"</string>
+    <string msgid="1862669142355962638" name="lb_playback_controls_high_quality_enable">"تفعيل الجودة العالية"</string>
+    <string msgid="2827883329510404797" name="lb_playback_controls_more_actions">"مزيد من الإجراءات"</string>
+    <string msgid="1769131316742618433" name="lb_playback_controls_pause">"إيقاف مؤقت"</string>
+    <string msgid="8800305194045609275" name="lb_playback_controls_picture_in_picture">"الدخول في الوضع \"نافذة ضمن النافذة\""</string>
+    <string msgid="1590369760862605402" name="lb_playback_controls_play">"تشغيل"</string>
+    <string msgid="5164826436271322261" name="lb_playback_controls_repeat_all">"تكرار الكل"</string>
+    <string msgid="5812341701962930499" name="lb_playback_controls_repeat_none">"عدم التكرار"</string>
+    <string msgid="7675097479246139440" name="lb_playback_controls_repeat_one">"تكرار مقطع واحد"</string>
+    <string msgid="1412664391757869774" name="lb_playback_controls_rewind">"إرجاع"</string>
+    <string msgid="8651612807713092781" name="lb_playback_controls_rewind_multiplier">"‏إرجاع بمقدار %1$dX"</string>
+    <string msgid="7794717158616536936" name="lb_playback_controls_shown">"تم إظهار عناصر التحكم في الوسائط"</string>
+    <string msgid="8182435535948303910" name="lb_playback_controls_shuffle_disable">"إيقاف الترتيب العشوائي"</string>
+    <string msgid="7809089255981448519" name="lb_playback_controls_shuffle_enable">"تفعيل الترتيب العشوائي"</string>
+    <string msgid="4877009494447817003" name="lb_playback_controls_skip_next">"تخطي التالي"</string>
+    <string msgid="3147124289285911980" name="lb_playback_controls_skip_previous">"تخطي السابق"</string>
+    <string msgid="5075744418630733006" name="lb_playback_controls_thumb_down">"إلغاء اختيار التقييم \"لا يعجبني\""</string>
+    <string msgid="2847309435442474470" name="lb_playback_controls_thumb_down_outline">"اختيار التقييم \"لا يعجبني\""</string>
+    <string msgid="8332816524260995892" name="lb_playback_controls_thumb_up">"إلغاء اختيار التقييم \"أعجبني\""</string>
+    <string msgid="1038344559734334272" name="lb_playback_controls_thumb_up_outline">"اختيار التقييم \"أعجبني\""</string>
+    <string msgid="6549544638083578695" name="lb_playback_time_separator">"/"</string>
+    <string msgid="4819380969103509861" name="lb_search_bar_hint">"البحث"</string>
+    <string msgid="2795474673510974502" name="lb_search_bar_hint_speech">"تحدَّثْ لبدء البحث"</string>
+    <string msgid="7453744869467668159" name="lb_search_bar_hint_with_title">"بحث في <ns1:g id="SEARCH_CONTEXT">%1$s</ns1:g>"</string>
+    <string msgid="5851694095153624617" name="lb_search_bar_hint_with_title_speech">"تحدَّثْ لبدء البحث في <ns1:g id="SEARCH_CONTEXT">%1$s</ns1:g>"</string>
+    <string name="m3_loading_indicator_content_description">جارٍ التحميل</string>
+    <string name="material_clock_toggle_content_description">يُرجى اختيار صباحًا أو مساءً.</string>
+    <string name="material_hour_24h_suffix">%1$s ساعة</string>
+    <string name="material_hour_selection">تحديد الساعة</string>
+    <string name="material_hour_suffix">الساعة %1$s</string>
+    <string name="material_minute_selection">تحديد الدقائق</string>
+    <string name="material_minute_suffix">%1$s دقيقة</string>
+    <string name="material_slider_range_end">نهاية النطاق</string>
+    <string name="material_slider_range_start">بداية النطاق</string>
+    <string name="material_slider_value">القيمة</string>
+    <string name="material_timepicker_am">صباحًا</string>
+    <string name="material_timepicker_clock_mode_description">يُرجى التبديل إلى وضع الساعة لإدخال الوقت.</string>
+    <string name="material_timepicker_hour">الساعة</string>
+    <string name="material_timepicker_minute">دقيقة</string>
+    <string name="material_timepicker_pm">مساءً</string>
+    <string name="material_timepicker_select_time">اختيار الوقت</string>
+    <string name="material_timepicker_text_input_mode_description">يُرجى التبديل إلى وضع إدخال النص لإدخال الوقت.</string>
+    <string name="mozac_browser_engine_system_alert_title">تقول الصفحة الموجودة في %1$s:</string>
+    <string name="mozac_browser_engine_system_auth_message">%2$s يطلب اسم المستخدم وكلمة المرور. يقول الموقع: ”%1$s“</string>
+    <string name="mozac_browser_engine_system_auth_no_realm_message">يطلب %1$s اسم المستخدم وكلمة المرور.</string>
+    <string name="mozac_browser_errorpages_connection_failure_message"><![CDATA[<ul>\n<li>قد يكون الموقع غير متاح مؤقتًا أو مشغولًا جدًا. حاول مجددًا بعد قليل.</li>\n<li>إذا لم تستطع تحميل أي صفحة، تحقّق من اتصال الجهاز بشبكة البيانات أو الشبكة اللاسلكية.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_connection_failure_title">تعذّر الاتصال</string>
+    <string name="mozac_browser_errorpages_content_crashed_message"><![CDATA[<p>تعذر عرض الصفحة التي تريد مشاهدتها بسبب خطأ أثناء نقل البيانات.</p><ul><li>الرجاء التواصل مع مالك الموقع لإبلاغه بهذه المشكلة.</li></ul>]]></string>
+    <string name="mozac_browser_errorpages_content_crashed_title">تعطل المحتوى</string>
+    <string name="mozac_browser_errorpages_corrupted_content_message"><![CDATA[<p>تعذر عرض الصفحة التي تريد مشاهدتها بسبب خطأ أثناء نقل البيانات.</p><ul><li>الرجاء التواصل مع مالك الموقع لإبلاغه بهذه المشكلة.</li></ul>]]></string>
+    <string name="mozac_browser_errorpages_corrupted_content_title">خطأ محتوى فاسد</string>
+    <string name="mozac_browser_errorpages_file_access_denied_message"><![CDATA[<ul>\n<li>قد يكون حُذف أو نُقل أو أن صلاحيّات الملف تمنع الوصول إليه.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_file_access_denied_title">مُنِع الوصول للملف</string>
+    <string name="mozac_browser_errorpages_file_not_found_message"><![CDATA[<ul><li>ربما حُذف العنصر أو تغيّر اسمه أو مكانه؟</li><li>هل هناك خطأ إملائي أو مطبعي في العنوان؟</li><li>هل لديك صلاحيات كافية للوصول إلى العنصر المطلوب؟</li></ul>]]></string>
+    <string name="mozac_browser_errorpages_file_not_found_title">الملف غير موجود</string>
+    <string name="mozac_browser_errorpages_generic_message"><![CDATA[<p>لا تتوفر حاليًا معلومات إضافية حول هذه المشكلة أو هذا الخطأ.</p>]]></string>
+    <string name="mozac_browser_errorpages_generic_title">تعذّر إكمال الطلب</string>
+    <string name="mozac_browser_errorpages_harmful_addon_uri_message"><![CDATA[<p>تم حظر صفحة الويب هذه %1$s لأن إحدى الإضافات المثبتة لديك حاولت فتحها. قد يُستخدم هذا الموقع لِسرقة معلوماتك — مثل كلمات المرور أو أرقام بطاقات الائتمان.</p>]]></string>
+    <string name="mozac_browser_errorpages_harmful_addon_uri_title">تم حظر الموقع من أجل سلامتك</string>
+    <string name="mozac_browser_errorpages_httpsonly_button">واصِل نحو نسخة HTTP</string>
+    <string name="mozac_browser_errorpages_httpsonly_message"><![CDATA[لقد فعّلت وضع \"HTTPS فقط\" لتعزيز الأمان، لكن لا تتوفر نسخة HTTPS للموقع <em>%1$s</em>.\n]]></string>
+    <string name="mozac_browser_errorpages_httpsonly_title">خاصية الموقع الآمن غير متاحة</string>
+    <string name="mozac_browser_errorpages_invalid_content_encoding_message"><![CDATA[<p>لا يمكن عرض الصفحة التي تحاول الوصول إليها لأنها تستخدم صيغة ضغط غير صالحة أو غير مدعومة.</p>\n<ul>\n<li>يُرجى التواصل مع مالِكِي الموقع لإبلاغهم بهذه المشكلة.</li>\n</ul>\n]]></string>
+    <string name="mozac_browser_errorpages_invalid_content_encoding_title">خطأ في ترميز المحتوى</string>
+    <string name="mozac_browser_errorpages_malformed_uri_message"><![CDATA[<p>تنسيق العنوان المُدخل غير صالح أو غير معروف. تحقّق من شريط العناوين للأخطاء ثم حاول مرة أخرى.</p>\n]]></string>
+    <string name="mozac_browser_errorpages_malformed_uri_message_alternative"><![CDATA[<ul>\n<li>تُكتب عناوين الويب عادة على الشكل الآتي <strong>‪http://www.example.com/‬</strong>‏</li>\n<li>تأكّد أنك تستخدم الشرطة المائلة إلى اليمين (أي <strong>/</strong>).</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_malformed_uri_title">عنوان غير صحيح</string>
+    <string name="mozac_browser_errorpages_malformed_uri_title_alternative">العنوان غير صالح</string>
+    <string name="mozac_browser_errorpages_net_interrupt_message"><![CDATA[<p>تم الاتصال بنجاح، ولكن انقطع الاتصال أثناء نقل البيانات. يُرجى المحاولة مرة أخرى.</p>\n<ul>\n<li>قد يكون الموقع غير متاح مؤقتًا أو مشغولًا للغاية. حاول مرة أخرى بعد لحظات.</li>\n<li>إذا لم تتمكّن من تحميل أي صفحات، فتحقّق من بيانات جهازك أو اتصال الشبكة اللاسلكية.</li></ul>]]></string>
+    <string name="mozac_browser_errorpages_net_interrupt_title">انقطع الاتصال</string>
+    <string name="mozac_browser_errorpages_net_reset_message"><![CDATA[<p>انقطع اتصال الشبكة أثناء محاولة الاتصال. يُرجى المحاولة مرة أخرى.</p>\n<ul>\n<li>قد يكون الموقع متوقفًا مؤقتًا أو مشغولا جدًا. حاول مرة أخرى بعد عدّة دقائق.</li>\n<li>إذا كنت غير قادر على تحميل أي صفحة، تثبّت من اتصال الحاسوب بالشبكة.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_net_reset_title">تم إعادة ضبط الاتصال</string>
+    <string name="mozac_browser_errorpages_net_timeout_message"><![CDATA[<p>لم يستجب الموقع المطلوب لطلب الاتصال، وتوقف المتصفح عن انتظار الردّ.</p>\n<ul>\n<li>ربما يواجه الخادم طلبًا متزايدًا أو يعاني من انقطاع مؤقت؟ أعد المحاولة لاحقًا.</li>\n<li>لا تستطيع تصفح المواقع الأخرى؟ راجع اتصال الجهاز بالشبكة.</li>\n<li>جهازك أو شبكتك محمية بجدار ناري أو وسيط؟ قد تتعارض الإعدادات الخاطئة مع تصفح الوِيب.</li>\n<li>مازلت تواجه مشاكل؟ راجع مدير الشبكة أو مزود الخدمة للمساعدة</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_net_timeout_title">انتهت مهلة الاتصال</string>
+    <string name="mozac_browser_errorpages_no_internet_error_code">رمز الخطأ: NS_ERROR_OFFLINE</string>
+    <string name="mozac_browser_errorpages_no_internet_message_2">حاول الاتصال من جهاز آخر. تحقّق من المودم أو جهاز التوجيه. افصل اتصالك بالواي فاي وأعد الاتصال به.\n</string>
+    <string name="mozac_browser_errorpages_no_internet_refresh_button">إعادة التحميل</string>
+    <string name="mozac_browser_errorpages_no_internet_title_2">يبدو أن هناك مشكلة في اتصالك بالإنترنت</string>
+    <string name="mozac_browser_errorpages_offline_message"><![CDATA[<p>المتصفح يعمل في وضع عدم الاتصال ولا يستطيع تحميل العنصر المطلوب.</p>\n<ul>\n<li>هل الجهاز متّصل بشبكة نشِطة؟</li>\n<li>انقر ”حاول مجددًا“ للتبديل إلى وضع الاتصال وإعادة تحميل الصفحة.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_offline_title">وضع عدم الاتصال</string>
+    <string name="mozac_browser_errorpages_page_refresh">أعِد المحاولة</string>
+    <string name="mozac_browser_errorpages_port_blocked_message"><![CDATA[<p>يُحدد العنوان المطلوب منفذًا (مثل <q>mozilla.org:80</q> للمنفذ 80 على mozilla.org) يُستخدم عادة لأغراض <em>غير</em> تصفّح الويب. ألغى المتصفّح هذا الطلب حفاظًا على أمانك وحمايتك.</p>\n]]></string>
+    <string name="mozac_browser_errorpages_port_blocked_title">المنفذ مُقيّد لأسباب أمنية</string>
+    <string name="mozac_browser_errorpages_proxy_connection_refused_message"><![CDATA[<p>ضُبط المتصفّح ليستخدم خادمًا وسيطًا، لكن الوسيط رفض الاتصال.</p><ul><li>هل إعدادات الوسيط سليمة؟ تأكد من الإعدادات وأعد المحاولة.</li><li>هل يسمح الخادم الوسيط بالاتصالات من هذه الشبكة؟</li><li>أما زلت تواجه مشكلًا؟ راجع مدير الشبكة أو مزود الخدمة للمساعدة.</li></ul>]]></string>
+    <string name="mozac_browser_errorpages_proxy_connection_refused_title">رفض الخادم الوسيط الاتصال</string>
+    <string name="mozac_browser_errorpages_redirect_loop_message"><![CDATA[<p>توقّف المتصفح عن محاولة جلب العنصر المطلوب. يُعيد الموقع توجيه الطلب بصورة لن تكتمل أبدًا.</p><ul>\n<li>هل عطّلت أو حجبتَ ملفات تعريف الارتباط لهذا الموقع؟</li>\n<li>إذا كان قبول ملفات تعريف الارتباط لهذا الموقع لا يحُل مشكلتك، فهذه على الأرجح مشكلة في إعدادات الخادم وليس حاسوبك.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_redirect_loop_title">لا تعيد الصفحة التوجيه بشكل سليم</string>
+    <string name="mozac_browser_errorpages_safe_browsing_malware_uri_message"><![CDATA[<p>تم الإبلاغ عن الموقع %1$s كموقع هجمات، وقد تم حظره بناءً على إعدادات تفضيلات الأمان الخاصة بك.</p>\n]]></string>
+    <string name="mozac_browser_errorpages_safe_browsing_malware_uri_title">مشكلة موقع يحتوي على برمجيات خبيثة</string>
+    <string name="mozac_browser_errorpages_safe_browsing_unwanted_uri_message"><![CDATA[<p>تم الإبلاغ عن الموقع %1$s بأنه يوزع برامج غير مرغوب فيها، وقد تم حظره بناءً على إعدادات تفضيلات الأمان الخاصة بك.</p>\n]]></string>
+    <string name="mozac_browser_errorpages_safe_browsing_unwanted_uri_title">مشكلة موقع غير مرغوب فيه</string>
+    <string name="mozac_browser_errorpages_safe_harmful_uri_message"><![CDATA[<p>تم الإبلاغ عن الموقع %1$s كموقع محتمل الخطورة، وقد تم حظره بناءً على إعدادات تفضيلات الأمان الخاصة بك.</p>\n]]></string>
+    <string name="mozac_browser_errorpages_safe_harmful_uri_title">مشكلة موقع ضار</string>
+    <string name="mozac_browser_errorpages_safe_phishing_uri_message"><![CDATA[<p>تم الإبلاغ عن الموقع %1$s كموقع خادع، وقد تم حظره بناءً على إعدادات تفضيلات الأمان الخاصة بك.</p>\n]]></string>
+    <string name="mozac_browser_errorpages_safe_phishing_uri_title">مشكلة موقع مخادع</string>
+    <string name="mozac_browser_errorpages_security_bad_cert_accept_temporary">المتابعة مع تقبّل الخطر</string>
+    <string name="mozac_browser_errorpages_security_bad_cert_advanced">خيارات متقدمة…</string>
+    <string name="mozac_browser_errorpages_security_bad_cert_back">عُد للخلف (يُنصح به)</string>
+    <string name="mozac_browser_errorpages_security_bad_cert_message"><![CDATA[<ul>\n<li>قد يكون هذا بسبب مشكلة في إعدادات الخادم، أو أنّ أحدًا يحاول انتحال هوية الخادم</li>\n<li>إن كنت قد اتصلتَ بهذا الموقع بنجاح في الماضي، قد يكون هذا الخطأ مؤقتًا، لذا أعِد المحاولة في وقت لاحق.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_security_bad_cert_techInfo"><![CDATA[<label>هناك احتمال بمحاولة أحد الأشخاص انتحال هوية هذا الموقع، ولذلك عليك عدم المواصلة.</label> <br><br>\n<label>تثبت المواقع على الويب هويّتها باستعمال الشهادات. لا يثق %1$s بالموقع <b>%2$s</b> لأن مُصدر شهادته غير معلوم، أو أن الشهادة موقعة ذاتيًا، أو أن الخادم لم يرسل الشهادات الوسيطة كما ينبغي.</label>]]></string>
+    <string name="mozac_browser_errorpages_security_bad_cert_title">فشل الاتصال الآمن</string>
+    <string name="mozac_browser_errorpages_security_bad_hsts_cert_advanced">خيارات متقدمة…</string>
+    <string name="mozac_browser_errorpages_security_bad_hsts_cert_back">عُد للخلف</string>
+    <string name="mozac_browser_errorpages_security_bad_hsts_cert_message"><![CDATA[<ul>\n<li>لا يمكن عرض الصفحة التي تحاول فتحها لأن موقع الويب هذا يتطلب اتصالًا آمنًا.</li>\n<li>يُرجَّح أن تكون المشكلة متعلقة بموقع الويب، ولا يمكنك فعل أي شيء لحلِّها.</li>\n<li>يمكنك إخطار مسؤول الموقع بالمشكلة.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_security_bad_hsts_cert_techInfo2"><![CDATA[يستخدم الموقع <label><b>%1$s</b> سياسة النقل الصارمة (HSTS)، ما يعني أن <b>%2$s</b> لا يستطيع الاتصال به إلا بأمان. لا يُمكنك إضافة استثناء لزيارة هذا الموقع. </label>]]></string>
+    <string name="mozac_browser_errorpages_security_bad_hsts_cert_title">يتطلّب هذا الموقع اتصالًا آمنًا.</string>
+    <string name="mozac_browser_errorpages_security_ssl_message"><![CDATA[<ul>\n<li>لا يمكن عرض الصفحة التي تحاول زيارتها لعدم إمكانية التحقّق من صحة البيانات المُستقبَلة.</li>\n<li>يُرجى الاتصال بمالكِي الموقع لإعلامهم بهذه المشكلة.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_security_ssl_title">فشل الاتصال الآمن</string>
+    <string name="mozac_browser_errorpages_unknown_host_message"><![CDATA[<p>لم يتمكّن المُتصفح من العثور على الخادم المستضيف للعنوان المُحدد.</p>\n<ul>\n<li>تحقّق من العنوان للتأكد من عدم وجود أخطاء كتابية، مثل <strong>ww</strong>.example.com بدلاً من <strong>www</strong>.example.com.</li>\n<li>إذا لم تتمكن من تحميل أي صفحات، تحقق من اتصال جهازك بشبكة البيانات أو الواي فاي.</li>\n</ul>\n]]></string>
+    <string name="mozac_browser_errorpages_unknown_host_title">العنوان غير موجود</string>
+    <string name="mozac_browser_errorpages_unknown_protocol_message"><![CDATA[<p>يُحدد العنوان بروتوكولًا (مثلًا: <q>wxyz://</q>) لا يتعرف عليه المتصفح، لذا لا يستطيع المتصفح الاتصال بالموقع بشكل سليم.</p><ul><li>هل تحاول الوصول لمحتوى متعدد الوسائط أو خدمة غير نصية؟ راجع الموقع لمتطلبات إضافية.</li><li>قد تحتاج بعض البروتوكولات لبرامج إضافية أو ملحقات ليستطيع المتصفح التعرف عليها.</li></ul>]]></string>
+    <string name="mozac_browser_errorpages_unknown_protocol_title">بروتوكول مجهول</string>
+    <string name="mozac_browser_errorpages_unknown_proxy_host_message"><![CDATA[<p>ضُبط المتصفّح ليستخدم خادمًا وسيطًا، لكن لم يوجد الوسيط.</p><ul><li>هل إعدادات الوسيط سليمة؟ تأكد من الإعدادات وأعد المحاولة.</li><li>هل الجهاز متصل بشبكة نشطة؟</li><li>أما زلت تواجه مشكلًا؟ راجع مدير الشبكة أو مزود الخدمة للمساعدة.</li></ul>]]></string>
+    <string name="mozac_browser_errorpages_unknown_proxy_host_title">لم يُعثر على خادم وسيط</string>
+    <string name="mozac_browser_errorpages_unknown_socket_type_message"><![CDATA[<p>استجاب الموقع لطلب الشبكة بطريقة غير متوقعة ولا يستطيع المتصفح المواصلة.</p>]]></string>
+    <string name="mozac_browser_errorpages_unknown_socket_type_title">استجابة غير متوقعة من الخادم</string>
+    <string name="mozac_browser_errorpages_unsafe_content_type_message"><![CDATA[<ul>\n<li>من فضلك اتصل بمالكي الموقع لإعلامهم بهذه المشكلة.</li>\n</ul>]]></string>
+    <string name="mozac_browser_errorpages_unsafe_content_type_title">نوع ملف غير آمن</string>
+    <string name="mozac_support_base_permissions_needed_negative_button">رفض</string>
+    <string name="mozac_support_base_permissions_needed_positive_button">الانتقال إلى الإعدادات</string>
+    <string name="mozac_support_ktx_menu_call_with">الاتصال عبر…</string>
+    <string name="mozac_support_ktx_menu_email_with">إرسال بريد إلكتروني عبر…</string>
+    <string name="mozac_support_ktx_menu_share_with">المشاركة عبر...</string>
+    <string name="mozac_support_ktx_share_dialog_title">المشاركة عبر</string>
+    <string name="mtrl_badge_numberless_content_description">إشعار جديد</string>
+    <string name="mtrl_checkbox_state_description_checked">تم وضع علامة في المربّع</string>
+    <string name="mtrl_checkbox_state_description_indeterminate">يجوز أنه تم وضع علامة في المربّع</string>
+    <string name="mtrl_checkbox_state_description_unchecked">لم يتم وضع علامة في المربّع</string>
+    <string name="mtrl_chip_close_icon_content_description">إزالة %1$s</string>
+    <string name="mtrl_exceed_max_badge_number_content_description" ns2:ignore="PluralsCandidate">يبلغ عدد الإشعارات الجديدة أكثر من %1$d.</string>
+    <string name="mtrl_picker_a11y_next_month">التغيير إلى الشهر التالي</string>
+    <string name="mtrl_picker_a11y_prev_month">التغيير إلى الشهر السابق</string>
+    <string name="mtrl_picker_announce_current_range_selection">اختيار تاريخ البدء: %1$s – اختيار تاريخ الانتهاء: %2$s</string>
+    <string name="mtrl_picker_announce_current_selection">الاختيار الحالي: %1$s</string>
+    <string name="mtrl_picker_announce_current_selection_none">بلا</string>
+    <string name="mtrl_picker_cancel">إلغاء</string>
+    <string name="mtrl_picker_confirm">حسنًا</string>
+    <string name="mtrl_picker_date_header_selected">%1$s</string>
+    <string name="mtrl_picker_date_header_title">يُرجى اختيار تاريخ.</string>
+    <string name="mtrl_picker_date_header_unselected">التاريخ المحدَّد</string>
+    <string name="mtrl_picker_day_of_week_column_header">%1$s</string>
+    <string name="mtrl_picker_end_date_description">تاريخ الانتهاء: %1$s</string>
+    <string name="mtrl_picker_invalid_format">التنسيق غير صالح</string>
+    <string name="mtrl_picker_invalid_format_example">مثال: %1$s</string>
+    <string name="mtrl_picker_invalid_format_use">استخدام: %1$s</string>
+    <string name="mtrl_picker_invalid_range">النطاق غير صالح</string>
+    <string name="mtrl_picker_navigate_to_current_year_description">الانتقال إلى السنة الحالية %1$d</string>
+    <string name="mtrl_picker_navigate_to_year_description">التنقل إلى العام %1$d</string>
+    <string name="mtrl_picker_out_of_range">خارج النطاق: %1$s</string>
+    <string name="mtrl_picker_range_header_only_end_selected">تاريخ البدء – %1$s</string>
+    <string name="mtrl_picker_range_header_only_start_selected">%1$s – تاريخ الانتهاء</string>
+    <string name="mtrl_picker_range_header_selected">%1$s – %2$s</string>
+    <string name="mtrl_picker_range_header_title">يُرجى اختيار نطاق زمني.</string>
+    <string name="mtrl_picker_range_header_unselected">تاريخ البدء - تاريخ الانتهاء</string>
+    <string name="mtrl_picker_save">حفظ</string>
+    <string name="mtrl_picker_start_date_description">تاريخ البدء: %1$s</string>
+    <string name="mtrl_picker_text_input_date_hint">التاريخ</string>
+    <string name="mtrl_picker_text_input_date_range_end_hint">تاريخ الانتهاء</string>
+    <string name="mtrl_picker_text_input_date_range_start_hint">تاريخ البدء</string>
+    <string name="mtrl_picker_text_input_day_abbr">ي</string>
+    <string name="mtrl_picker_text_input_month_abbr">ش</string>
+    <string name="mtrl_picker_text_input_year_abbr">س</string>
+    <string name="mtrl_picker_today_description">اليوم %1$s</string>
+    <string name="mtrl_picker_toggle_to_calendar_input_mode">التبديل إلى وضع \"الإدخال في التقويم\"</string>
+    <string name="mtrl_picker_toggle_to_day_selection">التبديل إلى عرض \"تقويم Google\"</string>
+    <string name="mtrl_picker_toggle_to_text_input_mode">التبديل إلى وضع \"إدخال النص\"</string>
+    <string name="mtrl_picker_toggle_to_year_selection">التبديل إلى العرض حسب السنة</string>
+    <string name="mtrl_picker_toggled_to_day_selection">تم التبديل إلى عرض التقويم</string>
+    <string name="mtrl_picker_toggled_to_year_selection">تم التبديل إلى عرض اختيار السنة</string>
+    <string name="mtrl_timepicker_cancel">إلغاء</string>
+    <string name="mtrl_timepicker_confirm">حسنًا</string>
+    <string msgid="542007171693138492" name="navigation_menu">"قائمة تنقل"</string>
+    <string msgid="6610465462668679431" name="not_selected">"غير محدّد"</string>
+    <string msgid="7534843523462177008" name="orb_search_action">"إجراء البحث"</string>
+    <string name="password_toggle_content_description">عرض كلمة المرور</string>
+    <string msgid="5941395253238309765" name="range_end">"نهاية النطاق"</string>
+    <string msgid="7097486360902471446" name="range_start">"بداية النطاق"</string>
+    <string msgid="6264217191555673260" name="search_menu_title">"البحث"</string>
+    <string name="searchview_clear_text_content_description">محو النص</string>
+    <string name="searchview_navigation_content_description">رجوع</string>
+    <string msgid="6043586758067023" name="selected">"محدّد"</string>
+    <string name="side_sheet_accessibility_pane_title">ورقة جانبية</string>
+    <string msgid="2792228137354697160" name="snackbar_pane_title">"تنبيه"</string>
+    <string msgid="4139871816613051306" name="state_empty">"حقل فارغ"</string>
+    <string msgid="5834637030682409883" name="state_off">"غير مفعَّل"</string>
+    <string msgid="1490883874751719580" name="state_on">"مفعَّل"</string>
+    <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string msgid="2561197295334830845" name="switch_role">"تبديل"</string>
+    <string msgid="1672349317127674378" name="tab">"علامة تبويب"</string>
+    <string msgid="5946805113151406391" name="template_percent">"<ns1:g id="PERCENTAGE">%1$d</ns1:g> في المئة."</string>
+    <string msgid="3765533235322692011" name="tooltip_description">"تلميح"</string>
+    <string msgid="3124740595719787496" name="tooltip_label">"إظهار التلميح"</string>
+</resources>
