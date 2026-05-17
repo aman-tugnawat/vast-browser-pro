@@ -4,6 +4,13 @@
 
 package org.mozilla.tv.firefox.ui
 
+import android.transition.TransitionManager
+import android.transition.TransitionSet
+import android.transition.Slide
+import android.transition.ChangeBounds
+import android.view.Gravity
+import android.view.MotionEvent
+import android.view.ViewTreeObserver
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.LayoutInflater
@@ -49,6 +56,13 @@ class BrowserFragment : Fragment() {
 
     private val components by lazy { requireContext().components }
 
+    private var isCursorNearTop = false
+    private var isToolbarVisible = true
+
+    private val focusChangeListener = ViewTreeObserver.OnGlobalFocusChangeListener { _, _ ->
+        updateToolbarVisibility()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -81,6 +95,9 @@ class BrowserFragment : Fragment() {
         setupUrlBar()
         observeState()
 
+        // Listen to focus changes to show/hide the toolbar
+        binding.root.viewTreeObserver.addOnGlobalFocusChangeListener(focusChangeListener)
+
         // Request initial focus to URL bar to ensure D-Pad has a starting point
         binding.urlInput.requestFocus()
     }
@@ -96,6 +113,7 @@ class BrowserFragment : Fragment() {
     }
 
     override fun onDestroyView() {
+        _binding?.root?.viewTreeObserver?.removeOnGlobalFocusChangeListener(focusChangeListener)
         sessionFeature = null
         _binding = null
         super.onDestroyView()
@@ -139,14 +157,24 @@ class BrowserFragment : Fragment() {
 
         // On TV, EditText doesn't always automatically summon the Leanback IME on focus/click
         val showIme = {
-            val imm = requireContext().getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as android.view.inputmethod.InputMethodManager
-            imm.showSoftInput(binding.urlInput, android.view.inputmethod.InputMethodManager.SHOW_IMPLICIT)
+            if (isAdded && _binding != null) {
+                val imm = requireContext().getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as android.view.inputmethod.InputMethodManager
+                imm.showSoftInput(binding.urlInput, android.view.inputmethod.InputMethodManager.SHOW_IMPLICIT)
+            }
         }
         
         binding.urlInput.setOnClickListener { showIme() }
         binding.urlInput.setOnFocusChangeListener { _, hasFocus -> 
             if (hasFocus) {
-                showIme()
+                if (binding.toolbar.translationY == 0f) {
+                    showIme()
+                } else {
+                    binding.urlInput.postDelayed({
+                        if (_binding != null && binding.urlInput.hasFocus()) {
+                            showIme()
+                        }
+                    }, 300)
+                }
             }
         }
 
@@ -211,5 +239,82 @@ class BrowserFragment : Fragment() {
         }
         // Otherwise, treat as a search query
         return "https://duckduckgo.com/?q=${java.net.URLEncoder.encode(input, "UTF-8")}"
+    }
+
+    /**
+     * Show the top toolbar, optionally requesting focus to the URL bar.
+     */
+    fun showToolbar(focusUrlBar: Boolean = false) {
+        val binding = _binding ?: return
+        if (!isToolbarVisible) {
+            isToolbarVisible = true
+            animateToolbar(true)
+        }
+        if (focusUrlBar) {
+            binding.urlInput.requestFocus()
+        }
+    }
+
+    /**
+     * Update the visibility of the top toolbar based on focus and cursor position.
+     */
+    private fun updateToolbarVisibility() {
+        val binding = _binding ?: return
+        val shouldShow = binding.toolbar.hasFocus() || isCursorNearTop
+        if (shouldShow != isToolbarVisible) {
+            isToolbarVisible = shouldShow
+            animateToolbar(shouldShow)
+        }
+    }
+
+    /**
+     * Slide the toolbar and progress bar up or down smoothly.
+     */
+    private fun animateToolbar(show: Boolean) {
+        val binding = _binding ?: return
+        val toolbarHeight = if (binding.toolbar.height > 0) {
+            binding.toolbar.height.toFloat()
+        } else {
+            48 * resources.displayMetrics.density
+        }
+
+        val targetTranslationY = if (show) 0f else -toolbarHeight
+
+        binding.toolbar.animate()
+            .translationY(targetTranslationY)
+            .setDuration(300)
+            .start()
+
+        binding.progressBar.animate()
+            .translationY(targetTranslationY)
+            .setDuration(300)
+            .start()
+    }
+
+    /**
+     * Handle global generic motion events (like mouse hovers) forwarded from the Activity.
+     */
+    fun handleHoverEvent(event: MotionEvent) {
+        val binding = _binding ?: return
+        val action = event.actionMasked
+        if (action == MotionEvent.ACTION_HOVER_MOVE || action == MotionEvent.ACTION_HOVER_ENTER) {
+            val location = IntArray(2)
+            binding.root.getLocationOnScreen(location)
+            val relativeY = event.rawY - location[1]
+
+            val rootHeight = binding.root.height
+            val thresholdPx = if (rootHeight > 0) rootHeight * 0.05f else 100 * resources.displayMetrics.density
+
+            val nearTop = relativeY < thresholdPx
+            if (isCursorNearTop != nearTop) {
+                isCursorNearTop = nearTop
+                updateToolbarVisibility()
+            }
+        } else if (action == MotionEvent.ACTION_HOVER_EXIT) {
+            if (isCursorNearTop) {
+                isCursorNearTop = false
+                updateToolbarVisibility()
+            }
+        }
     }
 }

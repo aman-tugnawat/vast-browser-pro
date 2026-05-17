@@ -62,12 +62,23 @@ class BrowserActivity : AppCompatActivity() {
             val engineView = fragment?.view?.findViewById<View>(R.id.engineView)
             
             if (engineView?.hasFocus() == true) {
-                // If focus is inside the engine view, move it to the URL bar
-                fragment.view?.findViewById<View>(R.id.url_input)?.requestFocus()
+                // If focus is inside the engine view, show toolbar and move it to the URL bar
+                fragment.showToolbar(focusUrlBar = true)
                 return true
             }
         }
         return super.dispatchKeyEvent(event)
+    }
+
+    override fun dispatchGenericMotionEvent(event: android.view.MotionEvent): Boolean {
+        val action = event.actionMasked
+        if (action == android.view.MotionEvent.ACTION_HOVER_MOVE ||
+            action == android.view.MotionEvent.ACTION_HOVER_ENTER ||
+            action == android.view.MotionEvent.ACTION_HOVER_EXIT) {
+            val fragment = supportFragmentManager.findFragmentById(R.id.fragment_container) as? BrowserFragment
+            fragment?.handleHoverEvent(event)
+        }
+        return super.dispatchGenericMotionEvent(event)
     }
 
     private fun getUrlFromIntent(intent: Intent?): String? {
