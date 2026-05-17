@@ -1,2 +1,18 @@
 reference-code/
 .DS_Store
+
+# Gradle
+.gradle/
+build/
+
+# Android Studio
+.idea/
+*.iml
+local.properties
+.kotlin/
+
+# App build folders
+VastBrowser/build/
+VastBrowser/app/build/
+VastBrowser/.gradle/
+VastBrowser/.kotlin/
