@@ -19,9 +19,11 @@ class BrowserActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityBrowserBinding
 
+    private var dpadUpClicks = 0
     private var lastDpadUpTime = 0L
+    private var dpadDownClicks = 0
     private var lastDpadDownTime = 0L
-    private val DOUBLE_PRESS_INTERVAL = 500L // 500ms
+    private val QUICK_PRESS_INTERVAL = 500L // 500ms between consecutive clicks
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,24 +70,34 @@ class BrowserActivity : AppCompatActivity() {
                     val engineView = fragment?.view?.findViewById<View>(R.id.engineView)
                     if (engineView?.hasFocus() == true && fragment?.isToolbarVisible() == false) {
                         val currentTime = System.currentTimeMillis()
-                        if (currentTime - lastDpadUpTime < DOUBLE_PRESS_INTERVAL) {
-                            lastDpadUpTime = 0L // Reset
+                        if (currentTime - lastDpadUpTime < QUICK_PRESS_INTERVAL) {
+                            dpadUpClicks++
+                        } else {
+                            dpadUpClicks = 1
+                        }
+                        lastDpadUpTime = currentTime
+
+                        if (dpadUpClicks >= 3) {
+                            dpadUpClicks = 0 // Reset
                             fragment.showToolbar(focusUrlBar = true)
                             return true
-                        } else {
-                            lastDpadUpTime = currentTime
                         }
                     }
                 }
                 android.view.KeyEvent.KEYCODE_DPAD_DOWN -> {
                     if (fragment?.isToolbarVisible() == true) {
                         val currentTime = System.currentTimeMillis()
-                        if (currentTime - lastDpadDownTime < DOUBLE_PRESS_INTERVAL) {
-                            lastDpadDownTime = 0L // Reset
+                        if (currentTime - lastDpadDownTime < QUICK_PRESS_INTERVAL) {
+                            dpadDownClicks++
+                        } else {
+                            dpadDownClicks = 1
+                        }
+                        lastDpadDownTime = currentTime
+
+                        if (dpadDownClicks >= 3) {
+                            dpadDownClicks = 0 // Reset
                             fragment.hideToolbar()
                             return true
-                        } else {
-                            lastDpadDownTime = currentTime
                         }
                     }
                 }

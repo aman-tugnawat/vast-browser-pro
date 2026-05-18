@@ -33,9 +33,9 @@ To facilitate mouse/trackpad interaction on TV or spatial computing platforms:
 To keep the TV viewing experience premium and uncluttered:
 
 * **Focus-Only Navigation:** Navigating to the address bar or navigation buttons via D-pad directional/arrow keys (**UP, DOWN, LEFT, RIGHT**) slides the toolbar down smoothly but **does not summon the soft keyboard**. The keyboard remains hidden so the user can freely check the URL or highlight adjacent toolbar buttons.
-* **D-Pad UP & DOWN Double-Press Triggers:** To prevent accidental layout shifts and support natural webpage scrolling:
-  * **Double D-Pad UP:** When focus is inside the web page (`engineView`) and the toolbar is hidden, pressing the **D-Pad UP** key **twice in quick succession** (within 500ms) slides the toolbar down and places focus directly into the URL input bar. A single press scrolls the webpage up normally.
-  * **Double D-Pad DOWN:** When the toolbar is visible, pressing the **D-Pad DOWN** key **twice in quick succession** (within 500ms) slides the toolbar up, dismisses the virtual keyboard, and returns focus directly to the webpage viewport. A single press moves focus down normally.
+* **D-Pad UP & DOWN Triple-Press Triggers:** To prevent accidental layout shifts and support natural webpage scrolling:
+  * **Triple D-Pad UP:** When focus is inside the web page (`engineView`) and the toolbar is hidden, pressing the **D-Pad UP** key **three times in quick succession** (each click within 500ms) slides the toolbar down and places focus directly into the URL input bar. Normal single or double presses scroll the webpage up normally.
+  * **Triple D-Pad DOWN:** When the toolbar is visible, pressing the **D-Pad DOWN** key **three times in quick succession** (each click within 500ms) slides the toolbar up, dismisses the virtual keyboard, and returns focus directly to the webpage viewport. Normal single or double presses move focus down normally.
 
 ---
 
@@ -89,3 +89,17 @@ To provide full hardware-based control over playing video and audio elements on 
   * **Toggle Play/Pause (`KEYCODE_MEDIA_PLAY_PAUSE`):** Toggles `play()` or `pause()` depending on the element's current `.paused` state.
   * **Fast Forward (`KEYCODE_MEDIA_FAST_FORWARD`, `KEYCODE_MEDIA_NEXT`):** Fast forwards all active media playback elements by **10 seconds** (`currentTime += 10`).
   * **Rewind (`KEYCODE_MEDIA_REWIND`, `KEYCODE_MEDIA_PREVIOUS`):** Rewinds all active media playback elements by **10 seconds** (`currentTime -= 10`).
+
+---
+
+## 🎯 8. D-Pad Webpage Spatial Navigation
+
+To ensure a seamless browsing experience when the address bar is hidden:
+
+* **Focus Delegation:** When the floating toolbar is hidden, focus is returned entirely to the `engineView` (Android `WebView`).
+* **Spatial Navigation:** Users can use the D-pad arrows to freely navigate between clickable HTML elements (e.g., links, buttons, inputs) on the webpage.
+* **Visual Selection Outline:** A global CSS rule is automatically injected into every loaded webpage to provide a highly visible focus indicator:
+  * Selected elements are highlighted with a prominent **4px solid orange (#FF9800)** outline with a shadow, ensuring clear visibility on TVs from a distance.
+* **Automatic Focus Restoration:** When the toolbar is hidden:
+  * **Last Selected Element:** If the user has already navigated the webpage, focus is instantly restored to the **last selected clickable HTML element** to resume browsing smoothly.
+  * **Topmost Element:** If the page has just loaded (or no element has been focused yet), focus is automatically assigned to the **topmost focusable HTML element** (e.g., the first link or button on the page) so D-pad navigation can begin instantly.

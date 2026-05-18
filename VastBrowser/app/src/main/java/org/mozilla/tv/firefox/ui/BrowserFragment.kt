@@ -237,6 +237,9 @@ class BrowserFragment : Fragment() {
                 .distinctUntilChanged()
                 .collect { loading ->
                     binding.progressBar.visibility = if (loading) View.VISIBLE else View.GONE
+                    if (!loading) {
+                        injectFocusCss()
+                    }
                 }
         }
 
@@ -298,6 +301,7 @@ class BrowserFragment : Fragment() {
         binding.engineView.requestFocus()
         val imm = requireContext().getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as android.view.inputmethod.InputMethodManager
         imm.hideSoftInputFromWindow(binding.urlInput.windowToken, 0)
+        restoreWebpageFocus()
     }
 
     /**
@@ -309,6 +313,9 @@ class BrowserFragment : Fragment() {
         if (shouldShow != isToolbarVisible) {
             isToolbarVisible = shouldShow
             animateToolbar(shouldShow)
+            if (!shouldShow) {
+                restoreWebpageFocus()
+            }
         }
     }
 
@@ -437,6 +444,64 @@ class BrowserFragment : Fragment() {
             else -> return
         }
 
+        webView.evaluateJavascript(js, null)
+    }
+
+    /**
+     * Injects a global CSS style rule into the WebView so that any HTML element
+     * currently focused by the D-pad receives a prominent visual outline.
+     * Also sets up a listener to track the last focused element.
+     */
+    private fun injectFocusCss() {
+        val webView = getWebView() ?: return
+        val js = """
+            (function() {
+                if (!document.getElementById('tv-focus-style')) {
+                    var style = document.createElement('style');
+                    style.id = 'tv-focus-style';
+                    style.innerHTML = `
+                        *:focus {
+                            outline: 4px solid #FF9800 !important;
+                            outline-offset: 2px !important;
+                            box-shadow: 0 0 10px #FF9800 !important;
+                            transition: outline 0.1s ease-in-out !important;
+                        }
+                    `;
+                    document.head.appendChild(style);
+                }
+
+                if (!window.hasTvFocusTracker) {
+                    window.hasTvFocusTracker = true;
+                    window.lastFocusedElement = null;
+                    document.addEventListener('focus', function(e) {
+                        if (e.target && e.target !== document.body && e.target !== document.documentElement) {
+                            window.lastFocusedElement = e.target;
+                        }
+                    }, true);
+                }
+            })();
+        """.trimIndent()
+        webView.evaluateJavascript(js, null)
+    }
+
+    /**
+     * Focuses the last selected webpage HTML element, or the topmost focusable element
+     * if the page was just loaded or has no previous focus.
+     */
+    fun restoreWebpageFocus() {
+        val webView = getWebView() ?: return
+        val js = """
+            (function() {
+                if (window.lastFocusedElement && document.body.contains(window.lastFocusedElement)) {
+                    window.lastFocusedElement.focus();
+                } else {
+                    var focusables = document.querySelectorAll('a, button, input, select, textarea, [tabindex="0"]');
+                    if (focusables.length > 0) {
+                        focusables[0].focus();
+                    }
+                }
+            })();
+        """.trimIndent()
         webView.evaluateJavascript(js, null)
     }
 }
