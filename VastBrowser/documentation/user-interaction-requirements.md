@@ -98,8 +98,14 @@ To ensure a seamless browsing experience when the address bar is hidden:
 
 * **Focus Delegation:** When the floating toolbar is hidden, focus is returned entirely to the `engineView` (Android `WebView`).
 * **Spatial Navigation:** Users can use the D-pad arrows to freely navigate between clickable HTML elements (e.g., links, buttons, inputs) on the webpage.
-* **Visual Selection Outline:** A global CSS rule is automatically injected into every loaded webpage to provide a highly visible focus indicator:
-  * Selected elements are highlighted with a prominent **4px solid orange (#FF9800)** outline with a shadow, ensuring clear visibility on TVs from a distance.
+* **Visual Selection Indicator:** A global CSS rule is injected into every loaded webpage using an **inset box-shadow** technique:
+  * `box-shadow: inset 0 0 0 4px #FF9800` — renders **inside** the element boundary, so it is never clipped by `overflow: hidden` parents (common on image card grids).
+  * A subtle `transform: scale(1.03)` and `z-index: 9999` lifts the focused element above its siblings.
+  * Synthetic `mouseenter` / `mouseover` events are dispatched so the site's own hover animations (e.g., image zoom) continue working naturally.
+* **Per-Element Visibility Check:** Every focusable element is tested using `document.elementFromPoint()` at its center coordinates. Only elements that are actually **visible on the rendered page** (not obscured by a higher-z overlay) are included in the navigation set. This means:
+  * When a dialog, search panel, or dropdown is open, background elements are automatically excluded because they fail the hit-test.
+  * Search inputs, result lists, and close buttons within overlays are all navigable regardless of which DOM subtree or z-index layer they belong to.
+  * When the overlay is dismissed, background elements immediately become navigable again.
 * **Automatic Focus Restoration:** When the toolbar is hidden:
   * **Last Selected Element:** If the user has already navigated the webpage, focus is instantly restored to the **last selected clickable HTML element** to resume browsing smoothly.
   * **Topmost Element:** If the page has just loaded (or no element has been focused yet), focus is automatically assigned to the **topmost focusable HTML element** (e.g., the first link or button on the page) so D-pad navigation can begin instantly.

@@ -500,33 +500,63 @@ class BrowserFragment : Fragment() {
                     var FOCUSABLE = 'a, button, input, select, textarea, [tabindex]:not([tabindex="-1"]), [role="button"], [role="link"], [role="menuitem"], [role="tab"], [onclick]';
 
                     function getFocusableElements() {
-                        return Array.from(document.querySelectorAll(FOCUSABLE))
+                        /* Gather all candidate focusable elements from the entire document */
+                        var all = Array.from(document.querySelectorAll(FOCUSABLE))
                             .filter(function(el) {
                                 var rect = el.getBoundingClientRect();
                                 if (rect.width <= 0 || rect.height <= 0) return false;
                                 var cs = window.getComputedStyle(el);
                                 if (cs.visibility === 'hidden' || cs.display === 'none' || cs.pointerEvents === 'none') return false;
                                 if (el.disabled) return false;
-                                /* Skip tiny elements that are likely invisible toggle/hidden inputs */
                                 if (rect.width < 5 && rect.height < 5) return false;
                                 return true;
                             });
+
+                        /* Use elementFromPoint to check if each element is actually
+                           visible on screen (not obscured by a higher-z overlay).
+                           An element is "visible" if hitting its center point returns
+                           the element itself OR one of its descendants/ancestors. */
+                        return all.filter(function(el) {
+                            var rect = el.getBoundingClientRect();
+                            var cx = rect.left + rect.width / 2;
+                            var cy = rect.top + rect.height / 2;
+
+                            /* Skip elements entirely off-screen */
+                            if (cx < 0 || cy < 0 || cx > window.innerWidth || cy > window.innerHeight) return false;
+
+                            var topEl = document.elementFromPoint(cx, cy);
+                            if (!topEl) return false;
+
+                            /* The element is visible if the hit-test returns itself,
+                               a descendant of it, or an ancestor of it */
+                            return el === topEl || el.contains(topEl) || topEl.contains(el);
+                        });
                     }
 
-                    /* De-duplicate nested focusables: if a child <a> is inside a parent <a>,
-                       prefer the deepest one so focus lands exactly on the right element. */
+                    /* De-duplicate nested focusables: if a parent wrapper (e.g. <div role="button">)
+                       contains a child focusable (e.g. <input>), keep BOTH but skip the parent
+                       only when it has a single focusable child that fully represents it.
+                       For inputs/selects/textareas, always keep them regardless of nesting. */
                     function dedup(elements) {
                         var out = [];
+                        var ALWAYS_KEEP = {'INPUT':1, 'SELECT':1, 'TEXTAREA':1, 'BUTTON':1};
                         for (var i = 0; i < elements.length; i++) {
-                            var dominated = false;
+                            var el = elements[i];
+                            /* Always keep form controls — they're the actionable targets */
+                            if (ALWAYS_KEEP[el.tagName]) {
+                                out.push(el);
+                                continue;
+                            }
+                            /* Skip this element if it's a wrapper that contains other
+                               focusable elements from our list (prefer the children) */
+                            var hasChildFocusable = false;
                             for (var j = 0; j < elements.length; j++) {
-                                if (i !== j && elements[j].contains(elements[i]) && elements[j] !== elements[i]) {
-                                    dominated = true;
+                                if (i !== j && el.contains(elements[j]) && el !== elements[j]) {
+                                    hasChildFocusable = true;
                                     break;
                                 }
                             }
-                            /* Keep the deepest (child) element, skip parent wrappers */
-                            if (!dominated) out.push(elements[i]);
+                            if (!hasChildFocusable) out.push(el);
                         }
                         return out;
                     }
