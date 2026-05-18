@@ -19,6 +19,10 @@ class BrowserActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityBrowserBinding
 
+    private var lastDpadUpTime = 0L
+    private var lastDpadDownTime = 0L
+    private val DOUBLE_PRESS_INTERVAL = 500L // 500ms
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityBrowserBinding.inflate(layoutInflater)
@@ -62,10 +66,27 @@ class BrowserActivity : AppCompatActivity() {
             when (event.keyCode) {
                 android.view.KeyEvent.KEYCODE_DPAD_UP -> {
                     val engineView = fragment?.view?.findViewById<View>(R.id.engineView)
-                    if (engineView?.hasFocus() == true) {
-                        // If focus is inside the engine view, show toolbar and move it to the URL bar
-                        fragment.showToolbar(focusUrlBar = true)
-                        return true
+                    if (engineView?.hasFocus() == true && fragment?.isToolbarVisible() == false) {
+                        val currentTime = System.currentTimeMillis()
+                        if (currentTime - lastDpadUpTime < DOUBLE_PRESS_INTERVAL) {
+                            lastDpadUpTime = 0L // Reset
+                            fragment.showToolbar(focusUrlBar = true)
+                            return true
+                        } else {
+                            lastDpadUpTime = currentTime
+                        }
+                    }
+                }
+                android.view.KeyEvent.KEYCODE_DPAD_DOWN -> {
+                    if (fragment?.isToolbarVisible() == true) {
+                        val currentTime = System.currentTimeMillis()
+                        if (currentTime - lastDpadDownTime < DOUBLE_PRESS_INTERVAL) {
+                            lastDpadDownTime = 0L // Reset
+                            fragment.hideToolbar()
+                            return true
+                        } else {
+                            lastDpadDownTime = currentTime
+                        }
                     }
                 }
                 android.view.KeyEvent.KEYCODE_BACK -> {

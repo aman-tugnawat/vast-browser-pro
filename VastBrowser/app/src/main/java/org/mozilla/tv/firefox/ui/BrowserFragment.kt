@@ -282,6 +282,24 @@ class BrowserFragment : Fragment() {
         }
     }
 
+    fun isToolbarVisible(): Boolean {
+        return isToolbarVisible
+    }
+
+    /**
+     * Hide the top toolbar, dismiss keyboard, and focus webpage.
+     */
+    fun hideToolbar() {
+        val binding = _binding ?: return
+        if (isToolbarVisible) {
+            isToolbarVisible = false
+            animateToolbar(false)
+        }
+        binding.engineView.requestFocus()
+        val imm = requireContext().getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as android.view.inputmethod.InputMethodManager
+        imm.hideSoftInputFromWindow(binding.urlInput.windowToken, 0)
+    }
+
     /**
      * Update the visibility of the top toolbar based on focus and cursor position.
      */

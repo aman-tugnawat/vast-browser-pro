@@ -33,7 +33,9 @@ To facilitate mouse/trackpad interaction on TV or spatial computing platforms:
 To keep the TV viewing experience premium and uncluttered:
 
 * **Focus-Only Navigation:** Navigating to the address bar or navigation buttons via D-pad directional/arrow keys (**UP, DOWN, LEFT, RIGHT**) slides the toolbar down smoothly but **does not summon the soft keyboard**. The keyboard remains hidden so the user can freely check the URL or highlight adjacent toolbar buttons.
-* **D-Pad UP Trigger:** When focus is inside the web content (`engineView`), pressing the **D-Pad UP** key automatically slides the toolbar down and places focus directly into the URL input bar.
+* **D-Pad UP & DOWN Double-Press Triggers:** To prevent accidental layout shifts and support natural webpage scrolling:
+  * **Double D-Pad UP:** When focus is inside the web page (`engineView`) and the toolbar is hidden, pressing the **D-Pad UP** key **twice in quick succession** (within 500ms) slides the toolbar down and places focus directly into the URL input bar. A single press scrolls the webpage up normally.
+  * **Double D-Pad DOWN:** When the toolbar is visible, pressing the **D-Pad DOWN** key **twice in quick succession** (within 500ms) slides the toolbar up, dismisses the virtual keyboard, and returns focus directly to the webpage viewport. A single press moves focus down normally.
 
 ---
 
