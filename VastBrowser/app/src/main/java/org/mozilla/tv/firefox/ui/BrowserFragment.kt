@@ -239,6 +239,10 @@ class BrowserFragment : Fragment() {
                     binding.progressBar.visibility = if (loading) View.VISIBLE else View.GONE
                     if (!loading) {
                         injectFocusCss()
+                        if (!isToolbarVisible) {
+                            getWebView()?.requestFocus()
+                            restoreWebpageFocus()
+                        }
                     }
                 }
         }
@@ -298,7 +302,7 @@ class BrowserFragment : Fragment() {
             isToolbarVisible = false
             animateToolbar(false)
         }
-        binding.engineView.requestFocus()
+        getWebView()?.requestFocus()
         val imm = requireContext().getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as android.view.inputmethod.InputMethodManager
         imm.hideSoftInputFromWindow(binding.urlInput.windowToken, 0)
         restoreWebpageFocus()
@@ -456,26 +460,160 @@ class BrowserFragment : Fragment() {
         val webView = getWebView() ?: return
         val js = """
             (function() {
-                if (!document.getElementById('tv-focus-style')) {
-                    var style = document.createElement('style');
-                    style.id = 'tv-focus-style';
-                    style.innerHTML = `
-                        *:focus {
-                            outline: 4px solid #FF9800 !important;
-                            outline-offset: 2px !important;
-                            box-shadow: 0 0 10px #FF9800 !important;
-                            transition: outline 0.1s ease-in-out !important;
-                        }
-                    `;
-                    document.head.appendChild(style);
+                if (document.getElementById('tv-focus-style')) {
+                    document.getElementById('tv-focus-style').remove();
                 }
+                var style = document.createElement('style');
+                style.id = 'tv-focus-style';
+                style.innerHTML = `
+                    /* TV focus indicator — uses INSET box-shadow so it is never clipped
+                       by overflow:hidden on parent containers (movie card grids, image wrappers).
+                       Also adds a subtle scale pop and z-index lift so image cards are
+                       unmistakably highlighted even on dark backgrounds. */
+                    *:focus {
+                        box-shadow: inset 0 0 0 4px #FF9800, 0 0 12px 2px rgba(255,152,0,0.5) !important;
+                        outline: none !important;
+                        transform: scale(1.03) !important;
+                        z-index: 9999 !important;
+                        position: relative !important;
+                        transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+                    }
+                `;
+                document.head.appendChild(style);
 
                 if (!window.hasTvFocusTracker) {
                     window.hasTvFocusTracker = true;
                     window.lastFocusedElement = null;
+                    window.prevFocusedElement = null;
                     document.addEventListener('focus', function(e) {
                         if (e.target && e.target !== document.body && e.target !== document.documentElement) {
                             window.lastFocusedElement = e.target;
+                        }
+                    }, true);
+                }
+
+                if (!window.hasTvSpatialNav) {
+                    window.hasTvSpatialNav = true;
+
+                    /* Broadened selector — catches divs/spans with onclick, role, or tabindex
+                       which is how most modern streaming/media sites build their card grids. */
+                    var FOCUSABLE = 'a, button, input, select, textarea, [tabindex]:not([tabindex="-1"]), [role="button"], [role="link"], [role="menuitem"], [role="tab"], [onclick]';
+
+                    function getFocusableElements() {
+                        return Array.from(document.querySelectorAll(FOCUSABLE))
+                            .filter(function(el) {
+                                var rect = el.getBoundingClientRect();
+                                if (rect.width <= 0 || rect.height <= 0) return false;
+                                var cs = window.getComputedStyle(el);
+                                if (cs.visibility === 'hidden' || cs.display === 'none' || cs.pointerEvents === 'none') return false;
+                                if (el.disabled) return false;
+                                /* Skip tiny elements that are likely invisible toggle/hidden inputs */
+                                if (rect.width < 5 && rect.height < 5) return false;
+                                return true;
+                            });
+                    }
+
+                    /* De-duplicate nested focusables: if a child <a> is inside a parent <a>,
+                       prefer the deepest one so focus lands exactly on the right element. */
+                    function dedup(elements) {
+                        var out = [];
+                        for (var i = 0; i < elements.length; i++) {
+                            var dominated = false;
+                            for (var j = 0; j < elements.length; j++) {
+                                if (i !== j && elements[j].contains(elements[i]) && elements[j] !== elements[i]) {
+                                    dominated = true;
+                                    break;
+                                }
+                            }
+                            /* Keep the deepest (child) element, skip parent wrappers */
+                            if (!dominated) out.push(elements[i]);
+                        }
+                        return out;
+                    }
+
+                    function findNextElement(direction) {
+                        var active = document.activeElement;
+                        var elements = dedup(getFocusableElements());
+                        if (elements.length === 0) return null;
+
+                        /* If nothing meaningful is focused, pick the first visible element */
+                        if (!active || active === document.body || active === document.documentElement) {
+                            return elements[0];
+                        }
+
+                        /* Walk up to find the matching focusable if active isn't in our list */
+                        var resolved = active;
+                        while (resolved && !elements.includes(resolved) && resolved !== document.body) {
+                            resolved = resolved.parentElement;
+                        }
+                        if (!resolved || resolved === document.body) return elements[0];
+
+                        var aRect = resolved.getBoundingClientRect();
+                        var aCx = aRect.left + aRect.width / 2;
+                        var aCy = aRect.top + aRect.height / 2;
+                        var bestMatch = null;
+                        var bestScore = Infinity;
+
+                        for (var i = 0; i < elements.length; i++) {
+                            var el = elements[i];
+                            if (el === resolved) continue;
+                            var rect = el.getBoundingClientRect();
+                            var cx = rect.left + rect.width / 2;
+                            var cy = rect.top + rect.height / 2;
+                            var dx = cx - aCx;
+                            var dy = cy - aCy;
+
+                            /* Strict directional gating */
+                            var ok = false;
+                            if (direction === 'ArrowDown')  ok = dy > 5;
+                            if (direction === 'ArrowUp')    ok = dy < -5;
+                            if (direction === 'ArrowRight') ok = dx > 5;
+                            if (direction === 'ArrowLeft')  ok = dx < -5;
+                            if (!ok) continue;
+
+                            /* Weighted distance: strongly prefer the primary axis */
+                            var score;
+                            if (direction === 'ArrowDown' || direction === 'ArrowUp') {
+                                score = Math.abs(dy) + Math.abs(dx) * 3;
+                            } else {
+                                score = Math.abs(dx) + Math.abs(dy) * 3;
+                            }
+
+                            if (score < bestScore) {
+                                bestScore = score;
+                                bestMatch = el;
+                            }
+                        }
+                        return bestMatch;
+                    }
+
+                    /* Dispatch synthetic mouse events so site JS that listens for
+                       mouseenter / mouseover (e.g. card hover-scale) fires correctly. */
+                    function simulateHover(el, prevEl) {
+                        if (prevEl && prevEl !== el) {
+                            prevEl.dispatchEvent(new MouseEvent('mouseleave', {bubbles: true, cancelable: true}));
+                            prevEl.dispatchEvent(new MouseEvent('mouseout',   {bubbles: true, cancelable: true}));
+                        }
+                        el.dispatchEvent(new MouseEvent('mouseenter', {bubbles: true, cancelable: true}));
+                        el.dispatchEvent(new MouseEvent('mouseover',  {bubbles: true, cancelable: true}));
+                    }
+
+                    window.addEventListener('keydown', function(e) {
+                        if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+                            var nextEl = findNextElement(e.key);
+                            if (nextEl) {
+                                e.preventDefault();
+                                e.stopImmediatePropagation();
+                                var prev = window.prevFocusedElement;
+                                /* Make element programmatically focusable if it isn't already */
+                                if (!nextEl.hasAttribute('tabindex')) {
+                                    nextEl.setAttribute('tabindex', '-1');
+                                }
+                                nextEl.focus({preventScroll: true});
+                                simulateHover(nextEl, prev);
+                                window.prevFocusedElement = nextEl;
+                                nextEl.scrollIntoView({block: 'nearest', inline: 'nearest', behavior: 'smooth'});
+                            }
                         }
                     }, true);
                 }
@@ -492,6 +630,7 @@ class BrowserFragment : Fragment() {
         val webView = getWebView() ?: return
         val js = """
             (function() {
+                window.focus();
                 if (window.lastFocusedElement && document.body.contains(window.lastFocusedElement)) {
                     window.lastFocusedElement.focus();
                 } else {
