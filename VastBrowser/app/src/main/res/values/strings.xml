@@ -8,7 +8,7 @@
     <string name="settings_title">Settings</string>
     <string name="settings_home_page">Home Page URL</string>
     <string name="settings_nav_method">Navigation Method</string>
-    <string name="nav_method_surfing">Element Surfing (Default)</string>
+    <string name="nav_method_surfing">Element Surfing</string>
     <string name="nav_method_cursor">D-Pad Cursor</string>
     <string name="settings_cursor_timeout">Cursor Disappearance Timeout</string>
     <string name="timeout_1s">1 Second</string>

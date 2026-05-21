@@ -196,6 +196,23 @@
             android:alpha="0" />
     </FrameLayout>
 
+    <!-- Hover details / tooltip overlay -->
+    <TextView
+        android:id="@+id/cursor_tooltip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/tooltip_background"
+        android:textColor="@color/text_primary"
+        android:textSize="12sp"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="6dp"
+        android:visibility="gone"
+        android:elevation="12dp"
+        android:maxWidth="320dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Tooltip text details" />
+
     <!-- Scroll mode status text -->
     <TextView
         android:id="@+id/scroll_mode_text"

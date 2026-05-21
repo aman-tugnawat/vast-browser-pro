@@ -724,7 +724,12 @@ class BrowserFragment : Fragment() {
     private val cursorHideRunnable = Runnable {
         if (!isScrollModeActive) {
             _binding?.cursorGroup?.visibility = View.GONE
+            _binding?.cursorTooltip?.visibility = View.GONE
         }
+    }
+    
+    private val hoverRunnable = Runnable {
+        updateHoverTooltip()
     }
     
     private var isCenterDown = false
@@ -813,6 +818,7 @@ class BrowserFragment : Fragment() {
         
         if (!isCursorMode) {
             _binding?.cursorRing?.visibility = View.GONE
+            _binding?.cursorTooltip?.visibility = View.GONE
             _binding?.engineView?.isFocusable = true
         } else {
             // In cursor mode, the engineView shouldn't trap DPAD focus natively
@@ -922,6 +928,7 @@ class BrowserFragment : Fragment() {
                 })();
             """.trimIndent()
             
+            binding.cursorTooltip.visibility = View.GONE
             getWebView()?.evaluateJavascript(js, null)
             return true
         }
@@ -975,6 +982,163 @@ class BrowserFragment : Fragment() {
         cursor.translationX = cursorX
         cursor.translationY = cursorY
         
+        binding.cursorTooltip.visibility = View.GONE
+        binding.root.removeCallbacks(hoverRunnable)
+        binding.root.postDelayed(hoverRunnable, 100)
+        
         return true
+    }
+
+    private fun updateHoverTooltip() {
+        val binding = _binding ?: return
+        val webView = getWebView() ?: return
+        if (!isCursorMode) return
+
+        val touchX = cursorX + binding.cursorGroup.width / 2f
+        val touchY = cursorY + binding.cursorGroup.height / 2f - binding.engineView.top
+        dispatchNativeHoverMove(touchX, touchY)
+
+        val engineW = binding.engineView.width.toFloat().coerceAtLeast(1f)
+        val engineH = binding.engineView.height.toFloat().coerceAtLeast(1f)
+        val fracX = (cursorX + binding.cursorGroup.width / 2f) / engineW
+        val fracY = (cursorY + binding.cursorGroup.height / 2f - binding.engineView.top) / engineH
+
+        val js = """
+            (function() {
+                var cssX = $fracX * window.innerWidth;
+                var cssY = $fracY * window.innerHeight;
+                var el = document.elementFromPoint(cssX, cssY);
+                
+                var lastEl = window.tvLastHoveredElement;
+                if (el !== lastEl) {
+                    if (lastEl) {
+                        try {
+                            var outEvent = new MouseEvent('mouseout', { bubbles: true, cancelable: true, view: window });
+                            lastEl.dispatchEvent(outEvent);
+                            var leaveEvent = new MouseEvent('mouseleave', { bubbles: false, cancelable: true, view: window });
+                            lastEl.dispatchEvent(leaveEvent);
+                        } catch(e) {}
+                    }
+                    window.tvLastHoveredElement = el;
+                    if (el) {
+                        try {
+                            var overEvent = new MouseEvent('mouseover', { bubbles: true, cancelable: true, view: window });
+                            el.dispatchEvent(overEvent);
+                            var enterEvent = new MouseEvent('mouseenter', { bubbles: false, cancelable: true, view: window });
+                            el.dispatchEvent(enterEvent);
+                        } catch(e) {}
+                    }
+                }
+                if (el) {
+                    try {
+                        var moveEvent = new MouseEvent('mousemove', { bubbles: true, cancelable: true, view: window, clientX: cssX, clientY: cssY });
+                        el.dispatchEvent(moveEvent);
+                    } catch(e) {}
+                }
+                
+                var curr = el;
+                var tooltip = "";
+                for (var i = 0; i < 5 && curr; i++) {
+                    if (curr.tagName === 'BODY' || curr.tagName === 'HTML') break;
+                    
+                    var title = curr.getAttribute('title');
+                    if (title && title.trim()) {
+                        tooltip = title.trim();
+                        break;
+                    }
+                    var aria = curr.getAttribute('aria-label');
+                    if (aria && aria.trim()) {
+                        tooltip = aria.trim();
+                        break;
+                    }
+                    var placeholder = curr.getAttribute('placeholder');
+                    if (placeholder && placeholder.trim()) {
+                        tooltip = placeholder.trim();
+                        break;
+                    }
+                    var alt = curr.getAttribute('alt');
+                    if (alt && alt.trim()) {
+                        tooltip = alt.trim();
+                        break;
+                    }
+                    curr = curr.parentElement;
+                }
+                return tooltip;
+            })()
+        """.trimIndent()
+
+        webView.evaluateJavascript(js) { value ->
+            val context = context ?: return@evaluateJavascript
+            val binding = _binding ?: return@evaluateJavascript
+            val tooltipText = if (value != null && value != "null" && value != "\"\"") {
+                var s = value
+                if (s.startsWith("\"") && s.endsWith("\"") && s.length >= 2) {
+                    s = s.substring(1, s.length - 1)
+                }
+                s = s.replace("\\\\", "\\")
+                     .replace("\\\"", "\"")
+                     .replace("\\n", "\n")
+                     .replace("\\t", "\t")
+                s.trim()
+            } else {
+                ""
+            }
+
+            val tooltip = binding.cursorTooltip
+            if (tooltipText.isNotEmpty()) {
+                tooltip.text = tooltipText
+                tooltip.visibility = View.VISIBLE
+                
+                tooltip.measure(
+                    View.MeasureSpec.makeMeasureSpec(binding.root.width / 2, View.MeasureSpec.AT_MOST),
+                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+                )
+                val tooltipW = tooltip.measuredWidth
+                val tooltipH = tooltip.measuredHeight
+                
+                val cursorW = binding.cursorGroup.width
+                val cursorH = binding.cursorGroup.height
+                
+                var tx = cursorX + (cursorW - tooltipW) / 2f
+                val maxX = binding.root.width.toFloat() - tooltipW
+                tx = tx.coerceIn(0f, maxX)
+                
+                var ty = cursorY + cursorH + 8f
+                val maxY = binding.root.height.toFloat() - tooltipH
+                if (ty > maxY) {
+                    ty = cursorY - tooltipH - 8f
+                }
+                
+                tooltip.translationX = tx
+                tooltip.translationY = ty
+            } else {
+                tooltip.visibility = View.GONE
+            }
+        }
+    }
+
+    private fun dispatchNativeHoverMove(touchX: Float, touchY: Float) {
+        val binding = _binding ?: return
+        val uptime = android.os.SystemClock.uptimeMillis()
+        
+        val properties = arrayOf(android.view.MotionEvent.PointerProperties().apply {
+            id = 0
+            toolType = android.view.MotionEvent.TOOL_TYPE_MOUSE
+        })
+        val coords = arrayOf(android.view.MotionEvent.PointerCoords().apply {
+            x = touchX
+            y = touchY
+        })
+        
+        val hoverEvent = android.view.MotionEvent.obtain(
+            uptime, uptime,
+            android.view.MotionEvent.ACTION_HOVER_MOVE,
+            1, properties, coords,
+            0, 0, 1f, 1f, 0, 0,
+            android.view.InputDevice.SOURCE_MOUSE, 0
+        )
+        
+        binding.engineView.dispatchGenericMotionEvent(hoverEvent)
+        hoverEvent.recycle()
     }
 }
