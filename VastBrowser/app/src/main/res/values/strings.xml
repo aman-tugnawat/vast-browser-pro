@@ -5,4 +5,16 @@
     <string name="action_back">Go back</string>
     <string name="action_forward">Go forward</string>
     <string name="action_reload">Reload page</string>
+    <string name="settings_title">Settings</string>
+    <string name="settings_home_page">Home Page URL</string>
+    <string name="settings_nav_method">Navigation Method</string>
+    <string name="nav_method_surfing">Element Surfing (Default)</string>
+    <string name="nav_method_cursor">D-Pad Cursor</string>
+    <string name="settings_cursor_timeout">Cursor Disappearance Timeout</string>
+    <string name="timeout_1s">1 Second</string>
+    <string name="timeout_3s">3 Seconds</string>
+    <string name="timeout_5s">5 Seconds</string>
+    <string name="timeout_custom">Custom (Max 60s)</string>
+    <string name="custom_timeout_hint">Timeout in seconds (Max 60)</string>
+    <string name="save_settings">Save &amp; Go Back</string>
 </resources>

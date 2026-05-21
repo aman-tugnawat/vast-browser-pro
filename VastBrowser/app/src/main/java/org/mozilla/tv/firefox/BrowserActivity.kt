@@ -65,42 +65,55 @@ class BrowserActivity : AppCompatActivity() {
     override fun dispatchKeyEvent(event: android.view.KeyEvent): Boolean {
         if (event.action == android.view.KeyEvent.ACTION_DOWN) {
             val fragment = supportFragmentManager.findFragmentById(R.id.fragment_container) as? BrowserFragment
+
+            // Handle 3 consecutive UP/DOWN presses for toolbar toggle
             when (event.keyCode) {
                 android.view.KeyEvent.KEYCODE_DPAD_UP -> {
-                    val engineView = fragment?.view?.findViewById<View>(R.id.engineView)
-                    if (engineView?.hasFocus() == true && fragment?.isToolbarVisible() == false) {
-                        val currentTime = System.currentTimeMillis()
-                        if (currentTime - lastDpadUpTime < QUICK_PRESS_INTERVAL) {
-                            dpadUpClicks++
-                        } else {
-                            dpadUpClicks = 1
-                        }
-                        lastDpadUpTime = currentTime
+                    if (fragment?.isToolbarVisible() == false) {
+                        if (event.repeatCount == 0) {
+                            val currentTime = System.currentTimeMillis()
+                            if (currentTime - lastDpadUpTime < QUICK_PRESS_INTERVAL) {
+                                dpadUpClicks++
+                            } else {
+                                dpadUpClicks = 1
+                            }
+                            lastDpadUpTime = currentTime
 
-                        if (dpadUpClicks >= 3) {
-                            dpadUpClicks = 0 // Reset
-                            fragment.showToolbar(focusUrlBar = true)
-                            return true
+                            if (dpadUpClicks >= 3) {
+                                dpadUpClicks = 0 // Reset
+                                fragment.showToolbar(focusUrlBar = true)
+                                return true
+                            }
                         }
                     }
                 }
                 android.view.KeyEvent.KEYCODE_DPAD_DOWN -> {
                     if (fragment?.isToolbarVisible() == true) {
-                        val currentTime = System.currentTimeMillis()
-                        if (currentTime - lastDpadDownTime < QUICK_PRESS_INTERVAL) {
-                            dpadDownClicks++
-                        } else {
-                            dpadDownClicks = 1
-                        }
-                        lastDpadDownTime = currentTime
+                        if (event.repeatCount == 0) {
+                            val currentTime = System.currentTimeMillis()
+                            if (currentTime - lastDpadDownTime < QUICK_PRESS_INTERVAL) {
+                                dpadDownClicks++
+                            } else {
+                                dpadDownClicks = 1
+                            }
+                            lastDpadDownTime = currentTime
 
-                        if (dpadDownClicks >= 3) {
-                            dpadDownClicks = 0 // Reset
-                            fragment.hideToolbar()
-                            return true
+                            if (dpadDownClicks >= 3) {
+                                dpadDownClicks = 0 // Reset
+                                fragment.hideToolbar()
+                                return true
+                            }
                         }
                     }
                 }
+            }
+
+            // Allow BrowserFragment to handle D-Pad cursor first
+            if (fragment?.handleDpadEvent(event) == true) {
+                return true
+            }
+
+            when (event.keyCode) {
                 android.view.KeyEvent.KEYCODE_BACK -> {
                     val toolbar = fragment?.view?.findViewById<View>(R.id.toolbar)
                     if (toolbar?.hasFocus() == true) {

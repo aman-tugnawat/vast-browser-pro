@@ -78,7 +78,14 @@ class BrowserFragment : Fragment() {
         val engineView = binding.engineView as EngineView
 
         // Create initial tab if none exists
-        val initialUrl = arguments?.getString(ARG_URL) ?: HOME_URL
+        val prefs = requireContext().getSharedPreferences("vast_browser_prefs", android.content.Context.MODE_PRIVATE)
+        val homePageUrl = prefs.getString("pref_home_page", HOME_URL) ?: HOME_URL
+        
+        var initialUrl = arguments?.getString(ARG_URL)
+        if (initialUrl == null || initialUrl == HOME_URL) {
+            initialUrl = homePageUrl
+        }
+        
         if (components.store.state.selectedTabId == null) {
             val tab = createTab(url = initialUrl)
             components.store.dispatch(TabListAction.AddTabAction(tab, select = true))
@@ -210,10 +217,15 @@ class BrowserFragment : Fragment() {
             components.sessionUseCases.reload()
         }
         binding.buttonHome.setOnClickListener {
-            loadUrl("about:blank")
+            val prefs = requireContext().getSharedPreferences("vast_browser_prefs", android.content.Context.MODE_PRIVATE)
+            val homePageUrl = prefs.getString("pref_home_page", "about:blank") ?: "about:blank"
+            loadUrl(homePageUrl)
         }
         binding.buttonSettings.setOnClickListener {
-            android.widget.Toast.makeText(requireContext(), "Settings coming soon!", android.widget.Toast.LENGTH_SHORT).show()
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, SettingsFragment())
+                .addToBackStack(null)
+                .commit()
         }
     }
 
@@ -239,7 +251,7 @@ class BrowserFragment : Fragment() {
                     binding.progressBar.visibility = if (loading) View.VISIBLE else View.GONE
                     if (!loading) {
                         injectFocusCss()
-                        if (!isToolbarVisible) {
+                        if (!isToolbarVisible && !isCursorMode) {
                             getWebView()?.requestFocus()
                             restoreWebpageFocus()
                         }
@@ -305,7 +317,10 @@ class BrowserFragment : Fragment() {
         getWebView()?.requestFocus()
         val imm = requireContext().getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as android.view.inputmethod.InputMethodManager
         imm.hideSoftInputFromWindow(binding.urlInput.windowToken, 0)
-        restoreWebpageFocus()
+        
+        if (!isCursorMode) {
+            restoreWebpageFocus()
+        }
     }
 
     /**
@@ -317,7 +332,7 @@ class BrowserFragment : Fragment() {
         if (shouldShow != isToolbarVisible) {
             isToolbarVisible = shouldShow
             animateToolbar(shouldShow)
-            if (!shouldShow) {
+            if (!shouldShow && !isCursorMode) {
                 restoreWebpageFocus()
             }
         }
@@ -328,23 +343,22 @@ class BrowserFragment : Fragment() {
      */
     private fun animateToolbar(show: Boolean) {
         val binding = _binding ?: return
-        val toolbarHeight = if (binding.toolbar.height > 0) {
-            binding.toolbar.height.toFloat()
+        
+        val transition = TransitionSet()
+            .addTransition(Slide(Gravity.TOP).addTarget(binding.toolbar).addTarget(binding.progressBar))
+            .addTransition(ChangeBounds().addTarget(binding.engineView))
+            .setDuration(300)
+            
+        TransitionManager.beginDelayedTransition(binding.root as ViewGroup, transition)
+        
+        binding.toolbar.visibility = if (show) View.VISIBLE else View.GONE
+        
+        // Ensure progress bar hides completely if toolbar hides, else let the state observer manage it.
+        if (!show) {
+            binding.progressBar.visibility = View.GONE
         } else {
-            48 * resources.displayMetrics.density
+            binding.progressBar.visibility = if (components.store.state.selectedTab?.content?.loading == true) View.VISIBLE else View.GONE
         }
-
-        val targetTranslationY = if (show) 0f else -toolbarHeight
-
-        binding.toolbar.animate()
-            .translationY(targetTranslationY)
-            .setDuration(300)
-            .start()
-
-        binding.progressBar.animate()
-            .translationY(targetTranslationY)
-            .setDuration(300)
-            .start()
     }
 
     /**
@@ -689,5 +703,141 @@ class BrowserFragment : Fragment() {
             })();
         """.trimIndent()
         webView.evaluateJavascript(js, null)
+    }
+
+    private var cursorX = 0f
+    private var cursorY = 0f
+    private val cursorSpeed = 20f
+    private var isCursorMode = false
+    private var cursorTimeoutMs = 3000L
+    private val cursorHideRunnable = Runnable {
+        _binding?.cursorRing?.visibility = View.GONE
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val prefs = requireContext().getSharedPreferences("vast_browser_prefs", android.content.Context.MODE_PRIVATE)
+        isCursorMode = prefs.getString("pref_nav_method", "dpad_cursor") == "dpad_cursor"
+        cursorTimeoutMs = prefs.getInt("pref_cursor_timeout", 3000).toLong()
+        
+        if (!isCursorMode) {
+            _binding?.cursorRing?.visibility = View.GONE
+            _binding?.engineView?.isFocusable = true
+        } else {
+            // In cursor mode, the engineView shouldn't trap DPAD focus natively
+            _binding?.engineView?.isFocusable = false
+        }
+    }
+
+    fun handleDpadEvent(event: KeyEvent): Boolean {
+        if (!isCursorMode || _binding == null) return false
+        
+        // Don't intercept if toolbar is focused
+        if (binding.toolbar.hasFocus()) {
+            if (event.keyCode == KeyEvent.KEYCODE_DPAD_DOWN) {
+                // User is pressing DOWN to leave toolbar. Clear focus so cursor can move.
+                binding.toolbar.clearFocus()
+            } else {
+                return false
+            }
+        }
+
+        val cursor = binding.cursorRing
+        
+        // Show cursor if hidden
+        if (cursor.visibility != View.VISIBLE) {
+            cursor.visibility = View.VISIBLE
+            // Center if it's the first time
+            if (cursorX == 0f && cursorY == 0f) {
+                cursorX = binding.root.width / 2f
+                cursorY = binding.root.height / 2f
+            }
+            cursor.translationX = cursorX
+            cursor.translationY = cursorY
+        }
+
+        // Reset hide timeout
+        cursor.removeCallbacks(cursorHideRunnable)
+        cursor.postDelayed(cursorHideRunnable, cursorTimeoutMs)
+
+        var dx = 0f
+        var dy = 0f
+
+        when (event.keyCode) {
+            KeyEvent.KEYCODE_DPAD_UP -> {
+                val newY = cursorY - cursorSpeed
+                if (newY < 0f) {
+                    dy = newY
+                    cursorY = 0f
+                } else {
+                    cursorY = newY
+                }
+            }
+            KeyEvent.KEYCODE_DPAD_DOWN -> {
+                val max = binding.root.height.toFloat() - cursor.height
+                val newY = cursorY + cursorSpeed
+                if (newY > max) {
+                    dy = newY - max
+                    cursorY = max
+                } else {
+                    cursorY = newY
+                }
+            }
+            KeyEvent.KEYCODE_DPAD_LEFT -> {
+                val newX = cursorX - cursorSpeed
+                if (newX < 0f) {
+                    dx = newX
+                    cursorX = 0f
+                } else {
+                    cursorX = newX
+                }
+            }
+            KeyEvent.KEYCODE_DPAD_RIGHT -> {
+                val max = binding.root.width.toFloat() - cursor.width
+                val newX = cursorX + cursorSpeed
+                if (newX > max) {
+                    dx = newX - max
+                    cursorX = max
+                } else {
+                    cursorX = newX
+                }
+            }
+            KeyEvent.KEYCODE_DPAD_CENTER, KeyEvent.KEYCODE_ENTER -> {
+                if (event.action == KeyEvent.ACTION_DOWN) {
+                    val downEvent = MotionEvent.obtain(
+                        android.os.SystemClock.uptimeMillis(),
+                        android.os.SystemClock.uptimeMillis(),
+                        MotionEvent.ACTION_DOWN,
+                        cursorX + cursor.width / 2f,
+                        cursorY + cursor.height / 2f,
+                        0
+                    )
+                    binding.engineView.dispatchTouchEvent(downEvent)
+                    downEvent.recycle()
+
+                    val upEvent = MotionEvent.obtain(
+                        android.os.SystemClock.uptimeMillis(),
+                        android.os.SystemClock.uptimeMillis(),
+                        MotionEvent.ACTION_UP,
+                        cursorX + cursor.width / 2f,
+                        cursorY + cursor.height / 2f,
+                        0
+                    )
+                    binding.engineView.dispatchTouchEvent(upEvent)
+                    upEvent.recycle()
+                }
+                return true
+            }
+            else -> return false
+        }
+
+        if (dx != 0f || dy != 0f) {
+            getWebView()?.evaluateJavascript("window.scrollBy(${dx}, ${dy});", null)
+        }
+
+        cursor.translationX = cursorX
+        cursor.translationY = cursorY
+        
+        return true
     }
 }
