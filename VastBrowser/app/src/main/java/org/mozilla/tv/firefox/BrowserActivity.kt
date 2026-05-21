@@ -63,13 +63,35 @@ class BrowserActivity : AppCompatActivity() {
     }
 
     override fun dispatchKeyEvent(event: android.view.KeyEvent): Boolean {
-        if (event.action == android.view.KeyEvent.ACTION_DOWN) {
-            val fragment = supportFragmentManager.findFragmentById(R.id.fragment_container) as? BrowserFragment
+        val fragment = supportFragmentManager.findFragmentById(R.id.fragment_container) as? BrowserFragment
 
-            // Handle 3 consecutive UP/DOWN presses for toolbar toggle
+        // Forward ALL key events (ACTION_DOWN + ACTION_UP) for center/enter to handle click + long-press
+        if (event.keyCode == android.view.KeyEvent.KEYCODE_DPAD_CENTER || event.keyCode == android.view.KeyEvent.KEYCODE_ENTER) {
+            if (fragment?.handleDpadEvent(event) == true) {
+                return true
+            }
+        }
+
+        if (event.action == android.view.KeyEvent.ACTION_DOWN) {
+
+            // Menu/Settings button toggles the toolbar
+            if (event.keyCode == android.view.KeyEvent.KEYCODE_MENU ||
+                event.keyCode == android.view.KeyEvent.KEYCODE_SETTINGS) {
+                if (fragment?.isToolbarVisible() == true) {
+                    fragment.hideToolbar()
+                } else {
+                    fragment?.showToolbar(focusUrlBar = true)
+                }
+                return true
+            }
+
+            // Handle 3 consecutive UP/DOWN presses for toolbar toggle (if enabled)
+            val prefs = getSharedPreferences("vast_browser_prefs", MODE_PRIVATE)
+            val tripleUpEnabled = prefs.getBoolean("pref_triple_up_toolbar", true)
+            
             when (event.keyCode) {
                 android.view.KeyEvent.KEYCODE_DPAD_UP -> {
-                    if (fragment?.isToolbarVisible() == false) {
+                    if (tripleUpEnabled && fragment?.isToolbarVisible() == false && fragment?.isInScrollMode() != true) {
                         if (event.repeatCount == 0) {
                             val currentTime = System.currentTimeMillis()
                             if (currentTime - lastDpadUpTime < QUICK_PRESS_INTERVAL) {
@@ -108,7 +130,7 @@ class BrowserActivity : AppCompatActivity() {
                 }
             }
 
-            // Allow BrowserFragment to handle D-Pad cursor first
+            // Allow BrowserFragment to handle D-Pad cursor direction keys
             if (fragment?.handleDpadEvent(event) == true) {
                 return true
             }

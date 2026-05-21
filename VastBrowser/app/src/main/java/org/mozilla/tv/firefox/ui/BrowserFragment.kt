@@ -131,6 +131,11 @@ class BrowserFragment : Fragment() {
      * @return true if back was handled
      */
     fun onBackPressed(): Boolean {
+        if (isScrollModeActive) {
+            isScrollModeActive = false
+            updateCursorVisuals()
+            return true
+        }
         if (binding.toolbar.hasFocus()) {
             binding.engineView.requestFocus()
             val imm = requireContext().getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as android.view.inputmethod.InputMethodManager
@@ -303,6 +308,10 @@ class BrowserFragment : Fragment() {
 
     fun isToolbarVisible(): Boolean {
         return isToolbarVisible
+    }
+
+    fun isInScrollMode(): Boolean {
+        return isScrollModeActive
     }
 
     /**
@@ -709,9 +718,90 @@ class BrowserFragment : Fragment() {
     private var cursorY = 0f
     private val cursorSpeed = 20f
     private var isCursorMode = false
+    private var isScrollModeActive = false
     private var cursorTimeoutMs = 3000L
+    private var scrollHoldDurationMs = 2000L
     private val cursorHideRunnable = Runnable {
-        _binding?.cursorRing?.visibility = View.GONE
+        if (!isScrollModeActive) {
+            _binding?.cursorGroup?.visibility = View.GONE
+        }
+    }
+    
+    private var isCenterDown = false
+    private val enterScrollModeRunnable = Runnable {
+        if (isCenterDown && _binding != null) {
+            isScrollModeActive = !isScrollModeActive
+            updateCursorVisuals()
+            // Show status text
+            showScrollModeText(if (isScrollModeActive) "Scroll mode started." else "Scroll mode ended.")
+            // Vibrate
+            try {
+                val vibrator = requireContext().getSystemService(android.content.Context.VIBRATOR_SERVICE) as? android.os.Vibrator
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                    vibrator?.vibrate(android.os.VibrationEffect.createOneShot(50, android.os.VibrationEffect.DEFAULT_AMPLITUDE))
+                } else {
+                    @Suppress("DEPRECATION")
+                    vibrator?.vibrate(50)
+                }
+            } catch (e: Exception) {
+                // Ignore vibration failure
+            }
+        }
+    }
+    
+    private fun showScrollModeText(message: String) {
+        val binding = _binding ?: return
+        binding.scrollModeText.text = message
+        binding.scrollModeText.alpha = 1f
+        binding.scrollModeText.animate()
+            .alpha(0f)
+            .setStartDelay(500)
+            .setDuration(500)
+            .start()
+    }
+    
+    private fun updateCursorVisuals() {
+        val binding = _binding ?: return
+        val cursor = binding.cursorGroup
+        if (isScrollModeActive) {
+            binding.cursorRing.visibility = View.GONE
+            binding.cursorDisk.visibility = View.VISIBLE
+            // Keep cursor always visible in scroll mode
+            cursor.visibility = View.VISIBLE
+            cursor.removeCallbacks(cursorHideRunnable)
+            // Animate all arrows to fade out and scale up
+            val arrows = listOf(binding.cursorArrowUp, binding.cursorArrowDown, binding.cursorArrowLeft, binding.cursorArrowRight)
+            for (arrow in arrows) {
+                arrow.animate().cancel()
+                arrow.alpha = 1f
+                arrow.scaleX = 0.5f
+                arrow.scaleY = 0.5f
+                arrow.animate().alpha(0f).scaleX(1.5f).scaleY(1.5f).setDuration(1000).start()
+            }
+        } else {
+            binding.cursorRing.visibility = View.VISIBLE
+            binding.cursorDisk.visibility = View.GONE
+            // Restart the hide timeout
+            cursor.removeCallbacks(cursorHideRunnable)
+            cursor.postDelayed(cursorHideRunnable, cursorTimeoutMs)
+        }
+    }
+    
+    private fun animateScrollArrow(keyCode: Int) {
+        val binding = _binding ?: return
+        val arrow = when (keyCode) {
+            KeyEvent.KEYCODE_DPAD_UP -> binding.cursorArrowUp
+            KeyEvent.KEYCODE_DPAD_DOWN -> binding.cursorArrowDown
+            KeyEvent.KEYCODE_DPAD_LEFT -> binding.cursorArrowLeft
+            KeyEvent.KEYCODE_DPAD_RIGHT -> binding.cursorArrowRight
+            else -> null
+        } ?: return
+        
+        arrow.animate().cancel()
+        arrow.alpha = 1f
+        arrow.scaleX = 0.5f
+        arrow.scaleY = 0.5f
+        arrow.animate().alpha(0f).scaleX(1.5f).scaleY(1.5f).setDuration(500).start()
     }
 
     override fun onResume() {
@@ -719,6 +809,7 @@ class BrowserFragment : Fragment() {
         val prefs = requireContext().getSharedPreferences("vast_browser_prefs", android.content.Context.MODE_PRIVATE)
         isCursorMode = prefs.getString("pref_nav_method", "dpad_cursor") == "dpad_cursor"
         cursorTimeoutMs = prefs.getInt("pref_cursor_timeout", 3000).toLong()
+        scrollHoldDurationMs = prefs.getInt("pref_scroll_hold_duration", 2000).toLong()
         
         if (!isCursorMode) {
             _binding?.cursorRing?.visibility = View.GONE
@@ -730,9 +821,9 @@ class BrowserFragment : Fragment() {
     }
 
     fun handleDpadEvent(event: KeyEvent): Boolean {
-        if (!isCursorMode || _binding == null) return false
-        
-        // Don't intercept if toolbar is focused
+        if (!isCursorMode) return false
+        val binding = _binding ?: return false
+
         if (binding.toolbar.hasFocus()) {
             if (event.keyCode == KeyEvent.KEYCODE_DPAD_DOWN) {
                 // User is pressing DOWN to leave toolbar. Clear focus so cursor can move.
@@ -742,26 +833,98 @@ class BrowserFragment : Fragment() {
             }
         }
 
-        val cursor = binding.cursorRing
-        
-        // Show cursor if hidden
-        if (cursor.visibility != View.VISIBLE) {
-            cursor.visibility = View.VISIBLE
-            // Center if it's the first time
-            if (cursorX == 0f && cursorY == 0f) {
-                cursorX = binding.root.width / 2f
-                cursorY = binding.root.height / 2f
+        val cursor = binding.cursorGroup
+
+        if (event.keyCode == KeyEvent.KEYCODE_DPAD_CENTER || event.keyCode == KeyEvent.KEYCODE_ENTER) {
+            if (event.action == KeyEvent.ACTION_DOWN) {
+                if (event.repeatCount == 0) {
+                    isCenterDown = true
+                    cursor.postDelayed(enterScrollModeRunnable, scrollHoldDurationMs)
+                }
+                return true
+            } else if (event.action == KeyEvent.ACTION_UP) {
+                isCenterDown = false
+                cursor.removeCallbacks(enterScrollModeRunnable)
+                
+                if (!isScrollModeActive) {
+                    // Perform normal click - coordinates must be relative to engineView
+                    val touchX = cursorX + binding.cursorGroup.width / 2f
+                    val touchY = cursorY + binding.cursorGroup.height / 2f - binding.engineView.top
+                    val uptime = android.os.SystemClock.uptimeMillis()
+                    val downEvent = MotionEvent.obtain(
+                        uptime, uptime,
+                        MotionEvent.ACTION_DOWN,
+                        touchX, touchY, 0
+                    )
+                    binding.engineView.dispatchTouchEvent(downEvent)
+                    downEvent.recycle()
+
+                    val upEvent = MotionEvent.obtain(
+                        uptime, uptime,
+                        MotionEvent.ACTION_UP,
+                        touchX, touchY, 0
+                    )
+                    binding.engineView.dispatchTouchEvent(upEvent)
+                    upEvent.recycle()
+                }
+                return true
             }
-            cursor.translationX = cursorX
-            cursor.translationY = cursorY
         }
 
-        // Reset hide timeout
+        if (event.action != KeyEvent.ACTION_DOWN) return true
+
+        cursor.visibility = View.VISIBLE
         cursor.removeCallbacks(cursorHideRunnable)
-        cursor.postDelayed(cursorHideRunnable, cursorTimeoutMs)
+        if (!isScrollModeActive) {
+            cursor.postDelayed(cursorHideRunnable, cursorTimeoutMs)
+        }
 
         var dx = 0f
         var dy = 0f
+
+        if (isScrollModeActive) {
+            val scrollChunk = 50
+            when (event.keyCode) {
+                KeyEvent.KEYCODE_DPAD_UP -> { dy = -scrollChunk.toFloat(); animateScrollArrow(event.keyCode) }
+                KeyEvent.KEYCODE_DPAD_DOWN -> { dy = scrollChunk.toFloat(); animateScrollArrow(event.keyCode) }
+                KeyEvent.KEYCODE_DPAD_LEFT -> { dx = -scrollChunk.toFloat(); animateScrollArrow(event.keyCode) }
+                KeyEvent.KEYCODE_DPAD_RIGHT -> { dx = scrollChunk.toFloat(); animateScrollArrow(event.keyCode) }
+                else -> return false
+            }
+            
+            // Use fractional coordinates so JS can convert to CSS pixels accurately
+            val engineW = binding.engineView.width.toFloat().coerceAtLeast(1f)
+            val engineH = binding.engineView.height.toFloat().coerceAtLeast(1f)
+            val fracX = (cursorX + binding.cursorGroup.width / 2f) / engineW
+            val fracY = (cursorY + binding.cursorGroup.height / 2f - binding.engineView.top) / engineH
+            val scrollDx = if (dx != 0f) dx.toInt() else 0
+            val scrollDy = if (dy != 0f) dy.toInt() else 0
+            
+            val js = """
+                (function() {
+                    var cssX = $fracX * window.innerWidth;
+                    var cssY = $fracY * window.innerHeight;
+                    var el = document.elementFromPoint(cssX, cssY);
+                    while (el && el !== document.body && el !== document.documentElement) {
+                        var style = window.getComputedStyle(el);
+                        var ov = style.overflowY;
+                        var oh = style.overflowX;
+                        var scrollableY = el.scrollHeight > el.clientHeight + 1 && (ov === 'auto' || ov === 'scroll' || ov === 'overlay');
+                        var scrollableX = el.scrollWidth > el.clientWidth + 1 && (oh === 'auto' || oh === 'scroll' || oh === 'overlay');
+                        if (scrollableY || scrollableX) {
+                            el.scrollBy($scrollDx, $scrollDy);
+                            return 'scrolled-element';
+                        }
+                        el = el.parentElement;
+                    }
+                    window.scrollBy($scrollDx, $scrollDy);
+                    return 'scrolled-window';
+                })();
+            """.trimIndent()
+            
+            getWebView()?.evaluateJavascript(js, null)
+            return true
+        }
 
         when (event.keyCode) {
             KeyEvent.KEYCODE_DPAD_UP -> {
@@ -774,7 +937,7 @@ class BrowserFragment : Fragment() {
                 }
             }
             KeyEvent.KEYCODE_DPAD_DOWN -> {
-                val max = binding.root.height.toFloat() - cursor.height
+                val max = binding.root.height.toFloat() - binding.cursorGroup.height
                 val newY = cursorY + cursorSpeed
                 if (newY > max) {
                     dy = newY - max
@@ -793,7 +956,7 @@ class BrowserFragment : Fragment() {
                 }
             }
             KeyEvent.KEYCODE_DPAD_RIGHT -> {
-                val max = binding.root.width.toFloat() - cursor.width
+                val max = binding.root.width.toFloat() - binding.cursorGroup.width
                 val newX = cursorX + cursorSpeed
                 if (newX > max) {
                     dx = newX - max
@@ -801,32 +964,6 @@ class BrowserFragment : Fragment() {
                 } else {
                     cursorX = newX
                 }
-            }
-            KeyEvent.KEYCODE_DPAD_CENTER, KeyEvent.KEYCODE_ENTER -> {
-                if (event.action == KeyEvent.ACTION_DOWN) {
-                    val downEvent = MotionEvent.obtain(
-                        android.os.SystemClock.uptimeMillis(),
-                        android.os.SystemClock.uptimeMillis(),
-                        MotionEvent.ACTION_DOWN,
-                        cursorX + cursor.width / 2f,
-                        cursorY + cursor.height / 2f,
-                        0
-                    )
-                    binding.engineView.dispatchTouchEvent(downEvent)
-                    downEvent.recycle()
-
-                    val upEvent = MotionEvent.obtain(
-                        android.os.SystemClock.uptimeMillis(),
-                        android.os.SystemClock.uptimeMillis(),
-                        MotionEvent.ACTION_UP,
-                        cursorX + cursor.width / 2f,
-                        cursorY + cursor.height / 2f,
-                        0
-                    )
-                    binding.engineView.dispatchTouchEvent(upEvent)
-                    upEvent.recycle()
-                }
-                return true
             }
             else -> return false
         }
