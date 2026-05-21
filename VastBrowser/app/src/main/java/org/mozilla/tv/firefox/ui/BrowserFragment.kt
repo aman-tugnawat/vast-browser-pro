@@ -466,11 +466,10 @@ class BrowserFragment : Fragment() {
                 var style = document.createElement('style');
                 style.id = 'tv-focus-style';
                 style.innerHTML = `
-                    /* TV focus indicator — uses INSET box-shadow so it is never clipped
-                       by overflow:hidden on parent containers (movie card grids, image wrappers).
-                       Also adds a subtle scale pop and z-index lift so image cards are
-                       unmistakably highlighted even on dark backgrounds. */
-                    *:focus {
+                    /* TV highlight uses a custom class so input fields can be
+                       visually highlighted WITHOUT activating text input mode.
+                       Text input only activates on explicit OK/Enter press. */
+                    .tv-highlighted {
                         box-shadow: inset 0 0 0 4px #FF9800, 0 0 12px 2px rgba(255,152,0,0.5) !important;
                         outline: none !important;
                         transform: scale(1.03) !important;
@@ -485,22 +484,16 @@ class BrowserFragment : Fragment() {
                     window.hasTvFocusTracker = true;
                     window.lastFocusedElement = null;
                     window.prevFocusedElement = null;
-                    document.addEventListener('focus', function(e) {
-                        if (e.target && e.target !== document.body && e.target !== document.documentElement) {
-                            window.lastFocusedElement = e.target;
-                        }
-                    }, true);
+                    window.tvHighlightedElement = null;
                 }
 
                 if (!window.hasTvSpatialNav) {
                     window.hasTvSpatialNav = true;
 
-                    /* Broadened selector — catches divs/spans with onclick, role, or tabindex
-                       which is how most modern streaming/media sites build their card grids. */
                     var FOCUSABLE = 'a, button, input, select, textarea, [tabindex]:not([tabindex="-1"]), [role="button"], [role="link"], [role="menuitem"], [role="tab"], [onclick]';
+                    var INPUT_TAGS = {'INPUT':1, 'TEXTAREA':1, 'SELECT':1};
 
                     function getFocusableElements() {
-                        /* Gather all candidate focusable elements from the entire document */
                         var all = Array.from(document.querySelectorAll(FOCUSABLE))
                             .filter(function(el) {
                                 var rect = el.getBoundingClientRect();
@@ -512,43 +505,26 @@ class BrowserFragment : Fragment() {
                                 return true;
                             });
 
-                        /* Use elementFromPoint to check if each element is actually
-                           visible on screen (not obscured by a higher-z overlay).
-                           An element is "visible" if hitting its center point returns
-                           the element itself OR one of its descendants/ancestors. */
                         return all.filter(function(el) {
                             var rect = el.getBoundingClientRect();
                             var cx = rect.left + rect.width / 2;
                             var cy = rect.top + rect.height / 2;
-
-                            /* Skip elements entirely off-screen */
                             if (cx < 0 || cy < 0 || cx > window.innerWidth || cy > window.innerHeight) return false;
-
                             var topEl = document.elementFromPoint(cx, cy);
                             if (!topEl) return false;
-
-                            /* The element is visible if the hit-test returns itself,
-                               a descendant of it, or an ancestor of it */
                             return el === topEl || el.contains(topEl) || topEl.contains(el);
                         });
                     }
 
-                    /* De-duplicate nested focusables: if a parent wrapper (e.g. <div role="button">)
-                       contains a child focusable (e.g. <input>), keep BOTH but skip the parent
-                       only when it has a single focusable child that fully represents it.
-                       For inputs/selects/textareas, always keep them regardless of nesting. */
                     function dedup(elements) {
                         var out = [];
                         var ALWAYS_KEEP = {'INPUT':1, 'SELECT':1, 'TEXTAREA':1, 'BUTTON':1};
                         for (var i = 0; i < elements.length; i++) {
                             var el = elements[i];
-                            /* Always keep form controls — they're the actionable targets */
                             if (ALWAYS_KEEP[el.tagName]) {
                                 out.push(el);
                                 continue;
                             }
-                            /* Skip this element if it's a wrapper that contains other
-                               focusable elements from our list (prefer the children) */
                             var hasChildFocusable = false;
                             for (var j = 0; j < elements.length; j++) {
                                 if (i !== j && el.contains(elements[j]) && el !== elements[j]) {
@@ -562,17 +538,15 @@ class BrowserFragment : Fragment() {
                     }
 
                     function findNextElement(direction) {
-                        var active = document.activeElement;
+                        var current = window.tvHighlightedElement || document.activeElement;
                         var elements = dedup(getFocusableElements());
                         if (elements.length === 0) return null;
 
-                        /* If nothing meaningful is focused, pick the first visible element */
-                        if (!active || active === document.body || active === document.documentElement) {
+                        if (!current || current === document.body || current === document.documentElement) {
                             return elements[0];
                         }
 
-                        /* Walk up to find the matching focusable if active isn't in our list */
-                        var resolved = active;
+                        var resolved = current;
                         while (resolved && !elements.includes(resolved) && resolved !== document.body) {
                             resolved = resolved.parentElement;
                         }
@@ -593,7 +567,6 @@ class BrowserFragment : Fragment() {
                             var dx = cx - aCx;
                             var dy = cy - aCy;
 
-                            /* Strict directional gating */
                             var ok = false;
                             if (direction === 'ArrowDown')  ok = dy > 5;
                             if (direction === 'ArrowUp')    ok = dy < -5;
@@ -601,7 +574,6 @@ class BrowserFragment : Fragment() {
                             if (direction === 'ArrowLeft')  ok = dx < -5;
                             if (!ok) continue;
 
-                            /* Weighted distance: strongly prefer the primary axis */
                             var score;
                             if (direction === 'ArrowDown' || direction === 'ArrowUp') {
                                 score = Math.abs(dy) + Math.abs(dx) * 3;
@@ -617,8 +589,6 @@ class BrowserFragment : Fragment() {
                         return bestMatch;
                     }
 
-                    /* Dispatch synthetic mouse events so site JS that listens for
-                       mouseenter / mouseover (e.g. card hover-scale) fires correctly. */
                     function simulateHover(el, prevEl) {
                         if (prevEl && prevEl !== el) {
                             prevEl.dispatchEvent(new MouseEvent('mouseleave', {bubbles: true, cancelable: true}));
@@ -628,21 +598,53 @@ class BrowserFragment : Fragment() {
                         el.dispatchEvent(new MouseEvent('mouseover',  {bubbles: true, cancelable: true}));
                     }
 
+                    /* Highlight an element visually without activating input fields */
+                    function highlightElement(el) {
+                        var prev = window.tvHighlightedElement;
+                        if (prev) {
+                            prev.classList.remove('tv-highlighted');
+                        }
+                        el.classList.add('tv-highlighted');
+                        window.tvHighlightedElement = el;
+                        window.lastFocusedElement = el;
+
+                        /* For non-input elements, call .focus() so Enter/OK triggers click.
+                           For input/textarea/select, do NOT call .focus() to avoid
+                           activating text input mode — just highlight visually. */
+                        if (!INPUT_TAGS[el.tagName]) {
+                            if (!el.hasAttribute('tabindex')) {
+                                el.setAttribute('tabindex', '-1');
+                            }
+                            el.focus({preventScroll: true});
+                        } else {
+                            /* Blur any previously focused input */
+                            if (document.activeElement && INPUT_TAGS[document.activeElement.tagName]) {
+                                document.activeElement.blur();
+                            }
+                        }
+
+                        simulateHover(el, prev);
+                        el.scrollIntoView({block: 'nearest', inline: 'nearest', behavior: 'smooth'});
+                    }
+
+                    /* Arrow key handler — navigate between elements */
                     window.addEventListener('keydown', function(e) {
                         if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
                             var nextEl = findNextElement(e.key);
                             if (nextEl) {
                                 e.preventDefault();
                                 e.stopImmediatePropagation();
-                                var prev = window.prevFocusedElement;
-                                /* Make element programmatically focusable if it isn't already */
-                                if (!nextEl.hasAttribute('tabindex')) {
-                                    nextEl.setAttribute('tabindex', '-1');
-                                }
-                                nextEl.focus({preventScroll: true});
-                                simulateHover(nextEl, prev);
-                                window.prevFocusedElement = nextEl;
-                                nextEl.scrollIntoView({block: 'nearest', inline: 'nearest', behavior: 'smooth'});
+                                highlightElement(nextEl);
+                            }
+                        }
+
+                        /* OK / Enter handler — activate input fields when pressed */
+                        if (e.key === 'Enter') {
+                            var highlighted = window.tvHighlightedElement;
+                            if (highlighted && INPUT_TAGS[highlighted.tagName]) {
+                                e.preventDefault();
+                                e.stopImmediatePropagation();
+                                highlighted.focus();
                             }
                         }
                     }, true);
@@ -661,12 +663,27 @@ class BrowserFragment : Fragment() {
         val js = """
             (function() {
                 window.focus();
-                if (window.lastFocusedElement && document.body.contains(window.lastFocusedElement)) {
-                    window.lastFocusedElement.focus();
+                var target = null;
+                if (window.tvHighlightedElement && document.body.contains(window.tvHighlightedElement)) {
+                    target = window.tvHighlightedElement;
+                } else if (window.lastFocusedElement && document.body.contains(window.lastFocusedElement)) {
+                    target = window.lastFocusedElement;
                 } else {
                     var focusables = document.querySelectorAll('a, button, input, select, textarea, [tabindex="0"]');
                     if (focusables.length > 0) {
-                        focusables[0].focus();
+                        target = focusables[0];
+                    }
+                }
+                if (target && typeof highlightElement === 'function') {
+                    highlightElement(target);
+                } else if (target) {
+                    /* Fallback: add class directly if highlightElement isn't available yet */
+                    target.classList.add('tv-highlighted');
+                    window.tvHighlightedElement = target;
+                    window.lastFocusedElement = target;
+                    var INPUT_TAGS = {'INPUT':1, 'TEXTAREA':1, 'SELECT':1};
+                    if (!INPUT_TAGS[target.tagName]) {
+                        target.focus({preventScroll: true});
                     }
                 }
             })();
