@@ -16,5 +16,5 @@
     <string name="timeout_5s">5 Seconds</string>
     <string name="timeout_custom">Custom (Max 60s)</string>
     <string name="custom_timeout_hint">Timeout in seconds (Max 60)</string>
-    <string name="save_settings">Save &amp; Go Back</string>
+    <string name="save_settings">Save &amp; Exit</string>
 </resources>

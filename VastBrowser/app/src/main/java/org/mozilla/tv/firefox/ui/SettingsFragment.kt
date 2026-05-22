@@ -18,6 +18,8 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Spinner
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import org.mozilla.tv.firefox.R
 
@@ -134,6 +136,106 @@ class SettingsFragment : Fragment() {
 
             requireActivity().supportFragmentManager.popBackStack()
         }
+
+        val backCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (hasChanges()) {
+                    showExitConfirmationDialog()
+                } else {
+                    isEnabled = false
+                    requireActivity().supportFragmentManager.popBackStack()
+                }
+            }
+
+            private fun hasChanges(): Boolean {
+                val newHomePage = editHomePage.text.toString().trim().takeIf { it.isNotEmpty() } ?: "about:blank"
+                val newNavMethod = if (radioCursor.isChecked) "dpad_cursor" else "element_surfing"
+
+                var newTimeout = 3000
+                when (spinnerTimeout.selectedItemPosition) {
+                    0 -> newTimeout = 1000
+                    1 -> newTimeout = 3000
+                    2 -> newTimeout = 5000
+                    3 -> {
+                        val customSeconds = editCustomTimeout.text.toString().toIntOrNull() ?: 3
+                        val clampedSeconds = customSeconds.coerceIn(1, 60)
+                        newTimeout = clampedSeconds * 1000
+                    }
+                }
+
+                val newScrollHold = when (spinnerScrollHold.selectedItemPosition) {
+                    0 -> 1000
+                    1 -> 2000
+                    2 -> 3000
+                    3 -> 5000
+                    else -> 2000
+                }
+
+                return newHomePage != currentHomePage ||
+                        newNavMethod != currentNavMethod ||
+                        newTimeout != currentTimeout ||
+                        newScrollHold != currentScrollHold ||
+                        checkboxTripleUp.isChecked != currentTripleUp
+            }
+
+            private fun showExitConfirmationDialog() {
+                val context = requireContext()
+                AlertDialog.Builder(context)
+                    .setMessage("Do you want to save the changes made?")
+                    .setPositiveButton("Save &amp; Exit") { _, _ ->
+                        saveSettings()
+                    }
+                    .setNegativeButton("Exit without Saving Changes") { _, _ ->
+                        requireActivity().supportFragmentManager.popBackStack()
+                    }
+                    .setOnCancelListener {
+                        // Just dismiss dialog, do nothing
+                    }
+                    .create()
+                    .apply {
+                        setOnShowListener {
+                            getButton(AlertDialog.BUTTON_POSITIVE).requestFocus()
+                        }
+                    }
+                    .show()
+            }
+
+            private fun saveSettings() {
+                val newHomePage = editHomePage.text.toString().trim().takeIf { it.isNotEmpty() } ?: "about:blank"
+                val newNavMethod = if (radioCursor.isChecked) "dpad_cursor" else "element_surfing"
+
+                var newTimeout = 3000
+                when (spinnerTimeout.selectedItemPosition) {
+                    0 -> newTimeout = 1000
+                    1 -> newTimeout = 3000
+                    2 -> newTimeout = 5000
+                    3 -> {
+                        val customSeconds = editCustomTimeout.text.toString().toIntOrNull() ?: 3
+                        val clampedSeconds = customSeconds.coerceIn(1, 60)
+                        newTimeout = clampedSeconds * 1000
+                    }
+                }
+
+                val newScrollHold = when (spinnerScrollHold.selectedItemPosition) {
+                    0 -> 1000
+                    1 -> 2000
+                    2 -> 3000
+                    3 -> 5000
+                    else -> 2000
+                }
+
+                prefs.edit()
+                    .putString("pref_home_page", newHomePage)
+                    .putString("pref_nav_method", newNavMethod)
+                    .putInt("pref_cursor_timeout", newTimeout)
+                    .putInt("pref_scroll_hold_duration", newScrollHold)
+                    .putBoolean("pref_triple_up_toolbar", checkboxTripleUp.isChecked)
+                    .apply()
+
+                requireActivity().supportFragmentManager.popBackStack()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, backCallback)
 
         return view
     }
