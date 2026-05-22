@@ -182,7 +182,7 @@ class SettingsFragment : Fragment() {
                 val context = requireContext()
                 AlertDialog.Builder(context)
                     .setMessage("Do you want to save the changes made?")
-                    .setPositiveButton("Save &amp; Exit") { _, _ ->
+                    .setPositiveButton("Save & Exit") { _, _ ->
                         saveSettings()
                     }
                     .setNegativeButton("Exit without Saving Changes") { _, _ ->
