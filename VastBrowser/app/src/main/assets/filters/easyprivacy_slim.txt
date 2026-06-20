@@ -1,0 +1,106 @@
+[Adblock Plus 2.0]
+! Title: EasyPrivacy Slim (VastBrowser curated subset)
+! Description: Top privacy/tracking protection rules from EasyPrivacy.
+! Last modified: 2024-01-01
+! Homepage: https://easylist.to/
+
+! --- Network Filters (block tracking domains) ---
+
+! Analytics & tracking beacons
+||google-analytics.com^
+||analytics.google.com^
+||ssl.google-analytics.com^
+||stats.g.doubleclick.net^
+||www.google-analytics.com^
+||analytics.twitter.com^
+||t.co/i/^
+||analytics.facebook.com^
+
+! User behavior tracking
+||hotjar.com^
+||mouseflow.com^
+||luckyorange.com^
+||crazyegg.com^
+||clicktale.com^
+||sessioncam.com^
+||inspectlet.com^
+||logrocket.com^
+
+! Data brokers / audience measurement
+||bluekai.com^
+||exelator.com^
+||acxiom.com^
+||datalogix.com^
+||lotame.com^
+||eyeota.com^
+||liveramp.com^
+||oracle.com/cx/^
+
+! Cross-site tracking pixels
+||pixel.quantserve.com^
+||pixel.adsafeprotected.com^
+||tags.tiqcdn.com^
+||cdn.mxpnl.com^
+||bam.nr-data.net^
+||eum-appdynamics.com^
+
+! Retargeting / remarketing
+||retargeter.com^
+||adroll.com^
+||steelhousemedia.com^
+||fetchback.com^
+||vizury.com^
+||chango.com^
+
+! Session recording
+||fullstory.com^
+||rs.fullstory.com^
+||smartlook.com^
+||clarity.ms^
+
+! A/B testing / personalization tracking
+||optimizely.com^
+||cdn.optimizely.com^
+||abtasty.com^
+||kameleoon.com^
+
+! Tag managers (often used for tracking orchestration)
+||googletagmanager.com^
+||tags.tiqcdn.com^
+||cdn.segment.com^
+||api.segment.io^
+
+! Device fingerprinting
+||fingerprintjs.com^
+||cdn.jsdelivr.net/npm/@aspect/fingerprint^
+
+! Location tracking
+||ip-api.com^
+||ipinfo.io^
+||ipgeolocation.io^
+||geo.captcha-delivery.com^
+
+! Push notification / engagement tracking
+||onesignal.com^
+||pushwoosh.com^
+||pushengage.com^
+||webpushr.com^
+||pushcrew.com^
+
+! --- Cosmetic Filters (hide tracking elements) ---
+
+! Tracking pixels (1x1 images)
+##img[width="1"][height="1"]
+##img[width="0"][height="0"]
+##img[style*="display:none"]
+##img[style*="visibility:hidden"]
+##noscript > img[width="1"]
+
+! Hidden iframes used for tracking
+##iframe[width="0"]
+##iframe[height="0"]
+##iframe[style*="display:none"]
+##iframe[style*="visibility:hidden"]
+
+! Social tracking buttons (cosmetic)
+##.fb-login-button[data-auto-logout-link]

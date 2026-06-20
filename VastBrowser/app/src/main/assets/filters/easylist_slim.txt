@@ -1,0 +1,218 @@
+[Adblock Plus 2.0]
+! Title: EasyList Slim (VastBrowser curated subset)
+! Description: Top ad-blocking rules from EasyList, curated for TV browser performance.
+! Last modified: 2024-01-01
+! Homepage: https://easylist.to/
+
+! --- Cosmetic Filters (hide ad elements) ---
+
+! Google Ads
+##.adsbygoogle
+##ins.adsbygoogle
+###google_ads_frame
+###google_ads_iframe
+##.google-ad
+##.GoogleAd
+##div[id^="google_ads_"]
+##div[id^="div-gpt-ad"]
+##.gpt-ad
+##div[data-google-query-id]
+
+! Generic ad containers
+##.ad-banner
+##.ad-container
+##.ad-wrapper
+##.ad-slot
+##.ad-unit
+##.ad-block
+##.ad-box
+##.ad-label
+##.ad-placeholder
+##.ad-space
+##.ad-zone
+##.ad-leaderboard
+##.ad-skyscraper
+##.ad-rectangle
+##.ad-sidebar
+##.ad-footer
+##.ad-header
+##.ad-inline
+##.ad-interstitial
+##.ad-overlay
+##.ad-popup
+##.ad-sticky
+##.ad-text
+##.ad-tile
+##.ad-top
+##.ad-bottom
+##.ad-left
+##.ad-right
+##.ad-middle
+##.ad-billboard
+##.ad-native
+##.ad-sponsored
+
+! Class-based ad selectors
+##.advertisement
+##.advertising
+##.advert
+##.advertise
+##[class*="advertisement"]
+##[class*="ad-slot"]
+##[id*="ad-slot"]
+##[class*="ad-container"]
+##[id*="ad-container"]
+##[class*="ad-wrapper"]
+##[id*="ad-wrapper"]
+
+! Sponsored content
+##.sponsored-content
+##.sponsored-post
+##.sponsored
+##.promoted-content
+##.promoted-post
+##[class*="sponsored"]
+##[class*="promoted"]
+
+! Popups and overlays
+##.popup-ad
+##.overlay-ad
+##.modal-ad
+##.interstitial-ad
+##.lightbox-ad
+##div[class*="popup"][class*="ad"]
+
+! Social media tracking widgets (cosmetic)
+##.fb-like-box
+##.twitter-timeline-ad
+##.social-ad
+
+! Video pre-roll markers
+##.video-ad
+##.preroll-ad
+##.midroll-ad
+##.postroll-ad
+##[class*="video-ad"]
+
+! Cookie consent annoyances (cosmetic hiding)
+##.cookie-banner
+##.cookie-notice
+##.cookie-consent
+##.cookie-popup
+##.cookie-bar
+##.gdpr-banner
+##.gdpr-consent
+##[class*="cookie-consent"]
+##[class*="cookie-banner"]
+##[id*="cookie-consent"]
+##[id*="cookie-banner"]
+
+! Newsletter/subscription popups
+##.newsletter-popup
+##.subscribe-popup
+##.email-popup
+##[class*="newsletter-popup"]
+##[class*="subscribe-modal"]
+
+! --- Network Filters (block ad/tracking domains) ---
+
+! Major ad networks
+||doubleclick.net^
+||googlesyndication.com^
+||googleadservices.com^
+||google-analytics.com^
+||googletagmanager.com^
+||googletagservices.com^
+||pagead2.googlesyndication.com^
+||adservice.google.com^
+||tpc.googlesyndication.com^
+
+! Facebook/Meta tracking
+||facebook.net^
+||connect.facebook.net^
+||pixel.facebook.com^
+||fbcdn.net^
+
+! Amazon ads
+||amazon-adsystem.com^
+||aax.amazon-adsystem.com^
+||assoc-amazon.com^
+
+! Microsoft/Bing ads
+||bat.bing.com^
+||ads.microsoft.com^
+
+! Major ad exchanges
+||rubiconproject.com^
+||pubmatic.com^
+||openx.net^
+||casalemedia.com^
+||criteo.com^
+||criteo.net^
+||indexww.com^
+||adnxs.com^
+||adsrvr.org^
+||advertising.com^
+||adform.net^
+||adroll.com^
+||bidswitch.net^
+||contextweb.com^
+||turn.com^
+||mediamath.com^
+||mathtag.com^
+||bidtellect.com^
+||sharethrough.com^
+
+! Tracking & analytics
+||scorecardresearch.com^
+||quantserve.com^
+||quantcount.com^
+||hotjar.com^
+||mixpanel.com^
+||amplitude.com^
+||segment.com^
+||segment.io^
+||fullstory.com^
+||mouseflow.com^
+||crazyegg.com^
+||clicktale.net^
+||optimizely.com^
+||newrelic.com^
+||nr-data.net^
+||taboola.com^
+||outbrain.com^
+||outbrainimg.com^
+||zergnet.com^
+||revcontent.com^
+||mgid.com^
+||contentad.net^
+
+! Pop-under / pop-up networks
+||popads.net^
+||popcash.net^
+||propellerads.com^
+||juicyads.com^
+||trafficjunky.net^
+||exoclick.com^
+||hilltopads.net^
+||clickadu.com^
+
+! Video ad networks
+||imasdk.googleapis.com^
+||securepubads.g.doubleclick.net^
+||ad.doubleclick.net^
+||moatads.com^
+
+! Social tracking
+||addthis.com^
+||sharethis.com^
+||addtoany.com^
+
+! Consent management / tracking walls
+||cookiebot.com^
+||onetrust.com^
+||trustarc.com^
+||consensu.org^
+
+! Fingerprinting
+||fingerprintjs.com^
