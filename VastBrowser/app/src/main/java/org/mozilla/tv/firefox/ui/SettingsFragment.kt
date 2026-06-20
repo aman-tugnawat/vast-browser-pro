@@ -17,11 +17,17 @@ import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Spinner
+import android.widget.Switch
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
+import org.mozilla.tv.firefox.BuildConfig
 import org.mozilla.tv.firefox.R
+import org.mozilla.tv.firefox.components
+import org.mozilla.tv.firefox.updates.UpdateChecker
 
 class SettingsFragment : Fragment() {
 
@@ -41,9 +47,26 @@ class SettingsFragment : Fragment() {
         val spinnerScrollHold = view.findViewById<Spinner>(R.id.spinner_scroll_hold_duration)
         val buttonSave = view.findViewById<Button>(R.id.button_save)
 
-        val prefs = requireContext().getSharedPreferences("vast_browser_prefs", Context.MODE_PRIVATE)
+        // Extensions UI
+        val switchUblock = view.findViewById<Switch>(R.id.switch_ublock)
+        val switchPrivacyBadger = view.findViewById<Switch>(R.id.switch_privacybadger)
+        val ublockBlockedCount = view.findViewById<TextView>(R.id.ublock_blocked_count)
+        val privacybadgerBlockedCount = view.findViewById<TextView>(R.id.privacybadger_blocked_count)
+        val buttonUblockDetails = view.findViewById<Button>(R.id.button_ublock_details)
+        val buttonPrivacyBadgerDetails = view.findViewById<Button>(R.id.button_privacybadger_details)
 
-        // Load existing settings
+        // About & Updates UI
+        val textCurrentVersion = view.findViewById<TextView>(R.id.text_current_version)
+        val textEngineVersion = view.findViewById<TextView>(R.id.text_engine_version)
+        val textUpdateStatus = view.findViewById<TextView>(R.id.text_update_status)
+        val textLastChecked = view.findViewById<TextView>(R.id.text_last_checked)
+        val buttonCheckUpdate = view.findViewById<Button>(R.id.button_check_update)
+        val buttonDownloadUpdate = view.findViewById<Button>(R.id.button_download_update)
+
+        val prefs = requireContext().getSharedPreferences("vast_browser_prefs", Context.MODE_PRIVATE)
+        val pluginManager = requireContext().components.pluginManager
+
+        // ===== Load existing settings =====
         val currentHomePage = prefs.getString("pref_home_page", "about:blank")
         val currentNavMethod = prefs.getString("pref_nav_method", "dpad_cursor")
         val currentTimeout = prefs.getInt("pref_cursor_timeout", 3000)
@@ -101,6 +124,99 @@ class SettingsFragment : Fragment() {
             5000 -> spinnerScrollHold.setSelection(3)
             else -> spinnerScrollHold.setSelection(1)
         }
+
+        // ===== Extensions Setup =====
+
+        // Load current extension states
+        switchUblock.isChecked = pluginManager.isEnabled("ublock_origin")
+        switchPrivacyBadger.isChecked = pluginManager.isEnabled("privacy_badger")
+
+        // Display blocked counts
+        updateBlockedCounts(pluginManager, ublockBlockedCount, privacybadgerBlockedCount)
+
+        // Toggle handlers
+        switchUblock.setOnCheckedChangeListener { _, isChecked ->
+            pluginManager.setEnabled("ublock_origin", isChecked)
+        }
+
+        switchPrivacyBadger.setOnCheckedChangeListener { _, isChecked ->
+            pluginManager.setEnabled("privacy_badger", isChecked)
+        }
+
+        // Details button handlers
+        buttonUblockDetails.setOnClickListener {
+            showPluginDetailsDialog("ublock_origin", pluginManager, ublockBlockedCount, privacybadgerBlockedCount)
+        }
+
+        buttonPrivacyBadgerDetails.setOnClickListener {
+            showPluginDetailsDialog("privacy_badger", pluginManager, ublockBlockedCount, privacybadgerBlockedCount)
+        }
+
+        // ===== About & Updates Setup =====
+
+        textCurrentVersion.text = getString(R.string.about_current_version, BuildConfig.VERSION_NAME)
+        // Read engine version from build.gradle (exposed via BuildConfig)
+        textEngineVersion.text = getString(R.string.about_engine_version, "150.0.2")
+
+        // Load update state from SharedPreferences
+        val updatePrefs = requireContext().getSharedPreferences("vast_browser_updates", Context.MODE_PRIVATE)
+        val availableVersion = updatePrefs.getString("update_available_version", null)
+        val downloadUrl = updatePrefs.getString("update_available_url", null)
+        val lastChecked = updatePrefs.getLong("update_last_checked", 0L)
+
+        if (availableVersion != null && isNewerVersion(availableVersion, BuildConfig.VERSION_NAME)) {
+            textUpdateStatus.text = getString(R.string.about_update_available, availableVersion)
+            buttonDownloadUpdate.visibility = View.VISIBLE
+        } else {
+            textUpdateStatus.text = getString(R.string.about_up_to_date)
+            buttonDownloadUpdate.visibility = View.GONE
+        }
+
+        if (lastChecked > 0) {
+            textLastChecked.text = getString(R.string.about_last_checked, getTimeAgo(lastChecked))
+        } else {
+            textLastChecked.text = getString(R.string.about_never_checked)
+        }
+
+        buttonCheckUpdate.setOnClickListener {
+            textUpdateStatus.text = getString(R.string.about_checking)
+            buttonCheckUpdate.isEnabled = false
+
+            viewLifecycleOwner.lifecycleScope.launch {
+                val result = UpdateChecker.checkForUpdate(requireContext())
+                if (!isAdded) return@launch
+
+                buttonCheckUpdate.isEnabled = true
+                if (result != null && isNewerVersion(result.version, BuildConfig.VERSION_NAME)) {
+                    textUpdateStatus.text = getString(R.string.about_update_available, result.version)
+                    buttonDownloadUpdate.visibility = View.VISIBLE
+                    buttonDownloadUpdate.setOnClickListener {
+                        // Open the download URL in the browser
+                        val browserFragment = BrowserFragment.create(result.downloadUrl)
+                        requireActivity().supportFragmentManager.beginTransaction()
+                            .replace(R.id.fragment_container, browserFragment)
+                            .commit()
+                    }
+                } else {
+                    textUpdateStatus.text = getString(R.string.about_up_to_date)
+                    buttonDownloadUpdate.visibility = View.GONE
+                }
+
+                val now = System.currentTimeMillis()
+                textLastChecked.text = getString(R.string.about_last_checked, getTimeAgo(now))
+            }
+        }
+
+        if (downloadUrl != null) {
+            buttonDownloadUpdate.setOnClickListener {
+                val browserFragment = BrowserFragment.create(downloadUrl)
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, browserFragment)
+                    .commit()
+            }
+        }
+
+        // ===== Save Button =====
 
         buttonSave.setOnClickListener {
             val newHomePage = editHomePage.text.toString().trim().takeIf { it.isNotEmpty() } ?: "about:blank"
@@ -238,5 +354,95 @@ class SettingsFragment : Fragment() {
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, backCallback)
 
         return view
+    }
+
+    // ===== Extension Helper Methods =====
+
+    private fun updateBlockedCounts(
+        pluginManager: org.mozilla.tv.firefox.plugins.PluginManager,
+        ublockText: TextView,
+        privacyBadgerText: TextView
+    ) {
+        val ublockCount = pluginManager.getBlockedCount("ublock_origin")
+        val pbCount = pluginManager.getBlockedCount("privacy_badger")
+        ublockText.text = getString(R.string.extensions_blocked_count, ublockCount)
+        privacyBadgerText.text = getString(R.string.extensions_blocked_count, pbCount)
+    }
+
+    private fun showPluginDetailsDialog(
+        pluginId: String,
+        pluginManager: org.mozilla.tv.firefox.plugins.PluginManager,
+        ublockText: TextView,
+        privacyBadgerText: TextView
+    ) {
+        val plugin = pluginManager.plugins[pluginId] ?: return
+        val info = plugin.info
+        val blockedCount = plugin.getBlockedCount()
+
+        val message = buildString {
+            appendLine("${info.name}")
+            appendLine()
+            appendLine("Version: ${info.version}")
+            appendLine()
+            appendLine(info.description)
+            appendLine()
+            appendLine("Session blocked: $blockedCount")
+            appendLine()
+            appendLine("Status: ${if (pluginManager.isEnabled(pluginId)) "Enabled" else "Disabled"}")
+        }
+
+        AlertDialog.Builder(requireContext())
+            .setTitle(info.name)
+            .setMessage(message)
+            .setPositiveButton("Close", null)
+            .setNeutralButton(getString(R.string.extensions_reset_count)) { _, _ ->
+                pluginManager.resetBlockedCount(pluginId)
+                updateBlockedCounts(pluginManager, ublockText, privacyBadgerText)
+            }
+            .create()
+            .apply {
+                setOnShowListener {
+                    getButton(AlertDialog.BUTTON_POSITIVE).requestFocus()
+                }
+            }
+            .show()
+    }
+
+    // ===== Update Helper Methods =====
+
+    /**
+     * Simple semantic version comparison. Returns true if [available] is newer than [current].
+     */
+    private fun isNewerVersion(available: String, current: String): Boolean {
+        try {
+            val availParts = available.removePrefix("v").split("-")[0].split(".").map { it.toIntOrNull() ?: 0 }
+            val currentParts = current.removePrefix("v").split("-")[0].split(".").map { it.toIntOrNull() ?: 0 }
+
+            for (i in 0 until maxOf(availParts.size, currentParts.size)) {
+                val a = availParts.getOrElse(i) { 0 }
+                val c = currentParts.getOrElse(i) { 0 }
+                if (a > c) return true
+                if (a < c) return false
+            }
+        } catch (_: Exception) {}
+        return false
+    }
+
+    /**
+     * Format a timestamp into a human-readable "X ago" string.
+     */
+    private fun getTimeAgo(timestamp: Long): String {
+        val diff = System.currentTimeMillis() - timestamp
+        val seconds = diff / 1000
+        val minutes = seconds / 60
+        val hours = minutes / 60
+        val days = hours / 24
+
+        return when {
+            days > 0 -> "$days day${if (days > 1) "s" else ""} ago"
+            hours > 0 -> "$hours hour${if (hours > 1) "s" else ""} ago"
+            minutes > 0 -> "$minutes minute${if (minutes > 1) "s" else ""} ago"
+            else -> "Just now"
+        }
     }
 }

@@ -11,6 +11,7 @@ import mozilla.components.browser.state.store.BrowserStore
 import mozilla.components.concept.engine.DefaultSettings
 import mozilla.components.concept.engine.Engine
 import mozilla.components.feature.session.SessionUseCases
+import org.mozilla.tv.firefox.plugins.PluginManager
 
 /**
  * Provides access to all components needed by the application.
@@ -47,4 +48,9 @@ class Components(context: Context) {
     val sessionUseCases by lazy {
         SessionUseCases(store)
     }
+
+    val pluginManager by lazy {
+        PluginManager(context)
+    }
 }
+

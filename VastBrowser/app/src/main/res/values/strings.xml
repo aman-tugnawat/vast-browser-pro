@@ -17,4 +17,31 @@
     <string name="timeout_custom">Custom (Max 60s)</string>
     <string name="custom_timeout_hint">Timeout in seconds (Max 60)</string>
     <string name="save_settings">Save &amp; Exit</string>
+
+    <!-- Extensions -->
+    <string name="extensions_title">Extensions</string>
+    <string name="extensions_ublock_name">uBlock Origin</string>
+    <string name="extensions_ublock_desc">Block ads, pop-ups, and tracking scripts</string>
+    <string name="extensions_privacybadger_name">Privacy Badger</string>
+    <string name="extensions_privacybadger_desc">Learn and block invisible trackers</string>
+    <string name="extensions_blocked_count">%d blocked this session</string>
+    <string name="extensions_details">Details</string>
+    <string name="extensions_reset_count">Reset Count</string>
+    <string name="extensions_enabled">Enabled</string>
+    <string name="extensions_disabled">Disabled</string>
+    <string name="extensions_version">Version %s</string>
+    <string name="extensions_session_blocked">Session blocked: %d</string>
+
+    <!-- About &amp; Updates -->
+    <string name="about_updates_title">About &amp; Updates</string>
+    <string name="about_current_version">Current Version: %s</string>
+    <string name="about_engine_version">Engine Version: %s</string>
+    <string name="about_up_to_date">✅ You\'re up to date</string>
+    <string name="about_update_available">🔔 Version %s is available!</string>
+    <string name="about_download_update">Download Update</string>
+    <string name="about_release_notes">Release Notes</string>
+    <string name="about_check_now">Check Now</string>
+    <string name="about_last_checked">Last checked: %s</string>
+    <string name="about_checking">Checking for updates…</string>
+    <string name="about_never_checked">Never checked</string>
 </resources>

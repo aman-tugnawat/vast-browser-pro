@@ -256,6 +256,11 @@ class BrowserFragment : Fragment() {
                     binding.progressBar.visibility = if (loading) View.VISIBLE else View.GONE
                     if (!loading) {
                         injectFocusCss()
+                        // Inject plugin content scripts (ad blocker, tracker blocker)
+                        val currentUrl = components.store.state.selectedTab?.content?.url ?: ""
+                        getWebView()?.let { wv ->
+                            components.pluginManager.injectPluginScripts(wv, currentUrl)
+                        }
                         if (!isToolbarVisible && !isCursorMode) {
                             getWebView()?.requestFocus()
                             restoreWebpageFocus()
@@ -850,6 +855,40 @@ class BrowserFragment : Fragment() {
         } else {
             // In cursor mode, the engineView shouldn't trap DPAD focus natively
             _binding?.engineView?.isFocusable = false
+        }
+
+        // Check for update notification dot on settings button
+        updateSettingsNotificationDot()
+    }
+
+    /**
+     * Show or hide a notification dot on the Settings toolbar button
+     * indicating a new app version is available.
+     */
+    private fun updateSettingsNotificationDot() {
+        val binding = _binding ?: return
+        val updatePrefs = requireContext().getSharedPreferences("vast_browser_updates", android.content.Context.MODE_PRIVATE)
+        val availableVersion = updatePrefs.getString("update_available_version", null)
+        val notificationDot = binding.settingsNotificationDot
+        
+        if (availableVersion != null) {
+            try {
+                val currentVersion = org.mozilla.tv.firefox.BuildConfig.VERSION_NAME
+                val availParts = availableVersion.removePrefix("v").split("-")[0].split(".").map { it.toIntOrNull() ?: 0 }
+                val currentParts = currentVersion.removePrefix("v").split("-")[0].split(".").map { it.toIntOrNull() ?: 0 }
+                var isNewer = false
+                for (i in 0 until maxOf(availParts.size, currentParts.size)) {
+                    val a = availParts.getOrElse(i) { 0 }
+                    val c = currentParts.getOrElse(i) { 0 }
+                    if (a > c) { isNewer = true; break }
+                    if (a < c) break
+                }
+                notificationDot.visibility = if (isNewer) View.VISIBLE else View.GONE
+            } catch (_: Exception) {
+                notificationDot.visibility = View.GONE
+            }
+        } else {
+            notificationDot.visibility = View.GONE
         }
     }
 
