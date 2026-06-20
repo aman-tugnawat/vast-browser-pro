@@ -723,8 +723,35 @@ class BrowserFragment : Fragment() {
     private var scrollHoldDurationMs = 2000L
     private val cursorHideRunnable = Runnable {
         if (!isScrollModeActive) {
-            _binding?.cursorGroup?.visibility = View.GONE
-            _binding?.cursorTooltip?.visibility = View.GONE
+            val binding = _binding
+            if (binding != null) {
+                binding.cursorGroup.visibility = View.GONE
+                binding.cursorTooltip.visibility = View.GONE
+                
+                // Dispatch native hover exit outside the view boundaries to clear hover states
+                dispatchNativeHoverExit(-1000f, -1000f)
+                
+                getWebView()?.evaluateJavascript("""
+                    (function() {
+                        // Dispatch mousemove outside viewport to trigger mouseout/mouseleave on any element (including iframes)
+                        try {
+                            var exitEvent = new MouseEvent('mousemove', { bubbles: true, cancelable: true, view: window, clientX: -1000, clientY: -1000 });
+                            window.dispatchEvent(exitEvent);
+                        } catch(e) {}
+                        
+                        var lastEl = window.tvLastHoveredElement;
+                        if (lastEl) {
+                            try {
+                                var outEvent = new MouseEvent('mouseout', { bubbles: true, cancelable: true, view: window });
+                                lastEl.dispatchEvent(outEvent);
+                                var leaveEvent = new MouseEvent('mouseleave', { bubbles: false, cancelable: true, view: window });
+                                lastEl.dispatchEvent(leaveEvent);
+                            } catch(e) {}
+                            window.tvLastHoveredElement = null;
+                        }
+                    })()
+                """.trimIndent(), null)
+            }
         }
     }
     
@@ -1140,5 +1167,41 @@ class BrowserFragment : Fragment() {
         
         binding.engineView.dispatchGenericMotionEvent(hoverEvent)
         hoverEvent.recycle()
+    }
+
+    private fun dispatchNativeHoverExit(touchX: Float, touchY: Float) {
+        val binding = _binding ?: return
+        val uptime = android.os.SystemClock.uptimeMillis()
+        
+        val properties = arrayOf(android.view.MotionEvent.PointerProperties().apply {
+            id = 0
+            toolType = android.view.MotionEvent.TOOL_TYPE_MOUSE
+        })
+        val coords = arrayOf(android.view.MotionEvent.PointerCoords().apply {
+            x = touchX
+            y = touchY
+        })
+        
+        // 1. Move to exit coordinates
+        val moveEvent = android.view.MotionEvent.obtain(
+            uptime, uptime,
+            android.view.MotionEvent.ACTION_HOVER_MOVE,
+            1, properties, coords,
+            0, 0, 1f, 1f, 0, 0,
+            android.view.InputDevice.SOURCE_MOUSE, 0
+        )
+        binding.engineView.dispatchGenericMotionEvent(moveEvent)
+        moveEvent.recycle()
+
+        // 2. Dispatch hover exit
+        val exitEvent = android.view.MotionEvent.obtain(
+            uptime, uptime,
+            android.view.MotionEvent.ACTION_HOVER_EXIT,
+            1, properties, coords,
+            0, 0, 1f, 1f, 0, 0,
+            android.view.InputDevice.SOURCE_MOUSE, 0
+        )
+        binding.engineView.dispatchGenericMotionEvent(exitEvent)
+        exitEvent.recycle()
     }
 }
