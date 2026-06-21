@@ -48,12 +48,20 @@ class SettingsFragment : Fragment() {
         val buttonSave = view.findViewById<Button>(R.id.button_save)
 
         // Extensions UI
-        val switchUblock = view.findViewById<Switch>(R.id.switch_ublock)
-        val switchPrivacyBadger = view.findViewById<Switch>(R.id.switch_privacybadger)
-        val ublockBlockedCount = view.findViewById<TextView>(R.id.ublock_blocked_count)
-        val privacybadgerBlockedCount = view.findViewById<TextView>(R.id.privacybadger_blocked_count)
-        val buttonUblockDetails = view.findViewById<Button>(R.id.button_ublock_details)
-        val buttonPrivacyBadgerDetails = view.findViewById<Button>(R.id.button_privacybadger_details)
+        val containerSystem = view.findViewById<View>(R.id.container_system_extensions)
+        val containerGecko = view.findViewById<View>(R.id.container_gecko_extensions)
+
+        val switchSystemAds = view.findViewById<Switch>(R.id.switch_system_ads)
+        val switchSystemTracker = view.findViewById<Switch>(R.id.switch_system_tracker)
+        val systemAdsBlockedCount = view.findViewById<TextView>(R.id.system_ads_blocked_count)
+        val systemTrackerBlockedCount = view.findViewById<TextView>(R.id.system_tracker_blocked_count)
+        val buttonSystemAdsDetails = view.findViewById<Button>(R.id.button_system_ads_details)
+        val buttonSystemTrackerDetails = view.findViewById<Button>(R.id.button_system_tracker_details)
+
+        val switchGeckoUblock = view.findViewById<Switch>(R.id.switch_gecko_ublock)
+        val switchGeckoPrivacyBadger = view.findViewById<Switch>(R.id.switch_gecko_privacybadger)
+        val buttonGeckoUblockDetails = view.findViewById<Button>(R.id.button_gecko_ublock_details)
+        val buttonGeckoPrivacyBadgerDetails = view.findViewById<Button>(R.id.button_gecko_privacybadger_details)
 
         // About & Updates UI
         val textCurrentVersion = view.findViewById<TextView>(R.id.text_current_version)
@@ -80,6 +88,22 @@ class SettingsFragment : Fragment() {
             radioCursor.isChecked = true
         } else {
             radioSurfing.isChecked = true
+        }
+
+        // Setup Browser Engine selection
+        val radioEngineGroup = view.findViewById<RadioGroup>(R.id.radio_browser_engine)
+        val radioEngineSystem = view.findViewById<RadioButton>(R.id.radio_engine_system)
+        val radioEngineGecko = view.findViewById<RadioButton>(R.id.radio_engine_gecko)
+        
+        var currentEngine = prefs.getString("pref_engine_type", "system")
+        if (currentEngine == "gecko") {
+            radioEngineGecko.isChecked = true
+            containerGecko.visibility = View.VISIBLE
+            containerSystem.visibility = View.GONE
+        } else {
+            radioEngineSystem.isChecked = true
+            containerSystem.visibility = View.VISIBLE
+            containerGecko.visibility = View.GONE
         }
 
         // Setup Cursor Timeout Spinner
@@ -127,29 +151,49 @@ class SettingsFragment : Fragment() {
 
         // ===== Extensions Setup =====
 
-        // Load current extension states
-        switchUblock.isChecked = pluginManager.isEnabled("ublock_origin")
-        switchPrivacyBadger.isChecked = pluginManager.isEnabled("privacy_badger")
+        // Load current extension states (System Engine)
+        switchSystemAds.isChecked = pluginManager.isEnabled("ublock_origin")
+        switchSystemTracker.isChecked = pluginManager.isEnabled("privacy_badger")
 
         // Display blocked counts
-        updateBlockedCounts(pluginManager, ublockBlockedCount, privacybadgerBlockedCount)
+        updateBlockedCounts(pluginManager, systemAdsBlockedCount, systemTrackerBlockedCount)
 
         // Toggle handlers
-        switchUblock.setOnCheckedChangeListener { _, isChecked ->
+        switchSystemAds.setOnCheckedChangeListener { _, isChecked ->
             pluginManager.setEnabled("ublock_origin", isChecked)
         }
 
-        switchPrivacyBadger.setOnCheckedChangeListener { _, isChecked ->
+        switchSystemTracker.setOnCheckedChangeListener { _, isChecked ->
             pluginManager.setEnabled("privacy_badger", isChecked)
         }
 
         // Details button handlers
-        buttonUblockDetails.setOnClickListener {
-            showPluginDetailsDialog("ublock_origin", pluginManager, ublockBlockedCount, privacybadgerBlockedCount)
+        buttonSystemAdsDetails.setOnClickListener {
+            showPluginDetailsDialog("ublock_origin", pluginManager, systemAdsBlockedCount, systemTrackerBlockedCount)
         }
 
-        buttonPrivacyBadgerDetails.setOnClickListener {
-            showPluginDetailsDialog("privacy_badger", pluginManager, ublockBlockedCount, privacybadgerBlockedCount)
+        buttonSystemTrackerDetails.setOnClickListener {
+            showPluginDetailsDialog("privacy_badger", pluginManager, systemAdsBlockedCount, systemTrackerBlockedCount)
+        }
+
+        // Gecko Extension mock toggles
+        switchGeckoUblock.isChecked = true
+        switchGeckoPrivacyBadger.isChecked = true
+
+        buttonGeckoUblockDetails.setOnClickListener {
+            AlertDialog.Builder(requireContext())
+                .setTitle("uBlock Origin")
+                .setMessage("GeckoView WebExtensions support will fully expose uBlock Origin's native UI here in a future update.")
+                .setPositiveButton("Close", null)
+                .show()
+        }
+
+        buttonGeckoPrivacyBadgerDetails.setOnClickListener {
+            AlertDialog.Builder(requireContext())
+                .setTitle("Privacy Badger")
+                .setMessage("GeckoView WebExtensions support will fully expose Privacy Badger's native UI here in a future update.")
+                .setPositiveButton("Close", null)
+                .show()
         }
 
         // ===== About & Updates Setup =====
@@ -216,11 +260,12 @@ class SettingsFragment : Fragment() {
             }
         }
 
-        // ===== Save Button =====
+        // ===== Save Logic =====
 
-        buttonSave.setOnClickListener {
+        val performSave = {
             val newHomePage = editHomePage.text.toString().trim().takeIf { it.isNotEmpty() } ?: "about:blank"
             val newNavMethod = if (radioCursor.isChecked) "dpad_cursor" else "element_surfing"
+            val newEngine = if (radioEngineGecko.isChecked) "gecko" else "system"
 
             var newTimeout = 3000
             when (spinnerTimeout.selectedItemPosition) {
@@ -245,11 +290,68 @@ class SettingsFragment : Fragment() {
             prefs.edit()
                 .putString("pref_home_page", newHomePage)
                 .putString("pref_nav_method", newNavMethod)
+                .putString("pref_engine_type", newEngine)
                 .putInt("pref_cursor_timeout", newTimeout)
                 .putInt("pref_scroll_hold_duration", newScrollHold)
                 .putBoolean("pref_triple_up_toolbar", checkboxTripleUp.isChecked)
-                .apply()
+                .commit()
+        }
 
+        // Engine Change Dialog
+        var isRevertingRadio = false
+        radioEngineGroup.setOnCheckedChangeListener { _, checkedId ->
+            if (isRevertingRadio) {
+                isRevertingRadio = false
+                return@setOnCheckedChangeListener
+            }
+            val selectedEngine = if (checkedId == R.id.radio_engine_gecko) "gecko" else "system"
+            if (selectedEngine != currentEngine) {
+                AlertDialog.Builder(requireContext())
+                    .setTitle(R.string.app_name)
+                    .setMessage("Changing the browser engine requires a restart. Restart now?")
+                    .setPositiveButton("Restart Now") { _, _ ->
+                        performSave()
+                        val context = requireContext()
+                        val intent = context.packageManager.getLaunchIntentForPackage(context.packageName)
+                        intent?.let {
+                            it.addFlags(android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP or android.content.Intent.FLAG_ACTIVITY_NEW_TASK or android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                            val pendingIntent = android.app.PendingIntent.getActivity(
+                                context, 123456, it,
+                                android.app.PendingIntent.FLAG_CANCEL_CURRENT or android.app.PendingIntent.FLAG_IMMUTABLE
+                            )
+                            val alarmManager = context.getSystemService(android.content.Context.ALARM_SERVICE) as android.app.AlarmManager
+                            alarmManager.set(android.app.AlarmManager.RTC, System.currentTimeMillis() + 100, pendingIntent)
+                        }
+                        Runtime.getRuntime().exit(0)
+                    }
+                    .setNegativeButton("Cancel") { _, _ ->
+                        isRevertingRadio = true
+                        if (currentEngine == "gecko") {
+                            radioEngineGecko.isChecked = true
+                        } else {
+                            radioEngineSystem.isChecked = true
+                        }
+                    }
+                    .setOnCancelListener {
+                        isRevertingRadio = true
+                        if (currentEngine == "gecko") {
+                            radioEngineGecko.isChecked = true
+                        } else {
+                            radioEngineSystem.isChecked = true
+                        }
+                    }
+                    .create()
+                    .apply {
+                        setOnShowListener { getButton(AlertDialog.BUTTON_POSITIVE).requestFocus() }
+                    }
+                    .show()
+            }
+        }
+
+        // ===== Save Button =====
+
+        buttonSave.setOnClickListener {
+            performSave()
             requireActivity().supportFragmentManager.popBackStack()
         }
 
@@ -266,6 +368,7 @@ class SettingsFragment : Fragment() {
             private fun hasChanges(): Boolean {
                 val newHomePage = editHomePage.text.toString().trim().takeIf { it.isNotEmpty() } ?: "about:blank"
                 val newNavMethod = if (radioCursor.isChecked) "dpad_cursor" else "element_surfing"
+                val newEngine = if (radioEngineGecko.isChecked) "gecko" else "system"
 
                 var newTimeout = 3000
                 when (spinnerTimeout.selectedItemPosition) {
@@ -289,6 +392,7 @@ class SettingsFragment : Fragment() {
 
                 return newHomePage != currentHomePage ||
                         newNavMethod != currentNavMethod ||
+                        newEngine != currentEngine ||
                         newTimeout != currentTimeout ||
                         newScrollHold != currentScrollHold ||
                         checkboxTripleUp.isChecked != currentTripleUp
@@ -317,37 +421,7 @@ class SettingsFragment : Fragment() {
             }
 
             private fun saveSettings() {
-                val newHomePage = editHomePage.text.toString().trim().takeIf { it.isNotEmpty() } ?: "about:blank"
-                val newNavMethod = if (radioCursor.isChecked) "dpad_cursor" else "element_surfing"
-
-                var newTimeout = 3000
-                when (spinnerTimeout.selectedItemPosition) {
-                    0 -> newTimeout = 1000
-                    1 -> newTimeout = 3000
-                    2 -> newTimeout = 5000
-                    3 -> {
-                        val customSeconds = editCustomTimeout.text.toString().toIntOrNull() ?: 3
-                        val clampedSeconds = customSeconds.coerceIn(1, 60)
-                        newTimeout = clampedSeconds * 1000
-                    }
-                }
-
-                val newScrollHold = when (spinnerScrollHold.selectedItemPosition) {
-                    0 -> 1000
-                    1 -> 2000
-                    2 -> 3000
-                    3 -> 5000
-                    else -> 2000
-                }
-
-                prefs.edit()
-                    .putString("pref_home_page", newHomePage)
-                    .putString("pref_nav_method", newNavMethod)
-                    .putInt("pref_cursor_timeout", newTimeout)
-                    .putInt("pref_scroll_hold_duration", newScrollHold)
-                    .putBoolean("pref_triple_up_toolbar", checkboxTripleUp.isChecked)
-                    .apply()
-
+                performSave()
                 requireActivity().supportFragmentManager.popBackStack()
             }
         }

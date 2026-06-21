@@ -170,8 +170,64 @@
         android:background="#33FFFFFF"
         android:layout_marginVertical="16dp" />
 
-    <!-- ===== EXTENSIONS SECTION ===== -->
+    <!-- ===== BROWSER ENGINE SECTION ===== -->
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_browser_engine"
+            android:textSize="20sp"
+            android:textColor="@color/text_primary"
+            android:textStyle="bold"
+            android:layout_marginBottom="12dp" />
+
+        <RadioGroup
+            android:id="@+id/radio_browser_engine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp">
+
+            <RadioButton
+                android:id="@+id/radio_engine_system"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/engine_system"
+                android:textColor="@color/text_primary"
+                android:focusable="true" />
+
+            <RadioButton
+                android:id="@+id/radio_engine_gecko"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/engine_gecko"
+                android:textColor="@color/text_primary"
+                android:focusable="true" />
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/engine_restart_warning"
+            android:textSize="12sp"
+            android:textColor="@color/text_secondary"
+            android:layout_marginBottom="8dp" />
+    </LinearLayout>
+
+    <!-- Horizontal divider -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#33FFFFFF"
+        android:layout_marginVertical="16dp" />
+
+    <!-- ===== SYSTEM EXTENSIONS SECTION ===== -->
+    <LinearLayout
+        android:id="@+id/container_system_extensions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -200,9 +256,9 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <!-- uBlock Origin Row -->
+        <!-- Ads Blocker Row -->
         <LinearLayout
-            android:id="@+id/extension_row_ublock"
+            android:id="@+id/extension_row_system_ads"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -241,7 +297,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/ublock_blocked_count"
+                android:id="@+id/system_ads_blocked_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0 blocked"
@@ -253,14 +309,14 @@
                 android:layout_marginEnd="8dp" />
 
             <Switch
-                android:id="@+id/switch_ublock"
+                android:id="@+id/switch_system_ads"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:focusable="true"
                 android:layout_marginEnd="8dp" />
 
             <Button
-                android:id="@+id/button_ublock_details"
+                android:id="@+id/button_system_ads_details"
                 android:layout_width="wrap_content"
                 android:layout_height="32dp"
                 android:text="@string/extensions_details"
@@ -270,9 +326,9 @@
                 android:paddingHorizontal="12dp" />
         </LinearLayout>
 
-        <!-- Privacy Badger Row -->
+        <!-- Tracker Blocker Row -->
         <LinearLayout
-            android:id="@+id/extension_row_privacybadger"
+            android:id="@+id/extension_row_system_tracker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -311,7 +367,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/privacybadger_blocked_count"
+                android:id="@+id/system_tracker_blocked_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0 blocked"
@@ -323,14 +379,161 @@
                 android:layout_marginEnd="8dp" />
 
             <Switch
-                android:id="@+id/switch_privacybadger"
+                android:id="@+id/switch_system_tracker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:focusable="true"
                 android:layout_marginEnd="8dp" />
 
             <Button
-                android:id="@+id/button_privacybadger_details"
+                android:id="@+id/button_system_tracker_details"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:text="@string/extensions_details"
+                android:textSize="12sp"
+                android:focusable="true"
+                android:minWidth="0dp"
+                android:paddingHorizontal="12dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- ===== GECKO EXTENSIONS SECTION ===== -->
+    <LinearLayout
+        android:id="@+id/container_gecko_extensions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <!-- Section header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="12dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_extension"
+                android:tint="@color/icon_primary"
+                android:layout_marginEnd="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/gecko_extensions_title"
+                android:textSize="20sp"
+                android:textColor="@color/text_primary"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- uBlock Origin Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/url_bar_background"
+            android:padding="12dp"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_ublock"
+                android:layout_marginEnd="12dp" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/gecko_ublock_name"
+                    android:textSize="16sp"
+                    android:textColor="@color/text_primary"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/gecko_ublock_desc"
+                    android:textSize="12sp"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginTop="2dp" />
+            </LinearLayout>
+
+            <Switch
+                android:id="@+id/switch_gecko_ublock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/button_gecko_ublock_details"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:text="@string/extensions_details"
+                android:textSize="12sp"
+                android:focusable="true"
+                android:minWidth="0dp"
+                android:paddingHorizontal="12dp" />
+        </LinearLayout>
+
+        <!-- Privacy Badger Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/url_bar_background"
+            android:padding="12dp"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_privacy_badger"
+                android:layout_marginEnd="12dp" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/gecko_privacybadger_name"
+                    android:textSize="16sp"
+                    android:textColor="@color/text_primary"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/gecko_privacybadger_desc"
+                    android:textSize="12sp"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginTop="2dp" />
+            </LinearLayout>
+
+            <Switch
+                android:id="@+id/switch_gecko_privacybadger"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/button_gecko_privacybadger_details"
                 android:layout_width="wrap_content"
                 android:layout_height="32dp"
                 android:text="@string/extensions_details"

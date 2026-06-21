@@ -21,6 +21,15 @@ android {
         }
     }
 
+    splits {
+        abi {
+            isEnable = true
+            reset()
+            include("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
+            isUniversalApk = false
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -56,8 +65,10 @@ kotlin {
 }
 
 dependencies {
+    // Project Modules
+    implementation(project(":browser-engine"))
+
     // Mozilla Android Components
-    implementation("org.mozilla.components:browser-engine-system:$mozComponentsVersion")
     implementation("org.mozilla.components:browser-state:$mozComponentsVersion")
     implementation("org.mozilla.components:concept-engine:$mozComponentsVersion")
     implementation("org.mozilla.components:feature-session:$mozComponentsVersion")

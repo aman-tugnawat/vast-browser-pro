@@ -18,4 +18,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Firefox4TV"
-include(":app")
+include(":browser-ui-tv", ":browser-engine")

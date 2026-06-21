@@ -148,7 +148,7 @@ class BrowserActivity : AppCompatActivity() {
                     val toolbar = fragment?.view?.findViewById<View>(R.id.toolbar)
                     if (toolbar?.hasFocus() == true) {
                         // Return focus to engine view
-                        fragment.view?.findViewById<View>(R.id.engineView)?.requestFocus()
+                        fragment.view?.findViewById<View>(R.id.engineContainer)?.requestFocus()
                         // Hide soft keyboard
                         val imm = getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as android.view.inputmethod.InputMethodManager
                         fragment.view?.findViewById<View>(R.id.url_input)?.let { urlInput ->

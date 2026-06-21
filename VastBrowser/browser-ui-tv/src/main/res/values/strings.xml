@@ -18,12 +18,25 @@
     <string name="custom_timeout_hint">Timeout in seconds (Max 60)</string>
     <string name="save_settings">Save &amp; Exit</string>
 
-    <!-- Extensions -->
-    <string name="extensions_title">Extensions</string>
-    <string name="extensions_ublock_name">uBlock Origin</string>
-    <string name="extensions_ublock_desc">Block ads, pop-ups, and tracking scripts</string>
-    <string name="extensions_privacybadger_name">Privacy Badger</string>
-    <string name="extensions_privacybadger_desc">Learn and block invisible trackers</string>
+    <!-- Browser Engine -->
+    <string name="settings_browser_engine">Browser Engine</string>
+    <string name="engine_system">System WebView (Lightweight)</string>
+    <string name="engine_gecko">GeckoView (Full Extension Support)</string>
+    <string name="engine_restart_warning">Changing the engine requires restarting the app.</string>
+
+    <!-- Extensions (System) -->
+    <string name="extensions_title">System Content Blocking</string>
+    <string name="extensions_ublock_name">Ads Blocker</string>
+    <string name="extensions_ublock_desc">Block ads and pop-ups</string>
+    <string name="extensions_privacybadger_name">Tracker Blocker</string>
+    <string name="extensions_privacybadger_desc">Block invisible trackers</string>
+
+    <!-- Extensions (Gecko) -->
+    <string name="gecko_extensions_title">Firefox WebExtensions</string>
+    <string name="gecko_ublock_name">uBlock Origin</string>
+    <string name="gecko_ublock_desc">An efficient ad blocker: easy on memory and CPU footprint.</string>
+    <string name="gecko_privacybadger_name">Privacy Badger</string>
+    <string name="gecko_privacybadger_desc">Automatically learns to block invisible trackers.</string>
     <string name="extensions_blocked_count">%d blocked this session</string>
     <string name="extensions_details">Details</string>
     <string name="extensions_reset_count">Reset Count</string>

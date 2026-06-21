@@ -72,10 +72,20 @@ class BrowserFragment : Fragment() {
         return binding.root
     }
 
+    private lateinit var engineView: EngineView
+    private lateinit var engineNativeView: View
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val engineView = binding.engineView as EngineView
+        engineView = components.engine.createView(requireContext())
+        engineNativeView = engineView.asView()
+        engineNativeView.isFocusable = true
+        engineNativeView.isFocusableInTouchMode = true
+        binding.engineContainer.addView(
+            engineNativeView,
+            ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        )
 
         // Create initial tab if none exists
         val prefs = requireContext().getSharedPreferences("vast_browser_prefs", android.content.Context.MODE_PRIVATE)
@@ -137,7 +147,7 @@ class BrowserFragment : Fragment() {
             return true
         }
         if (binding.toolbar.hasFocus()) {
-            binding.engineView.requestFocus()
+            engineNativeView.requestFocus()
             val imm = requireContext().getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as android.view.inputmethod.InputMethodManager
             imm.hideSoftInputFromWindow(binding.urlInput.windowToken, 0)
             return true
@@ -168,7 +178,7 @@ class BrowserFragment : Fragment() {
                 imm.hideSoftInputFromWindow(binding.urlInput.windowToken, 0)
 
                 // Clear focus back to the engine view
-                binding.engineView.requestFocus()
+                engineNativeView.requestFocus()
                 true
             } else {
                 false
@@ -202,10 +212,10 @@ class BrowserFragment : Fragment() {
             }
         }
 
-        binding.engineView.setOnTouchListener { _, event ->
+        engineNativeView.setOnTouchListener { _, event ->
             if (event.action == MotionEvent.ACTION_DOWN) {
                 if (_binding != null && binding.urlInput.hasFocus()) {
-                    binding.engineView.requestFocus()
+                    engineNativeView.requestFocus()
                 }
             }
             false
@@ -360,7 +370,7 @@ class BrowserFragment : Fragment() {
         
         val transition = TransitionSet()
             .addTransition(Slide(Gravity.TOP).addTarget(binding.toolbar).addTarget(binding.progressBar))
-            .addTransition(ChangeBounds().addTarget(binding.engineView))
+            .addTransition(ChangeBounds().addTarget(engineNativeView))
             .setDuration(300)
             
         TransitionManager.beginDelayedTransition(binding.root as ViewGroup, transition)
@@ -420,7 +430,7 @@ class BrowserFragment : Fragment() {
 
     private fun getWebView(): android.webkit.WebView? {
         val binding = _binding ?: return null
-        return findWebView(binding.engineView)
+        return findWebView(engineNativeView)
     }
 
     /**
@@ -851,10 +861,10 @@ class BrowserFragment : Fragment() {
         if (!isCursorMode) {
             _binding?.cursorRing?.visibility = View.GONE
             _binding?.cursorTooltip?.visibility = View.GONE
-            _binding?.engineView?.isFocusable = true
+            engineNativeView.isFocusable = true
         } else {
             // In cursor mode, the engineView shouldn't trap DPAD focus natively
-            _binding?.engineView?.isFocusable = false
+            engineNativeView.isFocusable = false
         }
 
         // Check for update notification dot on settings button
@@ -921,14 +931,14 @@ class BrowserFragment : Fragment() {
                 if (!isScrollModeActive) {
                     // Perform normal click - coordinates must be relative to engineView
                     val touchX = cursorX + binding.cursorGroup.width / 2f
-                    val touchY = cursorY + binding.cursorGroup.height / 2f - binding.engineView.top
+                    val touchY = cursorY + binding.cursorGroup.height / 2f - engineNativeView.top
                     val uptime = android.os.SystemClock.uptimeMillis()
                     val downEvent = MotionEvent.obtain(
                         uptime, uptime,
                         MotionEvent.ACTION_DOWN,
                         touchX, touchY, 0
                     )
-                    binding.engineView.dispatchTouchEvent(downEvent)
+                    engineNativeView.dispatchTouchEvent(downEvent)
                     downEvent.recycle()
 
                     val upEvent = MotionEvent.obtain(
@@ -936,7 +946,7 @@ class BrowserFragment : Fragment() {
                         MotionEvent.ACTION_UP,
                         touchX, touchY, 0
                     )
-                    binding.engineView.dispatchTouchEvent(upEvent)
+                    engineNativeView.dispatchTouchEvent(upEvent)
                     upEvent.recycle()
                 }
                 return true
@@ -965,10 +975,10 @@ class BrowserFragment : Fragment() {
             }
             
             // Use fractional coordinates so JS can convert to CSS pixels accurately
-            val engineW = binding.engineView.width.toFloat().coerceAtLeast(1f)
-            val engineH = binding.engineView.height.toFloat().coerceAtLeast(1f)
+            val engineW = engineNativeView.width.toFloat().coerceAtLeast(1f)
+            val engineH = engineNativeView.height.toFloat().coerceAtLeast(1f)
             val fracX = (cursorX + binding.cursorGroup.width / 2f) / engineW
-            val fracY = (cursorY + binding.cursorGroup.height / 2f - binding.engineView.top) / engineH
+            val fracY = (cursorY + binding.cursorGroup.height / 2f - engineNativeView.top) / engineH
             val scrollDx = if (dx != 0f) dx.toInt() else 0
             val scrollDy = if (dy != 0f) dy.toInt() else 0
             
@@ -1061,13 +1071,13 @@ class BrowserFragment : Fragment() {
         if (!isCursorMode) return
 
         val touchX = cursorX + binding.cursorGroup.width / 2f
-        val touchY = cursorY + binding.cursorGroup.height / 2f - binding.engineView.top
+        val touchY = cursorY + binding.cursorGroup.height / 2f - engineNativeView.top
         dispatchNativeHoverMove(touchX, touchY)
 
-        val engineW = binding.engineView.width.toFloat().coerceAtLeast(1f)
-        val engineH = binding.engineView.height.toFloat().coerceAtLeast(1f)
+        val engineW = engineNativeView.width.toFloat().coerceAtLeast(1f)
+        val engineH = engineNativeView.height.toFloat().coerceAtLeast(1f)
         val fracX = (cursorX + binding.cursorGroup.width / 2f) / engineW
-        val fracY = (cursorY + binding.cursorGroup.height / 2f - binding.engineView.top) / engineH
+        val fracY = (cursorY + binding.cursorGroup.height / 2f - engineNativeView.top) / engineH
 
         val js = """
             (function() {
@@ -1204,7 +1214,7 @@ class BrowserFragment : Fragment() {
             android.view.InputDevice.SOURCE_MOUSE, 0
         )
         
-        binding.engineView.dispatchGenericMotionEvent(hoverEvent)
+        engineNativeView.dispatchGenericMotionEvent(hoverEvent)
         hoverEvent.recycle()
     }
 
@@ -1229,7 +1239,7 @@ class BrowserFragment : Fragment() {
             0, 0, 1f, 1f, 0, 0,
             android.view.InputDevice.SOURCE_MOUSE, 0
         )
-        binding.engineView.dispatchGenericMotionEvent(moveEvent)
+        engineNativeView.dispatchGenericMotionEvent(moveEvent)
         moveEvent.recycle()
 
         // 2. Dispatch hover exit
@@ -1240,7 +1250,7 @@ class BrowserFragment : Fragment() {
             0, 0, 1f, 1f, 0, 0,
             android.view.InputDevice.SOURCE_MOUSE, 0
         )
-        binding.engineView.dispatchGenericMotionEvent(exitEvent)
+        engineNativeView.dispatchGenericMotionEvent(exitEvent)
         exitEvent.recycle()
     }
 }

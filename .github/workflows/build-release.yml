@@ -50,8 +50,8 @@ jobs:
             exit 0
           fi
           
-          # Read current version from build.gradle.kts
-          CURRENT=$(grep 'val mozComponentsVersion' VastBrowser/app/build.gradle.kts | grep -oP '"[^"]+"' | tr -d '"')
+          # Read current version from browser-engine/build.gradle.kts
+          CURRENT=$(grep 'val mozComponentsVersion' VastBrowser/browser-engine/build.gradle.kts | grep -oP '"[^"]+"' | tr -d '"')
           
           echo "Current version: $CURRENT"
           echo "Latest version: $LATEST"
@@ -69,17 +69,18 @@ jobs:
         if: steps.check.outputs.updated == 'true'
         run: |
           NEW_VERSION="${{ steps.check.outputs.new_version }}"
-          sed -i "s/val mozComponentsVersion = \"[^\"]*\"/val mozComponentsVersion = \"$NEW_VERSION\"/" VastBrowser/app/build.gradle.kts
+          sed -i "s/val mozComponentsVersion = \"[^\"]*\"/val mozComponentsVersion = \"$NEW_VERSION\"/" VastBrowser/browser-engine/build.gradle.kts
+          sed -i "s/val mozComponentsVersion = \"[^\"]*\"/val mozComponentsVersion = \"$NEW_VERSION\"/" VastBrowser/browser-ui-tv/build.gradle.kts
           
           # Verify the change
-          grep "mozComponentsVersion" VastBrowser/app/build.gradle.kts
+          grep "mozComponentsVersion" VastBrowser/browser-engine/build.gradle.kts
       
       - name: Commit and push engine update
         if: steps.check.outputs.updated == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add VastBrowser/app/build.gradle.kts
+          git add VastBrowser/browser-engine/build.gradle.kts VastBrowser/browser-ui-tv/build.gradle.kts
           git commit -m "chore: bump mozilla-components to ${{ steps.check.outputs.new_version }}"
           git push
 
@@ -139,21 +140,21 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: debug-apk
-          path: VastBrowser/app/build/outputs/apk/debug/app-debug.apk
+          path: VastBrowser/browser-ui-tv/build/outputs/apk/debug/browser-ui-tv-debug.apk
       
       - name: Upload Release APK
         uses: actions/upload-artifact@v4
         if: success()
         with:
           name: release-apk
-          path: VastBrowser/app/build/outputs/apk/release/app-release*.apk
+          path: VastBrowser/browser-ui-tv/build/outputs/apk/release/browser-ui-tv-release*.apk
           if-no-files-found: ignore
       
       - name: Extract version info
         id: version
         run: |
-          VERSION=$(grep 'versionName' VastBrowser/app/build.gradle.kts | grep -oP '"[^"]+"' | tr -d '"')
-          ENGINE=$(grep 'val mozComponentsVersion' VastBrowser/app/build.gradle.kts | grep -oP '"[^"]+"' | tr -d '"')
+          VERSION=$(grep 'versionName' VastBrowser/browser-ui-tv/build.gradle.kts | grep -oP '"[^"]+"' | tr -d '"')
+          ENGINE=$(grep 'val mozComponentsVersion' VastBrowser/browser-engine/build.gradle.kts | grep -oP '"[^"]+"' | tr -d '"')
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "engine=$ENGINE" >> $GITHUB_OUTPUT
           echo "App version: $VERSION, Engine: $ENGINE"
@@ -181,7 +182,7 @@ jobs:
             ---
             *Built automatically by GitHub Actions*
           files: |
-            VastBrowser/app/build/outputs/apk/debug/app-debug.apk
+            VastBrowser/browser-ui-tv/build/outputs/apk/debug/browser-ui-tv-debug.apk
           draft: false
           prerelease: false
         env:

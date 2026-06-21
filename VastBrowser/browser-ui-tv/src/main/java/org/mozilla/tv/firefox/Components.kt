@@ -5,7 +5,6 @@
 package org.mozilla.tv.firefox
 
 import android.content.Context
-import mozilla.components.browser.engine.system.SystemEngine
 import mozilla.components.browser.state.engine.EngineMiddleware
 import mozilla.components.browser.state.store.BrowserStore
 import mozilla.components.concept.engine.DefaultSettings
@@ -32,7 +31,9 @@ class Components(context: Context) {
     }
 
     val engine: Engine by lazy {
-        SystemEngine(context, engineSettings)
+        val eng = org.mozilla.tv.firefox.engine.EngineManager.createEngine(context, engineSettings)
+        org.mozilla.tv.firefox.engine.EngineManager.loadGeckoExtensions(eng, context)
+        eng
     }
 
     val store by lazy {
