@@ -8,8 +8,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 import org.mozilla.tv.firefox.databinding.ActivityBrowserBinding
 import org.mozilla.tv.firefox.ui.BrowserFragment
+import org.mozilla.tv.firefox.updates.UpdateChecker
 
 /**
  * Main activity for Firefox for TV.
@@ -42,6 +45,11 @@ class BrowserActivity : AppCompatActivity() {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, BrowserFragment.create(initialUrl))
                 .commit()
+        }
+
+        // Check for app updates in the background (throttled to once per 24h)
+        lifecycleScope.launch {
+            UpdateChecker.checkForUpdate(this@BrowserActivity, forceCheck = false)
         }
     }
 
