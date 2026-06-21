@@ -6,7 +6,7 @@ plugins {
 val mozComponentsVersion = "150.0.2"
 
 android {
-    namespace = "org.mozilla.tv.firefox.engine"
+    namespace = "com.mangodevelopers.vastbrowser.tv.engine"
     compileSdk = 36
 
     defaultConfig {

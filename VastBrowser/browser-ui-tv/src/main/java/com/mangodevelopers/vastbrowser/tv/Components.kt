@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-package org.mozilla.tv.firefox
+package com.mangodevelopers.vastbrowser.tv
 
 import android.content.Context
 import mozilla.components.browser.state.engine.EngineMiddleware
@@ -10,7 +10,7 @@ import mozilla.components.browser.state.store.BrowserStore
 import mozilla.components.concept.engine.DefaultSettings
 import mozilla.components.concept.engine.Engine
 import mozilla.components.feature.session.SessionUseCases
-import org.mozilla.tv.firefox.plugins.PluginManager
+import com.mangodevelopers.vastbrowser.tv.plugins.PluginManager
 
 /**
  * Provides access to all components needed by the application.
@@ -31,8 +31,8 @@ class Components(context: Context) {
     }
 
     val engine: Engine by lazy {
-        val eng = org.mozilla.tv.firefox.engine.EngineManager.createEngine(context, engineSettings)
-        org.mozilla.tv.firefox.engine.EngineManager.loadGeckoExtensions(eng, context)
+        val eng = com.mangodevelopers.vastbrowser.tv.engine.EngineManager.createEngine(context, engineSettings)
+        com.mangodevelopers.vastbrowser.tv.engine.EngineManager.loadGeckoExtensions(eng, context)
         eng
     }
 

@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-package org.mozilla.tv.firefox.ui
+package com.mangodevelopers.vastbrowser.tv.ui
 
 import android.content.Context
 import android.os.Bundle
@@ -24,10 +24,20 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
-import org.mozilla.tv.firefox.BuildConfig
-import org.mozilla.tv.firefox.R
-import org.mozilla.tv.firefox.components
-import org.mozilla.tv.firefox.updates.UpdateChecker
+import com.mangodevelopers.vastbrowser.tv.BuildConfig
+import com.mangodevelopers.vastbrowser.tv.R
+import com.mangodevelopers.vastbrowser.tv.components
+import com.mangodevelopers.vastbrowser.tv.updates.UpdateChecker
+import org.mozilla.geckoview.WebExtension
+import org.mozilla.geckoview.WebExtensionController
+import com.mangodevelopers.vastbrowser.tv.engine.EngineManager
+import org.json.JSONObject
+import java.net.URL
+import java.net.HttpURLConnection
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import android.widget.ProgressBar
+import android.widget.LinearLayout
 
 class SettingsFragment : Fragment() {
 
@@ -45,6 +55,7 @@ class SettingsFragment : Fragment() {
         val editCustomTimeout = view.findViewById<EditText>(R.id.edit_custom_timeout)
         val checkboxTripleUp = view.findViewById<CheckBox>(R.id.checkbox_triple_up)
         val spinnerScrollHold = view.findViewById<Spinner>(R.id.spinner_scroll_hold_duration)
+        val spinnerSpeed = view.findViewById<Spinner>(R.id.spinner_cursor_speed)
         val buttonSave = view.findViewById<Button>(R.id.button_save)
 
         // Extensions UI
@@ -58,10 +69,7 @@ class SettingsFragment : Fragment() {
         val buttonSystemAdsDetails = view.findViewById<Button>(R.id.button_system_ads_details)
         val buttonSystemTrackerDetails = view.findViewById<Button>(R.id.button_system_tracker_details)
 
-        val switchGeckoUblock = view.findViewById<Switch>(R.id.switch_gecko_ublock)
-        val switchGeckoPrivacyBadger = view.findViewById<Switch>(R.id.switch_gecko_privacybadger)
-        val buttonGeckoUblockDetails = view.findViewById<Button>(R.id.button_gecko_ublock_details)
-        val buttonGeckoPrivacyBadgerDetails = view.findViewById<Button>(R.id.button_gecko_privacybadger_details)
+        val buttonSearchGecko = view.findViewById<Button>(R.id.button_search_gecko_extensions)
 
         // About & Updates UI
         val textCurrentVersion = view.findViewById<TextView>(R.id.text_current_version)
@@ -79,6 +87,7 @@ class SettingsFragment : Fragment() {
         val currentNavMethod = prefs.getString("pref_nav_method", "dpad_cursor")
         val currentTimeout = prefs.getInt("pref_cursor_timeout", 3000)
         val currentScrollHold = prefs.getInt("pref_scroll_hold_duration", 2000)
+        val currentSpeed = prefs.getString("pref_cursor_speed", "fast") ?: "fast"
         val currentTripleUp = prefs.getBoolean("pref_triple_up_toolbar", true)
 
         editHomePage.setText(currentHomePage)
@@ -149,6 +158,21 @@ class SettingsFragment : Fragment() {
             else -> spinnerScrollHold.setSelection(1)
         }
 
+        // Setup Cursor Speed Spinner
+        val speedOptions = arrayOf("Slow", "Medium", "Fast (Default)", "Faster", "Fastest")
+        val speedAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, speedOptions)
+        speedAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerSpeed.adapter = speedAdapter
+
+        when (currentSpeed) {
+            "slow" -> spinnerSpeed.setSelection(0)
+            "medium" -> spinnerSpeed.setSelection(1)
+            "fast" -> spinnerSpeed.setSelection(2)
+            "faster" -> spinnerSpeed.setSelection(3)
+            "fastest" -> spinnerSpeed.setSelection(4)
+            else -> spinnerSpeed.setSelection(2)
+        }
+
         // ===== Extensions Setup =====
 
         // Load current extension states (System Engine)
@@ -176,24 +200,12 @@ class SettingsFragment : Fragment() {
             showPluginDetailsDialog("privacy_badger", pluginManager, systemAdsBlockedCount, systemTrackerBlockedCount)
         }
 
-        // Gecko Extension mock toggles
-        switchGeckoUblock.isChecked = true
-        switchGeckoPrivacyBadger.isChecked = true
-
-        buttonGeckoUblockDetails.setOnClickListener {
-            AlertDialog.Builder(requireContext())
-                .setTitle("uBlock Origin")
-                .setMessage("GeckoView WebExtensions support will fully expose uBlock Origin's native UI here in a future update.")
-                .setPositiveButton("Close", null)
-                .show()
+        if (currentEngine == "gecko") {
+            loadGeckoExtensionsList(view)
         }
 
-        buttonGeckoPrivacyBadgerDetails.setOnClickListener {
-            AlertDialog.Builder(requireContext())
-                .setTitle("Privacy Badger")
-                .setMessage("GeckoView WebExtensions support will fully expose Privacy Badger's native UI here in a future update.")
-                .setPositiveButton("Close", null)
-                .show()
+        buttonSearchGecko?.setOnClickListener {
+            showSearchGeckoExtensionsDialog()
         }
 
         // ===== About & Updates Setup =====
@@ -287,12 +299,22 @@ class SettingsFragment : Fragment() {
                 else -> 2000
             }
 
+            val newSpeed = when (spinnerSpeed.selectedItemPosition) {
+                0 -> "slow"
+                1 -> "medium"
+                2 -> "fast"
+                3 -> "faster"
+                4 -> "fastest"
+                else -> "fast"
+            }
+
             prefs.edit()
                 .putString("pref_home_page", newHomePage)
                 .putString("pref_nav_method", newNavMethod)
                 .putString("pref_engine_type", newEngine)
                 .putInt("pref_cursor_timeout", newTimeout)
                 .putInt("pref_scroll_hold_duration", newScrollHold)
+                .putString("pref_cursor_speed", newSpeed)
                 .putBoolean("pref_triple_up_toolbar", checkboxTripleUp.isChecked)
                 .commit()
         }
@@ -390,11 +412,21 @@ class SettingsFragment : Fragment() {
                     else -> 2000
                 }
 
+                val newSpeed = when (spinnerSpeed.selectedItemPosition) {
+                    0 -> "slow"
+                    1 -> "medium"
+                    2 -> "fast"
+                    3 -> "faster"
+                    4 -> "fastest"
+                    else -> "fast"
+                }
+
                 return newHomePage != currentHomePage ||
                         newNavMethod != currentNavMethod ||
                         newEngine != currentEngine ||
                         newTimeout != currentTimeout ||
                         newScrollHold != currentScrollHold ||
+                        newSpeed != currentSpeed ||
                         checkboxTripleUp.isChecked != currentTripleUp
             }
 
@@ -433,7 +465,7 @@ class SettingsFragment : Fragment() {
     // ===== Extension Helper Methods =====
 
     private fun updateBlockedCounts(
-        pluginManager: org.mozilla.tv.firefox.plugins.PluginManager,
+        pluginManager: com.mangodevelopers.vastbrowser.tv.plugins.PluginManager,
         ublockText: TextView,
         privacyBadgerText: TextView
     ) {
@@ -445,7 +477,7 @@ class SettingsFragment : Fragment() {
 
     private fun showPluginDetailsDialog(
         pluginId: String,
-        pluginManager: org.mozilla.tv.firefox.plugins.PluginManager,
+        pluginManager: com.mangodevelopers.vastbrowser.tv.plugins.PluginManager,
         ublockText: TextView,
         privacyBadgerText: TextView
     ) {
@@ -519,4 +551,303 @@ class SettingsFragment : Fragment() {
             else -> "Just now"
         }
     }
+
+    // ===== Gecko WebExtension Management helper methods =====
+
+    private fun loadGeckoExtensionsList(view: View) {
+        val container = view.findViewById<LinearLayout>(R.id.linear_gecko_extensions_list) ?: return
+        container.removeAllViews()
+
+        val context = requireContext()
+        val runtime = EngineManager.getOrCreateGeckoRuntime(context)
+        runtime.webExtensionController.list().accept(
+            { list ->
+                activity?.runOnUiThread {
+                    if (!isAdded) return@runOnUiThread
+                    if (list == null || list.isEmpty()) {
+                        val emptyText = TextView(context).apply {
+                            text = "No extensions installed. Click below to add some."
+                            setTextColor(androidx.core.content.ContextCompat.getColor(context, R.color.text_secondary))
+                            textSize = 14f
+                            setPadding(0, 16, 0, 16)
+                        }
+                        container.addView(emptyText)
+                    } else {
+                        for (ext in list) {
+                            val row = layoutInflater.inflate(R.layout.item_extension, container, false)
+                            val nameText = row.findViewById<TextView>(R.id.extension_name)
+                            val descText = row.findViewById<TextView>(R.id.extension_desc)
+                            val switchToggle = row.findViewById<Switch>(R.id.extension_switch)
+                            val detailsBtn = row.findViewById<Button>(R.id.extension_button_details)
+
+                            nameText.text = ext.metaData.name ?: ext.id
+                            descText.text = ext.metaData.description ?: "No description provided."
+                            switchToggle.isChecked = ext.metaData.enabled
+
+                            switchToggle.setOnCheckedChangeListener { _, isChecked ->
+                                val targetMethod = if (isChecked) {
+                                    runtime.webExtensionController.enable(ext, WebExtensionController.EnableSource.USER)
+                                } else {
+                                    runtime.webExtensionController.disable(ext, WebExtensionController.EnableSource.USER)
+                                }
+                                targetMethod.accept(
+                                    { /* Success */ },
+                                    { error ->
+                                        activity?.runOnUiThread {
+                                            AlertDialog.Builder(context)
+                                                .setMessage("Failed to update extension state: ${error?.message}")
+                                                .setPositiveButton("OK", null)
+                                                .show()
+                                        }
+                                    }
+                                )
+                            }
+
+                            detailsBtn.setOnClickListener {
+                                showGeckoExtensionDetailsDialog(ext)
+                            }
+
+                            container.addView(row)
+                        }
+                    }
+                }
+            },
+            { error ->
+                activity?.runOnUiThread {
+                    if (!isAdded) return@runOnUiThread
+                    val errorText = TextView(context).apply {
+                        text = "Error loading extensions: ${error?.message}"
+                        setTextColor(androidx.core.content.ContextCompat.getColor(context, R.color.text_secondary))
+                        textSize = 14f
+                    }
+                    container.addView(errorText)
+                }
+            }
+        )
+    }
+
+    private fun showGeckoExtensionDetailsDialog(ext: WebExtension) {
+        val context = requireContext()
+        val message = buildString {
+            appendLine(ext.metaData.name ?: ext.id)
+            appendLine()
+            appendLine("ID: ${ext.id}")
+            appendLine("Version: ${ext.metaData.version ?: "Unknown"}")
+            appendLine()
+            appendLine(ext.metaData.description ?: "No description available.")
+        }
+
+        AlertDialog.Builder(context)
+            .setTitle(ext.metaData.name ?: "Extension Details")
+            .setMessage(message)
+            .setPositiveButton("Close", null)
+            .setNegativeButton("Uninstall") { _, _ ->
+                val runtime = EngineManager.getOrCreateGeckoRuntime(context)
+                runtime.webExtensionController.uninstall(ext).accept(
+                    {
+                        activity?.runOnUiThread {
+                            AlertDialog.Builder(context)
+                                .setMessage("Extension uninstalled successfully.")
+                                .setPositiveButton("OK") { _, _ ->
+                                    view?.let { loadGeckoExtensionsList(it) }
+                                }
+                                .show()
+                        }
+                    },
+                    { error ->
+                        activity?.runOnUiThread {
+                            AlertDialog.Builder(context)
+                                .setMessage("Failed to uninstall: ${error?.message}")
+                                .setPositiveButton("OK", null)
+                                .show()
+                        }
+                    }
+                )
+            }
+            .create()
+            .apply {
+                setOnShowListener {
+                    getButton(AlertDialog.BUTTON_POSITIVE).requestFocus()
+                }
+            }
+            .show()
+    }
+
+    private fun showSearchGeckoExtensionsDialog() {
+        val context = requireContext()
+        val dialogView = layoutInflater.inflate(R.layout.dialog_search_extensions, null)
+        val editQuery = dialogView.findViewById<EditText>(R.id.edit_search_query)
+        val btnSearch = dialogView.findViewById<Button>(R.id.button_search_submit)
+        val progress = dialogView.findViewById<ProgressBar>(R.id.search_progress)
+        val resultsContainer = dialogView.findViewById<LinearLayout>(R.id.search_results_container)
+
+        val dialog = AlertDialog.Builder(context)
+            .setTitle("Search & Install WebExtensions")
+            .setView(dialogView)
+            .setNegativeButton("Close", null)
+            .create()
+
+        btnSearch.setOnClickListener {
+            val query = editQuery.text.toString().trim()
+            if (query.isEmpty()) return@setOnClickListener
+
+            progress.visibility = View.VISIBLE
+            resultsContainer.removeAllViews()
+
+            viewLifecycleOwner.lifecycleScope.launch {
+                val results = searchGeckoExtensions(query)
+                progress.visibility = View.GONE
+
+                if (results.isEmpty()) {
+                    val noResultsText = TextView(context).apply {
+                        text = "No extensions found matching '$query'."
+                        setTextColor(androidx.core.content.ContextCompat.getColor(context, R.color.text_secondary))
+                        setPadding(0, 16, 0, 16)
+                    }
+                    resultsContainer.addView(noResultsText)
+                } else {
+                    val installedIds = mutableSetOf<String>()
+                    val runtime = EngineManager.getOrCreateGeckoRuntime(context)
+                    
+                    runtime.webExtensionController.list().accept(
+                        { list ->
+                            list?.forEach { installedIds.add(it.id) }
+                            activity?.runOnUiThread {
+                                populateSearchResults(results, resultsContainer, installedIds, dialog)
+                            }
+                        },
+                        {
+                            activity?.runOnUiThread {
+                                populateSearchResults(results, resultsContainer, installedIds, dialog)
+                            }
+                        }
+                    )
+                }
+            }
+        }
+
+        dialog.show()
+    }
+
+    private fun populateSearchResults(
+        results: List<GeckoSearchItem>,
+        container: LinearLayout,
+        installedIds: Set<String>,
+        dialog: AlertDialog
+    ) {
+        val context = requireContext()
+        container.removeAllViews()
+        for (item in results) {
+            val row = layoutInflater.inflate(R.layout.item_search_result, container, false)
+            val nameText = row.findViewById<TextView>(R.id.result_name)
+            val summaryText = row.findViewById<TextView>(R.id.result_summary)
+            val versionText = row.findViewById<TextView>(R.id.result_version)
+            val installBtn = row.findViewById<Button>(R.id.button_install_extension)
+
+            nameText.text = item.name
+            summaryText.text = item.summary
+            versionText.text = "Version: ${item.version}"
+
+            if (installedIds.contains(item.guid)) {
+                installBtn.text = "Installed"
+                installBtn.isEnabled = false
+            } else {
+                installBtn.text = "Install"
+                installBtn.setOnClickListener {
+                    dialog.dismiss()
+                    installGeckoExtension(item.downloadUrl)
+                }
+            }
+
+            container.addView(row)
+        }
+    }
+
+    private suspend fun searchGeckoExtensions(query: String): List<GeckoSearchItem> = withContext(Dispatchers.IO) {
+        val results = mutableListOf<GeckoSearchItem>()
+        try {
+            val urlString = "https://addons.mozilla.org/api/v5/addons/search/?q=${java.net.URLEncoder.encode(query, "UTF-8")}&app=android"
+            val url = URL(urlString)
+            val conn = url.openConnection() as HttpURLConnection
+            conn.requestMethod = "GET"
+            conn.setRequestProperty("User-Agent", "VastBrowser-Search")
+            conn.connectTimeout = 10000
+            conn.readTimeout = 10000
+
+            if (conn.responseCode == 200) {
+                val jsonText = conn.inputStream.bufferedReader().readText()
+                val json = JSONObject(jsonText)
+                val resultsArray = json.optJSONArray("results")
+                if (resultsArray != null) {
+                    for (i in 0 until resultsArray.length()) {
+                        val item = resultsArray.getJSONObject(i)
+                        val guid = item.optString("guid", "")
+                        
+                        val nameObj = item.optJSONObject("name")
+                        val name = nameObj?.optString("en-US") ?: nameObj?.names()?.optString(0)?.let { nameObj.optString(it) } ?: item.optString("name", "")
+
+                        val summaryObj = item.optJSONObject("summary")
+                        val summary = summaryObj?.optString("en-US") ?: summaryObj?.names()?.optString(0)?.let { summaryObj.optString(it) } ?: item.optString("summary", "")
+
+                        val currentVersion = item.optJSONObject("current_version")
+                        val version = currentVersion?.optString("version", "1.0") ?: "1.0"
+                        
+                        var downloadUrl = ""
+                        if (currentVersion != null) {
+                            val fileObj = currentVersion.optJSONObject("file")
+                            if (fileObj != null) {
+                                downloadUrl = fileObj.optString("url", "")
+                            } else {
+                                val filesArray = currentVersion.optJSONArray("files")
+                                if (filesArray != null && filesArray.length() > 0) {
+                                    downloadUrl = filesArray.getJSONObject(0).optString("url", "")
+                                }
+                            }
+                        }
+
+                        if (guid.isNotEmpty() && downloadUrl.isNotEmpty()) {
+                            results.add(GeckoSearchItem(guid, name, summary, version, downloadUrl))
+                        }
+                    }
+                }
+            }
+            conn.disconnect()
+        } catch (e: Exception) {
+            android.util.Log.e("SettingsFragment", "Error searching addons", e)
+        }
+        results
+    }
+
+    private fun installGeckoExtension(downloadUrl: String) {
+        val context = requireContext()
+        val runtime = EngineManager.getOrCreateGeckoRuntime(context)
+        runtime.webExtensionController.install(downloadUrl).accept(
+            { extension ->
+                activity?.runOnUiThread {
+                    AlertDialog.Builder(context)
+                        .setMessage("Extension ${extension?.metaData?.name ?: extension?.id ?: "Extension"} installed successfully!")
+                        .setPositiveButton("OK") { _, _ ->
+                            view?.let { loadGeckoExtensionsList(it) }
+                        }
+                        .show()
+                }
+            },
+            { error ->
+                activity?.runOnUiThread {
+                    AlertDialog.Builder(context)
+                        .setMessage("Failed to install extension: ${error?.message}")
+                        .setPositiveButton("OK", null)
+                        .show()
+                }
+            }
+        )
+    }
+
+    data class GeckoSearchItem(
+        val guid: String,
+        val name: String,
+        val summary: String,
+        val version: String,
+        val downloadUrl: String
+    )
 }

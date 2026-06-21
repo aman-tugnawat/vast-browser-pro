@@ -2,11 +2,11 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-package org.mozilla.tv.firefox.plugins
+package com.mangodevelopers.vastbrowser.tv.plugins
 
 import android.content.Context
 import android.util.Log
-import org.mozilla.tv.firefox.R
+import com.mangodevelopers.vastbrowser.tv.R
 
 /**
  * uBlock Origin–style content blocker.

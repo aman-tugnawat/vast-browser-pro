@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-package org.mozilla.tv.firefox
+package com.mangodevelopers.vastbrowser.tv
 
 import android.app.Application
 import android.content.Context
@@ -10,7 +10,7 @@ import mozilla.components.support.base.log.Log
 import mozilla.components.support.base.log.sink.AndroidLogSink
 
 /**
- * Main Application class for Firefox for TV.
+ * Main Application class for Vast Browser.
  *
  * Initializes the [Components] lazily so that the application context
  * is available when they are first accessed.
@@ -23,7 +23,7 @@ class BrowserApplication : Application() {
         super.onCreate()
 
         // Set up Android Components logging
-        Log.addSink(AndroidLogSink(defaultTag = "Firefox4TV"))
+        Log.addSink(AndroidLogSink(defaultTag = "VastBrowser"))
     }
 }
 

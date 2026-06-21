@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-package org.mozilla.tv.firefox.ui
+package com.mangodevelopers.vastbrowser.tv.ui
 
 import android.transition.TransitionManager
 import android.transition.TransitionSet
@@ -28,9 +28,9 @@ import mozilla.components.browser.state.state.createTab
 import mozilla.components.concept.engine.EngineView
 import mozilla.components.feature.session.SessionFeature
 import mozilla.components.lib.state.ext.flow
-import org.mozilla.tv.firefox.R
-import org.mozilla.tv.firefox.components
-import org.mozilla.tv.firefox.databinding.FragmentBrowserBinding
+import com.mangodevelopers.vastbrowser.tv.R
+import com.mangodevelopers.vastbrowser.tv.components
+import com.mangodevelopers.vastbrowser.tv.databinding.FragmentBrowserBinding
 
 private const val ARG_URL = "initial_url"
 private const val HOME_URL = "about:blank"
@@ -89,7 +89,8 @@ class BrowserFragment : Fragment() {
 
         // Create initial tab if none exists
         val prefs = requireContext().getSharedPreferences("vast_browser_prefs", android.content.Context.MODE_PRIVATE)
-        val homePageUrl = prefs.getString("pref_home_page", HOME_URL) ?: HOME_URL
+        val lastOpenPage = prefs.getString("pref_last_open_page", null)
+        val homePageUrl = lastOpenPage ?: prefs.getString("pref_home_page", HOME_URL) ?: HOME_URL
         
         var initialUrl = arguments?.getString(ARG_URL)
         if (initialUrl == null || initialUrl == HOME_URL) {
@@ -152,7 +153,56 @@ class BrowserFragment : Fragment() {
             imm.hideSoftInputFromWindow(binding.urlInput.windowToken, 0)
             return true
         }
-        return sessionFeature?.onBackPressed() == true
+        if (currentBackDialog?.isShowing == true) {
+            currentBackDialog?.dismiss()
+            return true
+        }
+        showBackDialog()
+        return true
+    }
+
+    fun exitAppAndSaveState() {
+        val context = context ?: return
+        val currentUrl = components.store.state.selectedTab?.content?.url ?: ""
+        val prefs = context.getSharedPreferences("vast_browser_prefs", android.content.Context.MODE_PRIVATE)
+        if (currentUrl.isNotEmpty() && currentUrl != "about:blank") {
+            prefs.edit().putString("pref_last_open_page", currentUrl).commit()
+        }
+        
+        // Clear cache
+        try {
+            components.engine.clearData(mozilla.components.concept.engine.Engine.BrowsingData.Companion.allCaches())
+        } catch (e: Exception) {
+            android.util.Log.e("BrowserFragment", "Failed to clear engine cache", e)
+        }
+        
+        // Exit
+        requireActivity().finish()
+    }
+
+    private fun showBackDialog() {
+        val context = context ?: return
+        
+        val dialog = androidx.appcompat.app.AlertDialog.Builder(context)
+            .setTitle("Vast Browser")
+            .setMessage("What would you like to do?")
+            .setPositiveButton("Exit App") { _, _ ->
+                exitAppAndSaveState()
+            }
+            .setNegativeButton("Previous Webpage") { _, _ ->
+                components.sessionUseCases.goBack()
+            }
+            .create()
+            
+        dialog.setOnShowListener {
+            dialog.getButton(androidx.appcompat.app.AlertDialog.BUTTON_POSITIVE).requestFocus()
+        }
+        dialog.setOnDismissListener {
+            currentBackDialog = null
+        }
+        
+        currentBackDialog = dialog
+        dialog.show()
     }
 
     fun loadUrl(url: String) {
@@ -731,11 +781,12 @@ class BrowserFragment : Fragment() {
 
     private var cursorX = 0f
     private var cursorY = 0f
-    private val cursorSpeed = 20f
+    private var cursorSpeed = 45f
     private var isCursorMode = false
     private var isScrollModeActive = false
     private var cursorTimeoutMs = 3000L
     private var scrollHoldDurationMs = 2000L
+    private var currentBackDialog: androidx.appcompat.app.AlertDialog? = null
     private val cursorHideRunnable = Runnable {
         if (!isScrollModeActive) {
             val binding = _binding
@@ -857,6 +908,15 @@ class BrowserFragment : Fragment() {
         isCursorMode = prefs.getString("pref_nav_method", "dpad_cursor") == "dpad_cursor"
         cursorTimeoutMs = prefs.getInt("pref_cursor_timeout", 3000).toLong()
         scrollHoldDurationMs = prefs.getInt("pref_scroll_hold_duration", 2000).toLong()
+        val speedOption = prefs.getString("pref_cursor_speed", "fast") ?: "fast"
+        cursorSpeed = when (speedOption) {
+            "slow" -> 15f
+            "medium" -> 30f
+            "fast" -> 45f
+            "faster" -> 60f
+            "fastest" -> 75f
+            else -> 45f
+        }
         
         if (!isCursorMode) {
             _binding?.cursorRing?.visibility = View.GONE
@@ -883,7 +943,7 @@ class BrowserFragment : Fragment() {
         
         if (availableVersion != null) {
             try {
-                val currentVersion = org.mozilla.tv.firefox.BuildConfig.VERSION_NAME
+                val currentVersion = com.mangodevelopers.vastbrowser.tv.BuildConfig.VERSION_NAME
                 val availParts = availableVersion.removePrefix("v").split("-")[0].split(".").map { it.toIntOrNull() ?: 0 }
                 val currentParts = currentVersion.removePrefix("v").split("-")[0].split(".").map { it.toIntOrNull() ?: 0 }
                 var isNewer = false

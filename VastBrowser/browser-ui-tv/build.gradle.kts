@@ -6,15 +6,15 @@ plugins {
 val mozComponentsVersion = "150.0.2"
 
 android {
-    namespace = "org.mozilla.tv.firefox"
+    namespace = "com.mangodevelopers.vastbrowser.tv"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "org.mozilla.tv.firefox"
+        applicationId = "com.mangodevelopers.vastbrowser.tv"
         minSdk = 26
         targetSdk = 34
         versionCode = 1
-        versionName = "1.0.0-mvp"
+        versionName = "0.2.0"
 
         vectorDrawables {
             useSupportLibrary = true
@@ -69,6 +69,7 @@ dependencies {
     implementation(project(":browser-engine"))
 
     // Mozilla Android Components
+    implementation("org.mozilla.components:browser-engine-gecko:$mozComponentsVersion")
     implementation("org.mozilla.components:browser-state:$mozComponentsVersion")
     implementation("org.mozilla.components:concept-engine:$mozComponentsVersion")
     implementation("org.mozilla.components:feature-session:$mozComponentsVersion")

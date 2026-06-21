@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-package org.mozilla.tv.firefox
+package com.mangodevelopers.vastbrowser.tv
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,12 +10,12 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
-import org.mozilla.tv.firefox.databinding.ActivityBrowserBinding
-import org.mozilla.tv.firefox.ui.BrowserFragment
-import org.mozilla.tv.firefox.updates.UpdateChecker
+import com.mangodevelopers.vastbrowser.tv.databinding.ActivityBrowserBinding
+import com.mangodevelopers.vastbrowser.tv.ui.BrowserFragment
+import com.mangodevelopers.vastbrowser.tv.updates.UpdateChecker
 
 /**
- * Main activity for Firefox for TV.
+ * Main activity for Vast Browser.
  * Hosts the BrowserFragment which contains the EngineView and URL bar.
  */
 class BrowserActivity : AppCompatActivity() {
@@ -27,6 +27,10 @@ class BrowserActivity : AppCompatActivity() {
     private var dpadDownClicks = 0
     private var lastDpadDownTime = 0L
     private val QUICK_PRESS_INTERVAL = 500L // 500ms between consecutive clicks
+
+    private var backPressCount = 0
+    private var lastBackPressTime = 0L
+    private val BACK_PRESS_INTERVAL = 2000L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -155,6 +159,21 @@ class BrowserActivity : AppCompatActivity() {
                             imm.hideSoftInputFromWindow(urlInput.windowToken, 0)
                         }
                         return true
+                    } else {
+                        if (event.action == android.view.KeyEvent.ACTION_DOWN) {
+                            val currentTime = System.currentTimeMillis()
+                            if (currentTime - lastBackPressTime < BACK_PRESS_INTERVAL) {
+                                backPressCount++
+                            } else {
+                                backPressCount = 1
+                            }
+                            lastBackPressTime = currentTime
+
+                            if (backPressCount >= 3) {
+                                fragment?.exitAppAndSaveState()
+                                return true
+                            }
+                        }
                     }
                 }
                 android.view.KeyEvent.KEYCODE_MEDIA_PLAY -> {

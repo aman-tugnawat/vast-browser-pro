@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:background="@drawable/url_bar_background"
+    android:padding="12dp"
+    android:layout_marginBottom="8dp">
+
+    <ImageView
+        android:id="@+id/extension_icon"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/ic_extension"
+        android:tint="@color/icon_primary"
+        android:layout_marginEnd="12dp" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/extension_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Extension Name"
+            android:textSize="16sp"
+            android:textColor="@color/text_primary"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/extension_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Extension Description"
+            android:textSize="12sp"
+            android:textColor="@color/text_secondary"
+            android:layout_marginTop="2dp" />
+    </LinearLayout>
+
+    <Switch
+        android:id="@+id/extension_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:layout_marginEnd="8dp" />
+
+    <Button
+        android:id="@+id/extension_button_details"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:text="@string/extensions_details"
+        android:textSize="12sp"
+        android:focusable="true"
+        android:minWidth="0dp"
+        android:paddingHorizontal="12dp" />
+</LinearLayout>
