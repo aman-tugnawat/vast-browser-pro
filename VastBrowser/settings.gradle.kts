@@ -17,5 +17,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Firefox4TV"
-include(":app")
+rootProject.name = "VastBrowser"
+include(":browser-ui-tv", ":browser-engine")

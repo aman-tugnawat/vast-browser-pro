@@ -35,7 +35,7 @@ jobs:
           fi
           
           # Read current version from build.gradle.kts
-          CURRENT=$(grep 'val mozComponentsVersion' VastBrowser/app/build.gradle.kts | grep -oP '"[^"]+"' | tr -d '"')
+          CURRENT=$(grep 'val mozComponentsVersion' VastBrowser/browser-engine/build.gradle.kts | grep -oP '"[^"]+"' | tr -d '"')
           
           echo "Current: $CURRENT"
           echo "Latest: $LATEST"
@@ -68,11 +68,14 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git checkout -b "$BRANCH"
           
-          # Update the version
-          sed -i "s/val mozComponentsVersion = \"[^\"]*\"/val mozComponentsVersion = \"$NEW_VERSION\"/" VastBrowser/app/build.gradle.kts
+          sed -i "s/val mozComponentsVersion = \"[^\"]*\"/val mozComponentsVersion = \"$NEW_VERSION\"/" VastBrowser/browser-engine/build.gradle.kts
+          sed -i "s/val mozComponentsVersion = \"[^\"]*\"/val mozComponentsVersion = \"$NEW_VERSION\"/" VastBrowser/browser-ui-tv/build.gradle.kts
+          
+          # Verify the change
+          grep "mozComponentsVersion" VastBrowser/browser-engine/build.gradle.kts
           
           # Commit and push
-          git add VastBrowser/app/build.gradle.kts
+          git add VastBrowser/browser-engine/build.gradle.kts VastBrowser/browser-ui-tv/build.gradle.kts
           git commit -m "chore: bump mozilla-components $OLD_VERSION → $NEW_VERSION"
           git push origin "$BRANCH"
           
