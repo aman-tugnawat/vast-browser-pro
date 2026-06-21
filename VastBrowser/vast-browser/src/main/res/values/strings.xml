@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Vast Browser Lite</string>
+    <string name="app_name">Vast Browser</string>
     <string name="url_bar_hint">Search or enter URL</string>
     <string name="action_back">Go back</string>
     <string name="action_forward">Go forward</string>

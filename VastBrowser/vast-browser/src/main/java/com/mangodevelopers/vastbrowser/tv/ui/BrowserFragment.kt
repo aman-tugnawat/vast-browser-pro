@@ -28,9 +28,9 @@ import mozilla.components.browser.state.state.createTab
 import mozilla.components.concept.engine.EngineView
 import mozilla.components.feature.session.SessionFeature
 import mozilla.components.lib.state.ext.flow
-import com.mangodevelopers.vastbrowser.tv.lite.R
+import com.mangodevelopers.vastbrowser.tv.R
 import com.mangodevelopers.vastbrowser.tv.components
-import com.mangodevelopers.vastbrowser.tv.lite.databinding.FragmentBrowserBinding
+import com.mangodevelopers.vastbrowser.tv.databinding.FragmentBrowserBinding
 
 private const val ARG_URL = "initial_url"
 private const val HOME_URL = "about:blank"
@@ -966,7 +966,7 @@ class BrowserFragment : Fragment() {
         
         if (availableVersion != null) {
             try {
-                val currentVersion = com.mangodevelopers.vastbrowser.tv.lite.BuildConfig.VERSION_NAME
+                val currentVersion = com.mangodevelopers.vastbrowser.tv.BuildConfig.VERSION_NAME
                 val availParts = availableVersion.removePrefix("v").split("-")[0].split(".").map { it.toIntOrNull() ?: 0 }
                 val currentParts = currentVersion.removePrefix("v").split("-")[0].split(".").map { it.toIntOrNull() ?: 0 }
                 var isNewer = false

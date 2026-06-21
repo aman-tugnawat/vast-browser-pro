@@ -10,7 +10,7 @@ android {
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.mangodevelopers.vastbrowser.tv"
+        applicationId = "com.mangodevelopers.vastbrowser.tv.pro"
         minSdk = 26
         targetSdk = 34
         versionCode = 2

@@ -13,7 +13,7 @@
     <uses-feature android:name="android.software.leanback" android:required="true" />
 
     <application
-        android:name="com.mangodevelopers.vastbrowser.tv.BrowserApplication"
+        android:name=".BrowserApplication"
         android:allowBackup="false"
         android:hardwareAccelerated="true"
         android:banner="@drawable/app_banner"
@@ -24,7 +24,7 @@
         android:usesCleartextTraffic="true"
         tools:ignore="UnusedAttribute">
 
-        <activity android:name="com.mangodevelopers.vastbrowser.tv.BrowserActivity"
+        <activity android:name=".BrowserActivity"
             android:exported="true"
             android:launchMode="singleTask"
             android:configChanges="keyboard|keyboardHidden|mcc|mnc|orientation|screenSize|locale|layoutDirection|smallestScreenSize|screenLayout"

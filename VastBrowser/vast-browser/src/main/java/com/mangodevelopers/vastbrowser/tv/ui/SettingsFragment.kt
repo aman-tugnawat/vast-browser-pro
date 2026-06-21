@@ -24,8 +24,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
-import com.mangodevelopers.vastbrowser.tv.lite.BuildConfig
-import com.mangodevelopers.vastbrowser.tv.lite.R
+import com.mangodevelopers.vastbrowser.tv.BuildConfig
+import com.mangodevelopers.vastbrowser.tv.R
 import com.mangodevelopers.vastbrowser.tv.components
 import com.mangodevelopers.vastbrowser.tv.updates.UpdateChecker
 

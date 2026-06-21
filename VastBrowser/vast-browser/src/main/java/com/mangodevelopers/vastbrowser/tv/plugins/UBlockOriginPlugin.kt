@@ -6,7 +6,7 @@ package com.mangodevelopers.vastbrowser.tv.plugins
 
 import android.content.Context
 import android.util.Log
-import com.mangodevelopers.vastbrowser.tv.lite.R
+import com.mangodevelopers.vastbrowser.tv.R
 
 /**
  * uBlock Origin–style content blocker.

@@ -6,11 +6,11 @@ plugins {
 val mozComponentsVersion = "150.0.2"
 
 android {
-    namespace = "com.mangodevelopers.vastbrowser.tv.lite"
+    namespace = "com.mangodevelopers.vastbrowser.tv"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.mangodevelopers.vastbrowser.tv.lite"
+        applicationId = "com.mangodevelopers.vastbrowser.tv"
         minSdk = 26
         targetSdk = 34
         versionCode = 2

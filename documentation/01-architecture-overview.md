@@ -27,28 +27,28 @@ To maximize performance, package size efficiency, and stability, the codebase is
 ```
 VastBrowser/
   ├── vast-browser/          (App Module) - "Vast Browser"
-  │   └── Uses GeckoEngine (Mozilla GeckoView v150.0.2)
-  │
-  ├── vast-browser-light/    (App Module) - "Vast Browser Lite"
   │   └── Uses SystemEngine (Android Native WebView)
+  │
+  ├── vast-browser-pro/      (App Module) - "Vast Browser Pro"
+  │   └── Uses GeckoEngine (Mozilla GeckoView v150.0.2)
   │
   ├── build.gradle.kts       (Root Gradle Config)
   └── settings.gradle.kts    (Submodule Registry)
 ```
 
 ### A. Vast Browser (`:vast-browser`)
-- **Engine:** GeckoEngine (Mozilla GeckoView v150.0.2).
-- **Application ID:** `com.mangodevelopers.vastbrowser.tv` (Debug: `com.mangodevelopers.vastbrowser.tv.debug`).
-- **Extensions:** Supports actual desktop-grade Firefox WebExtensions (`.xpi` bundles) installed natively.
-- **Branding:** Deep purple/blue gradient themed adaptive icon and leanback home banner.
-- **Target Case:** High-end TV devices and consoles with sufficient memory where extension compliance is paramount.
-
-### B. Vast Browser Lite (`:vast-browser-light`)
 - **Engine:** SystemEngine (Android Native WebView).
-- **Application ID:** `com.mangodevelopers.vastbrowser.tv.lite` (Debug: `com.mangodevelopers.vastbrowser.tv.lite.debug`).
+- **Application ID:** `com.mangodevelopers.vastbrowser.tv` (Debug: `com.mangodevelopers.vastbrowser.tv.debug`).
 - **Extensions:** Lightweight custom content-blocking rules injected via JavaScript.
-- **Branding:** Teal/green gradient themed adaptive icon and leanback home banner.
+- **Branding:** Teal/green themed leanback home banner and standardized launcher icon.
 - **Target Case:** Low-resource streaming sticks (e.g. Fire TV Stick Lite) requiring a minimal memory and storage footprint (~2MB APK).
+
+### B. Vast Browser Pro (`:vast-browser-pro`)
+- **Engine:** GeckoEngine (Mozilla GeckoView v150.0.2).
+- **Application ID:** `com.mangodevelopers.vastbrowser.tv.pro` (Debug: `com.mangodevelopers.vastbrowser.tv.pro.debug`).
+- **Extensions:** Supports actual desktop-grade Firefox WebExtensions (`.xpi` bundles) installed natively.
+- **Branding:** Deep purple/blue themed leanback home banner with "PRO" label below the "V" logo, and standardized launcher icon.
+- **Target Case:** High-end TV devices and consoles with sufficient memory where extension compliance is paramount.
 
 ---
 
@@ -64,8 +64,8 @@ VastBrowser/
 - **BrowserStore (Redux-Style):** Replaced the legacy RxJava `SessionManager` with a robust `BrowserStore` pattern native to modern Android-Components. State transitions (tabs, navigation states, load progress) are predictable, immutable, and centralized.
 - **Dependency Injection:** Stripped out custom `ServiceLocator` anti-patterns in favor of a clean, lazy-loaded `Components` provider attached to the `BrowserApplication` context.
 - **Engine Direct Instantiation:** Each app module creates its respective `Engine` directly inside its own `Components.kt` class:
-  - `vast-browser` directly instantiates `GeckoEngine(context, settings, runtime)`.
-  - `vast-browser-light` directly instantiates `SystemEngine(context, settings)`.
+  - `vast-browser` directly instantiates `SystemEngine(context, settings)`.
+  - `vast-browser-pro` directly instantiates `GeckoEngine(context, settings, runtime)`.
 
 ### 4.3 Engineering Patches
 - **PDF Viewer Support isolation:** `EngineMiddleware` automatically registers a `PdfStateMiddleware` which crashes under standard WebViews due to missing internal hook points. The `Components.kt` of the Lite version manually filters out the `PdfStateMiddleware` to prevent crashes.
