@@ -28,9 +28,9 @@ import mozilla.components.browser.state.state.createTab
 import mozilla.components.concept.engine.EngineView
 import mozilla.components.feature.session.SessionFeature
 import mozilla.components.lib.state.ext.flow
-import com.mangodevelopers.vastbrowser.tv.lite.R
+import com.mangodevelopers.vastbrowser.tv.R
 import com.mangodevelopers.vastbrowser.tv.components
-import com.mangodevelopers.vastbrowser.tv.lite.databinding.FragmentBrowserBinding
+import com.mangodevelopers.vastbrowser.tv.databinding.FragmentBrowserBinding
 
 private const val ARG_URL = "initial_url"
 private const val HOME_URL = "about:blank"
@@ -88,8 +88,7 @@ class BrowserFragment : Fragment() {
         )
 
         // Engine container initialization completed. We avoid forcing LAYER_TYPE_HARDWARE
-        // here, as offscreen rendering layers break WebView's hardware-accelerated 
-        // video decoding pipeline, causing a black screen on media playback.
+        // here, as offscreen rendering layers can break native video surface overlays.
 
         // Create initial tab if none exists
         val prefs = requireContext().getSharedPreferences("vast_browser_prefs", android.content.Context.MODE_PRIVATE)
@@ -320,11 +319,8 @@ class BrowserFragment : Fragment() {
                     binding.progressBar.visibility = if (loading) View.VISIBLE else View.GONE
                     if (!loading) {
                         injectFocusCss()
-                        // Inject plugin content scripts (ad blocker, tracker blocker)
-                        val currentUrl = components.store.state.selectedTab?.content?.url ?: ""
-                        getWebView()?.let { wv ->
-                            components.pluginManager.injectPluginScripts(wv, currentUrl)
-                        }
+                        // GeckoEngine handles extensions natively via WebExtensions API —
+                        // no JS content-script injection needed here.
                         if (!isToolbarVisible && !isCursorMode) {
                             getWebView()?.requestFocus()
                             restoreWebpageFocus()
@@ -966,7 +962,7 @@ class BrowserFragment : Fragment() {
         
         if (availableVersion != null) {
             try {
-                val currentVersion = com.mangodevelopers.vastbrowser.tv.lite.BuildConfig.VERSION_NAME
+                val currentVersion = com.mangodevelopers.vastbrowser.tv.BuildConfig.VERSION_NAME
                 val availParts = availableVersion.removePrefix("v").split("-")[0].split(".").map { it.toIntOrNull() ?: 0 }
                 val currentParts = currentVersion.removePrefix("v").split("-")[0].split(".").map { it.toIntOrNull() ?: 0 }
                 var isNewer = false

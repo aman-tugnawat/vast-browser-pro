@@ -10,7 +10,7 @@ import mozilla.components.support.base.log.Log
 import mozilla.components.support.base.log.sink.AndroidLogSink
 
 /**
- * Main Application class for Vast Browser Lite (SystemEngine variant).
+ * Main Application class for Vast Browser (GeckoEngine variant).
  *
  * Initializes the [Components] lazily so that the application context
  * is available when they are first accessed.
@@ -23,7 +23,7 @@ class BrowserApplication : Application() {
         super.onCreate()
 
         // Set up Android Components logging
-        Log.addSink(AndroidLogSink(defaultTag = "VastBrowserLite"))
+        Log.addSink(AndroidLogSink(defaultTag = "VastBrowser"))
     }
 }
 

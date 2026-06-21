@@ -5,17 +5,17 @@
 package com.mangodevelopers.vastbrowser.tv
 
 import android.content.Context
-import mozilla.components.browser.engine.system.SystemEngine
+import mozilla.components.browser.engine.gecko.GeckoEngine
 import mozilla.components.browser.state.engine.EngineMiddleware
 import mozilla.components.browser.state.store.BrowserStore
 import mozilla.components.concept.engine.DefaultSettings
 import mozilla.components.concept.engine.Engine
 import mozilla.components.feature.session.SessionUseCases
-import com.mangodevelopers.vastbrowser.tv.plugins.PluginManager
+import com.mangodevelopers.vastbrowser.tv.engine.GeckoEngineProvider
 
 /**
  * Provides access to all components needed by the application.
- * This variant uses SystemEngine (Android WebView) directly.
+ * This variant uses GeckoEngine (Firefox) directly.
  */
 class Components(context: Context) {
 
@@ -31,25 +31,20 @@ class Components(context: Context) {
         )
     }
 
+    val geckoProvider by lazy { GeckoEngineProvider(context) }
+
     val engine: Engine by lazy {
-        SystemEngine(context, engineSettings)
+        val runtime = geckoProvider.getOrCreateRuntime()
+        val eng = GeckoEngine(context, engineSettings, runtime)
+        geckoProvider.loadPreloadedExtensions(runtime, context)
+        eng
     }
 
     val store by lazy {
-        // SystemEngine doesn't support the PDF viewer check, so we filter out PdfStateMiddleware
-        // which crashes when invoking checkForPdfViewer.
-        val middlewares = EngineMiddleware.create(engine).filterNot { 
-            it.javaClass.simpleName == "PdfStateMiddleware"
-        }
-        
-        BrowserStore(middleware = middlewares)
+        BrowserStore(middleware = EngineMiddleware.create(engine))
     }
 
     val sessionUseCases by lazy {
         SessionUseCases(store)
-    }
-
-    val pluginManager by lazy {
-        PluginManager(context)
     }
 }

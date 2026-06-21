@@ -6,11 +6,11 @@ plugins {
 val mozComponentsVersion = "150.0.2"
 
 android {
-    namespace = "com.mangodevelopers.vastbrowser.tv"
+    namespace = "com.mangodevelopers.vastbrowser.tv.lite"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.mangodevelopers.vastbrowser.tv"
+        applicationId = "com.mangodevelopers.vastbrowser.tv.lite"
         minSdk = 26
         targetSdk = 34
         versionCode = 2
@@ -65,8 +65,8 @@ kotlin {
 }
 
 dependencies {
-    // Mozilla Android Components — GeckoEngine
-    implementation("org.mozilla.components:browser-engine-gecko:$mozComponentsVersion")
+    // Mozilla Android Components — SystemEngine (WebView)
+    implementation("org.mozilla.components:browser-engine-system:$mozComponentsVersion")
     implementation("org.mozilla.components:browser-state:$mozComponentsVersion")
     implementation("org.mozilla.components:concept-engine:$mozComponentsVersion")
     implementation("org.mozilla.components:feature-session:$mozComponentsVersion")

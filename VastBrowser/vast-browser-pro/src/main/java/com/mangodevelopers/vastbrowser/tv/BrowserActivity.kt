@@ -10,8 +10,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
-import com.mangodevelopers.vastbrowser.tv.lite.databinding.ActivityBrowserBinding
-import com.mangodevelopers.vastbrowser.tv.lite.R
+import com.mangodevelopers.vastbrowser.tv.databinding.ActivityBrowserBinding
 import com.mangodevelopers.vastbrowser.tv.ui.BrowserFragment
 import com.mangodevelopers.vastbrowser.tv.updates.UpdateChecker
 

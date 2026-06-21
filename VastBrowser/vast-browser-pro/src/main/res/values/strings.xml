@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Vast Browser Lite</string>
+    <string name="app_name">Vast Browser</string>
     <string name="url_bar_hint">Search or enter URL</string>
     <string name="action_back">Go back</string>
     <string name="action_forward">Go forward</string>
@@ -17,13 +17,9 @@
     <string name="timeout_custom">Custom (Max 60s)</string>
     <string name="custom_timeout_hint">Timeout in seconds (Max 60)</string>
     <string name="save_settings">Save &amp; Exit</string>
- 
-    <!-- Extensions (System) -->
-    <string name="extensions_title">System Content Blocking</string>
-    <string name="extensions_ublock_name">Ads Blocker</string>
-    <string name="extensions_ublock_desc">Block ads and pop-ups</string>
-    <string name="extensions_privacybadger_name">Tracker Blocker</string>
-    <string name="extensions_privacybadger_desc">Block invisible trackers</string>
+
+     <!-- Extensions (Gecko) -->
+     <string name="gecko_extensions_title">Gecko WebExtensions</string>
     <string name="extensions_blocked_count">%d blocked this session</string>
     <string name="extensions_details">Details</string>
     <string name="extensions_reset_count">Reset Count</string>
