@@ -65,8 +65,8 @@ kotlin {
 }
 
 dependencies {
-    // Mozilla Android Components — GeckoEngine
-    implementation("org.mozilla.components:browser-engine-gecko:$mozComponentsVersion")
+    // Mozilla Android Components — SystemEngine (WebView)
+    implementation("org.mozilla.components:browser-engine-system:$mozComponentsVersion")
     implementation("org.mozilla.components:browser-state:$mozComponentsVersion")
     implementation("org.mozilla.components:concept-engine:$mozComponentsVersion")
     implementation("org.mozilla.components:feature-session:$mozComponentsVersion")

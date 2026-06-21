@@ -11,14 +11,14 @@ Unlike other TV browsers that are often clunky or outdated forks of mobile softw
 To maximize performance, package size efficiency, and stability, Vast Browser is split into two independent application modules:
 
 1. **Vast Browser (`/vast-browser`):**
-   - Built on the robust **Mozilla GeckoView** engine.
-   - Supports native Firefox WebExtensions (includes preloaded uBlock Origin and Privacy Badger).
-   - Ideal for devices with sufficient resources where complete extension support is needed.
-2. **Vast Browser Lite (`/vast-browser-light`):**
    - Built on the native **System WebView** engine.
    - Extremely lightweight (~2MB APK).
-   - Uses lightweight JavaScript content blocking plugins.
+   - Uses lightweight JavaScript content blocking plugins (includes preloaded uBlock Origin and Privacy Badger).
    - Ideal for low-resource streaming sticks (e.g. Fire TV Stick Lite).
+2. **Vast Browser Pro (`/vast-browser-pro`):**
+   - Built on the robust **Mozilla GeckoView** engine.
+   - Supports native Firefox WebExtensions.
+   - Ideal for devices with sufficient resources where complete extension support is needed.
 
 ---
 
@@ -43,30 +43,30 @@ Detailed architecture blueprints, interaction guides, and logs are organized in 
 ### 2. Compile debug APKs
 Run the Gradle wrapper inside the `VastBrowser` directory to compile either variant:
 ```bash
-# Build Gecko version
+# Build standard WebView version
 ./gradlew :vast-browser:assembleDebug
 
-# Build Lite version
-./gradlew :vast-browser-light:assembleDebug
+# Build Pro Gecko version
+./gradlew :vast-browser-pro:assembleDebug
 ```
 
 ### 3. Deploy and Launch via ADB
 With your Android TV connected via ADB, run the following commands:
 
-#### For Vast Browser (Gecko):
+#### For Vast Browser (Standard/WebView):
 ```bash
-# Install (pick correct ABI, e.g. armeabi-v7a)
+# Install
 adb install -r vast-browser/build/outputs/apk/debug/vast-browser-armeabi-v7a-debug.apk
 
 # Launch a webpage
 adb shell am start -n com.mangodevelopers.vastbrowser.tv.debug/com.mangodevelopers.vastbrowser.tv.BrowserActivity -d "https://www.cineby.at/tv/60625/3/8"
 ```
 
-#### For Vast Browser Lite (WebView):
+#### For Vast Browser Pro (Gecko):
 ```bash
-# Install
-adb install -r vast-browser-light/build/outputs/apk/debug/vast-browser-light-armeabi-v7a-debug.apk
+# Install (pick correct ABI, e.g. armeabi-v7a)
+adb install -r vast-browser-pro/build/outputs/apk/debug/vast-browser-pro-armeabi-v7a-debug.apk
 
 # Launch a webpage
-adb shell am start -n com.mangodevelopers.vastbrowser.tv.lite.debug/com.mangodevelopers.vastbrowser.tv.BrowserActivity -d "https://www.cineby.at/tv/60625/3/8"
+adb shell am start -n com.mangodevelopers.vastbrowser.tv.pro.debug/com.mangodevelopers.vastbrowser.tv.BrowserActivity -d "https://www.cineby.at/tv/60625/3/8"
 ```

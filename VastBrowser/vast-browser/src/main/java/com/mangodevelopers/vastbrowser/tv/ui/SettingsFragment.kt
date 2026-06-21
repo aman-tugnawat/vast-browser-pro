@@ -28,16 +28,6 @@ import com.mangodevelopers.vastbrowser.tv.BuildConfig
 import com.mangodevelopers.vastbrowser.tv.R
 import com.mangodevelopers.vastbrowser.tv.components
 import com.mangodevelopers.vastbrowser.tv.updates.UpdateChecker
-import org.mozilla.geckoview.WebExtension
-import org.mozilla.geckoview.WebExtensionController
-import com.mangodevelopers.vastbrowser.tv.engine.GeckoEngineProvider
-import org.json.JSONObject
-import java.net.URL
-import java.net.HttpURLConnection
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
-import android.widget.ProgressBar
-import android.widget.LinearLayout
 
 class SettingsFragment : Fragment() {
 
@@ -58,8 +48,13 @@ class SettingsFragment : Fragment() {
         val spinnerSpeed = view.findViewById<Spinner>(R.id.spinner_cursor_speed)
         val buttonSave = view.findViewById<Button>(R.id.button_save)
 
-        // Gecko Extensions UI
-        val buttonSearchGecko = view.findViewById<Button>(R.id.button_search_gecko_extensions)
+        // System Extensions UI
+        val switchSystemAds = view.findViewById<Switch>(R.id.switch_system_ads)
+        val switchSystemTracker = view.findViewById<Switch>(R.id.switch_system_tracker)
+        val systemAdsBlockedCount = view.findViewById<TextView>(R.id.system_ads_blocked_count)
+        val systemTrackerBlockedCount = view.findViewById<TextView>(R.id.system_tracker_blocked_count)
+        val buttonSystemAdsDetails = view.findViewById<Button>(R.id.button_system_ads_details)
+        val buttonSystemTrackerDetails = view.findViewById<Button>(R.id.button_system_tracker_details)
 
         // About & Updates UI
         val textCurrentVersion = view.findViewById<TextView>(R.id.text_current_version)
@@ -70,6 +65,7 @@ class SettingsFragment : Fragment() {
         val buttonDownloadUpdate = view.findViewById<Button>(R.id.button_download_update)
 
         val prefs = requireContext().getSharedPreferences("vast_browser_prefs", Context.MODE_PRIVATE)
+        val pluginManager = requireContext().components.pluginManager
 
         // ===== Load existing settings =====
         val currentHomePage = prefs.getString("pref_home_page", "about:blank")
@@ -146,17 +142,38 @@ class SettingsFragment : Fragment() {
             else -> spinnerSpeed.setSelection(2)
         }
 
-        // ===== Gecko Extensions Setup =====
-        loadGeckoExtensionsList(view)
+        // ===== Extensions Setup =====
 
-        buttonSearchGecko?.setOnClickListener {
-            showSearchGeckoExtensionsDialog()
+        // Load current extension states (System Engine)
+        switchSystemAds.isChecked = pluginManager.isEnabled("ublock_origin")
+        switchSystemTracker.isChecked = pluginManager.isEnabled("privacy_badger")
+
+        // Display blocked counts
+        updateBlockedCounts(pluginManager, systemAdsBlockedCount, systemTrackerBlockedCount)
+
+        // Toggle handlers
+        switchSystemAds.setOnCheckedChangeListener { _, isChecked ->
+            pluginManager.setEnabled("ublock_origin", isChecked)
+        }
+
+        switchSystemTracker.setOnCheckedChangeListener { _, isChecked ->
+            pluginManager.setEnabled("privacy_badger", isChecked)
+        }
+
+        // Details button handlers
+        buttonSystemAdsDetails.setOnClickListener {
+            showPluginDetailsDialog("ublock_origin", pluginManager, systemAdsBlockedCount, systemTrackerBlockedCount)
+        }
+
+        buttonSystemTrackerDetails.setOnClickListener {
+            showPluginDetailsDialog("privacy_badger", pluginManager, systemAdsBlockedCount, systemTrackerBlockedCount)
         }
 
         // ===== About & Updates Setup =====
 
         textCurrentVersion.text = getString(R.string.about_current_version, BuildConfig.VERSION_NAME)
-        textEngineVersion.text = getString(R.string.about_engine_version, "GeckoView 150.0.2")
+        // System WebView version is dynamically provided by the system, so we can display System WebView
+        textEngineVersion.text = getString(R.string.about_engine_version, "System WebView")
 
         // Load update state from SharedPreferences
         val updatePrefs = requireContext().getSharedPreferences("vast_browser_updates", Context.MODE_PRIVATE)
@@ -191,6 +208,7 @@ class SettingsFragment : Fragment() {
                     textUpdateStatus.text = getString(R.string.about_update_available, result.version)
                     buttonDownloadUpdate.visibility = View.VISIBLE
                     buttonDownloadUpdate.setOnClickListener {
+                        // Open the download URL in the browser
                         val browserFragment = BrowserFragment.create(result.downloadUrl)
                         requireActivity().supportFragmentManager.beginTransaction()
                             .replace(R.id.fragment_container, browserFragment)
@@ -350,8 +368,63 @@ class SettingsFragment : Fragment() {
         return view
     }
 
+    // ===== Extension Helper Methods =====
+
+    private fun updateBlockedCounts(
+        pluginManager: com.mangodevelopers.vastbrowser.tv.plugins.PluginManager,
+        ublockText: TextView,
+        privacyBadgerText: TextView
+    ) {
+        val ublockCount = pluginManager.getBlockedCount("ublock_origin")
+        val pbCount = pluginManager.getBlockedCount("privacy_badger")
+        ublockText.text = getString(R.string.extensions_blocked_count, ublockCount)
+        privacyBadgerText.text = getString(R.string.extensions_blocked_count, pbCount)
+    }
+
+    private fun showPluginDetailsDialog(
+        pluginId: String,
+        pluginManager: com.mangodevelopers.vastbrowser.tv.plugins.PluginManager,
+        ublockText: TextView,
+        privacyBadgerText: TextView
+    ) {
+        val plugin = pluginManager.plugins[pluginId] ?: return
+        val info = plugin.info
+        val blockedCount = plugin.getBlockedCount()
+
+        val message = buildString {
+            appendLine("${info.name}")
+            appendLine()
+            appendLine("Version: ${info.version}")
+            appendLine()
+            appendLine(info.description)
+            appendLine()
+            appendLine("Session blocked: $blockedCount")
+            appendLine()
+            appendLine("Status: ${if (pluginManager.isEnabled(pluginId)) "Enabled" else "Disabled"}")
+        }
+
+        AlertDialog.Builder(requireContext())
+            .setTitle(info.name)
+            .setMessage(message)
+            .setPositiveButton("Close", null)
+            .setNeutralButton(getString(R.string.extensions_reset_count)) { _, _ ->
+                pluginManager.resetBlockedCount(pluginId)
+                updateBlockedCounts(pluginManager, ublockText, privacyBadgerText)
+            }
+            .create()
+            .apply {
+                setOnShowListener {
+                    getButton(AlertDialog.BUTTON_POSITIVE).requestFocus()
+                }
+            }
+            .show()
+    }
+
     // ===== Update Helper Methods =====
 
+    /**
+     * Simple semantic version comparison. Returns true if [available] is newer than [current].
+     */
     private fun isNewerVersion(available: String, current: String): Boolean {
         try {
             val availParts = available.removePrefix("v").split("-")[0].split(".").map { it.toIntOrNull() ?: 0 }
@@ -367,6 +440,9 @@ class SettingsFragment : Fragment() {
         return false
     }
 
+    /**
+     * Format a timestamp into a human-readable "X ago" string.
+     */
     private fun getTimeAgo(timestamp: Long): String {
         val diff = System.currentTimeMillis() - timestamp
         val seconds = diff / 1000
@@ -381,307 +457,4 @@ class SettingsFragment : Fragment() {
             else -> "Just now"
         }
     }
-
-    // ===== Gecko WebExtension Management helper methods =====
-
-    private fun loadGeckoExtensionsList(view: View) {
-        val container = view.findViewById<LinearLayout>(R.id.linear_gecko_extensions_list) ?: return
-        container.removeAllViews()
-
-        val context = requireContext()
-        val geckoProvider = requireContext().components.geckoProvider
-        val runtime = geckoProvider.getOrCreateRuntime()
-        runtime.webExtensionController.list().accept(
-            { list ->
-                activity?.runOnUiThread {
-                    if (!isAdded) return@runOnUiThread
-                    if (list == null || list.isEmpty()) {
-                        val emptyText = TextView(context).apply {
-                            text = "No extensions installed. Click below to add some."
-                            setTextColor(androidx.core.content.ContextCompat.getColor(context, R.color.text_secondary))
-                            textSize = 14f
-                            setPadding(0, 16, 0, 16)
-                        }
-                        container.addView(emptyText)
-                    } else {
-                        for (ext in list) {
-                            val row = layoutInflater.inflate(R.layout.item_extension, container, false)
-                            val nameText = row.findViewById<TextView>(R.id.extension_name)
-                            val descText = row.findViewById<TextView>(R.id.extension_desc)
-                            val switchToggle = row.findViewById<Switch>(R.id.extension_switch)
-                            val detailsBtn = row.findViewById<Button>(R.id.extension_button_details)
-
-                            nameText.text = ext.metaData.name ?: ext.id
-                            descText.text = ext.metaData.description ?: "No description provided."
-                            switchToggle.isChecked = ext.metaData.enabled
-
-                            switchToggle.setOnCheckedChangeListener { _, isChecked ->
-                                val targetMethod = if (isChecked) {
-                                    runtime.webExtensionController.enable(ext, WebExtensionController.EnableSource.USER)
-                                } else {
-                                    runtime.webExtensionController.disable(ext, WebExtensionController.EnableSource.USER)
-                                }
-                                targetMethod.accept(
-                                    { /* Success */ },
-                                    { error ->
-                                        activity?.runOnUiThread {
-                                            AlertDialog.Builder(context)
-                                                .setMessage("Failed to update extension state: ${error?.message}")
-                                                .setPositiveButton("OK", null)
-                                                .show()
-                                        }
-                                    }
-                                )
-                            }
-
-                            detailsBtn.setOnClickListener {
-                                showGeckoExtensionDetailsDialog(ext)
-                            }
-
-                            container.addView(row)
-                        }
-                    }
-                }
-            },
-            { error ->
-                activity?.runOnUiThread {
-                    if (!isAdded) return@runOnUiThread
-                    val errorText = TextView(context).apply {
-                        text = "Error loading extensions: ${error?.message}"
-                        setTextColor(androidx.core.content.ContextCompat.getColor(context, R.color.text_secondary))
-                        textSize = 14f
-                    }
-                    container.addView(errorText)
-                }
-            }
-        )
-    }
-
-    private fun showGeckoExtensionDetailsDialog(ext: WebExtension) {
-        val context = requireContext()
-        val geckoProvider = requireContext().components.geckoProvider
-        val message = buildString {
-            appendLine(ext.metaData.name ?: ext.id)
-            appendLine()
-            appendLine("ID: ${ext.id}")
-            appendLine("Version: ${ext.metaData.version ?: "Unknown"}")
-            appendLine()
-            appendLine(ext.metaData.description ?: "No description available.")
-        }
-
-        AlertDialog.Builder(context)
-            .setTitle(ext.metaData.name ?: "Extension Details")
-            .setMessage(message)
-            .setPositiveButton("Close", null)
-            .setNegativeButton("Uninstall") { _, _ ->
-                val runtime = geckoProvider.getOrCreateRuntime()
-                runtime.webExtensionController.uninstall(ext).accept(
-                    {
-                        activity?.runOnUiThread {
-                            AlertDialog.Builder(context)
-                                .setMessage("Extension uninstalled successfully.")
-                                .setPositiveButton("OK") { _, _ ->
-                                    view?.let { loadGeckoExtensionsList(it) }
-                                }
-                                .show()
-                        }
-                    },
-                    { error ->
-                        activity?.runOnUiThread {
-                            AlertDialog.Builder(context)
-                                .setMessage("Failed to uninstall: ${error?.message}")
-                                .setPositiveButton("OK", null)
-                                .show()
-                        }
-                    }
-                )
-            }
-            .create()
-            .apply {
-                setOnShowListener {
-                    getButton(AlertDialog.BUTTON_POSITIVE).requestFocus()
-                }
-            }
-            .show()
-    }
-
-    private fun showSearchGeckoExtensionsDialog() {
-        val context = requireContext()
-        val dialogView = layoutInflater.inflate(R.layout.dialog_search_extensions, null)
-        val editQuery = dialogView.findViewById<EditText>(R.id.edit_search_query)
-        val btnSearch = dialogView.findViewById<Button>(R.id.button_search_submit)
-        val progress = dialogView.findViewById<ProgressBar>(R.id.search_progress)
-        val resultsContainer = dialogView.findViewById<LinearLayout>(R.id.search_results_container)
-
-        val dialog = AlertDialog.Builder(context)
-            .setTitle("Search & Install WebExtensions")
-            .setView(dialogView)
-            .setNegativeButton("Close", null)
-            .create()
-
-        btnSearch.setOnClickListener {
-            val query = editQuery.text.toString().trim()
-            if (query.isEmpty()) return@setOnClickListener
-
-            progress.visibility = View.VISIBLE
-            resultsContainer.removeAllViews()
-
-            viewLifecycleOwner.lifecycleScope.launch {
-                val results = searchGeckoExtensions(query)
-                progress.visibility = View.GONE
-
-                if (results.isEmpty()) {
-                    val noResultsText = TextView(context).apply {
-                        text = "No extensions found matching '$query'."
-                        setTextColor(androidx.core.content.ContextCompat.getColor(context, R.color.text_secondary))
-                        setPadding(0, 16, 0, 16)
-                    }
-                    resultsContainer.addView(noResultsText)
-                } else {
-                    val installedIds = mutableSetOf<String>()
-                    val geckoProvider = requireContext().components.geckoProvider
-                    val runtime = geckoProvider.getOrCreateRuntime()
-                    
-                    runtime.webExtensionController.list().accept(
-                        { list ->
-                            list?.forEach { installedIds.add(it.id) }
-                            activity?.runOnUiThread {
-                                populateSearchResults(results, resultsContainer, installedIds, dialog)
-                            }
-                        },
-                        {
-                            activity?.runOnUiThread {
-                                populateSearchResults(results, resultsContainer, installedIds, dialog)
-                            }
-                        }
-                    )
-                }
-            }
-        }
-
-        dialog.show()
-    }
-
-    private fun populateSearchResults(
-        results: List<GeckoSearchItem>,
-        container: LinearLayout,
-        installedIds: Set<String>,
-        dialog: AlertDialog
-    ) {
-        val context = requireContext()
-        container.removeAllViews()
-        for (item in results) {
-            val row = layoutInflater.inflate(R.layout.item_search_result, container, false)
-            val nameText = row.findViewById<TextView>(R.id.result_name)
-            val summaryText = row.findViewById<TextView>(R.id.result_summary)
-            val versionText = row.findViewById<TextView>(R.id.result_version)
-            val installBtn = row.findViewById<Button>(R.id.button_install_extension)
-
-            nameText.text = item.name
-            summaryText.text = item.summary
-            versionText.text = "Version: ${item.version}"
-
-            if (installedIds.contains(item.guid)) {
-                installBtn.text = "Installed"
-                installBtn.isEnabled = false
-            } else {
-                installBtn.text = "Install"
-                installBtn.setOnClickListener {
-                    dialog.dismiss()
-                    installGeckoExtension(item.downloadUrl)
-                }
-            }
-
-            container.addView(row)
-        }
-    }
-
-    private suspend fun searchGeckoExtensions(query: String): List<GeckoSearchItem> = withContext(Dispatchers.IO) {
-        val results = mutableListOf<GeckoSearchItem>()
-        try {
-            val urlString = "https://addons.mozilla.org/api/v5/addons/search/?q=${java.net.URLEncoder.encode(query, "UTF-8")}&app=android"
-            val url = URL(urlString)
-            val conn = url.openConnection() as HttpURLConnection
-            conn.requestMethod = "GET"
-            conn.setRequestProperty("User-Agent", "VastBrowser-Search")
-            conn.connectTimeout = 10000
-            conn.readTimeout = 10000
-
-            if (conn.responseCode == 200) {
-                val jsonText = conn.inputStream.bufferedReader().readText()
-                val json = JSONObject(jsonText)
-                val resultsArray = json.optJSONArray("results")
-                if (resultsArray != null) {
-                    for (i in 0 until resultsArray.length()) {
-                        val item = resultsArray.getJSONObject(i)
-                        val guid = item.optString("guid", "")
-                        
-                        val nameObj = item.optJSONObject("name")
-                        val name = nameObj?.optString("en-US") ?: nameObj?.names()?.optString(0)?.let { nameObj.optString(it) } ?: item.optString("name", "")
-
-                        val summaryObj = item.optJSONObject("summary")
-                        val summary = summaryObj?.optString("en-US") ?: summaryObj?.names()?.optString(0)?.let { summaryObj.optString(it) } ?: item.optString("summary", "")
-
-                        val currentVersion = item.optJSONObject("current_version")
-                        val version = currentVersion?.optString("version", "1.0") ?: "1.0"
-                        
-                        var downloadUrl = ""
-                        if (currentVersion != null) {
-                            val fileObj = currentVersion.optJSONObject("file")
-                            if (fileObj != null) {
-                                downloadUrl = fileObj.optString("url", "")
-                            } else {
-                                val filesArray = currentVersion.optJSONArray("files")
-                                if (filesArray != null && filesArray.length() > 0) {
-                                    downloadUrl = filesArray.getJSONObject(0).optString("url", "")
-                                }
-                            }
-                        }
-
-                        if (guid.isNotEmpty() && downloadUrl.isNotEmpty()) {
-                            results.add(GeckoSearchItem(guid, name, summary, version, downloadUrl))
-                        }
-                    }
-                }
-            }
-            conn.disconnect()
-        } catch (e: Exception) {
-            android.util.Log.e("SettingsFragment", "Error searching addons", e)
-        }
-        results
-    }
-
-    private fun installGeckoExtension(downloadUrl: String) {
-        val context = requireContext()
-        val geckoProvider = requireContext().components.geckoProvider
-        val runtime = geckoProvider.getOrCreateRuntime()
-        runtime.webExtensionController.install(downloadUrl).accept(
-            { extension ->
-                activity?.runOnUiThread {
-                    AlertDialog.Builder(context)
-                        .setMessage("Extension ${extension?.metaData?.name ?: extension?.id ?: "Extension"} installed successfully!")
-                        .setPositiveButton("OK") { _, _ ->
-                            view?.let { loadGeckoExtensionsList(it) }
-                        }
-                        .show()
-                }
-            },
-            { error ->
-                activity?.runOnUiThread {
-                    AlertDialog.Builder(context)
-                        .setMessage("Failed to install extension: ${error?.message}")
-                        .setPositiveButton("OK", null)
-                        .show()
-                }
-            }
-        )
-    }
-
-    data class GeckoSearchItem(
-        val guid: String,
-        val name: String,
-        val summary: String,
-        val version: String,
-        val downloadUrl: String
-    )
 }

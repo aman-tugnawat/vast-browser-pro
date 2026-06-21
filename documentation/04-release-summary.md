@@ -8,21 +8,21 @@ This document tracks all features, optimizations, refactoring, and bug fixes imp
 
 ---
 
-## 1. Modular Splitting (Standard vs. Lite)
+## 1. Modular Splitting (Standard vs. Pro)
 
 To eliminate runtime switching overhead and package size inefficiencies, the project has transitioned to two fully isolated, compile-time specific app modules:
-- **`vast-browser` (GeckoEngine):** Native Firefox engine with desktop-grade extensions, preloaded WebExtension assets, and the `GeckoEngineProvider` setup.
-- **`vast-browser-light` (SystemEngine):** Ultra-lightweight ~2MB build using the native Android WebView, custom JS ad/tracker filters, and direct `SystemEngine` calls.
+- **`vast-browser` (SystemEngine):** Ultra-lightweight ~2MB build using the native Android WebView, custom JS ad/tracker filters, and direct `SystemEngine` calls.
+- **`vast-browser-pro` (GeckoEngine):** Native Firefox engine with desktop-grade extensions, preloaded WebExtension assets, and the `GeckoEngineProvider` setup.
 
 ---
 
 ## 2. Dynamic Content Blocking Architectures
 
-### A. WebView JS Content-Script Injection (Lite Module)
+### A. WebView JS Content-Script Injection (Standard Module)
 - **uBlock Origin Plugin:** Parses bundled `easylist_slim.txt` + `easyprivacy_slim.txt` on thread startup. Injects CSS hiding rules and overrides `XMLHttpRequest`/`fetch`/`createElement` to abort ad-server requests.
 - **Privacy Badger Plugin:** Blocks third-party tracker cookies using `privacy_badger_seed.json`. Strips UTM and social query params (e.g. `fbclid`, `gclid`).
 
-### B. Gecko Engine Native WebExtensions (Standard Module)
+### B. Gecko Engine Native WebExtensions (Pro Module)
 - **Offline Bundling:** Bundles `.xpi` WebExtension binaries under assets. Copies them to local storage on the first load and triggers standard WebExtension controller installation.
 - **AMO Search Integration:** Embeds a settings prompt that calls the Mozilla Add-on (AMO) API, allowing users to query, download, and install third-party Gecko extensions.
 - **WebExtension Management:** Active list display with toggle controls to enable, disable, or completely uninstall extensions.
@@ -33,9 +33,7 @@ To eliminate runtime switching overhead and package size inefficiencies, the pro
 
 - **Rebranded Assets:** Removed all references to "Firefox TV" or "Firefox WebExtensions". Replaced them with the **Vast Browser** visual system.
 - **Widescreen Leanback Banners:** Added proper 16:9 widescreen launch banners (`app_banner.png` in `drawable-xhdpi`) for Google TV and Fire TV home screen integration.
-- **Adaptive Icons:** Created vector-based adaptive launcher icons (`ic_launcher.xml` in `mipmap-anydpi-v26` pointing to custom background/foreground layers).
-  - *Vast Browser:* Purple/blue gradient shape.
-  - *Vast Browser Lite:* Teal/green gradient shape.
+- **Adaptive Icons:** Configured adaptive launcher icons (`ic_launcher.xml` in `mipmap-anydpi-v26` pointing to corresponding mipmap background/foreground layers) utilizing the standardized icon pack.
 - **Cursor Speed Control:** Settings options allowing users to configure the D-Pad cursor velocity (**Slow, Medium, Fast, Faster, Fastest**).
 - **Custom Scroll Mode:** Long press triggers scroll mode with adjustable hold delays.
 

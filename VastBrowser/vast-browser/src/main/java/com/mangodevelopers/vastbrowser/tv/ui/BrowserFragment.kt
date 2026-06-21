@@ -88,7 +88,8 @@ class BrowserFragment : Fragment() {
         )
 
         // Engine container initialization completed. We avoid forcing LAYER_TYPE_HARDWARE
-        // here, as offscreen rendering layers can break native video surface overlays.
+        // here, as offscreen rendering layers break WebView's hardware-accelerated 
+        // video decoding pipeline, causing a black screen on media playback.
 
         // Create initial tab if none exists
         val prefs = requireContext().getSharedPreferences("vast_browser_prefs", android.content.Context.MODE_PRIVATE)
@@ -319,8 +320,11 @@ class BrowserFragment : Fragment() {
                     binding.progressBar.visibility = if (loading) View.VISIBLE else View.GONE
                     if (!loading) {
                         injectFocusCss()
-                        // GeckoEngine handles extensions natively via WebExtensions API —
-                        // no JS content-script injection needed here.
+                        // Inject plugin content scripts (ad blocker, tracker blocker)
+                        val currentUrl = components.store.state.selectedTab?.content?.url ?: ""
+                        getWebView()?.let { wv ->
+                            components.pluginManager.injectPluginScripts(wv, currentUrl)
+                        }
                         if (!isToolbarVisible && !isCursorMode) {
                             getWebView()?.requestFocus()
                             restoreWebpageFocus()
