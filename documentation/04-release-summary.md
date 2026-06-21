@@ -1,10 +1,10 @@
-# Project Status & Release Log: Version 0.2.0
+# Project Status & Release Log: Version 0.3.0
 
 **Project Name:** Vast Browser (Leanback TV)  
-**Version:** `0.2.0`  
+**Version:** `0.3.0`  
 **Target Architecture:** Multi-module independent app package structure.  
 
-This document tracks all features, optimizations, refactoring, and bug fixes implemented from project inception through the v0.2.0 milestone.
+This document tracks all features, optimizations, refactoring, and bug fixes implemented from project inception through the v0.3.0 milestone.
 
 ---
 

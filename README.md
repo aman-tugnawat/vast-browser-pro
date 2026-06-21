@@ -29,7 +29,7 @@ Detailed architecture blueprints, interaction guides, and logs are organized in 
 1. [Architecture & Design Overview](file:///Users/aman/Code/firefox4tv/documentation/01-architecture-overview.md) — Motivation, design goals, and compiler/dependency modular split details.
 2. [User Interaction & Controls](file:///Users/aman/Code/firefox4tv/documentation/02-user-interaction.md) — Spatial D-Pad highlight navigation, simulated cursor, hover detection, virtual keyboard (IME), and remote media controls.
 3. [Testing & Verification Guide](file:///Users/aman/Code/firefox4tv/documentation/03-testing-guide.md) — Android TV emulator configuration, PC keyboard mapping, and manual keyevent testing scenarios.
-4. [Project Status & Release Log](file:///Users/aman/Code/firefox4tv/documentation/04-release-summary.md) — Release notes for v0.2.0, patches, bug fixes, and weekly CI/CD workflows.
+4. [Project Status & Release Log](file:///Users/aman/Code/firefox4tv/documentation/04-release-summary.md) — Release notes for v0.3.0, patches, bug fixes, and weekly CI/CD workflows.
 
 ---
 
