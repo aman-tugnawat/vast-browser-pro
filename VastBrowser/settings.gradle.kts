@@ -18,4 +18,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "VastBrowser"
-include(":browser-ui-tv", ":browser-engine")
+include(":vast-browser", ":vast-browser-light")

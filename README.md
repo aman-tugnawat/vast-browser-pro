@@ -4,57 +4,69 @@ Vast Browser is a modern, high-performance web browser designed completely from 
 
 Unlike other TV browsers that are often clunky or outdated forks of mobile software, Vast Browser leverages modern Mozilla Android Components to deliver a premium, immersive, and fast browsing experience natively tailored for the living room and spatial canvas.
 
-## Features
-- **TV-First Navigation:** Optimized for standard D-Pad remotes with seamless focus mapping.
-- **Desktop-Class Rendering:** Bypasses mobile constraints to serve full desktop interfaces (e.g., `youtube.com/tv`), ensuring you get the best experience possible on a large screen.
-- **Modern Architecture:** Built on Kotlin 2.3, Gradle 8, and Redux-style state management (`BrowserStore`).
+---
+
+## 🏗️ Multi-Module Architecture
+
+To maximize performance, package size efficiency, and stability, Vast Browser is split into two independent application modules:
+
+1. **Vast Browser (`/vast-browser`):**
+   - Built on the robust **Mozilla GeckoView** engine.
+   - Supports native Firefox WebExtensions (includes preloaded uBlock Origin and Privacy Badger).
+   - Ideal for devices with sufficient resources where complete extension support is needed.
+2. **Vast Browser Lite (`/vast-browser-light`):**
+   - Built on the native **System WebView** engine.
+   - Extremely lightweight (~2MB APK).
+   - Uses lightweight JavaScript content blocking plugins.
+   - Ideal for low-resource streaming sticks (e.g. Fire TV Stick Lite).
 
 ---
 
-## Getting Started (Personal Use)
+## 📚 Project Documentation
 
-If you just want to install and use Vast Browser on your TV:
+Detailed architecture blueprints, interaction guides, and logs are organized in the top-level [/documentation](file:///Users/aman/Code/firefox4tv/documentation/) folder:
 
-1. **Download the APK:** Grab the latest `app-debug.apk` from the [Releases](#) page (or build it yourself using the instructions below).
-2. **Enable Developer Options:** On your Android TV, go to Settings -> Device Preferences -> About, and click "Build" 7 times.
-3. **Install the APK:** 
-   - **Via ADB:** Connect to your TV over the network and run:
-     ```bash
-     adb connect <TV_IP_ADDRESS>
-     adb install app-debug.apk
-     ```
-   - **Via USB / Cloud Drive:** Transfer the APK to a thumb drive or cloud storage app (like Send Files to TV) and install it using a file manager on your TV.
-4. **Launch:** Open Vast Browser and use your TV remote's D-Pad to navigate the UI, click the URL bar, and browse the web!
+1. [Architecture & Design Overview](file:///Users/aman/Code/firefox4tv/documentation/01-architecture-overview.md) — Motivation, design goals, and compiler/dependency modular split details.
+2. [User Interaction & Controls](file:///Users/aman/Code/firefox4tv/documentation/02-user-interaction.md) — Spatial D-Pad highlight navigation, simulated cursor, hover detection, virtual keyboard (IME), and remote media controls.
+3. [Testing & Verification Guide](file:///Users/aman/Code/firefox4tv/documentation/03-testing-guide.md) — Android TV emulator configuration, PC keyboard mapping, and manual keyevent testing scenarios.
+4. [Project Status & Release Log](file:///Users/aman/Code/firefox4tv/documentation/04-release-summary.md) — Release notes for v0.3.0, patches, bug fixes, and weekly CI/CD workflows.
 
 ---
 
-## Development and Local Testing
+## 🚀 Getting Started & Local Testing
 
-The active development environment is isolated within the `VastBrowser` folder. The parent directory also contains a `reference-code` folder storing legacy assets and Mozilla central snapshots.
+### 1. Build Requirements
+- **JDK:** Version 17
+- **Android SDK:** API Level 36 (target SDK 34)
+- **IDE:** Android Studio (Jellyfish or newer recommended). Open the nested `/VastBrowser` folder directly in Android Studio, *not* the root repo folder.
 
-### Requirements
-- **Android Studio:** Latest stable release (Jellyfish or newer recommended).
-- **Java Development Kit (JDK):** Version 17.
-- **Android SDK:** API Level 34.
+### 2. Compile debug APKs
+Run the Gradle wrapper inside the `VastBrowser` directory to compile either variant:
+```bash
+# Build Gecko version
+./gradlew :vast-browser:assembleDebug
 
-### Build Setup
-1. Clone the repository.
-2. **Important:** Open the `VastBrowser/` folder directly in Android Studio, *not* the root repository folder. This ensures the Gradle sync works correctly.
-3. Let Gradle sync the dependencies.
+# Build Lite version
+./gradlew :vast-browser-light:assembleDebug
+```
 
-### Local Testing (Emulator)
-To test the TV interface accurately, you should use an Android TV emulator.
+### 3. Deploy and Launch via ADB
+With your Android TV connected via ADB, run the following commands:
 
-1. **Create an AVD:** In Android Studio's Device Manager, create a new Virtual Device using the **Android TV (1080p)** profile with an Android 14 (API 34) system image.
-2. **Enable Hardware Keyboard:** 
-   - By default, the emulator disables your physical keyboard. To fix this, locate the AVD's `config.ini` file (usually in `~/.android/avd/YOUR_AVD_NAME.avd/config.ini`).
-   - Change `hw.keyboard = no` to `hw.keyboard = yes`.
-3. **Run the App:** 
-   - Start the emulator.
-   - Click **Run 'app'** in Android Studio to build and deploy the debug APK.
-   - Use your physical keyboard arrows or the emulator's virtual D-Pad to test focus navigation.
+#### For Vast Browser (Gecko):
+```bash
+# Install (pick correct ABI, e.g. armeabi-v7a)
+adb install -r vast-browser/build/outputs/apk/debug/vast-browser-armeabi-v7a-debug.apk
 
-## Project Structure
-- `VastBrowser/`: The active, modern codebase for the Android application.
-- `documentation/`: Contains detailed design docs, architecture breakdowns, and phase planning.
-- `reference-code/`: Unmaintained legacy code and foundational binaries used for research and fallback.
+# Launch a webpage
+adb shell am start -n com.mangodevelopers.vastbrowser.tv.debug/com.mangodevelopers.vastbrowser.tv.BrowserActivity -d "https://www.cineby.at/tv/60625/3/8"
+```
+
+#### For Vast Browser Lite (WebView):
+```bash
+# Install
+adb install -r vast-browser-light/build/outputs/apk/debug/vast-browser-light-armeabi-v7a-debug.apk
+
+# Launch a webpage
+adb shell am start -n com.mangodevelopers.vastbrowser.tv.lite.debug/com.mangodevelopers.vastbrowser.tv.BrowserActivity -d "https://www.cineby.at/tv/60625/3/8"
+```
