@@ -65,27 +65,34 @@ jobs:
           NEW_VERSION="${{ steps.check.outputs.latest }}"
           OLD_VERSION="${{ steps.check.outputs.current }}"
 
-          # Check if branch already exists
-          if git ls-remote --exit-code --heads origin "$BRANCH" > /dev/null 2>&1; then
-            echo "Branch $BRANCH already exists. Skipping."
+          # Skip based on PR existence, not branch existence: a leftover branch
+          # whose PR creation failed on a previous run must be retried, while a
+          # PR the user closed to reject the update must not be recreated.
+          if [ -n "$(gh pr list --head "$BRANCH" --state all --json number --jq '.[0].number // empty')" ]; then
+            echo "A PR for $BRANCH already exists (open, merged, or closed). Skipping."
             exit 0
           fi
 
-          # Create new branch
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git checkout -b "$BRANCH"
 
-          sed -i "s/val mozComponentsVersion = \"[^\"]*\"/val mozComponentsVersion = \"$NEW_VERSION\"/" VastBrowser/vast-browser/build.gradle.kts
-          sed -i "s/val mozComponentsVersion = \"[^\"]*\"/val mozComponentsVersion = \"$NEW_VERSION\"/" VastBrowser/vast-browser-pro/build.gradle.kts
+          if git ls-remote --exit-code --heads origin "$BRANCH" > /dev/null 2>&1; then
+            echo "Branch $BRANCH already exists without a PR — creating the PR for it."
+          else
+            # Create new branch with the version bump
+            git checkout -b "$BRANCH"
 
-          # Verify the change
-          grep "mozComponentsVersion = " VastBrowser/vast-browser/build.gradle.kts VastBrowser/vast-browser-pro/build.gradle.kts
+            sed -i "s/val mozComponentsVersion = \"[^\"]*\"/val mozComponentsVersion = \"$NEW_VERSION\"/" VastBrowser/vast-browser/build.gradle.kts
+            sed -i "s/val mozComponentsVersion = \"[^\"]*\"/val mozComponentsVersion = \"$NEW_VERSION\"/" VastBrowser/vast-browser-pro/build.gradle.kts
 
-          # Commit and push
-          git add VastBrowser/vast-browser/build.gradle.kts VastBrowser/vast-browser-pro/build.gradle.kts
-          git commit -m "chore: bump mozilla-components $OLD_VERSION → $NEW_VERSION"
-          git push origin "$BRANCH"
+            # Verify the change
+            grep "mozComponentsVersion = " VastBrowser/vast-browser/build.gradle.kts VastBrowser/vast-browser-pro/build.gradle.kts
+
+            # Commit and push
+            git add VastBrowser/vast-browser/build.gradle.kts VastBrowser/vast-browser-pro/build.gradle.kts
+            git commit -m "chore: bump mozilla-components $OLD_VERSION → $NEW_VERSION"
+            git push origin "$BRANCH"
+          fi
 
           # Make sure the label exists before referencing it
           gh label create dependencies --description "Dependency updates" --color 0366d6 || true
