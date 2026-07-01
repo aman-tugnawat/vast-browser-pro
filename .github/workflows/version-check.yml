@@ -4,7 +4,7 @@ on:
   # Daily check at noon UTC
   schedule:
     - cron: '0 12 * * *'
-  
+
   # Manual trigger
   workflow_dispatch:
 
@@ -16,89 +16,101 @@ jobs:
   check-version:
     name: Check Mozilla Components Version
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      
+
       - name: Check for newer mozilla-components version
         id: check
         run: |
-          # Query Maven for the latest version
+          # Query Maven for the newest *stable* version. Mozilla's <latest>/<release>
+          # metadata tags point at beta builds (e.g. 153.0b7), so pick the highest
+          # version from the full list that has no beta suffix.
           MAVEN_URL="https://maven.mozilla.org/maven2/org/mozilla/components/browser-engine-system/maven-metadata.xml"
-          LATEST=$(curl -s "$MAVEN_URL" | grep -oP '<latest>\K[^<]+' || echo "")
-          
+          LATEST=$(curl -sf "$MAVEN_URL" | grep -oP '<version>\K[^<]+' | grep -E '^[0-9]+(\.[0-9]+)+$' | sort -V | tail -1 || echo "")
+
           if [ -z "$LATEST" ]; then
-            echo "Could not fetch latest version from Maven"
+            echo "::warning::Could not fetch latest version from Maven"
             echo "updated=false" >> $GITHUB_OUTPUT
             exit 0
           fi
-          
-          # Read current version from build.gradle.kts
-          CURRENT=$(grep 'val mozComponentsVersion' VastBrowser/browser-engine/build.gradle.kts | grep -oP '"[^"]+"' | tr -d '"')
-          
+
+          # Read current version from the regular module (pro is kept in sync)
+          CURRENT=$(grep -oP 'val mozComponentsVersion = "\K[^"]+' VastBrowser/vast-browser/build.gradle.kts || echo "")
+
+          if [ -z "$CURRENT" ]; then
+            echo "::error::Could not read mozComponentsVersion from VastBrowser/vast-browser/build.gradle.kts"
+            exit 1
+          fi
+
           echo "Current: $CURRENT"
           echo "Latest: $LATEST"
           echo "current=$CURRENT" >> $GITHUB_OUTPUT
           echo "latest=$LATEST" >> $GITHUB_OUTPUT
-          
-          if [ "$CURRENT" != "$LATEST" ]; then
+
+          # Only update when LATEST is strictly newer than CURRENT
+          if [ "$CURRENT" != "$LATEST" ] && [ "$(printf '%s\n%s\n' "$CURRENT" "$LATEST" | sort -V | tail -1)" = "$LATEST" ]; then
             echo "Update available!"
             echo "updated=true" >> $GITHUB_OUTPUT
           else
             echo "Already up to date."
             echo "updated=false" >> $GITHUB_OUTPUT
           fi
-      
+
       - name: Update version and create PR
         if: steps.check.outputs.updated == 'true'
         run: |
           BRANCH="engine-update/${{ steps.check.outputs.latest }}"
           NEW_VERSION="${{ steps.check.outputs.latest }}"
           OLD_VERSION="${{ steps.check.outputs.current }}"
-          
+
           # Check if branch already exists
           if git ls-remote --exit-code --heads origin "$BRANCH" > /dev/null 2>&1; then
             echo "Branch $BRANCH already exists. Skipping."
             exit 0
           fi
-          
+
           # Create new branch
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git checkout -b "$BRANCH"
-          
-          sed -i "s/val mozComponentsVersion = \"[^\"]*\"/val mozComponentsVersion = \"$NEW_VERSION\"/" VastBrowser/browser-engine/build.gradle.kts
-          sed -i "s/val mozComponentsVersion = \"[^\"]*\"/val mozComponentsVersion = \"$NEW_VERSION\"/" VastBrowser/browser-ui-tv/build.gradle.kts
-          
+
+          sed -i "s/val mozComponentsVersion = \"[^\"]*\"/val mozComponentsVersion = \"$NEW_VERSION\"/" VastBrowser/vast-browser/build.gradle.kts
+          sed -i "s/val mozComponentsVersion = \"[^\"]*\"/val mozComponentsVersion = \"$NEW_VERSION\"/" VastBrowser/vast-browser-pro/build.gradle.kts
+
           # Verify the change
-          grep "mozComponentsVersion" VastBrowser/browser-engine/build.gradle.kts
-          
+          grep "mozComponentsVersion = " VastBrowser/vast-browser/build.gradle.kts VastBrowser/vast-browser-pro/build.gradle.kts
+
           # Commit and push
-          git add VastBrowser/browser-engine/build.gradle.kts VastBrowser/browser-ui-tv/build.gradle.kts
+          git add VastBrowser/vast-browser/build.gradle.kts VastBrowser/vast-browser-pro/build.gradle.kts
           git commit -m "chore: bump mozilla-components $OLD_VERSION → $NEW_VERSION"
           git push origin "$BRANCH"
-          
+
+          # Make sure the label exists before referencing it
+          gh label create dependencies --description "Dependency updates" --color 0366d6 || true
+
           # Create PR
           gh pr create \
             --title "🔄 Update Mozilla Components: $OLD_VERSION → $NEW_VERSION" \
             --body "## Engine Update
-          
+
           This PR updates the Mozilla Android Components (browser engine) dependency.
-          
+
           | | Version |
           |---|---|
           | **Current** | \`$OLD_VERSION\` |
           | **New** | \`$NEW_VERSION\` |
-          
+
           ### Changes
-          - Updated \`mozComponentsVersion\` in \`VastBrowser/app/build.gradle.kts\`
-          
+          - Updated \`mozComponentsVersion\` in \`VastBrowser/vast-browser/build.gradle.kts\`
+          - Updated \`mozComponentsVersion\` in \`VastBrowser/vast-browser-pro/build.gradle.kts\`
+
           ### Verification
           - [ ] Build succeeds (\`./gradlew assembleDebug\`)
           - [ ] Basic browsing works on emulator
           - [ ] Plugin injection still functions
-          
+
           ---
           *This PR was automatically created by the version-check workflow.*" \
             --base main \
