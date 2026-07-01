@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 # Cancel superseded builds of the same ref
 concurrency:
@@ -19,12 +19,23 @@ concurrency:
 
 jobs:
   build:
-    name: Build APKs
+    name: Build & publish signed APKs
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Verify release credentials are configured
+        run: |
+          if [ -z "${{ secrets.RELEASE_REPO_TOKEN }}" ]; then
+            echo "::error::RELEASE_REPO_TOKEN secret is not set (fine-grained PAT with contents:write on MangoDevelopers/vast-browser-release)"
+            exit 1
+          fi
+          if [ -z "${{ secrets.KEYSTORE_BASE64 }}" ]; then
+            echo "::error::KEYSTORE_BASE64 secret is not set"
+            exit 1
+          fi
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
@@ -42,38 +53,40 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
+      - name: Decode release keystore
+        run: |
+          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > "$RUNNER_TEMP/release.jks"
+          echo "VAST_KEYSTORE_FILE=$RUNNER_TEMP/release.jks" >> $GITHUB_ENV
+
       - name: Grant execute permission to gradlew
         run: chmod +x VastBrowser/gradlew
 
-      - name: Build Debug APKs
+      - name: Build signed Release APKs
         working-directory: VastBrowser
-        run: ./gradlew assembleDebug
-
-      - name: Build Release APKs
-        working-directory: VastBrowser
+        env:
+          VAST_KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          VAST_KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
         run: ./gradlew assembleRelease
-        continue-on-error: true  # Release may fail without signing config
 
-      - name: Upload Debug APKs (regular)
-        uses: actions/upload-artifact@v4
-        with:
-          name: vast-browser-debug-apk
-          path: VastBrowser/vast-browser/build/outputs/apk/debug/*.apk
+      - name: Collect APKs with stable names
+        run: |
+          mkdir -p dist
+          for f in VastBrowser/vast-browser/build/outputs/apk/release/*.apk; do
+            abi=$(basename "$f" | sed -E 's/^vast-browser-(.*)-release\.apk$/\1/')
+            cp "$f" "dist/VastBrowser-${abi}.apk"
+          done
+          for f in VastBrowser/vast-browser-pro/build/outputs/apk/release/*.apk; do
+            abi=$(basename "$f" | sed -E 's/^vast-browser-pro-(.*)-release\.apk$/\1/')
+            cp "$f" "dist/VastBrowser-Pro-${abi}.apk"
+          done
+          cd dist && sha256sum *.apk > SHA256SUMS.txt
+          ls -la
 
-      - name: Upload Debug APKs (pro)
-        uses: actions/upload-artifact@v4
-        with:
-          name: vast-browser-pro-debug-apk
-          path: VastBrowser/vast-browser-pro/build/outputs/apk/debug/*.apk
-
-      - name: Upload Release APKs
+      - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
           name: release-apks
-          path: |
-            VastBrowser/vast-browser/build/outputs/apk/release/*.apk
-            VastBrowser/vast-browser-pro/build/outputs/apk/release/*.apk
-          if-no-files-found: ignore
+          path: dist/*
 
       - name: Extract version info
         id: version
@@ -84,9 +97,11 @@ jobs:
           echo "engine=$ENGINE" >> $GITHUB_OUTPUT
           echo "App version: $VERSION, Engine: $ENGINE"
 
-      - name: Create GitHub Release
+      - name: Publish release to public repo
         uses: softprops/action-gh-release@v2
         with:
+          repository: MangoDevelopers/vast-browser-release
+          token: ${{ secrets.RELEASE_REPO_TOKEN }}
           tag_name: v${{ steps.version.outputs.version }}-build.${{ github.run_number }}
           name: "VastBrowser v${{ steps.version.outputs.version }} (Build #${{ github.run_number }})"
           body: |
@@ -95,25 +110,21 @@ jobs:
             **Engine Version:** Mozilla Components ${{ steps.version.outputs.engine }}
 
             ### Flavors
-            - `vast-browser-*` — regular (system WebView engine)
-            - `vast-browser-pro-*` — pro (GeckoView engine)
+            - `VastBrowser-*` — regular (system WebView engine, smaller download)
+            - `VastBrowser-Pro-*` — pro (bundled GeckoView engine)
 
-            APKs are split per ABI — for most Android TV devices use the `arm64-v8a` (newer) or `armeabi-v7a` (older) APK.
-
-            ### What's New
-            - Built from commit ${{ github.sha }}
+            APKs are split per ABI — for most Android TV / Fire TV devices use the
+            `arm64-v8a` (newer devices) or `armeabi-v7a` (older devices) APK.
 
             ### Installation
             1. Download the APK below
             2. Transfer to your Android TV device
             3. Install via file manager or `adb install`
 
+            Verify downloads against `SHA256SUMS.txt`.
+
             ---
             *Built automatically by GitHub Actions*
-          files: |
-            VastBrowser/vast-browser/build/outputs/apk/debug/*.apk
-            VastBrowser/vast-browser-pro/build/outputs/apk/debug/*.apk
+          files: dist/*
           draft: false
           prerelease: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
