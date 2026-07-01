@@ -30,6 +30,22 @@ android {
         }
     }
 
+    // Release signing is driven by environment variables so the keystore
+    // never lives in the repo. Locally or in CI, set:
+    //   VAST_KEYSTORE_FILE, VAST_KEYSTORE_PASSWORD, VAST_KEY_ALIAS
+    // When unset, release builds fall back to unsigned (CI artifact-only builds).
+    val keystorePath: String? = System.getenv("VAST_KEYSTORE_FILE")
+    if (keystorePath != null) {
+        signingConfigs {
+            create("release") {
+                storeFile = file(keystorePath)
+                storePassword = System.getenv("VAST_KEYSTORE_PASSWORD")
+                keyAlias = System.getenv("VAST_KEY_ALIAS")
+                keyPassword = System.getenv("VAST_KEYSTORE_PASSWORD")
+            }
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -37,6 +53,9 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            if (keystorePath != null) {
+                signingConfig = signingConfigs.getByName("release")
+            }
         }
         debug {
             applicationIdSuffix = ".debug"
