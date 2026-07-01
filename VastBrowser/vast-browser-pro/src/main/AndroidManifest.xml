@@ -12,12 +12,16 @@
     <uses-feature android:name="android.hardware.touchscreen" android:required="false"/>
     <uses-feature android:name="android.software.leanback" android:required="true" />
 
+    <!-- Fire OS 7 ignores android:banner for sideloaded apps and renders the
+         square android:icon; it also fails to load icons from res/mipmap-*, so
+         the launcher icon is a full-bleed square PNG under res/drawable-*.
+         android:banner is kept for Android TV / Google TV launchers. -->
     <application
         android:name=".BrowserApplication"
         android:allowBackup="false"
         android:hardwareAccelerated="true"
         android:banner="@drawable/app_banner"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
