@@ -12,12 +12,14 @@
     <uses-feature android:name="android.hardware.touchscreen" android:required="false"/>
     <uses-feature android:name="android.software.leanback" android:required="true" />
 
+    <!-- Fire TV ignores android:banner and letterboxes the square android:icon,
+         so the icon points at 16:9 tiles (Amazon guideline: 320x180 @xhdpi) -->
     <application
         android:name=".BrowserApplication"
         android:allowBackup="false"
         android:hardwareAccelerated="true"
         android:banner="@drawable/app_banner"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_tv"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
