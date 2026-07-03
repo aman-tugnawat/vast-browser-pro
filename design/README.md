@@ -38,6 +38,26 @@ Hand-authored 24×24 stroke SVGs used on the landing page feature cards. Style r
 | `verified.svg` | Signed, verifiable builds |
 | `download.svg` | Download buttons |
 
+## Mascot creatures (`creatures/`)
+
+Cursor-reactive mascots perched on the landing page hero. Flat minimal style in the
+site palette (lilac/cyan bodies, coral beak/feet, ink pupils).
+
+| File | Theme | Notes |
+|---|---|---|
+| `owl.svg` | Dark (default) | Lilac owl, big round eyes |
+| `bird.svg` | Light | Cyan songbird, single visible eye |
+
+Interaction contract (implemented in the landing page script):
+
+- `.pupil` circles get a JS `transform="translate(dx dy)"` pointing at the cursor,
+  clamped to ~4 SVG units — eyes follow the mouse.
+- `.lid` circles are eyelids (same fill as the face) blinked via CSS
+  `scaleY` keyframes (needs `transform-box: fill-box; transform-origin: center`).
+- The whole `<svg>` gets a subtle rotation (±7°) toward the cursor plus a slow
+  idle bob. All motion is disabled under `prefers-reduced-motion`.
+- Theme switching shows owls via `.only-dark` and birds via `.only-light`.
+
 ## Web design tokens (landing page)
 
 The landing page (`mangodevelopers.github.io/apps/vast-browser/`) replicates the
@@ -46,12 +66,17 @@ values extracted from their published stylesheets:
 
 ### Colors
 
-| Token | Value | Use |
-|---|---|---|
-| Page background | `#f3f6f7` | body |
-| Dark / ink | `#1f2025` | text, primary buttons |
-| Light tint | `#ebf0f8` | subtle fills |
-| Hero gradient | `#d2e5ff → #fff9ee` | rounded hero panel, top to bottom |
+The site is dual-theme. **Dark is the default**; the choice persists in
+`localStorage["vb-theme"]` and toggles via the nav button.
+
+| Token | Light | Dark (default) | Use |
+|---|---|---|---|
+| Page background | `#f3f6f7` | `#131417` | body |
+| Ink (text) | `#1f2025` | `#ebf0f8` | text; primary button bg (inverts) |
+| Surface | `#ffffff` | `#1f2025` | cards, primary button text |
+| Subtle tint | `#ebf0f8` | `#2a2d35` | chips, inline code |
+| Hero gradient | `#d2e5ff → #fff9ee` (day sky) | `#1d2947 → #372a20` (dusk) | rounded hero panel |
+| Nav pill | `#fff9` | `#1f202599` | frosted glass background |
 | Coral | `#ffab94` | accent, beta badge |
 | Cyan | `#7ddcff` | accent |
 | Lilac | `#b9a6ff` | accent |
