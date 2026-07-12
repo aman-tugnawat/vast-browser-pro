@@ -53,7 +53,7 @@ jobs:
           # Every release increments the version at least at patch level.
           BUMP="${{ github.event.inputs.bump || 'patch' }}"
 
-          CURRENT=$(grep -oP 'versionName = "\K[^"]+' VastBrowser/vast-browser/build.gradle.kts)
+          CURRENT=$(grep -oP 'versionName = "\K[^"]+' VastBrowser/vast-browser-pro/build.gradle.kts)
           IFS='.' read -r MAJOR MINOR PATCH <<< "$CURRENT"
 
           case "$BUMP" in
@@ -64,14 +64,14 @@ jobs:
           esac
           NEW_VERSION="$MAJOR.$MINOR.$PATCH"
 
-          for f in VastBrowser/vast-browser/build.gradle.kts VastBrowser/vast-browser-pro/build.gradle.kts; do
+          for f in VastBrowser/vast-browser-pro/build.gradle.kts; do
             CODE=$(grep -oP 'versionCode = \K[0-9]+' "$f")
             sed -i "s/versionCode = [0-9]\+/versionCode = $((CODE + 1))/" "$f"
             sed -i "s/versionName = \"[^\"]*\"/versionName = \"$NEW_VERSION\"/" "$f"
           done
-          grep -H 'versionCode\|versionName' VastBrowser/vast-browser/build.gradle.kts VastBrowser/vast-browser-pro/build.gradle.kts
+          grep -H 'versionCode\|versionName' VastBrowser/vast-browser-pro/build.gradle.kts
 
-          ENGINE=$(grep -oP 'val mozComponentsVersion = "\K[^"]+' VastBrowser/vast-browser/build.gradle.kts)
+          ENGINE=$(grep -oP 'val mozComponentsVersion = "\K[^"]+' VastBrowser/vast-browser-pro/build.gradle.kts)
           echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
           echo "engine=$ENGINE" >> $GITHUB_OUTPUT
           echo "Bump: $BUMP — $CURRENT → $NEW_VERSION (engine: $ENGINE)"
@@ -110,11 +110,7 @@ jobs:
       - name: Collect APKs with stable names
         run: |
           mkdir -p dist
-          for f in VastBrowser/vast-browser/build/outputs/apk/release/*.apk; do
-            abi=$(basename "$f" | sed -E 's/^vast-browser-(.*)-release\.apk$/\1/')
-            cp "$f" "dist/VastBrowser-${abi}.apk"
-          done
-          for f in VastBrowser/vast-browser-pro/build/outputs/apk/release/*.apk; do
+          for f in VastBrowser/vast-browser-pro/build.outputs/apk/release/*.apk; do
             abi=$(basename "$f" | sed -E 's/^vast-browser-pro-(.*)-release\.apk$/\1/')
             cp "$f" "dist/VastBrowser-Pro-${abi}.apk"
           done
@@ -125,7 +121,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add VastBrowser/vast-browser/build.gradle.kts VastBrowser/vast-browser-pro/build.gradle.kts
+          git add VastBrowser/vast-browser-pro/build.gradle.kts
           # [skip ci] prevents this push from re-triggering the workflow
           git commit -m "chore(release): v${{ steps.version.outputs.version }} [skip ci]"
           # Rebase in case main moved while the build ran
@@ -138,14 +134,13 @@ jobs:
           repository: MangoDevelopers/vast-browser-release
           token: ${{ secrets.RELEASE_REPO_TOKEN }}
           tag_name: v${{ steps.version.outputs.version }}
-          name: "VastBrowser v${{ steps.version.outputs.version }}"
+          name: "VastBrowser Pro v${{ steps.version.outputs.version }}"
           body: |
-            ## VastBrowser v${{ steps.version.outputs.version }}
+            ## VastBrowser Pro v${{ steps.version.outputs.version }}
 
             **Engine Version:** Mozilla Components ${{ steps.version.outputs.engine }}
 
             ### Flavors
-            - `VastBrowser-*` — regular (system WebView engine, smaller download)
             - `VastBrowser-Pro-*` — pro (bundled GeckoView engine)
 
             APKs are split per ABI — for most Android TV / Fire TV devices use the

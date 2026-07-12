@@ -27,7 +27,7 @@ jobs:
           # Query Maven for the newest *stable* version. Mozilla's <latest>/<release>
           # metadata tags point at beta builds (e.g. 153.0b7), so pick the highest
           # version from the full list that has no beta suffix.
-          MAVEN_URL="https://maven.mozilla.org/maven2/org/mozilla/components/browser-engine-system/maven-metadata.xml"
+          MAVEN_URL="https://maven.mozilla.org/maven2/org/mozilla/components/browser-engine-gecko/maven-metadata.xml"
           LATEST=$(curl -sf "$MAVEN_URL" | grep -oP '<version>\K[^<]+' | grep -E '^[0-9]+(\.[0-9]+)+$' | sort -V | tail -1 || echo "")
 
           if [ -z "$LATEST" ]; then
@@ -36,11 +36,11 @@ jobs:
             exit 0
           fi
 
-          # Read current version from the regular module (pro is kept in sync)
-          CURRENT=$(grep -oP 'val mozComponentsVersion = "\K[^"]+' VastBrowser/vast-browser/build.gradle.kts || echo "")
+          # Read current version from the pro module
+          CURRENT=$(grep -oP 'val mozComponentsVersion = "\K[^"]+' VastBrowser/vast-browser-pro/build.gradle.kts || echo "")
 
           if [ -z "$CURRENT" ]; then
-            echo "::error::Could not read mozComponentsVersion from VastBrowser/vast-browser/build.gradle.kts"
+            echo "::error::Could not read mozComponentsVersion from VastBrowser/vast-browser-pro/build.gradle.kts"
             exit 1
           fi
 
@@ -82,14 +82,13 @@ jobs:
             # Create new branch with the version bump
             git checkout -b "$BRANCH"
 
-            sed -i "s/val mozComponentsVersion = \"[^\"]*\"/val mozComponentsVersion = \"$NEW_VERSION\"/" VastBrowser/vast-browser/build.gradle.kts
             sed -i "s/val mozComponentsVersion = \"[^\"]*\"/val mozComponentsVersion = \"$NEW_VERSION\"/" VastBrowser/vast-browser-pro/build.gradle.kts
 
             # Verify the change
-            grep "mozComponentsVersion = " VastBrowser/vast-browser/build.gradle.kts VastBrowser/vast-browser-pro/build.gradle.kts
+            grep "mozComponentsVersion = " VastBrowser/vast-browser-pro/build.gradle.kts
 
             # Commit and push
-            git add VastBrowser/vast-browser/build.gradle.kts VastBrowser/vast-browser-pro/build.gradle.kts
+            git add VastBrowser/vast-browser-pro/build.gradle.kts
             git commit -m "chore: bump mozilla-components $OLD_VERSION → $NEW_VERSION"
             git push origin "$BRANCH"
           fi
@@ -110,7 +109,6 @@ jobs:
           | **New** | \`$NEW_VERSION\` |
 
           ### Changes
-          - Updated \`mozComponentsVersion\` in \`VastBrowser/vast-browser/build.gradle.kts\`
           - Updated \`mozComponentsVersion\` in \`VastBrowser/vast-browser-pro/build.gradle.kts\`
 
           ### Verification
