@@ -121,12 +121,6 @@ jobs:
           cd dist && sha256sum *.apk > SHA256SUMS.txt
           ls -la
 
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: release-apks
-          path: dist/*
-
       - name: Commit version bump
         run: |
           git config user.name "github-actions[bot]"

@@ -27,6 +27,7 @@ import kotlinx.coroutines.launch
 import com.mangodevelopers.vastbrowser.tv.BuildConfig
 import com.mangodevelopers.vastbrowser.tv.R
 import com.mangodevelopers.vastbrowser.tv.components
+import com.mangodevelopers.vastbrowser.tv.updates.ApkInstaller
 import com.mangodevelopers.vastbrowser.tv.updates.UpdateChecker
 import org.mozilla.geckoview.WebExtension
 import org.mozilla.geckoview.WebExtensionController
@@ -161,12 +162,25 @@ class SettingsFragment : Fragment() {
         // Load update state from SharedPreferences
         val updatePrefs = requireContext().getSharedPreferences("vast_browser_updates", Context.MODE_PRIVATE)
         val availableVersion = updatePrefs.getString("update_available_version", null)
-        val downloadUrl = updatePrefs.getString("update_available_url", null)
+        val cachedUrl = updatePrefs.getString("update_available_url", null)
+        val cachedAsset = updatePrefs.getString("update_asset_name", "") ?: ""
         val lastChecked = updatePrefs.getLong("update_last_checked", 0L)
 
         if (availableVersion != null && isNewerVersion(availableVersion, BuildConfig.VERSION_NAME)) {
             textUpdateStatus.text = getString(R.string.about_update_available, availableVersion)
             buttonDownloadUpdate.visibility = View.VISIBLE
+            if (!cachedUrl.isNullOrEmpty()) {
+                val cached = UpdateChecker.UpdateResult(
+                    version = availableVersion,
+                    downloadUrl = cachedUrl,
+                    assetName = cachedAsset,
+                    releaseNotesUrl = "",
+                    body = ""
+                )
+                buttonDownloadUpdate.setOnClickListener {
+                    onDownloadUpdateClicked(cached, textUpdateStatus)
+                }
+            }
         } else {
             textUpdateStatus.text = getString(R.string.about_up_to_date)
             buttonDownloadUpdate.visibility = View.GONE
@@ -191,10 +205,7 @@ class SettingsFragment : Fragment() {
                     textUpdateStatus.text = getString(R.string.about_update_available, result.version)
                     buttonDownloadUpdate.visibility = View.VISIBLE
                     buttonDownloadUpdate.setOnClickListener {
-                        val browserFragment = BrowserFragment.create(result.downloadUrl)
-                        requireActivity().supportFragmentManager.beginTransaction()
-                            .replace(R.id.fragment_container, browserFragment)
-                            .commit()
+                        onDownloadUpdateClicked(result, textUpdateStatus)
                     }
                 } else {
                     textUpdateStatus.text = getString(R.string.about_up_to_date)
@@ -203,15 +214,6 @@ class SettingsFragment : Fragment() {
 
                 val now = System.currentTimeMillis()
                 textLastChecked.text = getString(R.string.about_last_checked, getTimeAgo(now))
-            }
-        }
-
-        if (downloadUrl != null) {
-            buttonDownloadUpdate.setOnClickListener {
-                val browserFragment = BrowserFragment.create(downloadUrl)
-                requireActivity().supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, browserFragment)
-                    .commit()
             }
         }
 
@@ -351,6 +353,80 @@ class SettingsFragment : Fragment() {
     }
 
     // ===== Update Helper Methods =====
+
+    /**
+     * Download-button handler: downloads the APK and launches the installer.
+     * Falls back to opening the release page in the browser when no APK asset
+     * was found, and routes through the "install unknown apps" permission
+     * screen when that hasn't been granted yet.
+     */
+    private fun onDownloadUpdateClicked(result: UpdateChecker.UpdateResult, statusText: TextView) {
+        if (!result.isDirectApk) {
+            val browserFragment = BrowserFragment.create(result.downloadUrl)
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, browserFragment)
+                .commit()
+            return
+        }
+
+        if (!ApkInstaller.canInstall(requireContext())) {
+            AlertDialog.Builder(requireContext())
+                .setTitle(getString(R.string.about_install_permission_title))
+                .setMessage(getString(R.string.about_install_permission_message))
+                .setPositiveButton(getString(R.string.about_open_settings)) { _, _ ->
+                    startActivity(ApkInstaller.unknownSourcesSettingsIntent(requireContext()))
+                }
+                .setNegativeButton(getString(R.string.about_cancel), null)
+                .create()
+                .apply {
+                    setOnShowListener {
+                        getButton(AlertDialog.BUTTON_POSITIVE).requestFocus()
+                    }
+                }
+                .show()
+            return
+        }
+
+        downloadAndInstall(result, statusText)
+    }
+
+    private fun downloadAndInstall(result: UpdateChecker.UpdateResult, statusText: TextView) {
+        val context = requireContext()
+        val progressBar = ProgressBar(context, null, android.R.attr.progressBarStyleHorizontal).apply {
+            isIndeterminate = false
+            max = 100
+            val pad = (24 * resources.displayMetrics.density).toInt()
+            setPadding(pad, pad, pad, pad / 2)
+        }
+        val dialog = AlertDialog.Builder(context)
+            .setTitle(getString(R.string.about_downloading, result.version))
+            .setView(progressBar)
+            .setCancelable(false)
+            .create()
+        dialog.show()
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            val apk = ApkInstaller.download(
+                context.applicationContext,
+                result.downloadUrl,
+                result.assetName
+            ) { percent ->
+                if (percent < 0) {
+                    progressBar.isIndeterminate = true
+                } else {
+                    progressBar.progress = percent
+                }
+            }
+            if (!isAdded) return@launch
+
+            dialog.dismiss()
+            if (apk != null) {
+                ApkInstaller.install(requireContext(), apk)
+            } else {
+                statusText.text = getString(R.string.about_download_failed)
+            }
+        }
+    }
 
     private fun isNewerVersion(available: String, current: String): Boolean {
         try {

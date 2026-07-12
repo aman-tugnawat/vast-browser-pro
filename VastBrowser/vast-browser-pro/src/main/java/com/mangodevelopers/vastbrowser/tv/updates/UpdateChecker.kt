@@ -5,15 +5,23 @@
 package com.mangodevelopers.vastbrowser.tv.updates
 
 import android.content.Context
+import android.os.Build
 import android.util.Log
+import com.mangodevelopers.vastbrowser.tv.BuildConfig
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import org.json.JSONArray
 import org.json.JSONObject
 import java.net.HttpURLConnection
 import java.net.URL
 
 /**
  * Checks the GitHub Releases API for newer versions of VastBrowser.
+ *
+ * Releases are published to MangoDevelopers/vast-browser-release with one APK
+ * per flavor and ABI: VastBrowser-{abi}.apk (regular) and
+ * VastBrowser-Pro-{abi}.apk (pro). The checker picks the asset matching this
+ * build's flavor and the device's best supported ABI.
  *
  * Caches the result in SharedPreferences to avoid excessive API calls.
  * Throttles checks to at most once per 24 hours (unless manually triggered).
@@ -23,9 +31,8 @@ object UpdateChecker {
     private const val TAG = "UpdateChecker"
     private const val PREFS_NAME = "vast_browser_updates"
 
-    // GitHub API endpoint — update owner/repo to match your repository
-    private const val GITHUB_OWNER = "AmanTugnawat"
-    private const val GITHUB_REPO = "vast-browser"
+    private const val GITHUB_OWNER = "MangoDevelopers"
+    private const val GITHUB_REPO = "vast-browser-release"
     private const val RELEASES_API_URL = "https://api.github.com/repos/$GITHUB_OWNER/$GITHUB_REPO/releases/latest"
 
     private const val THROTTLE_MS = 24 * 60 * 60 * 1000L // 24 hours
@@ -33,9 +40,13 @@ object UpdateChecker {
     data class UpdateResult(
         val version: String,
         val downloadUrl: String,
+        val assetName: String,
         val releaseNotesUrl: String,
         val body: String
-    )
+    ) {
+        /** True when downloadUrl points at an APK asset (vs. the release page fallback). */
+        val isDirectApk: Boolean get() = assetName.endsWith(".apk")
+    }
 
     /**
      * Check GitHub Releases API for a newer version.
@@ -81,36 +92,26 @@ object UpdateChecker {
                 val htmlUrl = json.optString("html_url", "")
                 val body = json.optString("body", "")
 
-                // Find the APK asset download URL
-                var apkDownloadUrl = htmlUrl // fallback to release page
-                val assets = json.optJSONArray("assets")
-                if (assets != null) {
-                    for (i in 0 until assets.length()) {
-                        val asset = assets.getJSONObject(i)
-                        val assetName = asset.optString("name", "")
-                        if (assetName.endsWith(".apk")) {
-                            apkDownloadUrl = asset.optString("browser_download_url", htmlUrl)
-                            break
-                        }
-                    }
-                }
+                val asset = findBestApkAsset(json.optJSONArray("assets"))
 
                 val result = UpdateResult(
                     version = tagName,
-                    downloadUrl = apkDownloadUrl,
+                    downloadUrl = asset?.second ?: htmlUrl,
+                    assetName = asset?.first ?: "",
                     releaseNotesUrl = htmlUrl,
                     body = body
                 )
 
                 // Cache the result
                 prefs.edit()
-                    .putString("update_available_version", tagName)
-                    .putString("update_available_url", apkDownloadUrl)
-                    .putString("update_release_notes_url", htmlUrl)
+                    .putString("update_available_version", result.version)
+                    .putString("update_available_url", result.downloadUrl)
+                    .putString("update_asset_name", result.assetName)
+                    .putString("update_release_notes_url", result.releaseNotesUrl)
                     .putLong("update_last_checked", System.currentTimeMillis())
                     .apply()
 
-                Log.d(TAG, "Update check complete. Latest version: $tagName")
+                Log.d(TAG, "Update check complete. Latest: $tagName, asset: ${result.assetName}")
                 result
 
             } catch (e: Exception) {
@@ -122,16 +123,50 @@ object UpdateChecker {
     }
 
     /**
+     * Pick the release asset matching this build's flavor (regular vs. pro)
+     * and the device's preferred ABI. Returns (assetName, downloadUrl).
+     */
+    private fun findBestApkAsset(assets: JSONArray?): Pair<String, String>? {
+        if (assets == null) return null
+
+        val isPro = BuildConfig.APPLICATION_ID.contains(".pro")
+        val prefix = if (isPro) "VastBrowser-Pro-" else "VastBrowser-"
+
+        fun matchesFlavor(name: String): Boolean =
+            name.endsWith(".apk") && name.startsWith(prefix) &&
+                (isPro || !name.startsWith("VastBrowser-Pro-"))
+
+        val flavorAssets = mutableMapOf<String, String>()
+        for (i in 0 until assets.length()) {
+            val asset = assets.getJSONObject(i)
+            val name = asset.optString("name", "")
+            val url = asset.optString("browser_download_url", "")
+            if (matchesFlavor(name) && url.isNotEmpty()) {
+                flavorAssets[name] = url
+            }
+        }
+        if (flavorAssets.isEmpty()) return null
+
+        // SUPPORTED_ABIS is ordered by preference (best first)
+        for (abi in Build.SUPPORTED_ABIS) {
+            val wanted = "$prefix$abi.apk"
+            flavorAssets[wanted]?.let { return wanted to it }
+        }
+
+        // No ABI match — fall back to any asset of the right flavor
+        return flavorAssets.entries.first().toPair()
+    }
+
+    /**
      * Retrieve the cached update result from SharedPreferences.
      */
     private fun getCachedResult(prefs: android.content.SharedPreferences): UpdateResult? {
         val version = prefs.getString("update_available_version", null) ?: return null
-        val downloadUrl = prefs.getString("update_available_url", "") ?: ""
-        val releaseNotesUrl = prefs.getString("update_release_notes_url", "") ?: ""
         return UpdateResult(
             version = version,
-            downloadUrl = downloadUrl,
-            releaseNotesUrl = releaseNotesUrl,
+            downloadUrl = prefs.getString("update_available_url", "") ?: "",
+            assetName = prefs.getString("update_asset_name", "") ?: "",
+            releaseNotesUrl = prefs.getString("update_release_notes_url", "") ?: "",
             body = ""
         )
     }
@@ -144,6 +179,7 @@ object UpdateChecker {
             .edit()
             .remove("update_available_version")
             .remove("update_available_url")
+            .remove("update_asset_name")
             .remove("update_release_notes_url")
             .apply()
     }

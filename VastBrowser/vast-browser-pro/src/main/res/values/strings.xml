@@ -40,4 +40,10 @@
     <string name="about_last_checked">Last checked: %s</string>
     <string name="about_checking">Checking for updates…</string>
     <string name="about_never_checked">Never checked</string>
+    <string name="about_downloading">Downloading update %s…</string>
+    <string name="about_download_failed">❌ Download failed — check your connection and try again</string>
+    <string name="about_install_permission_title">Permission needed</string>
+    <string name="about_install_permission_message">To install updates, allow VastBrowser to install apps: enable “Install unknown apps” for VastBrowser on the next screen, then try again.</string>
+    <string name="about_open_settings">Open Settings</string>
+    <string name="about_cancel">Cancel</string>
 </resources>
