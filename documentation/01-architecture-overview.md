@@ -20,20 +20,19 @@ The name **Vast Browser** was chosen to capture the expansive, boundless feel of
 
 ---
 
-## 3. Independent Two-Module Architecture
+## 3. Multi-Repository Split
 
-To maximize performance, package size efficiency, and stability, the codebase is structured as two **fully independent** application modules. Rather than supporting engine-switching at runtime (which bloats APK size and introduces runtime complexity), each variant targets a specific engine compile-time.
+To maximize performance, build isolation, and developer focus, the project has been split into two separate repositories:
+1. **Vast Browser Pro** (This repository): Focuses on the GeckoView-based version, currently in early development.
+2. **Vast Browser (Regular)** (Stored in [Vast Browser (Regular) Repository](https://github.com/aman-tugnawat/vast-browser.git)): Focuses on the WebView-based version, which is the main branch matured first.
 
 ```
 VastBrowser/
-  ├── vast-browser/          (App Module) - "Vast Browser"
-  │   └── Uses SystemEngine (Android Native WebView)
-  │
   ├── vast-browser-pro/      (App Module) - "Vast Browser Pro"
   │   └── Uses GeckoEngine (Mozilla GeckoView v150.0.2)
   │
   ├── build.gradle.kts       (Root Gradle Config)
-  └── settings.gradle.kts    (Submodule Registry)
+  └── settings.gradle.kts    (Submodule Registry - Pro module only)
 ```
 
 ### A. Vast Browser (`:vast-browser`)

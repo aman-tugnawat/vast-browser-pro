@@ -17,3 +17,5 @@ VastBrowser/app/build/
 VastBrowser/.gradle/
 VastBrowser/.kotlin/
 .claude/launch.json
+builds/
+

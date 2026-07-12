@@ -1,5 +1,8 @@
 # Vast Browser Pro
 
+> [!IMPORTANT]
+> **Early Development**: Vast Browser Pro is currently in **early development**. The main focus of the team is on maturing and stabilizing the regular WebView version located in [Vast Browser (Regular)](https://github.com/aman-tugnawat/vast-browser.git) first before actively developing this Pro version.
+
 Vast Browser Pro is a modern, high-performance web browser designed completely from the ground up for large-format displays—specifically Smart TVs and spatial computing platforms (such as Meta Quest and Apple Vision). This repository contains the **Pro** version, which leverages Mozilla GeckoView to support full Firefox WebExtensions.
 
 Unlike other TV browsers that are often clunky or outdated forks of mobile software, Vast Browser Pro leverages modern Mozilla Android Components and GeckoView to deliver a premium, immersive, and fast browsing experience natively tailored for the living room and spatial canvas.

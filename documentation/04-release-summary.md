@@ -8,11 +8,11 @@ This document tracks all features, optimizations, refactoring, and bug fixes imp
 
 ---
 
-## 1. Modular Splitting (Standard vs. Pro)
+## 1. Repository Split (Standard vs. Pro)
 
-To eliminate runtime switching overhead and package size inefficiencies, the project has transitioned to two fully isolated, compile-time specific app modules:
-- **`vast-browser` (SystemEngine):** Ultra-lightweight ~2MB build using the native Android WebView, custom JS ad/tracker filters, and direct `SystemEngine` calls.
-- **`vast-browser-pro` (GeckoEngine):** Native Firefox engine with desktop-grade extensions, preloaded WebExtension assets, and the `GeckoEngineProvider` setup.
+To eliminate runtime switching overhead, package size inefficiencies, and allow focused development, the project has been split into two independent repositories:
+- **`vast-browser-pro` (GeckoEngine) (This repository):** Native Firefox engine with desktop-grade WebExtensions, currently in early development.
+- **`vast-browser` (SystemEngine) (Separate repository):** Ultra-lightweight ~2MB build using the native Android WebView. This version is the primary focus of active development and stabilization.
 
 ---
 
