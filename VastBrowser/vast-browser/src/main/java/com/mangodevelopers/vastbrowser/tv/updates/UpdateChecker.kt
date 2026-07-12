@@ -158,6 +158,50 @@ object UpdateChecker {
     }
 
     /**
+     * Simple semantic version comparison. Returns true if [available] is newer
+     * than [current]. Handles "v" prefixes and "-suffix" build metadata.
+     */
+    fun isNewerVersion(available: String, current: String): Boolean {
+        try {
+            val availParts = available.removePrefix("v").split("-")[0].split(".").map { it.toIntOrNull() ?: 0 }
+            val currentParts = current.removePrefix("v").split("-")[0].split(".").map { it.toIntOrNull() ?: 0 }
+
+            for (i in 0 until maxOf(availParts.size, currentParts.size)) {
+                val a = availParts.getOrElse(i) { 0 }
+                val c = currentParts.getOrElse(i) { 0 }
+                if (a > c) return true
+                if (a < c) return false
+            }
+        } catch (_: Exception) {}
+        return false
+    }
+
+    /**
+     * The cached update result, but only when it is newer than the running
+     * build; null otherwise.
+     */
+    fun getAvailableUpdate(context: Context): UpdateResult? {
+        val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        val cached = getCachedResult(prefs) ?: return null
+        return cached.takeIf { isNewerVersion(it.version, BuildConfig.VERSION_NAME) }
+    }
+
+    /**
+     * Whether the update-available prompt was already shown for [version]
+     * (once-per-version semantics).
+     */
+    fun wasUpdatePromptShownFor(context: Context, version: String): Boolean =
+        context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+            .getString("update_prompt_shown_for", null) == version
+
+    fun markUpdatePromptShown(context: Context, version: String) {
+        context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+            .edit()
+            .putString("update_prompt_shown_for", version)
+            .apply()
+    }
+
+    /**
      * Retrieve the cached update result from SharedPreferences.
      */
     private fun getCachedResult(prefs: android.content.SharedPreferences): UpdateResult? {

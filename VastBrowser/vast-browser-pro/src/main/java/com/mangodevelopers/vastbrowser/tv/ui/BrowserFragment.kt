@@ -17,6 +17,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -31,6 +32,7 @@ import mozilla.components.lib.state.ext.flow
 import com.mangodevelopers.vastbrowser.tv.R
 import com.mangodevelopers.vastbrowser.tv.components
 import com.mangodevelopers.vastbrowser.tv.databinding.FragmentBrowserBinding
+import com.mangodevelopers.vastbrowser.tv.updates.UpdateChecker
 
 private const val ARG_URL = "initial_url"
 private const val HOME_URL = "about:blank"
@@ -288,6 +290,18 @@ class BrowserFragment : Fragment() {
             val prefs = requireContext().getSharedPreferences("vast_browser_prefs", android.content.Context.MODE_PRIVATE)
             val homePageUrl = prefs.getString("pref_home_page", "about:blank") ?: "about:blank"
             loadUrl(homePageUrl)
+        }
+        // Long-press (D-pad center hold) sets the home page to the current page
+        binding.buttonHome.setOnLongClickListener {
+            val currentUrl = components.store.state.selectedTab?.content?.url ?: ""
+            if (currentUrl.isNotBlank() && currentUrl != "about:blank") {
+                requireContext().getSharedPreferences("vast_browser_prefs", android.content.Context.MODE_PRIVATE)
+                    .edit()
+                    .putString("pref_home_page", currentUrl)
+                    .apply()
+                Toast.makeText(requireContext(), R.string.home_page_set_toast, Toast.LENGTH_SHORT).show()
+            }
+            true
         }
         binding.buttonSettings.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
@@ -954,31 +968,10 @@ class BrowserFragment : Fragment() {
      * Show or hide a notification dot on the Settings toolbar button
      * indicating a new app version is available.
      */
-    private fun updateSettingsNotificationDot() {
+    internal fun updateSettingsNotificationDot() {
         val binding = _binding ?: return
-        val updatePrefs = requireContext().getSharedPreferences("vast_browser_updates", android.content.Context.MODE_PRIVATE)
-        val availableVersion = updatePrefs.getString("update_available_version", null)
-        val notificationDot = binding.settingsNotificationDot
-        
-        if (availableVersion != null) {
-            try {
-                val currentVersion = com.mangodevelopers.vastbrowser.tv.BuildConfig.VERSION_NAME
-                val availParts = availableVersion.removePrefix("v").split("-")[0].split(".").map { it.toIntOrNull() ?: 0 }
-                val currentParts = currentVersion.removePrefix("v").split("-")[0].split(".").map { it.toIntOrNull() ?: 0 }
-                var isNewer = false
-                for (i in 0 until maxOf(availParts.size, currentParts.size)) {
-                    val a = availParts.getOrElse(i) { 0 }
-                    val c = currentParts.getOrElse(i) { 0 }
-                    if (a > c) { isNewer = true; break }
-                    if (a < c) break
-                }
-                notificationDot.visibility = if (isNewer) View.VISIBLE else View.GONE
-            } catch (_: Exception) {
-                notificationDot.visibility = View.GONE
-            }
-        } else {
-            notificationDot.visibility = View.GONE
-        }
+        val available = UpdateChecker.getAvailableUpdate(requireContext()) != null
+        binding.settingsNotificationDot.visibility = if (available) View.VISIBLE else View.GONE
     }
 
     fun handleDpadEvent(event: KeyEvent): Boolean {

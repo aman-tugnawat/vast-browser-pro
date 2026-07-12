@@ -7,12 +7,17 @@ package com.mangodevelopers.vastbrowser.tv
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.CheckBox
+import android.widget.FrameLayout
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 import com.mangodevelopers.vastbrowser.tv.databinding.ActivityBrowserBinding
 import com.mangodevelopers.vastbrowser.tv.ui.BrowserFragment
 import com.mangodevelopers.vastbrowser.tv.updates.UpdateChecker
+import com.mangodevelopers.vastbrowser.tv.updates.UpdateFlow
 
 /**
  * Main activity for Vast Browser.
@@ -60,8 +65,72 @@ class BrowserActivity : AppCompatActivity() {
 
         // Check for app updates in the background (throttled to once per 24h)
         lifecycleScope.launch {
-            UpdateChecker.checkForUpdate(this@BrowserActivity, forceCheck = false)
+            val result = UpdateChecker.checkForUpdate(this@BrowserActivity, forceCheck = false)
+            if (result != null && UpdateChecker.isNewerVersion(result.version, BuildConfig.VERSION_NAME)) {
+                // onResume may have run before the check finished — refresh the
+                // settings-button notification dot now that the result is cached
+                browserFragment()?.updateSettingsNotificationDot()
+                maybeShowUpdateDialog(result)
+            }
         }
+    }
+
+    private fun browserFragment(): BrowserFragment? =
+        supportFragmentManager.findFragmentById(R.id.fragment_container) as? BrowserFragment
+
+    /**
+     * Show the update-available dialog unless the user disabled update
+     * notifications or the prompt was already shown for this version.
+     */
+    private fun maybeShowUpdateDialog(result: UpdateChecker.UpdateResult) {
+        val prefs = getSharedPreferences("vast_browser_prefs", MODE_PRIVATE)
+        if (!prefs.getBoolean("pref_notify_update_available", true)) return
+        if (UpdateChecker.wasUpdatePromptShownFor(this, result.version)) return
+        if (isFinishing || isDestroyed) return
+
+        val dontShowAgain = CheckBox(this).apply {
+            setText(R.string.update_dialog_dont_show_again)
+            isFocusable = true
+        }
+        val container = FrameLayout(this).apply {
+            val pad = (24 * resources.displayMetrics.density).toInt()
+            setPadding(pad, pad / 2, pad, 0)
+            addView(dontShowAgain)
+        }
+
+        fun applyDontShowAgain() {
+            if (dontShowAgain.isChecked) {
+                prefs.edit().putBoolean("pref_notify_update_available", false).apply()
+            }
+        }
+
+        AlertDialog.Builder(this)
+            .setTitle(getString(R.string.update_dialog_title))
+            .setMessage(getString(R.string.update_dialog_message, result.version))
+            .setView(container)
+            .setPositiveButton(R.string.update_dialog_update_now) { _, _ ->
+                applyDontShowAgain()
+                if (result.isDirectApk) {
+                    UpdateFlow.startUpdateInstall(this, result) {
+                        Toast.makeText(this, R.string.about_download_failed, Toast.LENGTH_LONG).show()
+                    }
+                } else {
+                    // No APK asset — open the release page instead
+                    browserFragment()?.loadUrl(result.downloadUrl)
+                }
+            }
+            .setNegativeButton(R.string.update_dialog_not_now) { _, _ ->
+                applyDontShowAgain()
+            }
+            .create()
+            .apply {
+                setOnShowListener {
+                    getButton(AlertDialog.BUTTON_POSITIVE).requestFocus()
+                }
+            }
+            .show()
+
+        UpdateChecker.markUpdatePromptShown(this, result.version)
     }
 
     override fun onNewIntent(intent: Intent) {

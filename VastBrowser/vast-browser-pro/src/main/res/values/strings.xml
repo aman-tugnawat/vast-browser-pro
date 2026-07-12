@@ -46,4 +46,13 @@
     <string name="about_install_permission_message">To install updates, allow VastBrowser to install apps: enable “Install unknown apps” for VastBrowser on the next screen, then try again.</string>
     <string name="about_open_settings">Open Settings</string>
     <string name="about_cancel">Cancel</string>
+
+    <!-- Update-available dialog -->
+    <string name="update_dialog_title">Update Available</string>
+    <string name="update_dialog_message">Version %s of Vast Browser is available. Would you like to update now?</string>
+    <string name="update_dialog_update_now">Update Now</string>
+    <string name="update_dialog_not_now">Not Now</string>
+    <string name="update_dialog_dont_show_again">Don\'t show update notification again</string>
+    <string name="settings_notify_update">Inform me when Update is Available</string>
+    <string name="home_page_set_toast">Home page set to current page</string>
 </resources>

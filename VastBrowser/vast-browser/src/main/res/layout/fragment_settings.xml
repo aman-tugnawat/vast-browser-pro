@@ -416,6 +416,16 @@
             android:textColor="@color/text_primary"
             android:layout_marginBottom="8dp" />
 
+        <CheckBox
+            android:id="@+id/checkbox_notify_update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_notify_update"
+            android:textColor="@color/text_primary"
+            android:focusable="true"
+            android:checked="true"
+            android:layout_marginBottom="8dp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

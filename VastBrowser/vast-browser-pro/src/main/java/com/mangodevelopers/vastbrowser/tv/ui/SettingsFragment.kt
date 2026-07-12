@@ -27,8 +27,8 @@ import kotlinx.coroutines.launch
 import com.mangodevelopers.vastbrowser.tv.BuildConfig
 import com.mangodevelopers.vastbrowser.tv.R
 import com.mangodevelopers.vastbrowser.tv.components
-import com.mangodevelopers.vastbrowser.tv.updates.ApkInstaller
 import com.mangodevelopers.vastbrowser.tv.updates.UpdateChecker
+import com.mangodevelopers.vastbrowser.tv.updates.UpdateFlow
 import org.mozilla.geckoview.WebExtension
 import org.mozilla.geckoview.WebExtensionController
 import com.mangodevelopers.vastbrowser.tv.engine.GeckoEngineProvider
@@ -69,6 +69,7 @@ class SettingsFragment : Fragment() {
         val textLastChecked = view.findViewById<TextView>(R.id.text_last_checked)
         val buttonCheckUpdate = view.findViewById<Button>(R.id.button_check_update)
         val buttonDownloadUpdate = view.findViewById<Button>(R.id.button_download_update)
+        val checkboxNotifyUpdate = view.findViewById<CheckBox>(R.id.checkbox_notify_update)
 
         val prefs = requireContext().getSharedPreferences("vast_browser_prefs", Context.MODE_PRIVATE)
 
@@ -79,9 +80,11 @@ class SettingsFragment : Fragment() {
         val currentScrollHold = prefs.getInt("pref_scroll_hold_duration", 2000)
         val currentSpeed = prefs.getString("pref_cursor_speed", "fast") ?: "fast"
         val currentTripleUp = prefs.getBoolean("pref_triple_up_toolbar", true)
+        val currentNotifyUpdate = prefs.getBoolean("pref_notify_update_available", true)
 
         editHomePage.setText(currentHomePage)
         checkboxTripleUp.isChecked = currentTripleUp
+        checkboxNotifyUpdate.isChecked = currentNotifyUpdate
 
         if (currentNavMethod == "dpad_cursor") {
             radioCursor.isChecked = true
@@ -166,7 +169,7 @@ class SettingsFragment : Fragment() {
         val cachedAsset = updatePrefs.getString("update_asset_name", "") ?: ""
         val lastChecked = updatePrefs.getLong("update_last_checked", 0L)
 
-        if (availableVersion != null && isNewerVersion(availableVersion, BuildConfig.VERSION_NAME)) {
+        if (availableVersion != null && UpdateChecker.isNewerVersion(availableVersion, BuildConfig.VERSION_NAME)) {
             textUpdateStatus.text = getString(R.string.about_update_available, availableVersion)
             buttonDownloadUpdate.visibility = View.VISIBLE
             if (!cachedUrl.isNullOrEmpty()) {
@@ -201,7 +204,7 @@ class SettingsFragment : Fragment() {
                 if (!isAdded) return@launch
 
                 buttonCheckUpdate.isEnabled = true
-                if (result != null && isNewerVersion(result.version, BuildConfig.VERSION_NAME)) {
+                if (result != null && UpdateChecker.isNewerVersion(result.version, BuildConfig.VERSION_NAME)) {
                     textUpdateStatus.text = getString(R.string.about_update_available, result.version)
                     buttonDownloadUpdate.visibility = View.VISIBLE
                     buttonDownloadUpdate.setOnClickListener {
@@ -259,6 +262,7 @@ class SettingsFragment : Fragment() {
                 .putInt("pref_scroll_hold_duration", newScrollHold)
                 .putString("pref_cursor_speed", newSpeed)
                 .putBoolean("pref_triple_up_toolbar", checkboxTripleUp.isChecked)
+                .putBoolean("pref_notify_update_available", checkboxNotifyUpdate.isChecked)
                 .commit()
         }
 
@@ -317,7 +321,8 @@ class SettingsFragment : Fragment() {
                         newTimeout != currentTimeout ||
                         newScrollHold != currentScrollHold ||
                         newSpeed != currentSpeed ||
-                        checkboxTripleUp.isChecked != currentTripleUp
+                        checkboxTripleUp.isChecked != currentTripleUp ||
+                        checkboxNotifyUpdate.isChecked != currentNotifyUpdate
             }
 
             private fun showExitConfirmationDialog() {
@@ -355,10 +360,9 @@ class SettingsFragment : Fragment() {
     // ===== Update Helper Methods =====
 
     /**
-     * Download-button handler: downloads the APK and launches the installer.
-     * Falls back to opening the release page in the browser when no APK asset
-     * was found, and routes through the "install unknown apps" permission
-     * screen when that hasn't been granted yet.
+     * Download-button handler: runs the shared download + install flow, or
+     * falls back to opening the release page in the browser when no APK asset
+     * was found.
      */
     private fun onDownloadUpdateClicked(result: UpdateChecker.UpdateResult, statusText: TextView) {
         if (!result.isDirectApk) {
@@ -369,78 +373,9 @@ class SettingsFragment : Fragment() {
             return
         }
 
-        if (!ApkInstaller.canInstall(requireContext())) {
-            AlertDialog.Builder(requireContext())
-                .setTitle(getString(R.string.about_install_permission_title))
-                .setMessage(getString(R.string.about_install_permission_message))
-                .setPositiveButton(getString(R.string.about_open_settings)) { _, _ ->
-                    startActivity(ApkInstaller.unknownSourcesSettingsIntent(requireContext()))
-                }
-                .setNegativeButton(getString(R.string.about_cancel), null)
-                .create()
-                .apply {
-                    setOnShowListener {
-                        getButton(AlertDialog.BUTTON_POSITIVE).requestFocus()
-                    }
-                }
-                .show()
-            return
+        UpdateFlow.startUpdateInstall(requireActivity(), result) {
+            if (isAdded) statusText.text = getString(R.string.about_download_failed)
         }
-
-        downloadAndInstall(result, statusText)
-    }
-
-    private fun downloadAndInstall(result: UpdateChecker.UpdateResult, statusText: TextView) {
-        val context = requireContext()
-        val progressBar = ProgressBar(context, null, android.R.attr.progressBarStyleHorizontal).apply {
-            isIndeterminate = false
-            max = 100
-            val pad = (24 * resources.displayMetrics.density).toInt()
-            setPadding(pad, pad, pad, pad / 2)
-        }
-        val dialog = AlertDialog.Builder(context)
-            .setTitle(getString(R.string.about_downloading, result.version))
-            .setView(progressBar)
-            .setCancelable(false)
-            .create()
-        dialog.show()
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            val apk = ApkInstaller.download(
-                context.applicationContext,
-                result.downloadUrl,
-                result.assetName
-            ) { percent ->
-                if (percent < 0) {
-                    progressBar.isIndeterminate = true
-                } else {
-                    progressBar.progress = percent
-                }
-            }
-            if (!isAdded) return@launch
-
-            dialog.dismiss()
-            if (apk != null) {
-                ApkInstaller.install(requireContext(), apk)
-            } else {
-                statusText.text = getString(R.string.about_download_failed)
-            }
-        }
-    }
-
-    private fun isNewerVersion(available: String, current: String): Boolean {
-        try {
-            val availParts = available.removePrefix("v").split("-")[0].split(".").map { it.toIntOrNull() ?: 0 }
-            val currentParts = current.removePrefix("v").split("-")[0].split(".").map { it.toIntOrNull() ?: 0 }
-
-            for (i in 0 until maxOf(availParts.size, currentParts.size)) {
-                val a = availParts.getOrElse(i) { 0 }
-                val c = currentParts.getOrElse(i) { 0 }
-                if (a > c) return true
-                if (a < c) return false
-            }
-        } catch (_: Exception) {}
-        return false
     }
 
     private fun getTimeAgo(timestamp: Long): String {
