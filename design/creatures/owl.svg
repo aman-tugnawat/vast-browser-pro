@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 130">
+  <!-- VastBrowser mascot owl (dark theme). Pupils (.pupil) are moved by JS
+       toward the cursor; lids (.lid) blink via CSS. Palette: design/README.md -->
+  <path d="M30 24 L40 6 L50 26 Z" fill="#b9a6ff"/>
+  <path d="M90 24 L80 6 L70 26 Z" fill="#b9a6ff"/>
+  <ellipse cx="60" cy="72" rx="40" ry="50" fill="#b9a6ff"/>
+  <path d="M22 62 Q12 92 26 108 Q34 96 32 70 Z" fill="#a08cf0"/>
+  <path d="M98 62 Q108 92 94 108 Q86 96 88 70 Z" fill="#a08cf0"/>
+  <ellipse cx="60" cy="96" rx="23" ry="24" fill="#ebf0f8"/>
+  <g class="eye">
+    <circle cx="44" cy="52" r="13" fill="#ffffff" stroke="#1f2025" stroke-width="2"/>
+    <circle class="pupil" cx="44" cy="52" r="5.5" fill="#1f2025"/>
+    <circle class="lid" cx="44" cy="52" r="13" fill="#b9a6ff"/>
+  </g>
+  <g class="eye">
+    <circle cx="76" cy="52" r="13" fill="#ffffff" stroke="#1f2025" stroke-width="2"/>
+    <circle class="pupil" cx="76" cy="52" r="5.5" fill="#1f2025"/>
+    <circle class="lid" cx="76" cy="52" r="13" fill="#b9a6ff"/>
+  </g>
+  <path d="M60 62 L53 72 L67 72 Z" fill="#ffab94"/>
+  <path d="M48 121 l-4 7 M48 121 l0 8 M48 121 l4 7" stroke="#ffab94" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+  <path d="M72 121 l-4 7 M72 121 l0 8 M72 121 l4 7" stroke="#ffab94" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+</svg>

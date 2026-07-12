@@ -1,119 +1,87 @@
 name: Build & Release
 
 on:
-  # Trigger on push to main branch
+  # Trigger on push to main branch (including merged engine-update PRs
+  # created by the version-check workflow)
   push:
     branches: [ main ]
-  
-  # Manual trigger with optional force release
+
+  # Manual trigger
   workflow_dispatch:
     inputs:
-      force_release:
-        description: 'Force a new release even if no engine update'
-        required: false
-        default: 'false'
-        type: boolean
-  
-  # Weekly scheduled check for engine updates
-  schedule:
-    - cron: '0 6 * * 1'  # Every Monday at 6:00 UTC
+      bump:
+        description: 'Version upgrade type'
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+        default: patch
 
 permissions:
   contents: write
 
-jobs:
-  check-engine-update:
-    name: Check for Engine Updates
-    runs-on: ubuntu-latest
-    # Only run on schedule or manual dispatch
-    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
-    outputs:
-      engine_updated: ${{ steps.check.outputs.updated }}
-      new_version: ${{ steps.check.outputs.new_version }}
-    
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-      
-      - name: Check latest mozilla-components version
-        id: check
-        run: |
-          # Query Maven for the latest version of browser-engine-system
-          MAVEN_URL="https://maven.mozilla.org/maven2/org/mozilla/components/browser-engine-system/maven-metadata.xml"
-          LATEST=$(curl -s "$MAVEN_URL" | grep -oP '<latest>\K[^<]+' || echo "")
-          
-          if [ -z "$LATEST" ]; then
-            echo "Could not fetch latest version from Maven"
-            echo "updated=false" >> $GITHUB_OUTPUT
-            exit 0
-          fi
-          
-          # Read current version from browser-engine/build.gradle.kts
-          CURRENT=$(grep 'val mozComponentsVersion' VastBrowser/browser-engine/build.gradle.kts | grep -oP '"[^"]+"' | tr -d '"')
-          
-          echo "Current version: $CURRENT"
-          echo "Latest version: $LATEST"
-          
-          if [ "$CURRENT" != "$LATEST" ]; then
-            echo "Engine update available: $CURRENT → $LATEST"
-            echo "updated=true" >> $GITHUB_OUTPUT
-            echo "new_version=$LATEST" >> $GITHUB_OUTPUT
-          else
-            echo "Already up to date"
-            echo "updated=false" >> $GITHUB_OUTPUT
-          fi
-      
-      - name: Update engine version in build.gradle.kts
-        if: steps.check.outputs.updated == 'true'
-        run: |
-          NEW_VERSION="${{ steps.check.outputs.new_version }}"
-          sed -i "s/val mozComponentsVersion = \"[^\"]*\"/val mozComponentsVersion = \"$NEW_VERSION\"/" VastBrowser/browser-engine/build.gradle.kts
-          sed -i "s/val mozComponentsVersion = \"[^\"]*\"/val mozComponentsVersion = \"$NEW_VERSION\"/" VastBrowser/browser-ui-tv/build.gradle.kts
-          
-          # Verify the change
-          grep "mozComponentsVersion" VastBrowser/browser-engine/build.gradle.kts
-      
-      - name: Commit and push engine update
-        if: steps.check.outputs.updated == 'true'
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add VastBrowser/browser-engine/build.gradle.kts VastBrowser/browser-ui-tv/build.gradle.kts
-          git commit -m "chore: bump mozilla-components to ${{ steps.check.outputs.new_version }}"
-          git push
+# Cancel superseded builds of the same ref
+concurrency:
+  group: build-release-${{ github.ref }}
+  cancel-in-progress: true
 
+jobs:
   build:
-    name: Build APKs
+    name: Build & publish signed APKs
     runs-on: ubuntu-latest
-    needs: [check-engine-update]
-    # Run if: push to main, engine was updated, or force release requested
-    if: |
-      always() && (
-        github.event_name == 'push' ||
-        needs.check-engine-update.outputs.engine_updated == 'true' ||
-        github.event.inputs.force_release == 'true'
-      )
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.ref }}
-          # Fetch the latest commit (in case engine was just updated)
-          fetch-depth: 0
-      
-      - name: Pull latest changes
-        if: github.event_name != 'push'
-        run: git pull origin main || true
-      
+
+      - name: Verify release credentials are configured
+        run: |
+          if [ -z "${{ secrets.RELEASE_REPO_TOKEN }}" ]; then
+            echo "::error::RELEASE_REPO_TOKEN secret is not set (fine-grained PAT with contents:write on MangoDevelopers/vast-browser-release)"
+            exit 1
+          fi
+          if [ -z "${{ secrets.KEYSTORE_BASE64 }}" ]; then
+            echo "::error::KEYSTORE_BASE64 secret is not set"
+            exit 1
+          fi
+
+      - name: Bump version (major.minor.patch)
+        id: version
+        run: |
+          # Manual runs choose the bump type; push-triggered builds default to patch.
+          # Every release increments the version at least at patch level.
+          BUMP="${{ github.event.inputs.bump || 'patch' }}"
+
+          CURRENT=$(grep -oP 'versionName = "\K[^"]+' VastBrowser/vast-browser-pro/build.gradle.kts)
+          IFS='.' read -r MAJOR MINOR PATCH <<< "$CURRENT"
+
+          case "$BUMP" in
+            major) MAJOR=$((MAJOR + 1)); MINOR=0; PATCH=0 ;;
+            minor) MINOR=$((MINOR + 1)); PATCH=0 ;;
+            patch) PATCH=$((PATCH + 1)) ;;
+            *) echo "::error::Unknown bump type: $BUMP"; exit 1 ;;
+          esac
+          NEW_VERSION="$MAJOR.$MINOR.$PATCH"
+
+          for f in VastBrowser/vast-browser-pro/build.gradle.kts; do
+            CODE=$(grep -oP 'versionCode = \K[0-9]+' "$f")
+            sed -i "s/versionCode = [0-9]\+/versionCode = $((CODE + 1))/" "$f"
+            sed -i "s/versionName = \"[^\"]*\"/versionName = \"$NEW_VERSION\"/" "$f"
+          done
+          grep -H 'versionCode\|versionName' VastBrowser/vast-browser-pro/build.gradle.kts
+
+          ENGINE=$(grep -oP 'val mozComponentsVersion = "\K[^"]+' VastBrowser/vast-browser-pro/build.gradle.kts)
+          echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
+          echo "engine=$ENGINE" >> $GITHUB_OUTPUT
+          echo "Bump: $BUMP — $CURRENT → $NEW_VERSION (engine: $ENGINE)"
+
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
-      
+
       - name: Cache Gradle dependencies
         uses: actions/cache@v4
         with:
@@ -123,67 +91,70 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle.kts', '**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
-      
+
+      - name: Decode release keystore
+        run: |
+          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > "$RUNNER_TEMP/release.jks"
+          echo "VAST_KEYSTORE_FILE=$RUNNER_TEMP/release.jks" >> $GITHUB_ENV
+
       - name: Grant execute permission to gradlew
         run: chmod +x VastBrowser/gradlew
-      
-      - name: Build Debug APK
+
+      - name: Build signed Release APKs
         working-directory: VastBrowser
-        run: ./gradlew assembleDebug
-      
-      - name: Build Release APK
-        working-directory: VastBrowser
+        env:
+          VAST_KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          VAST_KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
         run: ./gradlew assembleRelease
-        continue-on-error: true  # Release may fail without signing config
-      
-      - name: Upload Debug APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: debug-apk
-          path: VastBrowser/browser-ui-tv/build/outputs/apk/debug/browser-ui-tv-debug.apk
-      
-      - name: Upload Release APK
-        uses: actions/upload-artifact@v4
-        if: success()
-        with:
-          name: release-apk
-          path: VastBrowser/browser-ui-tv/build/outputs/apk/release/browser-ui-tv-release*.apk
-          if-no-files-found: ignore
-      
-      - name: Extract version info
-        id: version
+
+      - name: Collect APKs with stable names
         run: |
-          VERSION=$(grep 'versionName' VastBrowser/browser-ui-tv/build.gradle.kts | grep -oP '"[^"]+"' | tr -d '"')
-          ENGINE=$(grep 'val mozComponentsVersion' VastBrowser/browser-engine/build.gradle.kts | grep -oP '"[^"]+"' | tr -d '"')
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
-          echo "engine=$ENGINE" >> $GITHUB_OUTPUT
-          echo "App version: $VERSION, Engine: $ENGINE"
-      
-      - name: Create GitHub Release
-        if: github.event_name != 'push' || github.ref == 'refs/heads/main'
+          mkdir -p dist
+          for f in VastBrowser/vast-browser-pro/build.outputs/apk/release/*.apk; do
+            abi=$(basename "$f" | sed -E 's/^vast-browser-pro-(.*)-release\.apk$/\1/')
+            cp "$f" "dist/VastBrowser-Pro-${abi}.apk"
+          done
+          cd dist && sha256sum *.apk > SHA256SUMS.txt
+          ls -la
+
+      - name: Commit version bump
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add VastBrowser/vast-browser-pro/build.gradle.kts
+          # [skip ci] prevents this push from re-triggering the workflow
+          git commit -m "chore(release): v${{ steps.version.outputs.version }} [skip ci]"
+          # Rebase in case main moved while the build ran
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+
+      - name: Publish release to public repo
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v${{ steps.version.outputs.version }}-build.${{ github.run_number }}
-          name: "VastBrowser v${{ steps.version.outputs.version }} (Build #${{ github.run_number }})"
+          repository: MangoDevelopers/vast-browser-release
+          token: ${{ secrets.RELEASE_REPO_TOKEN }}
+          tag_name: v${{ steps.version.outputs.version }}
+          name: "VastBrowser Pro v${{ steps.version.outputs.version }}"
           body: |
-            ## VastBrowser v${{ steps.version.outputs.version }}
-            
+            ## VastBrowser Pro v${{ steps.version.outputs.version }}
+
             **Engine Version:** Mozilla Components ${{ steps.version.outputs.engine }}
-            
-            ### What's New
-            - Built from commit ${{ github.sha }}
-            ${{ needs.check-engine-update.outputs.engine_updated == 'true' && format('- 🔄 Updated Mozilla Components engine to {0}', needs.check-engine-update.outputs.new_version) || '' }}
-            
+
+            ### Flavors
+            - `VastBrowser-Pro-*` — pro (bundled GeckoView engine)
+
+            APKs are split per ABI — for most Android TV / Fire TV devices use the
+            `arm64-v8a` (newer devices) or `armeabi-v7a` (older devices) APK.
+
             ### Installation
             1. Download the APK below
             2. Transfer to your Android TV device
             3. Install via file manager or `adb install`
-            
+
+            Verify downloads against `SHA256SUMS.txt`.
+
             ---
             *Built automatically by GitHub Actions*
-          files: |
-            VastBrowser/browser-ui-tv/build/outputs/apk/debug/browser-ui-tv-debug.apk
+          files: dist/*
           draft: false
           prerelease: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

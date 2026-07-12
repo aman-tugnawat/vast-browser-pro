@@ -17,5 +17,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "VastBrowser"
-include(":vast-browser", ":vast-browser-light")
+rootProject.name = "VastBrowserPro"
+include(":vast-browser-pro")

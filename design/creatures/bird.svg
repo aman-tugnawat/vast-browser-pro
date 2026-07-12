@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 110">
+  <!-- VastBrowser mascot bird (light theme). Pupils (.pupil) are moved by JS
+       toward the cursor; lids (.lid) blink via CSS. Palette: design/README.md -->
+  <path d="M28 78 Q10 70 6 84 Q18 88 28 86 Z" fill="#b9a6ff"/>
+  <ellipse cx="58" cy="70" rx="34" ry="30" fill="#7ddcff"/>
+  <ellipse cx="60" cy="82" rx="20" ry="15" fill="#ffffff"/>
+  <circle cx="78" cy="40" r="22" fill="#7ddcff"/>
+  <path d="M52 66 Q34 74 40 88 Q56 88 62 76 Z" fill="#b9a6ff"/>
+  <g class="eye">
+    <circle cx="84" cy="36" r="9" fill="#ffffff" stroke="#1f2025" stroke-width="2"/>
+    <circle class="pupil" cx="84" cy="36" r="3.8" fill="#1f2025"/>
+    <circle class="lid" cx="84" cy="36" r="9" fill="#7ddcff"/>
+  </g>
+  <path d="M99 34 L112 40 L99 46 Z" fill="#ffab94"/>
+  <path d="M48 99 l0 8 M48 103 l-5 5 M70 99 l0 8 M70 103 l5 5" stroke="#1f2025" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+</svg>
