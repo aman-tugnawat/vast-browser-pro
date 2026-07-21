@@ -3,7 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
 }
 
-val mozComponentsVersion = "150.0.2"
+val mozComponentsVersion = "153.0"
 
 android {
     namespace = "com.mangodevelopers.vastbrowser.tv"
