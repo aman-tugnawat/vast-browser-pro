@@ -2,8 +2,8 @@ name: Check Engine Version
 
 on:
   # Daily check at noon UTC
-  schedule:
-    - cron: '0 12 * * *'
+  # schedule:
+  #  - cron: '0 12 * * *'
 
   # Manual trigger
   workflow_dispatch:
